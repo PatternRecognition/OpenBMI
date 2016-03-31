@@ -1,4 +1,4 @@
-function [ out ] = func_featureExtraction( in, varargin )
+function [ out ] = func_featureExtraction( dat, varargin )
 %PROC_FEAEXTRACTION Summary of this function goes here
 %   Detailed explanation goes here
 if ~varargin{end}
@@ -11,48 +11,48 @@ else
     param=varargin;
 end
 
-if isstruct(in)
-    dat=in.x;
+if isstruct(dat)
+    tDat=dat.x;
 else
-    dat=in;
+    tDat=dat;
 end
 
 switch lower(param{1})
     case 'logvar'
-        dat=squeeze(log(var(dat)));
-        dat=dat'
+        tDat=squeeze(log(var(tDat)));
+        tDat=tDat'
         
     case 'erpmean'
-        [nDat, nTrials, nChans]= size(dat);
+        [nDat, nTrials, nChans]= size(tDat);
         T=param{2};
         nMeans= round(nDat/T);
         dat_=zeros(nMeans, nTrials, nChans);
         for i=1:nMeans
             if i==nMeans
-                temp=mean(dat((i*T-T)+1:end,:,:),1);
+                temp=mean(tDat((i*T-T)+1:end,:,:),1);
             else
-                temp=mean(dat((i*T-T)+1:i*T,:,:),1);
+                temp=mean(tDat((i*T-T)+1:i*T,:,:),1);
             end           
             dat_(i,:,:)=temp; temp=[];
         end
          [nDat, nTrials, nChans]= size(dat_);       
 %          dat=dat_;
-         dat= reshape(permute(dat_,[1 3 2]), [nDat*nChans nTrials]);        
+         tDat= reshape(permute(dat_,[1 3 2]), [nDat*nChans nTrials]);        
 end
 
 
-if isstruct(in)
-    in.x=dat;
+if isstruct(dat)
+    dat.x=tDat;
 else
-    in=dat;
+    dat=tDat;
 end
-out=in;
+out=dat;
 
-if isfield(in,'stack') %% put in the function
+if isfield(dat,'stack') %% put in the function
     % stack
     c = mfilename('fullpath');
     c = strsplit(c,'\');
-    in.stack{end+1}=c{end};
+    dat.stack{end+1}=c{end};
 end
 end
 

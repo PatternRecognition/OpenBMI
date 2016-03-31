@@ -4,8 +4,6 @@ function [ out ] = func_projection( dat, w, varargin )
 if isstruct(dat)
     if isfield(dat, 'x')
         tDat=dat.x;
-    elseif isfield(dat, 'cnt')
-        tDat=dat.cnt;
     else
         error('parameter error of dat.x')
     end
@@ -26,13 +24,13 @@ if isstruct(dat)
     out=dat;
     if isfield(dat, 'x')
         out.x=in;
-    elseif isfield(dat, 'cnt')
-        out.cnt=in;
     end
     % stack
-    c = mfilename('fullpath');
-    c = strsplit(c,'\');
-    dat.stack{end+1}=c{end};
+    if isfield(dat, 'stack')        
+        c = mfilename('fullpath');
+        c = strsplit(c,'\');
+        dat.stack{end+1}=c{end};
+    end
     
 else
     out=in;

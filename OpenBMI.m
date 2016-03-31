@@ -35,7 +35,7 @@ BMI.CODE_DIR=[BMI.DIR '\BMI_modules'];
 BMI.PARADIGM_DIR=[BMI.CODE_DIR '\Paradigms'] ;
 BMI.IO_ADDR=hex2dec('C010');
 BMI.IO_LIB=[BMI.CODE_DIR '\Options\Parallel_Port'];
-config_io;
+% config_io;
 
 if ischar(BMI.DIR)
 addpath(genpath(BMI.DIR));

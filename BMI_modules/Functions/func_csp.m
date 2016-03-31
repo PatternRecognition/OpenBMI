@@ -1,50 +1,51 @@
-function [ epo_csp, CSP_W, CSP_D ] = func_csp( epo, varargin )
+function [ dat_csp, CSP_W, CSP_D ] = func_csp( dat, varargin )
 %PROC_CSP Summary of this function goes here
 %   Detailed explanation goes here
 
-if ~varargin{end}
-    varargin=varargin{1,1}; %cross-validation procedures
-end;
+% if ~varargin{end}
+%     varargin=varargin{1,1}; %cross-validation procedures
+% end;
 
-if ~length(varargin)
-    opt_input=[];
-else
-    opt_input=opt_proplistToCell(varargin{:});
+if nargin==0
+    warning('Parameter is missing');
 end
-%% default setting
-epo_csp=epo;epo_csp.x=[];
-if isfield(epo,'chan')
-    epo_csp.origChan=epo.chan;
+
+if ~isfield(dat,'x') || ~isfield(dat,'y')
+    error('Parameter is missing: dat.x or dat.y')    
 end
-epo_csp.chan=[];
-opt_default={'nPatterns',3;'cov','normal';'score','eigenvalue';'policy','normal'};
+
+% Default parameters for CSP 
+opt_default={'nPatterns',3;
+    'cov','normal';
+    'score','eigenvalue';
+    'policy','normal'};
 
 %Change input parameters
-for i=1:size(opt_input,1)
-    [a b]=find(strcmpi(opt_default,opt_input{i}));
+for i=1:size(varargin{:},1)
+    [a b]=find(strcmpi(opt_default,varargin{1}{i,1}));
     if b
-        opt_default{a,2}=opt_input{i,2};
+        opt_default{a,2}=varargin{1}{i,2};
     end
 end
 
-for i=1:length(opt_default)
-    fid=opt_default{i,1};
-    opt.(fid)=opt_default{i,2};
-end
+opt=opt_cellToStruct(opt_default);
+
+%% default setting
+dat_csp=dat;dat_csp.x=[];
 
 %% calculate classwise covariance matrices
-epo.x=epo.x(2:end,:,:);
-[nDat nTrials nChans]=size(epo.x);
-nClasses=length(epo.class);
+[nDat nTrials nChans]=size(dat.x);
+nClasses=length(dat.class);
 R= zeros(nChans, nChans, nClasses);
 
 switch(lower(opt.cov))
     case 'normal'
         for i=1:nClasses
-            idx= find(epo.y_logical(i,:));
-            dat= epo.x(:,idx,:);
-            dat=reshape(dat, [nDat*length(idx),nChans]);
-            R(:,:,i)=cov(dat);
+            idx= find(dat.y_logic(i,:));  %% ??? mrk.y·Î ¼öÁ¤
+            tDat=zeros([nDat length(idx) nChans]);
+            tDat= dat.x(:,idx,:);
+            tDat=reshape(tDat, [nDat*length(idx),nChans]);
+            R(:,:,i)=cov(tDat);
         end
         
     case 'average' %%malfunction
@@ -67,7 +68,7 @@ switch(lower(opt.score))
         score=diag(D);
 end
 
-nPattern=str2num(opt.nPatterns);
+nPattern=opt.nPatterns;
 switch opt.policy
     case 'normal'
         CSP_W = W( :, [1:nPattern, end-nPattern+1:end] );
@@ -86,13 +87,14 @@ switch opt.policy
         CSP_D = score(fi);
 end
 
-dat=func_projection(epo, CSP_W);
-epo_csp.x=dat.x;
+dat=func_projection(dat, CSP_W);
+dat_csp.x=dat.x;
 
 % stack
-c = mfilename('fullpath');
-c = strsplit(c,'\');
-epo_csp.stack{end+1}=c{end};
-
+if isfield(dat_csp, 'stack')
+    c = mfilename('fullpath');
+    c = strsplit(c,'\');
+    dat_csp.stack{end+1}=c{end};
+end
 end
 

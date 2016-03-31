@@ -8,8 +8,8 @@ if ~isfield(hdr,'NumberOfChannels') || ~isfield(opt,'fs')
     disp('Important parameter is missing, check the hdr.NumberOfChannels and opt.fs')
 end
 eeg.fs=opt.fs;
-eeg.numberofchannel=hdr.NumberOfChannels;
-eeg.chloc=[];
+eeg.nCh=hdr.NumberOfChannels;
+eeg.chSet=[];
 eeg.stack={};
 
 end

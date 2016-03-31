@@ -1,4 +1,4 @@
-function [ mrk ] = mrk_define_class( mrk_orig ,mrk_define )
+function [ mrk ] = prep_defineClass( mrk_orig ,mrk_define )
 %MRK_DEFINE_CLASS Summary of this function goes here
 %   Detailed explanation goes here
 
