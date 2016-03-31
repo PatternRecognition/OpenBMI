@@ -2,7 +2,9 @@ function [ dat ] = prep_baselineCorrection( dat, varargin )
 %PREP_BASELINECORRECTION Summary of this function goes here
 %   Detailed explanation goes here
 %% dat = .x, .fs
-
+if ~varargin{end}
+    varargin=varargin{1,1}; %cross-validation procedures
+end;
 if isempty(varargin)
     warning('Varargin parameter is not valid')
 else

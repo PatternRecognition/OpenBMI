@@ -1,30 +1,13 @@
-d = tcpip('localhost', 3000, 'NetworkRole', 'Client');
-set(d, 'OutputBufferSize', 1024); % Set size of receiving buffer, if needed. 
+clear all;
+OpenBMI('C:\Users\Administrator\Desktop\BCI_Toolbox\OpenBMI_Ver3') % Edit the variable BMI if necessary
+global BMI;
+%% DATA LOAD MODULE
+file=fullfile(BMI.EEG_RAW_DIR, '\smkim0002');
+[EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'fs', 250});
 
-%Trying to open a connection to the server.
-while(1)
-    try 
-        fopen(d);
-        break;
-    catch 
-        fprintf('%s \n','Cant find Server');
-    end
-end
-connectionSend = d;
+[EEG.marker, EEG.markerOrigin]=prep_defineClass(EEG.marker,{'1','left';'2','right';'3','foot';'4','rest'}); 
+EEG.marker=prep_selectClass(EEG.marker,{'right', 'left'});
 
-% fwrite(d,data.control(ic).packet{2});
-fwrite(d,1);
-
-
-%server nirs
-t_n = tcpip('localhost', 3000, 'NetworkRole', 'Server');
-set(t_n , 'InputBufferSize', 3001);
-% Open connection to the client.
-fopen(t_n);
-fprintf('%s \n','Client Connected');
-connectionServer = t_n;
-set(connectionServer,'Timeout',.1);
-a(i)=fread(t_n,1,'int32')
-
-
-
+%% PRE-PROCESSING MODULE
+EEG.data=prep_filter(EEG.data, {'frequency', [7 13]});
+EPO=prep_segmentation(EEG.data, EEG.marker, {'interval', [750 3500]});

@@ -26,7 +26,7 @@ end
 [NofClass NofTrial]=size(dat.y_logical);
 switch lower(CV.option{1})
     case 'kfold'
-        CVO = cvpartition(dat.y,'k',str2num(CV.option{2}));
+        CVO = cvpartition(dat.mrk.y,'k',str2num(CV.option{2}));
 end
 
 

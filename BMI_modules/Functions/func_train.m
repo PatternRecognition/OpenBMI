@@ -1,4 +1,4 @@
-function [ out ] = classifier_trainClassifier( fv, varargin )
+function [ out ] = func_train( fv, varargin )
 %PROC_TRAIN_CLASSIFIER Summary of this function goes here
 %   Detailed explanation goes here
 % opt=opt_proplistToStruct_lower(varargin{:});
@@ -8,7 +8,9 @@ end;
 
 switch lower(varargin{1})
     case 'lda' %only binary class
-        out.cf_param=train_RLDAshrink(fv.x,fv.mrk.logical_y);
+%         out.cf_param=train_RLDAshrink(fv.x,fv.mrk.logical_y);
+% BBCI toolbox
+out.cf_param=train_RLDAshrink(fv.x,fv.y_logic);
         out.classifier='LDA';
 end
 

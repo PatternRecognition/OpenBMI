@@ -1,4 +1,4 @@
-function [ cf_out ] = classifier_applyClassifier( in, varargin )
+function [ cf_out ] = func_predict( in, varargin )
 %PROC_APPLY_CLASSIFIER Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -14,7 +14,7 @@ else
 end
 
 switch lower(opt.classifier)
-    case 'lda'
+    case 'lda'     
         cf_out= real( dat'*opt.cf_param.w+opt.cf_param.b);% + repmat(opt.cf_param.b, [1 size(fv.x,1)]) );
 end
 

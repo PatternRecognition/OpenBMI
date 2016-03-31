@@ -1,42 +1,40 @@
 clear all;
-OpenBMI % Edit the variable BMI if necessary
+OpenBMI('C:\Users\Administrator\Desktop\BCI_Toolbox\OpenBMI_Ver3') % Edit the variable BMI if necessary
 global BMI;
 %% DATA LOAD MODULE
-file=fullfile(BMI.EEG_RAW_DIR, '\calibration_motorimageryVPkg');
-[eeg, eeg.mrk_orig, eeg.hdr]=Load_EEG_data(file,'device','brainVision','fs', 100);
-mrk_define={'1','left','2','right','3','foot'};
-eeg.mrk=mrk_redefine_class(eeg.mrk_orig, mrk_define); 
-eeg.mrk=mrk_select_class(eeg.mrk,{'right', 'left'});
+file=fullfile(BMI.EEG_RAW_DIR, '\smkim0002');
+[EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'fs', 250});
+
+[EEG.marker, EEG.markerOrigin]=prep_defineClass(EEG.marker,{'1','left';'2','right';'3','foot';'4','rest'}); 
+EEG.marker=prep_selectClass(EEG.marker,{'right', 'left'});
 
 %% PRE-PROCESSING MODULE
-eeg_flt=prep_filter(eeg, 'frequency', [7 13]);
-eeg_epo=prep_segmentation(eeg_flt, 'interval', [750 3500]);
+EEG.data=prep_filter(EEG.data, {'frequency', [7 13]});
+EPO=prep_segmentation(EEG.data, EEG.marker, {'interval', [750 3500]});
+
+EPO=prep_commonAverageReference(EPO, {'Channel',{'C3'}})
 
 
 %% SPATIAL-FREQUENCY OPTIMIZATION MODULE
-[eeg_csp, CSP_W, CSP_D]=func_csp(eeg_epo,'nPatterns', '3', 'policy', 'normal');
-eeg_ft=func_featureExtraction(eeg_csp, 'logvar');
+[EPO_CSP, CSP_W, CSP_D]=func_csp(EPO,{'nPatterns', 3});
+EPO_FV=func_featureExtraction(EPO_CSP, 'logvar');
 
 %% CLASSIFIER MODULE
-[CF_PARAM]=classifier_trainClassifier(eeg_ft,'LDA');
+[CF_PARAM]=func_train(EPO_FV,'LDA');
 
 %% TEST DATA LOAD
-file='feedback_motorimageryVPkg';
-[eegfb, eegfb.mrk_orig, eegfb.hdr]=Load_EEG_data(file,'device','brainVision','fs', 100);
-mrk_define={'1','left','2','right','3','foot'};
-eegfb.mrk=mrk_redefine_class(eegfb.mrk_orig,mrk_define); 
-eegfb.mrk=mrk_select_class(eegfb.mrk, {'right','left'});
+file='smkim0002';
+[EEGfb.data, EEGfb.marker, EEGfb.info]=Load_EEG(file,{'device','brainVision';'fs', 250});
 
-eegfb=prep_filter(eegfb, 'frequency', [7 13]);
-eegfb=func_projection(eegfb, CSP_W);
+[EEGfb.marker, EEGfb.markerOrigin]=prep_defineClass(EEGfb.marker,{'1','left';'2','right';'3','foot';'4','rest'}); 
+EEGfb.marker=prep_selectClass(EEGfb.marker,{'right', 'left'});
 
-eegfb=prep_segmentation(eegfb, 'interval', [750 3500]);
-eegfb=func_featureExtraction(eegfb, 'logvar');
-[cf_out]=classifier_applyClassifier(eegfb, CF_PARAM);
-[loss out]=eval_calLoss(eegfb.y, cf_out);
+EEGfb.data=prep_filter(EEGfb.data, {'frequency', [7 13]});
+EEGfb.data=func_projection(EEGfb.data, CSP_W);
 
-    
+EPOfb=prep_segmentation(EEGfb.data, EEGfb.marker, {'interval', [750 3500]});
+EPOfb_FV=func_featureExtraction(EPOfb, 'logvar');
 
+[cf_out]=func_predict(EPOfb_FV, CF_PARAM);
 
-
-
+[loss out]=eval_calLoss(EPOfb_FV.y, cf_out);

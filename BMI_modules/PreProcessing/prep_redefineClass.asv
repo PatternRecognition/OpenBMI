@@ -1,0 +1,39 @@
+function [ marker ] = prep_defineClass(marker, varargin )
+%MRK_REDIFINE_CLASS Summary of this function goes here
+%   Detailed explanation goes here
+% mrk_define=opt_proplistToCell(mrk_define{:});
+% delete undefined classes
+if isempty(varargin)
+    error('Parameter is misssing');
+end
+
+mrk_define=varargin{:};
+[nclass temp]=size(mrk_define);
+nc_all=logical(1:length(marker.y));
+for i=1:nclass
+    [nc]=find(marker.y==str2num(mrk_define{i}));
+    for j=1:length(nc)
+        marker.class{nc(j)}=mrk_define{i,2};
+    end
+    nc_all(nc)=0;
+end
+marker.y=marker.y(~nc_all);
+marker.t=marker.t(~nc_all);
+marker.class=marker.class(~nc_all);
+nClasses=length(mrk_define);
+marker.logical_y= zeros(nClasses, numel(marker.y));
+marker.dClasses=cell(size(mrk_define));
+marker.nClasses=nClasses;
+
+%logical Y lable
+for i=1:nclass
+    c_n=str2num(cell2mat(mrk_define(i)));
+    [temp idx]=find(marker.y==c_n);
+    marker.logical_y(i,idx)=1;
+end
+    marker.dClasses(i,:)=mrk_define(i,:);
+
+end
+
+
+

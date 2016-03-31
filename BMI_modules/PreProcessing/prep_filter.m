@@ -1,48 +1,49 @@
-function [ eeg ] = prep_filter( eeg, varargin )
+function [ dat ] = prep_filter( dat, varargin )
 %PROC_FILTER Summary of this function goes here
+% EEG.data=prep_filter(EEG.data, {'frequency', [7 13]});
+% data=prep_filter(data, {'frequency', [7 13];'fs',100 });
 %   Detailed explanation goes here
-if ~varargin{end}
-    varargin=varargin{1,1}; %cross-validation procedures
-end;
+% if ~varargin{end}
+%     varargin=varargin{1,1}; %cross-validation procedures
+% end;
 
-if length(varargin)>1; param=opt_proplistToCell(varargin{:});end
-
-switch isstruct(eeg)
-    case true %struct
-        if isfield(eeg, 'cnt')
-            tDat=eeg.cnt;
-            eeg.cnt_old=eeg.cnt;
-            fld='cnt';
-        else % in case eeg.x
-            tDat=eeg.x;
-            eeg.x_old=eeg.x;
-            fld='x';
-        end
-        
-        if length(varargin)<2  %default parameter
-            band=varargin{1};
-            [b,a]= butter(5, band/eeg.fs*2,'bandpass');
-            tDat(:,:)=filter(b, a, tDat(:,:));
-        else
-            switch lower(param{1})
-                case 'frequency'
-                    band=param{2};
-                    [b,a]= butter(5, band/eeg.fs*2,'bandpass');
-                    tDat(:,:)=filter(b, a, tDat(:,:));
-            end
-        end
-        eeg.(fld)=tDat;
-        
-        % History
-        if isfield(eeg,'stack')
-            c = mfilename('fullpath');
-            c = strsplit(c,'\');
-            eeg.stack{end+1}=c{end};
-        end
-    case false
-        % add if dat is not struct
+if ~isfield(dat, 'x') && ~isfield(dat, 'fs')
+    warning('Parameter is missing: dat.x or dat.fs');
 end
 
+opt=opt_cellToStruct(varargin{:});
+if ~isfield(opt,'fs')
+    if isfield(dat, 'fs')
+        opt.fs=dat.fs;
+    else
+        error('Parameter is missing: fs');
+    end
+end
+% if length(varargin)>1; param=opt_proplistToCell(varargin{:});end
+
+switch isstruct(dat)
+    case true %struct        
+        tDat=dat.x;            
+        band=opt.frequency;
+        [b,a]= butter(5, band/opt.fs*2,'bandpass');
+        tDat(:,:)=filter(b, a, tDat(:,:));  
+        dat.x=tDat;
+    case false
+        % add if dat is not struct
+        tDat=dat;            
+        band=opt.frequency;
+        [b,a]= butter(5, band/opt.fs*2,'bandpass');
+        tDat(:,:)=filter(b, a, tDat(:,:));                
+        fld='x';
+        dat=tDat;       
+end
+
+% History
+if isfield(dat,'stack')
+    c = mfilename('fullpath');
+    c = strsplit(c,'\');
+    dat.stack{end+1}=c{end};
+end
 end
 
 
