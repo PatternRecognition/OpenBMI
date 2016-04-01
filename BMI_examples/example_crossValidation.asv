@@ -10,6 +10,7 @@ file=fullfile(BMI.EEG_DIR, '\calibration_motorimageryVPkg');
 EEG.marker=prep_selectClass(EEG.marker,{'right', 'left'});
 
 
+
 %% CROSS-VALIDATION MODULE
 CV.prep={ % commoly applied to training and test data
     'prep_filter', {'frequency', [7 13]} %be applied to all data (before split)
@@ -32,6 +33,6 @@ CV.option={
 'KFold','10'
 };
 
-[loss]=eval_crossValidation(EEG.data, CV); % input : eeg, or eeg_epo
+[loss]=eval_crossValidation(EEG, CV); % input : eeg, or eeg_epo
 
 
