@@ -2,7 +2,9 @@ function [ mrk_orig ] = Load_BP_mrk( file, hdr, opt )
 %LOAD_BP_MRK Summary of this function goes here
 %   Detailed explanation goes here
 global BMI;
-
+if isempty(opt.fs)
+    opt.fs=hdr.fs; % original sampling rate
+end
 mrk_all=readbvconf([file '.vmrk']);
 
 % Only consider the 'Stimulus'.

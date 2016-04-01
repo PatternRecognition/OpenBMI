@@ -33,5 +33,3 @@ CV.option={
 };
 
 [loss]=eval_crossValidation(EEG.data, CV); % input : eeg, or eeg_epo
-
-

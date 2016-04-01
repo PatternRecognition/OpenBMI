@@ -7,14 +7,20 @@ if ~isempty(varargin)
     opt=opt_cellToStruct(varargin{:});
 else % set default parameters here
     opt.device='brainVision';
-    opt.fs=100;
 end
+
+if isfield(opt,'fs')
+    opt.fs=[]% seting original sampling rate from Load_BV_hdr
+end
+
 switch lower(opt.device)
     case 'brainvision'
         hdr=Load_BV_hdr(file);disp('Loading EEG header file..');
-        dat=Load_BV_data(file, hdr, opt);disp('Loading EEG data..');
         marker=Load_BV_mrk(file, hdr, opt);disp('Loading Marker file..');
-        dat.chSet=hdr.chan;
+        dat=Load_BV_data(file, hdr, opt);disp('Loading EEG data..');
+        if isfield(opt,'marker')
+            [marker, markerOrigin]=prep_defineClass(marker,opt.marker);
+        end
     case 'emotive'
         
 end

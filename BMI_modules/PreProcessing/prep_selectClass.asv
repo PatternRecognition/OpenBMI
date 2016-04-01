@@ -4,6 +4,9 @@ function [ dat ] = prep_selectClass( dat, varargin )
 
 opt=opt_cellToStruct(varargin{:});
 
+isfield(opt,')
+
+
 if nargin==0
     error('parameter is missing');
 end
@@ -36,8 +39,8 @@ for i=1:length(n_d)
     del_classes{i}=dat.class{n_d(i),2};
 end
 
-
-    marker=prep_removeClass(dat,del_classes);
-
+for i=1:length(n_d)
+    marker=prep_removeClass(dat,del_classes{i});
+end
 
 end
