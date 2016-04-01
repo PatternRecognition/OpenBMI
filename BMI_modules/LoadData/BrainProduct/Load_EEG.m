@@ -10,7 +10,7 @@ else % set default parameters here
 end
 
 if isfield(opt,'fs')
-    opt.fs=[]% seting original sampling rate from Load_BV_hdr
+    opt.fs=[];% seting original sampling rate from Load_BV_hdr
 end
 
 switch lower(opt.device)

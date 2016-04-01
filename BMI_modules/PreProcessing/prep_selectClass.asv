@@ -1,11 +1,8 @@
-function [ dat ] = prep_selectClass( dat, varargin )
+function [ out ] = prep_selectClass( dat, varargin )
 %MRK_SELECT_CLASS Summary of this function goes here
 %   Detailed explanation goes here
 
 opt=opt_cellToStruct(varargin{:});
-
-isfield(opt,')
-
 
 if nargin==0
     error('parameter is missing');
@@ -39,8 +36,8 @@ for i=1:length(n_d)
     del_classes{i}=dat.class{n_d(i),2};
 end
 
-for i=1:length(n_d)
-    marker=prep_removeClass(dat,del_classes{i});
-end
+
+    out=prep_removeClass(dat,del_classes);
+
 
 end

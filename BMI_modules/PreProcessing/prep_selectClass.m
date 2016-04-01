@@ -1,4 +1,4 @@
-function [ dat ] = prep_selectClass( dat, varargin )
+function [ out ] = prep_selectClass( dat, varargin )
 %MRK_SELECT_CLASS Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -37,7 +37,7 @@ for i=1:length(n_d)
 end
 
 
-    marker=prep_removeClass(dat,del_classes);
+out=prep_removeClass(dat,del_classes);
 
 
 end

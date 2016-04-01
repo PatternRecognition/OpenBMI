@@ -29,17 +29,16 @@ marker={'1','left';'2','right';'3','foot';'4','rest'};
 [EEGfb.data, EEGfb.marker, EEGfb.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', 100});
 
 field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan',};
-CNTfb=opt_eegStruct({EEGfb.data, EEGfb.marker, EEGfb.info}, field);
+CNTfb=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
 
 CNTfb=prep_selectClass(CNTfb,{'class',{'right', 'left'}});
 
 CNTfb=prep_filter(CNTfb, {'frequency', [7 13]});
-EPOfb=prep_segmentation(CNTfb, {'interval', [750 3500]});
+EEGfb.data=func_projection(CNTfb, CSP_W);
 
-EPOfb=func_projection(EPOfb, CSP_W);
-EPOfb=func_featureExtraction(EPOfb, 'logvar');
-[cf_out]=func_predict(EPOfb, CF_PARAM);
+EPOfb=prep_segmentation(EEGfb.data, EEGfb.marker, {'interval', [750 3500]});
+EPOfb_FV=func_featureExtraction(EPOfb, 'logvar');
 
-[loss out]=eval_calLoss(EPOfb.y_dec, cf_out);
+[cf_out]=func_predict(EPOfb_FV, CF_PARAM);
 
-
+[loss out]=eval_calLoss(EPOfb_FV.y, cf_out);

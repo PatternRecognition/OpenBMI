@@ -10,8 +10,8 @@ if nargin==0
     warning('Parameter is missing');
 end
 
-if ~isfield(dat,'x') || ~isfield(dat,'y')
-    error('Parameter is missing: dat.x or dat.y')    
+if ~isfield(dat,'x')
+    error('Parameter is missing: dat.x')    
 end
 
 % Default parameters for CSP 

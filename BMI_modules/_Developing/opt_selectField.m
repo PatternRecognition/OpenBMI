@@ -5,7 +5,7 @@ function [ out ] = opt_selectField( in, field )
 
 for i=1:length(field)
     if isfield(in,field{i})
-        out.(field{i})=in.(field{i})
+        out.(field{i})=in.(field{i});
     end    
 end
 

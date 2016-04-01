@@ -1,4 +1,4 @@
-function [ dat ] = prep_segmentation( dat, varargin )
+function [ epo ] = prep_segmentation( dat, varargin )
 %PROC_EPOCHING Summary of this function goes here
 %   Detailed explanation goes here
 % if ~varargin{end}
@@ -36,7 +36,7 @@ nChans= nCh;
 % round
 IV= round(idc(:)*ones(1,nEvents) + ones(T,1)*dat.t);
 dat.x= reshape(tDat(IV, :), [T, nEvents, nChans]);
-dat.ival= linspace(ival(1), ival(2), length(idc));
+epo.t= linspace(ival(1), ival(2), length(idc));
 
 % stack
 % if isfield(eeg, 'stack')
