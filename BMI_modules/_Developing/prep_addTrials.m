@@ -1,54 +1,93 @@
-function [data, marker] = prep_addTrials(data1, marker1, data2, marker2)
+function [out] = prep_addTrials(dat1, dat2)
 % prep_addTrials (Pre-processing procedure):
 %
-% This function add the latter data(data2) to the former data(data1) and
-% their corresponding markers.
+% This function add the latter data(dat2) to the former data(dat1)
 %
 % Example:
-% [data, marker] = prep_addTrials(data1, marker1, data2, marker2)
+% [out] = prep_addTrials(dat1,dat2)
 %
-% Input: 
-%     data1, marker1 - Data and marker structure, continuous or epoched
-%     data2, marker2 - Data and marker structure to be added to data1
+% Input:
+%     dat1 - Data structure, continuous or epoched
+%     dat2 - Data structure to be added to dat1
 %
 % Returns:
-%     data - Updated data structure
-%     marker - Updated marker structure
+%     out - Updated data structure
 %
 %
-% Seon Min Kim, 03-2016
+% Seon Min Kim, 04-2016
 % seonmin5055@gmail.com
 
+if ~isfield(dat1,'x') || ~isfield(dat2,'x')
+    warning('Data is missing: Input data structure must have a field named ''x''')
+    return
+end
 
-dim = ndims(data1.x);
+dim1 = ndims(dat1.x);
+dim2 = ndims(dat2.x);
 
-switch dim
+if dim1~=dim2
+    warning('Data dimensions are not same: Epoched or continuous')
+    return
+end
+
+switch dim1
     case 2
-        if ~isequal(size(data1.x,2),size(data2.x,2))
-            error ('Unmatched the number of channels')
+        if ~isequal(size(dat1.x,2),size(dat2.x,2))
+            warning ('Unmatched the number of channels')
+            return
         end
     case 3
-        if ~isequal(size(data1.x,1),size(data2.x,1))
-            error('Unmatched data size')
-        elseif ~isequal(size(data1.x,3),size(data2.x,3))
-            error('Unmatched the number of channels')
+        if ~isequal(size(dat1.x,1),size(dat2.x,1))
+            warning('Unmatched data size')
+            return
+        elseif ~isequal(size(dat1.x,3),size(dat2.x,3))
+            warning('Unmatched the number of channels')
+            return
         end
 end
 
-if ~isequal(marker1.class,marker2.class)
-    error ('Unmatched class info.')
+if isfield(dat1,'chan') && isfield(dat2,'chan')
+    if ~isequal(dat1.chan,dat2.chan)
+        warning('Unmatched channel')
+        return
+    else
+        out.chan = dat1.chan;
+    end
+else
+    warning('Channel information is missing: Input data should have a field named ''chan''')
 end
 
-data = data1;
-marker = marker1;
+out.x = cat(dim1-1, dat1.x, dat2.x);
 
-data.x = cat(dim-1, data1.x, data2.x);
-marker.y = cat(2, marker1.y, marker2.y);
-marker.t = cat(2, marker1.t, marker2.t);
-marker.y_class = cat(2, marker1.y_class, marker2.y_class);
-marker.y_logic = cat(2, marker1.y_logic, marker2.y_logic);
+if isfield(dat1,'t') && isfield(dat2,'t')
+    out.t = cat(2,dat1.t,dat2.t);
+else
+    warning('Time information is missing: Input data should have a field named ''t''')
+end
 
-if isfield(data1.y) && isfield(data2.y)
-    data.y = cat(2, data1.y, data2.y);
-    data.y_logic = cat(2, data1.y_logic, data2.y_logic);
+if isfield(dat1,'fs') && isfield(dat2,'fs')
+    if dat1.fs == dat2.fs
+        out.fs = dat1.fs;
+    else
+        warning('Two input data have different frequency')
+    end
+end
+
+if isfield(dat1,'y_dec') && isfield(dat2,'y_dec')
+    out.y_dec = cat(2,dat1.y_dec,dat2.y_dec);
+end
+
+if isfield(dat1,'y_logic') && isfield(dat2,'y_logic')
+    out.y_logic = cat(2,dat1.y_logic,dat2.y_logic);
+end
+
+if isfield(dat1,'class') && isfield(dat2,'class')
+    if ~isequal(dat1.class,dat2.class)
+        warning ('Unmatched class')
+        out.class = cat(1,dat1.class,dat2.class);   % Need to be modified. (for duplicated entries)
+    else
+        out.class = dat1.class;
+    end
+end
+
 end
