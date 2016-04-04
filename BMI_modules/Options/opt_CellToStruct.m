@@ -8,9 +8,6 @@ end
 if isstruct(varargin)
     opt=varargin;
 elseif iscell(varargin) % cell to struct
-    if mod(length(varargin{:}),2) ~= 0
-        error('The input parameter sould be paired')
-    end
     [nParam temp]=size(varargin{1});
     for i= 1:nParam
         str = varargin{1}{i,1};

@@ -37,7 +37,7 @@ for i=1:length(n_d)
 end
 
 
-out=prep_removeClass(dat,del_classes);
+    out=prep_removeClass(dat,del_classes);
 
 
 end

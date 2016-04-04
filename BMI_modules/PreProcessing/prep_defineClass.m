@@ -23,18 +23,19 @@ for i=1:nclass
     end
     nc_all(nc)=0;
 end
-marker.y=old_marker.y(~nc_all);
+marker.y_dec=old_marker.y(~nc_all);
 marker.t=old_marker.t(~nc_all);
 marker.y_class=marker.y_class(~nc_all);
 marker.nClasses=length(mrk_define);
 marker.class=varargin{:};
 %logical Y lable
-marker.y_logic= zeros(length(mrk_define), numel(marker.y));
+marker.y_logic= zeros(length(mrk_define), numel(marker.y_dec));
 for i=1:nclass
     c_n=str2num(cell2mat(mrk_define(i)));
-    [temp idx]=find(marker.y==c_n);
-    marker.y_logic(i,idx)=1;
+    [temp idx]=find(marker.y_dec==c_n);
+    marker.y_logic(i,idx)=1;    
 end
+marker.y_logic=logical(marker.y_logic);
 
 end
 

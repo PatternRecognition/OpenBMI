@@ -10,10 +10,10 @@ if isempty(varargin) %find a openbmi directory when use this function in the inn
             for j=1:i
                 if j~=i
                     temp=strcat(CUR_FILE{j},'\');
-                    FILE=strcat(FILE,temp)
+                    FILE=strcat(FILE,temp);
                 else
                     temp=CUR_FILE{j};
-                    FILE=strcat(FILE,temp)
+                    FILE=strcat(FILE,temp);
                 end
                 
             end
@@ -28,9 +28,7 @@ else
 end
 global BMI;
 BMI.DIR=FILE;
-BMI.EEG_RAW_DIR=[BMI.DIR '\BMI_data\RawEEG'];
-BMI.EEG_MAT_DIR=[BMI.DIR '\BMI_data\MatEEG'];
-
+BMI.EEG_DATA=[BMI.DIR '\BMI_data\DATA'];
 BMI.CODE_DIR=[BMI.DIR '\BMI_modules'];
 BMI.PARADIGM_DIR=[BMI.CODE_DIR '\Paradigms'] ;
 BMI.IO_ADDR=hex2dec('C010');

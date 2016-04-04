@@ -17,7 +17,7 @@ rm_Class=varargin{:};
 out=dat;
 for i=1:length(rm_Class)
     n_c=~ismember(dat.y_class, rm_Class{i});
-    msg=sprintf('OpenBMI: class "%s" is deleted',rm_Class{i});
+    msg=sprintf('OpenBMI: class s%" is deleted',rm_Class{i});
     disp(msg);
     if isfield(dat, 't')
         out.t=dat.t(n_c);
@@ -27,7 +27,7 @@ for i=1:length(rm_Class)
     end
     if isfield(dat, 'y_logic')
         tm=~ismember(dat.class(:,2),rm_Class{i});
-        out.y_logic=dat.y_logic(tm,n_c);
+        out.y_logic=dat.y_logic(tm,:);
     end
     if isfield(dat, 'y_class')
         out.y_class=dat.y_class(n_c);

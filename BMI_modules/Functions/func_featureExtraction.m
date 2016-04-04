@@ -20,7 +20,7 @@ end
 switch lower(param{1})
     case 'logvar'
         tDat=squeeze(log(var(tDat)));
-        tDat=tDat'
+        tDat=tDat';
         
     case 'erpmean'
         [nDat, nTrials, nChans]= size(tDat);

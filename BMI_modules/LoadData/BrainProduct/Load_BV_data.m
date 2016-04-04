@@ -1,8 +1,7 @@
 function [ eeg ] = Load_BV_data( file, hdr, opt)
 %LOAD_BP_DATA Summary of this function goes here
 %   Detailed explanation goes here
-global BMI
-fclose('all');
+
 [fid, message] = fopen(fullfile([file '.eeg']));
 if fid == -1
     [fid, message] = fopen(fullfile(pathname, lower(filename)));
@@ -10,6 +9,10 @@ if fid == -1
         error(message)
     end
 end;
+
+if isempty(opt.fs)
+    opt.fs=hdr.fs;
+end
 
 % Binary Infos %BCILAB, bps=bytespersample
 if strcmpi(lower(hdr.DataFormat), 'binary')
