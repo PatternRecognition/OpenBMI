@@ -56,10 +56,10 @@ str_function
 in_dat
 in_param
 
-
+save=cell(1,length(out_param)-1);
 nFunc=str2func(str_function)
-in=out
-[out]= feval(nFunc, in, in_param);
+in=SMT
+[out save{:}]= feval(nFunc, in, in_param);
 
 
 
