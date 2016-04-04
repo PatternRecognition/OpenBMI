@@ -55,13 +55,14 @@ out_param
 str_function
 in_dat
 in_param
-
+param=st
 save=cell(1,length(out_param)-1);
 nFunc=str2func(str_function)
 in=SMT
 [out save{:}]= feval(nFunc, in, in_param);
-
-
+for i=2:length(out_param)
+    param.(out_param{i})
+end
 
 
 fprintf(prep_selectClass(CNTfb,{'class',{'right', 'left'}}))

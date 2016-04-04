@@ -1,14 +1,11 @@
 function [ out ] = func_featureExtraction( dat, varargin )
 %PROC_FEAEXTRACTION Summary of this function goes here
 %   Detailed explanation goes here
-if ~varargin{end}
-    varargin=varargin{1,1}; %cross-validation procedures
-end;
 
-if length(varargin)>1
- param=opt_proplistToCell(varargin{:});
-else
-    param=varargin;
+if iscell(varargin{:})
+    opt=opt_cellToStruct(varargin{:});
+elseif isstruct(varargin{:}) % already structure(x-validation)
+    opt=varargin{:}
 end
 
 if isstruct(dat)
@@ -17,7 +14,7 @@ else
     tDat=dat;
 end
 
-switch lower(param{1})
+switch lower(opt.feature)
     case 'logvar'
         tDat=squeeze(log(var(tDat)));
         tDat=tDat';

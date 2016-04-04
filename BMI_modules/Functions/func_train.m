@@ -2,11 +2,13 @@ function [ out ] = func_train( fv, varargin )
 %PROC_TRAIN_CLASSIFIER Summary of this function goes here
 %   Detailed explanation goes here
 % opt=opt_proplistToStruct_lower(varargin{:});
-if ~varargin{end}
-    varargin=varargin{1,1}; %cross-validation procedures
-end;
+if iscell(varargin{:})
+    opt=opt_cellToStruct(varargin{:});
+elseif isstruct(varargin{:}) % already structure(x-validation)
+    opt=varargin{:}
+end
 
-switch lower(varargin{1})
+switch lower(opt.classifier)
     case 'lda' %only binary class
 %         out.cf_param=train_RLDAshrink(fv.x,fv.mrk.logical_y);
 % BBCI toolbox

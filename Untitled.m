@@ -22,20 +22,17 @@ str_param_pa{end}=strrep(str_param_pa{end}, ')', ''); %마지막 부분 ) 제거
 str_param_pa{end}=strrep(str_param_pa{end}, '}', '');
 
 for i=1:length(str_param_pa)
-    tm=opt_getToken(str_param_pa{i},',');
-    
+    tm=opt_getToken(str_param_pa{i},',');    
     if ~isempty(strfind(tm{2},'"')) %string
         tCHAR='string'
     elseif ~isempty(strfind(tm{2},'['))  % number      
-         tCHAR='number'
+        tCHAR='number'
     else % variable
         tCHAR='variable'
-    end
-     
+    end     
     for j=1:length(tm)
     tm{j}=strrep(tm{j},'"',''); % 숫자로 들어올대 예외 처리 추가할것
-    end
-    
+    end    
     switch tCHAR
         case 'string'
             in_param.(tm{1})=tm{2};
@@ -44,24 +41,23 @@ for i=1:length(str_param_pa)
              tm{2}=strrep(tm{2},']','');
              in_param.(tm{1})=str2num(tm{2}); % 실수만 받아옴, double은 두개이상일때 x
         case 'variable'
-%             assignin('base', a, marker)
-%             opt.(tm{1})=genvarname(tm{2}); % 실제 변수로 수정할것
-        
+         warning('variable can not be assigned')
     end
 
 end
-
-out_param
-str_function
-in_dat
-in_param
-
+% 
+% out_param
+% str_function
+% in_dat
+% in_param
+param=struct;
 save=cell(1,length(out_param)-1);
 nFunc=str2func(str_function)
 in=SMT
 [out save{:}]= feval(nFunc, in, in_param);
-
-
+for i=2:length(out_param)
+    param.(out_param{i})=save{i-1}
+end
 
 
 fprintf(prep_selectClass(CNTfb,{'class',{'right', 'left'}}))

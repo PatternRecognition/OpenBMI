@@ -18,10 +18,10 @@ SMT=prep_segmentation(CNT, {'interval', [750 3500]});
 
 %% SPATIAL-FREQUENCY OPTIMIZATION MODULE
 [SMT, CSP_W, CSP_D]=func_csp(SMT,{'nPatterns', [3]});
-FT=func_featureExtraction(SMT, 'logvar');
+FT=func_featureExtraction(SMT, {'feature','logvar'});
 
 %% CLASSIFIER MODULE
-[CF_PARAM]=func_train(FT,'LDA');
+[CF_PARAM]=func_train(FT,{'classifier','LDA'});
 
 %% TEST DATA LOAD
 file=fullfile(BMI.EEG_DIR, '\feedback_motorimageryVPkg');
