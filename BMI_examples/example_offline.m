@@ -5,7 +5,7 @@ BMI.EEG_DIR=['C:\Users\Administrator\Desktop\BCI_Toolbox\git_OpenBMI\DemoData'];
 %% DATA LOAD MODULE
 file=fullfile(BMI.EEG_DIR, '\calibration_motorimageryVPkg');
 marker={'1','left';'2','right';'3','foot';'4','rest'};
-[EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', 100});
+[EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', [100]});
 
 field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
 CNT=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
@@ -16,7 +16,7 @@ CNT=prep_filter(CNT, {'frequency', [7 13]});
 SMT=prep_segmentation(CNT, {'interval', [750 3500]});
 
 %% SPATIAL-FREQUENCY OPTIMIZATION MODULE
-[SMT, CSP_W, CSP_D]=func_csp(SMT,{'nPatterns', 3});
+[SMT, CSP_W, CSP_D]=func_csp(SMT,{'nPatterns', [3]});
 FT=func_featureExtraction(SMT, 'logvar');
 
 %% CLASSIFIER MODULE
@@ -25,7 +25,7 @@ FT=func_featureExtraction(SMT, 'logvar');
 %% TEST DATA LOAD
 file=fullfile(BMI.EEG_DIR, '\feedback_motorimageryVPkg');
 marker={'1','left';'2','right';'3','foot';'4','rest'};
-[EEGfb.data, EEGfb.marker, EEGfb.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', 100});
+[EEGfb.data, EEGfb.marker, EEGfb.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', [100]});
 
 field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan',};
 CNTfb=opt_eegStruct({EEGfb.data, EEGfb.marker, EEGfb.info}, field);

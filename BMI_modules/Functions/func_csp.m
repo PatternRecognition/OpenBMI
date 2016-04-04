@@ -14,21 +14,26 @@ if ~isfield(dat,'x')
     error('Parameter is missing: dat.x')    
 end
 
-% Default parameters for CSP 
+% Default parameters for CSP
 opt_default={'nPatterns',3;
     'cov','normal';
     'score','eigenvalue';
     'policy','normal'};
 
-%Change input parameters
-for i=1:size(varargin{:},1)
-    [a b]=find(strcmpi(opt_default,varargin{1}{i,1}));
-    if b
-        opt_default{a,2}=varargin{1}{i,2};
+if isempty(varargin)  % default parameter setting
+    opt=opt_cellToStruct(opt_default)
+else
+    if iscell(varargin{:})
+        opt=opt_cellToStruct(varargin{:});
+    elseif isstruct(varargin{:}) % already structure(x-validation)
+        opt=varargin{:}
+    end
+    for i=1:length(opt_default) % setting default parameters if some of input parameter is missing in varargin
+        if ~isfield(opt,opt_default(i,1))
+            opt.(opt_default{i,1})=opt_default{i,2};
+        end
     end
 end
-
-opt=opt_cellToStruct(opt_default);
 
 %% default setting
 dat_csp=dat;dat_csp.x=[];

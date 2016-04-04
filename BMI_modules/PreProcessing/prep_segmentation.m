@@ -5,7 +5,11 @@ function [ dat ] = prep_segmentation( dat, varargin )
 %     varargin=varargin{1,1}; %cross-validation procedures
 % end;
 
-opt=opt_cellToStruct(varargin{:});
+if iscell(varargin{:})
+    opt=opt_cellToStruct(varargin{:});
+elseif isstruct(varargin{:}) % already structure(x-validation)
+    opt=varargin{:}
+end
 
 if ~isfield(opt,'interval')
     error('OpenBMI: parameter "interval" is missing')

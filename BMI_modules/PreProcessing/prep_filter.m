@@ -7,11 +7,16 @@ function [ dat ] = prep_filter( dat, varargin )
 %     varargin=varargin{1,1}; %cross-validation procedures
 % end;
 
+if iscell(varargin{:})
+    opt=opt_cellToStruct(varargin{:});
+elseif isstruct(varargin{:}) % already structure(x-validation)
+    opt=varargin{:}
+end
+
 if ~isfield(dat, 'x') && ~isfield(dat, 'fs')
     warning('Parameter is missing: dat.x or dat.fs');
 end
 
-opt=opt_cellToStruct(varargin{:});
 if ~isfield(opt,'fs')
     if isfield(dat, 'fs')
         opt.fs=dat.fs;
