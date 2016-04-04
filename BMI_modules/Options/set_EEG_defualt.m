@@ -7,7 +7,6 @@ eeg.x= zeros(hdr.NumberOfChannels,100000);
 if ~isfield(hdr,'NumberOfChannels') || ~isfield(opt,'fs') 
     disp('Important parameter is missing, check the hdr.NumberOfChannels and opt.fs')
 end
-eeg.fs=opt.fs;
 eeg.nCh=hdr.NumberOfChannels;
 eeg.chSet=[];
 eeg.stack={};
