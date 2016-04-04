@@ -2,6 +2,8 @@ clear all;
 OpenBMI('C:\Users\Administrator\Desktop\BCI_Toolbox\git_OpenBMI\OpenBMI') % Edit the variable BMI if necessary
 global BMI;
 BMI.EEG_DIR=['C:\Users\Administrator\Desktop\BCI_Toolbox\git_OpenBMI\DemoData'];
+
+aaaaaaaaaaaaaaaaaaaaaaaa;
 %% DATA LOAD MODULE
 file=fullfile(BMI.EEG_DIR, '\calibration_motorimageryVPkg');
 marker={'1','left';'2','right';'3','foot';'4','rest'};
