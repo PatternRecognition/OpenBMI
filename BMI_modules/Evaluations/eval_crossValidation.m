@@ -76,6 +76,10 @@ for i = 1:CVO.NumTestSets
     %..
     in=test_dat;
     for k=1:length(CV.test)
+        [out_param str_function in_dat in_param] = opt_funcParsing(CV.test{k});
+        
+        
+        
         myFun=str2func(CV.test{k});
         switch CV.test{k}
             case 'func_projection'

@@ -12,10 +12,6 @@ field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
 CNT=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
 CNT=prep_selectClass(CNT,{'class',{'right', 'left'}});
 
-
-
-
-
 %% CROSS-VALIDATION MODULE
 CV.prep={ % commoly applied to training and test data
     'CNT=prep_filter(CNT, {"frequency", [7 13]})'
@@ -27,9 +23,9 @@ CV.train={
     '[CF_PARAM]=func_train(FT,{"classifier","LDA"})'
     };
 CV.test={
-    'func_projection',{}
-    'func_featureExtraction',{'logvar'}
-    'classifier_applyClassifier',{}
+    'SMT=func_projection(SMT, CSP_W)'
+    'FT=func_featureExtraction(SMT, {"feature","logvar"})'
+    '[cf_out]=func_predict(FT, CF_PARAM)'
     };
 % CV.perform={
 %     'loss=cal_loss(out, label)'
@@ -38,4 +34,4 @@ CV.option={
 'KFold','10'
 };
 
-[loss]=eval_crossValidation(EEG.data, CV); % input : eeg, or eeg_epo
+[loss]=eval_crossValidation(CNT, CV); % input : eeg, or eeg_epo

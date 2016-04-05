@@ -54,8 +54,7 @@ for i = 1:CVO.NumTestSets
 
     %Consider the number of output parameter
     for k=1:length(CV.train)
-        [out_param str_function in_dat in_param] = opt_funcParsing(CV.train{k});
-        
+        [out_param str_function in_dat in_param] = opt_funcParsing(CV.train{k});        
         if k==1
             in=train_dat; % do at first iteration
         else
@@ -74,9 +73,13 @@ for i = 1:CVO.NumTestSets
         end     
 
     end
-    
+    %..
     in=test_dat;
     for k=1:length(CV.test)
+        [out_param str_function in_dat in_param] = opt_funcParsing(CV.test{k});
+        
+        
+        
         myFun=str2func(CV.test{k});
         switch CV.test{k}
             case 'func_projection'
