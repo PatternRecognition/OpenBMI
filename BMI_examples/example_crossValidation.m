@@ -27,9 +27,6 @@ CV.test={
     'FT=func_featureExtraction(SMT, {"feature","logvar"})'
     '[cf_out]=func_predict(FT, CF_PARAM)'
     };
-% CV.perform={
-%     'loss=cal_loss(out, label)'
-%     }
 CV.option={
 'KFold','5'
 };
