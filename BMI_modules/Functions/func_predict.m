@@ -2,9 +2,9 @@ function [ cf_out ] = func_predict( in, varargin )
 %PROC_APPLY_CLASSIFIER Summary of this function goes here
 %   Detailed explanation goes here
 
-% if ~varargin{end}
-%     varargin=varargin{1,1}; %cross-validation procedures
-% end;
+if iscell(varargin)
+    varargin=varargin{:};
+end
 opt=varargin{1};
 
 if isstruct(in)

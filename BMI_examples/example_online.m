@@ -30,4 +30,5 @@ online.option={
 'host', 'WIN-9UGFJQRFCNV' %important
 'port','51244'
 };
+
 MotorImagery_online(eeg, online);
