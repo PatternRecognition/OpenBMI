@@ -31,9 +31,9 @@ CV.test={
 %     'loss=cal_loss(out, label)'
 %     }
 CV.option={
-'KFold','10'
+'KFold','5'
 };
 
 [loss]=eval_crossValidation(CNT, CV); % input : eeg, or eeg_epo
-aaa
 
+str='[SMT, CSP_W, CSP_D]=func_csp(SMT,{"nPatterns", [3];"feature","logvar";"marker", marker})'
