@@ -35,3 +35,5 @@ CV.option={
 };
 
 [loss]=eval_crossValidation(CNT, CV); % input : eeg, or eeg_epo
+
+str='[SMT, CSP_W, CSP_D]=func_csp(SMT,{"nPatterns", [3]})'
