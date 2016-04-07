@@ -44,6 +44,8 @@ end
 switch lower(CV.option{1})
     case 'kfold'
         CVO = cvpartition(dat.y_dec,'k',str2num(CV.option{2}));
+    case 'leaveout'
+        CVO = cvpartition(dat.y_dec,'Leaveout')
 end
 
 

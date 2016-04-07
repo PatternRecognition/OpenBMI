@@ -18,8 +18,8 @@ CNT=prep_filter(CNT, {'frequency', [7 13]});
 SMT=prep_segmentation(CNT, {'interval', [750 3500]});
 
 
-aCNT=prep_addTrials(CNT, CNT)
+aCNT=prep_addTrials(CNT, CNT);
 
 aveCNT=prep_average(SMT);
 
-prep_rejectArtifactMAxMin(SMT, 70)
+prep_rejectArtifactMAxMin(SMT, 70);

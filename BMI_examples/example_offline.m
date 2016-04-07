@@ -40,7 +40,7 @@ CNTfb=prep_filter(CNTfb, {'frequency', [7 13]});
 SMTfb=prep_segmentation(CNTfb, {'interval', [750 3500]});
 
 SMTfb=func_projection(SMTfb, CSP_W);
-FTfb=func_featureExtraction(SMTfb, 'logvar');
+FTfb=func_featureExtraction(SMTfb, {'feature','logvar'});
 [cf_out]=func_predict(FTfb, CF_PARAM);
 
 [loss out]=eval_calLoss(FTfb.y_dec, cf_out);

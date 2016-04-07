@@ -2,7 +2,7 @@ function [ out ] = func_train( fv, varargin )
 %PROC_TRAIN_CLASSIFIER Summary of this function goes here
 %   Detailed explanation goes here
 % opt=opt_proplistToStruct_lower(varargin{:});
-if iscell(varargin{:})
+if iscell(varargin)
     opt=opt_cellToStruct(varargin{:});
 elseif isstruct(varargin{:}) % already structure(x-validation)
     opt=varargin{:}
