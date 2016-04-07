@@ -5,7 +5,6 @@ function [out] = prep_selectChannels(dat, varargin)
 % from continuous or epoched data.
 %
 % Example:
-% dat.chan = {Fp1, Fp2, ... O1, O2};
 % out = prep_selectChannels(data, {'Name',{'Fp1', 'Fp2'}})
 % out = prep_selectChannels(data, {'Index',[1 2]})
 %
@@ -20,22 +19,35 @@ function [out] = prep_selectChannels(dat, varargin)
 % Seon Min Kim, 03-2016
 % seonmin5055@gmail.com
 
+if isempty(varargin)
+    warning('OpenBMI: Channels should be specified')
+    out = dat;
+    return
+end
+opt = opt_cellToStruct(varargin{:});
 
 if ~isfield(dat, 'chan')
-    error('myApp:argChk','Input data should have a field named chSet')
+    warning('OpenBMI: Data must have a field named ''chan''')
+    return
 end
 if ~isfield(dat,'x')
-    warning('Data is missing: Input data structure must have a field named ''x''')
+    warning('OpenBMI: Data structure must have a field named ''x''')
     return
 end
 
-if iscell(varargin{1}{2})
-    ch = varargin{1}{2};
-    ch_idx = find(ismember(dat.chan,ch));
-elseif isnumeric(varargin{1}{2})
-    ch_idx = varargin{1}{2};
+if isfield(opt,'Name') && isfield(opt,'Index')
+    if find(ismember(dat.chan,opt.Name))~=opt.Index
+        warning('OpenBMI: Mismatch between name and index of channels')
+        return
+    end
+    ch_idx = opt.Index;
+elseif isfield(opt,'Name') && ~isfield(opt,'Index')
+    ch_idx = find(ismember(dat.chan,opt.Name));
+elseif ~isfield(opt,'Name') && isfield(opt,'Index')
+    ch_idx = opt.Index;
 else
-    error('myApp:argChk','Enter the channel information in a correct form')
+    warning('OpenBMI: Channels should be specified in a correct form')
+    return
 end
 
 out = rmfield(dat,{'x','chan'});
@@ -46,6 +58,6 @@ if d==3
 elseif d==2
     out.x = dat.x(:,ch_idx);
 else
-    warning('Check for the dimension of input data')
+    warning('OpenBMI: Check for the dimension of input data')
     return
 end
