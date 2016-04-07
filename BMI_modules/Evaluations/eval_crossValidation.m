@@ -82,7 +82,7 @@ for i = 1:CVO.NumTestSets
         end
         
         
-        nFunc=str2func(str_function)
+        nFunc=str2func(str_function);
         [out save{:}]= feval(nFunc, in, in_param);
         if length(out_param)==1  % save an actual output parameter with its real variable name
             param.(out_param{1})=out;
@@ -130,27 +130,4 @@ end
 loss01=mean(loss);
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -4,9 +4,9 @@ global BMI;
 BMI.EEG_DIR=['C:\Users\Administrator\Desktop\BCI_Toolbox\git_OpenBMI\DemoData'];
 
 %% DATA LOAD MODULE
-file=fullfile(BMI.EEG_DIR, '\calibration_motorimageryVPkg');
+file=fullfile(BMI.EEG_DIR, '\20160324_hsan_f2');
 marker={'1','left';'2','right';'3','foot';'4','rest'};
-[EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', [100]});
+[EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', 250});
 
 field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
 CNT=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
@@ -32,5 +32,3 @@ CV.option={
 };
 
 [loss]=eval_crossValidation(CNT, CV); % input : eeg, or eeg_epo
-
-str='[SMT, CSP_W, CSP_D]=func_csp(SMT,{"nPatterns", [3];"feature","logvar";"marker", marker})'

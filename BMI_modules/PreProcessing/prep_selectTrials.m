@@ -4,7 +4,7 @@ function [ out ] = prep_selectTrials( dat, varargin )
 if iscell(varargin{:})
     opt=opt_cellToStruct(varargin{:});
 elseif isstruct(varargin{:}) % already structure(x-validation)
-    opt=varargin{:}
+    opt=varargin{:};
 end
 %
 if ~isfield(opt,'index')
@@ -14,20 +14,20 @@ end
 
 in=dat;
 if isfield(in, 't')
-    in.t=dat.t(:,opt.index,:)
+    in.t=dat.t(:,opt.index,:);
 end
 if isfield(in, 'y_dec')
-    in.y_dec=dat.y_dec(opt.index)
+    in.y_dec=dat.y_dec(opt.index);
 end
 if isfield(in, 'y_logic')
-    in.y_logic=dat.y_logic(:,opt.index)
+    in.y_logic=dat.y_logic(:,opt.index);
 end
 if isfield(in, 'y_class')
-    in.y_class=dat.y_class(opt.index)
+    in.y_class=dat.y_class(opt.index);
 end
 
 if isfield(in, 'y_class')
-    in.y_class=dat.y_class(opt.index)
+    in.y_class=dat.y_class(opt.index);
 end
 if isfield(in, 'x')
     if  ndims(dat.x)==3

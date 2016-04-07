@@ -13,7 +13,7 @@ if isempty(strfind(str, '{'))
     str_out=strrep(str_out,']','');
     out_param=opt_getToken(str_out, ',');
   
-    str_in=str2{2,:} %input paremters
+    str_in=str2{2,:}; %input paremters
     str_in2=opt_getToken(str_in,'(');
     str_function=str_in2{1};
     str_param=str_in2{2,:};
@@ -70,7 +70,7 @@ else
                 type{i,j}=tCHAR;
                 in_param{i,j}=tm{j};
             else
-                [x, status] = str2num(tm{j})
+                [x, status] = str2num(tm{j});
                 if status
                     tCHAR='numeric';
                     tm{j}=strrep(tm{j},'[','');
