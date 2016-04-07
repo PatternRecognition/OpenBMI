@@ -32,9 +32,10 @@ end
 %% training phase, dat.y_dec is nacessary
 
 [out_param str_function in_dat in_param] = opt_funcParsing(CV.train{1}); % find a first training input parameter to assign a data
-if isfield(varargin{:},'prep')
+if isfield(varargin{:},'prep') && isfield(param, in_dat{1})  %% prep 절차가 있고, 전처리 아웃풋 결과를 가지고 올때
     dat=param.(in_dat{1}); % conect the prep and training proc. with its real-function name
 else
+    dat=dat;
     % use initial "dat" parameter
 end
 
@@ -60,7 +61,11 @@ for i = 1:CVO.NumTestSets
         if k==1
             in=train_dat; % do at first iteration
         else
-            in=param.(in_dat{1}); % 이후 k가 증가할 경우 실제 input output 데이터를 따라서
+            if iscell(in_dat)
+                in=param.(in_dat{1}); % 이후 k가 증가할 경우 실제 input output 데이터를 따라서
+            else  % string
+                in=param.(in_dat);
+            end
         end
         
         for j=1:length(in_param)
@@ -75,9 +80,9 @@ for i = 1:CVO.NumTestSets
                     end
             end
         end
-                
         
-        nFunc=str2func(str_function)
+        
+        nFunc=str2func(str_function);
         [out save{:}]= feval(nFunc, in, in_param);
         if length(out_param)==1  % save an actual output parameter with its real variable name
             param.(out_param{1})=out;
@@ -93,15 +98,15 @@ for i = 1:CVO.NumTestSets
     in=test_dat;
     for k=1:length(CV.test)
         [out_param str_function in_dat in_param type] = opt_funcParsing(CV.test{k});
-        if iscell(in_dat)
-           in_dat = cellstr(in_dat);
-        end
         if k==1
             in=test_dat; % do at first iteration
         else
-            in=param.(in_dat(:)); % 이후 k가 증가할 경우 실제 input output 데이터를 따라서
+            if iscell(in_dat)
+                in=param.(in_dat{1}); % 이후 k가 증가할 경우 실제 input output 데이터를 따라서
+            else  % string
+                in=param.(in_dat);
+            end
         end
-        
         
         nFunc=str2func(str_function);
         
@@ -116,39 +121,13 @@ for i = 1:CVO.NumTestSets
                         end
                     end
             end
-        end        
-        
+        end
         [out save{:}]= feval(nFunc, in, in_param);
         param.(out_param{1})=out;
-        
     end
-    loss(i,:)=eval_calLoss(test_dat.y_logical, in);
+    loss(i,:)=eval_calLoss(test_dat.y_logic, out);
 end
-
 loss01=mean(loss);
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

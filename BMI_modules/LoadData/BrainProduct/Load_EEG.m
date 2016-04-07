@@ -9,7 +9,7 @@ else % set default parameters here
     opt.device='brainVision';
 end
 
-if isfield(opt,'fs')
+if ~isfield(opt,'fs')
     opt.fs=[];% seting original sampling rate from Load_BV_hdr
 end
 

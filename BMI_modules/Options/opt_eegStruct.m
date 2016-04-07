@@ -3,7 +3,8 @@ function [ cnt ] = opt_eegStruct( dat, field )
 %   Detailed explanation goes here
 
 %input: cell structure, {struct1, struct2, struct3}
-%field
+% Select necessary fields from input structures 
+% construct initial OpenBMI data structure
 
 for i=1:length(field)
     [cnt(:).(field{i})]=[];

@@ -8,6 +8,9 @@ file=fullfile(BMI.EEG_DIR, '\calibration_motorimageryVPkg');
 marker={'1','left';'2','right';'3','foot';'4','rest'};
 [EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', [100]});
 
+%% if you can redefine the marker information after Load_EEG function 
+%% use  [marker, markerOrigin]=prep_defineClass(EEG.marke, marker)
+
 field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
 CNT=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
 CNT=prep_selectClass(CNT,{'class',{'right', 'left'}});
