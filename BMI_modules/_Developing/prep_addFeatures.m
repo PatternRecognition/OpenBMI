@@ -15,14 +15,21 @@ function [out] = prep_addFeatures(dat1,dat2)
 % seonmin5055@gmail.com
 
 if ~isfield(dat1,'x') || ~isfield(dat2,'x')
-    warning('Data is missing: Input data structure must have a field named ''x''')
+    warning('OpenBMI: Data structure must have a field named ''x''')
     return
+end
+if size(dat1.x,2) ~= size(dat2.x,2)
+    warning('OpenBMI: Unmatched the number of trials')
+    return
+end
+if ~isfield(dat1,'class') || ~isfield(dat1,'y_dec')
+    warning('OpenBMI: Data structure should have a field named ''class'',''y_dec''')
 end
 
 r1 = rmfield(dat1,'x');
 r2 = rmfield(dat2,'x');
 if ~isequal(r1,r2)
-    warning('Two features must be extracted from the data with same class and trials')
+    warning('OpenBMI: Two features must be extracted from the data with same class and trials')
     return
 end
 
