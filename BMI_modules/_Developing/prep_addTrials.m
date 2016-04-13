@@ -5,6 +5,7 @@ function [out] = prep_addTrials(dat1, dat2)
 % 
 % Example:
 % [out] = prep_addTrials(dat1,dat2)
+% [out] = prep_addTrials({dat1,dat2,dat3,dat4,...})
 %
 % Input:
 %     dat1 - Data structure, continuous or epoched
@@ -16,6 +17,15 @@ function [out] = prep_addTrials(dat1, dat2)
 %
 % Seon Min Kim, 04-2016
 % seonmin5055@gmail.com
+
+if iscell(dat1)
+    temp = dat1{1};
+    for i=2:size(dat1,2)
+        temp = prep_addTrials(temp,dat1{i});
+    end
+    out = temp;
+    return
+end
 
 if ~isfield(dat1,'x') || ~isfield(dat2,'x')
     warning('OpenBMI: Data structure must have a field named ''x''')
