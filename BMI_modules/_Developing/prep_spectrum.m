@@ -1,4 +1,4 @@
-function dat= Proc_Spectrum_ver4 (data, band, varargin)
+function dat= prep_powerspectrum (data, band, varargin)
 %PROC_SPECTRUM -  calculate the power spectrum
 %
 %dat= proc_spectrum(dat, band, <win/N, step>)
@@ -94,72 +94,4 @@ end
 
 
 end
-
-% if isempty(dat)
-%     warning('Warning! data is empty');
-% end
-% if isempty(ban)
-%     warning('Band is not exist.');
-% end
-%% opt null check
-% optDeafualt={'win',[]; 'N',[]; 'step',[] ; 'scale',[]};
-
-% opt={'win',dat.fs; 'N',dat.fs; 'step',dat.fs/2 ; 'scale','db'};
-% 
-% 
-% %%opt to cell convert
-% opt=opt_cellToStruct(opt)
-% 
-% [T, nEvents , nChans]= size(dat.x);
-% 
-% if isempty(dat)
-%     warning('Warning! data is empty');
-% end
-% if isempty(ban)
-%     warning('Band is not exist.');
-% end
-% 
-% if opt.win>T
-%     warning('Window size is longer than size');
-% end
-% opt.win=ones(dat.fs,1);
-% N= length(opt.win);
-% normWin  = norm(opt.win) ;
-% nWindows= 1 + max(0, floor((T-N)/opt.step));
-
-%% X축 frequency 만들어주기
-% sb= size(band);
-% if isequal(sb, [2 1]), band= band'; end
-% 
-% 
-% Freq= (0:N/2)*dat.fs/N;
-% 
-% if isempty(band)
-%     bInd= 1:N/2+1;
-% else
-%     ibeg= max(find(Freq<=band(1)));
-%     iend= min([find(Freq>=band(2)) length(Freq)]);
-%     bInd= ibeg:iend;
-% end
-% range=band(1):band(2);
-% 
-% 
-% Freq= Freq(bInd);
-% 
-% %% 결과 계산하기
-% iv= 1:min(N, T);
-% Win= repmat(opt.win(:), [1 nChans*nEvents]);
-% XX= zeros(N, nChans*nEvents);
-% for iw= 1:nWindows,
-%     XX= XX + abs(fft(dat.x(iv,:).*Win, N)).^2;
-%     iv= iv + opt.step;
-% end
-% 
-% XX = XX/(nWindows*normWin^2);
-% dat.x= reshape( 10*log10( XX(bInd,:)+eps ), [length(bInd), nChans, nEvents]);
-% dat.yUnit= 'dB';
-% dat.t= Freq;
-% dat.xUnit= 'Hz';
-% 
-% 
 
