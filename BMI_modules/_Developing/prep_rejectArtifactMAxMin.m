@@ -53,7 +53,7 @@ if valMaxTrial <= str2double(opt.threshold)
     out.x = dat.x;
 else
     for maxnum=1: size(selectData,3)
-%         valMaxTrial(1,maxnum) =max(rejcrt(:,maxnum));
+
         if valMaxTrial(maxnum) > str2double(opt.threshold)
             inx = inx+1;
             rejectTrial(1,inx) = maxnum;
