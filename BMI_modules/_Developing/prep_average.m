@@ -17,18 +17,16 @@ function [out] = prep_average(dat)
 % seonmin5055@gmail.com
 
 if ~isfield(dat,'x')
-    warning('Data is missing: Input data structure must have a field named ''x''')
+    warning('OpenBMI: Data structure must have a field named ''x''')
     return
 end
+if ~isfield(dat,'y_dec') || ~isfield(dat,'y_logic') || ~isfield(dat,'y_class')
+    warning('OpenBMI: Class information is missing')
+    return
+end
+
 if ndims(dat.x)~=3
-    warning('Data must be epoched')
-    return
-end
-if ~isfield(dat,'y_dec') || ~isfield(dat,'y_logic')
-    warning('Class information is missing')
-    n_tri = size(dat.x,2);
-    dat.y_dec = ones(1,n_tri);
-    dat.class = {1,'all'};
+    warning('OpenBMI: Data must be epoched')
     return
 end
 

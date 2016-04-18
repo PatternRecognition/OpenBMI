@@ -2,7 +2,7 @@ function [ out ] = func_featureExtraction( dat, varargin )
 %PROC_FEAEXTRACTION Summary of this function goes here
 %   Detailed explanation goes here
 
-if iscell(varargin{:})
+if iscell(varargin)
     opt=opt_cellToStruct(varargin{:});
 elseif isstruct(varargin{:}) % already structure(x-validation)
     opt=varargin{:}

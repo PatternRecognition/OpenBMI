@@ -3,10 +3,12 @@ function [ loss loss01 ] = eval_calLoss( True_label, cf_out )
 %   Detailed explanation goes here
 %only if binary class
 if size(True_label,1)==2 %logical
-    temp=find(True_label(2,:)==0);
-    True_label(2,temp)=-1;
-    True_label=True_label(2,:)';
-    loss01=sign(cf_out)~=True_label;
+    tm=find(True_label(1,:)==1);
+    tm2=find(True_label(2,:)==1);
+    [nClass nTri]=size(True_label);
+    bn_label=zeros(nTri,1);
+    bn_label(tm)=-1;bn_label(tm2)=1;
+    loss01=sign(cf_out)~=bn_label;
 else
     Est_label= 1.5 + 0.5*sign(cf_out)';
     loss01=Est_label~=True_label;
