@@ -1,4 +1,4 @@
-function dat= prep_spectrogram(data, frequnecy, varargin)
+function dat= func_spectrogram(data, frequnecy, varargin)
 % prep_powerspectrum : calculating the power spectrum in selected band
 
 %dat= proc_spectrum(dat, band, <win/N, step>)
@@ -64,15 +64,21 @@ for chan=1:nChans
     [S,F,T] = spectrogram(X(:,nChans,:),epo.win,epo.noverlap,fre,dat.fs);
     dat.x(:,:,chan)=S;
 end
+
 switch(lower(epo.scale)),
-
+    case 'amplitude'
+        dat.x = abs(dat.x);
+        dat.yUnit= 'amplitude';
     case 'power'
-    dat.x = abs(dat.x).^2;
-    dat.yUnit= 'power';
-  case 'db'
-    dat.x = 10* log10( abs(dat.x).^2 );
-    dat.yUnit= 'log power';
-
+        dat.x = abs(dat.x).^2;
+        dat.yUnit= 'power';
+    case 'db'
+        dat.x = 10* log10( abs(dat.x).^2 );
+        dat.yUnit= 'log power';
+    case 'phase'
+        dat.x = angle(dat.x);
+        dat.yUnit= 'phase';
+              
 end
 
 
