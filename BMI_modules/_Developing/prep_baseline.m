@@ -41,23 +41,36 @@ if ~isfield(opt,'Time')
     opt.Time = [dat.ival(1),dat.ival(end)];
 elseif ~isfield(opt,'Criterion')
     opt.Criterion = 'trial';
-    if isscalar(opt.Time)
-        opt.Time = [dat.ival(1),dat.ival(1)+opt.Time];
-    elseif ~isvector(opt.Time)
-        warning('OpenBMI: Time should be a scalar or a vector');return
-    end
 end
-% Time interval이 ival보다 클 경우
+if isscalar(opt.Time)
+    opt.Time = [dat.ival(1),dat.ival(1)+opt.Time];
+elseif ~isvector(opt.Time)
+    warning('OpenBMI: Time should be a scalar or a vector');return
+end
 
 [nT,~,~] = size(dat.x);
+t = opt.Time-dat.ival(1)+1;
+if t(1)<1 || ceil(t(end)*dat.fs/1000)>dat.ival(end)
+    warning('OpenBMI: Selected time interval is out of time range');return
+end
+
 switch opt.Criterion
     case 'trial'
-        t = opt.Time-dat.ival(1)+1;
-        idx = (floor(t(1)*dat.fs/1000)+1):ceil(t(end)*dat.fs/1000);
+        idx = floor(t(1)*dat.fs/1000+1):ceil(t(end)*dat.fs/1000);
         base = nanmean(dat.x(idx,:,:),1);
         x = dat.x-repmat(base,[nT,1,1]);
-%     case 'class'
-%         base = 
+    case 'class'
+        if ~isfield(dat,'y_logic')
+            warning('OpenBMI: Data must have fields named ''y_logic''');return
+        end
+        x = zeros(size(dat.x));
+        for i=1:size(dat.y_logic,1)
+            t_idx = floor(t(1)*dat.fs/1000)+1:ceil(t(end)*dat.fs/1000);
+            k = find(dat.y_logic(i,:)==1);
+            n = size(k,2);
+            base = nanmean(nanmean(dat.x(t_idx,k,:),1),2);
+            x(:,k,:) = dat.x(:,k,:)-repmat(base,[nT,n,1]);
+        end
 %     case 'channel'
 %         base = 
 end
