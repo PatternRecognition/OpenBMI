@@ -1,8 +1,6 @@
 function dat= func_spectrogram(data, frequnecy, varargin)
 % prep_powerspectrum : calculating the power spectrum in selected band
 
-%dat= proc_spectrum(dat, band, <win/N, step>)
-%dat= proc_spectrum(dat, band, <opts>)
 % IN   dat  - data structure of continuous or epoched data
 %      band - frequency band
 %      win  - window for FFT
@@ -10,9 +8,9 @@ function dat= func_spectrogram(data, frequnecy, varargin)
 %      step - step for window (= # of overlapping samples), default N/2
 %      opt  - struct of options:
 %       .win       - window for FFT, default ones(dat.fs, 1)
-%       .step      - step for window, default N/2
-%       .db_scaled - boolean, if true values are db scaled (10*log10),
-%                    default true
+%       .noverlap      - step for window, default N/2
+%       .clab   
+%       .scale - 
 
 %%
 % data
@@ -36,7 +34,6 @@ end
 
 if ~isfield(opt,'noverlap')
     epo.noverlap=(dat.fs)/2-1;
-    
 else
     epo.noverlap=opt.noverlap;
 end
