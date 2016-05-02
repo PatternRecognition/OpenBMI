@@ -4,7 +4,7 @@ function [ dat, marker, hdr] = Load_EEG( file, varargin )
 
 % opt=opt_proplistToStruct(varargin{:});
 if ~isempty(varargin)
-    opt=opt_cellToStruct(varargin{:});
+    opt=opt_CellToStruct(varargin{:});
 else % set default parameters here
     opt.device='brainVision';
 end

@@ -1,4 +1,4 @@
-function [ opt ] = opt_cellToStruct( varargin )
+function [ opt ] = opt_CellToStruct( varargin )
 %OPT_CELLTOSTRUCT Summary of this function goes here
 %   Detailed explanation goes here
 if nargin==0,
