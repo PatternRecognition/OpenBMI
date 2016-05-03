@@ -1,7 +1,7 @@
 clear all;
-OpenBMI('C:\Users\Administrator\Desktop\BCI_Toolbox\git_OpenBMI\OpenBMI') % Edit the variable BMI if necessary
+OpenBMI('D:\OpenBMI\OpenBMI') % Edit the variable BMI if necessary
 global BMI;
-BMI.EEG_DIR=['C:\Users\Administrator\Desktop\BCI_Toolbox\git_OpenBMI\DemoData'];
+BMI.EEG_DIR=['D:\OpenBMI\Data\MI'];
 
 %% DATA LOAD MODULE
 file=fullfile(BMI.EEG_DIR, '\calibration_motorimageryVPkg');
@@ -22,6 +22,13 @@ SMT=prep_segmentation(CNT, {'interval', [750 3500]});
 %% SPATIAL-FREQUENCY OPTIMIZATION MODULE
 [SMT, CSP_W, CSP_D]=func_csp(SMT,{'nPatterns', [3]});
 FT=func_featureExtraction(SMT, {'feature','logvar'});
+
+%% VISUALIZATION MODULE
+figure(1); visual_TopoPlot(SMT, CNT.x(2500,:), CNT);
+
+startup_bbci_toolbox; % for comparision
+mnt = mnt_setElectrodePositions(CNT.chan);
+figure(2); plot_scalp(mnt, CNT.x(2500,:)); 
 
 %% CLASSIFIER MODULE
 [CF_PARAM]=func_train(FT,{'classifier','LDA'});
