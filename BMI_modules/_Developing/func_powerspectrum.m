@@ -1,4 +1,4 @@
-function dat= func_powerspectrum (data, band, varargin)
+function dat= prep_powerspectrum (data, band, varargin)
 %PROC_SPECTRUM -  calculate the power spectrum
 %
 %dat= proc_spectrum(dat, band, <win/N, step>)
