@@ -2,12 +2,16 @@ function [ out ] = prep_rejectArtifactMAxMin( dat, varargin )
 
 % dat = data;
 opt = opt_cellToStruct(varargin{:});
+
+% Need to check option default
 % if isfield(opt.threshold)
 %     warning('Please input the value of threshold');
 % end
+
 % if ~isfield(opt)
 %     warning ('There is no threshold, Please input the value of threshold');
 % end
+%%
 %Find the channel index
 if ~isempty(opt.Ival)
     dat.x = dat.x(str2double(opt.Ival(1)):str2double(opt.Ival(2)),:,:);
@@ -49,7 +53,7 @@ if valMaxTrial <= str2double(opt.threshold)
     out.x = dat.x;
 else
     for maxnum=1: size(selectData,3)
-%         valMaxTrial(1,maxnum) =max(rejcrt(:,maxnum));
+
         if valMaxTrial(maxnum) > str2double(opt.threshold)
             inx = inx+1;
             rejectTrial(1,inx) = maxnum;
