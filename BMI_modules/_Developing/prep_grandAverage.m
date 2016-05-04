@@ -8,9 +8,9 @@ function [out] = prep_grandAverage(dat)
 % [out] = prep_grandAverage({dat1,dat2,...,datN});
 %
 % Input:
-%     dat - Segmented data structure, in a cell type
+%     dat - Segmented data, structure or data itself, in a cell type
 % Returns:
-%     out - Averaged data
+%     out - Data structure averaged across subjects
 %
 % Seon Min Kim, 05-2016
 % seonmin5055@gmail.com
