@@ -1,7 +1,8 @@
 function [out] = prep_normalize(dat,varargin)
 % prep_normalize (Pre-processing procedure):
 %
-% This function normalizes
+% This function normalizes the feature vection. 
+% (Input should be two-dimensional data)
 %
 % Example:
 % [out] = prep_normalize(dat,{'Method','std'});
@@ -9,17 +10,21 @@ function [out] = prep_normalize(dat,varargin)
 % Input:
 %     dat - Feature vector, struct or data itself
 % Options:
-%     Method - 'std'
+%     Method - 'std' (default)
+%              'max'
+%     Type - 'trial'   : Normalizing the data for each trial
+%            'feature' : ... for each feature dimension (default)
 % 
 % Seon Min Kim, 05-2016
 % seonmin5055@gmail.com
 
 % Options of normalizing methods should be added later
 
-if isempty(varargin)
+opt = opt_cellToStruct(varargin{:});
+if ~isfield(opt,'Method')
     opt.Method = 'std';
-else
-    opt = opt_cellToStruct(varargin{:});
+elseif ~isfield(opt,'Type')
+    opt.Type = 'feature';
 end
 
 if isstruct(dat)
@@ -39,8 +44,16 @@ end
 
 switch opt.Method
     case 'std'
-        c = repmat(std(fv,0,2),[1,z(2)]);
+        if strcmp(opt.Type,'feature')
+                c = repmat(std(fv,0,2),[1,z(2)]);
+        elseif strcmp(opt.Type,'trial')
+                c = repmat(std(fv,0,1),[z(1),1]);
+        else
+            warning('OpenBMI: Check for the ''Type'' option. It is either ''feature'' or ''trial''');return
+        end
         fv = fv.*(1./c);
+    case 'max'
+        disp('OpenBMI: It might be updated soon')
     otherwise
         warning('OpenBMI: Unknown nomalizing method. It might be updated soon')
 end
