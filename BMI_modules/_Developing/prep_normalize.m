@@ -23,7 +23,8 @@ function [out] = prep_normalize(dat,varargin)
 opt = opt_cellToStruct(varargin{:});
 if ~isfield(opt,'Method')
     opt.Method = 'std';
-elseif ~isfield(opt,'Type')
+end
+if ~isfield(opt,'Type')
     opt.Type = 'feature';
 end
 

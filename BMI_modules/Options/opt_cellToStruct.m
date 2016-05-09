@@ -2,7 +2,7 @@ function [ opt ] = opt_cellToStruct( varargin )
 %OPT_CELLTOSTRUCT Summary of this function goes here
 %   Detailed explanation goes here
 if nargin==0,
-  return;
+  opt = struct();return;
 end
 
 if isstruct(varargin)
@@ -15,9 +15,6 @@ elseif iscell(varargin) % cell to struct
             error('Invalid parameters: str must be string');
         end
         opt.(str)= varargin{1}{i,2};
-    end
-    if nParam == 0
-        opt = struct({});
     end
 end
 
