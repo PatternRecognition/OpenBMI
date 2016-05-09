@@ -4,7 +4,7 @@ function [ dat ] = plotERSP(data , varargin )
 %% It needs more modify code(?). please kindly wait until updating
 %% Load the data
 dat = data;
-opt = opt_CellToStruct(varargin{:});
+opt = opt_cellToStruct(varargin{:});
 sampleFrequency=dat.fs;
 %% Setting the parameter
 % modelOrder = 18+round(sampleFrequency/100);

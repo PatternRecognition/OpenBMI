@@ -9,9 +9,9 @@ if ~isfield(online,'option'); disp('applying module is not exist');
         'paradigm', 'MotorImagery'
         'Feedback','off'
         }; % default setting
-    opt=opt_CellToStruct(online.option{:});
+    opt=opt_cellToStruct(online.option{:});
 else
-    opt=opt_CellToStruct(online.option{:});
+    opt=opt_cellToStruct(online.option{:});
 end
 if ~isfield(opt,'ite')  %iteration in while loop
     opt.ite='1';

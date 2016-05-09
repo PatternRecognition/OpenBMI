@@ -12,9 +12,9 @@ if ~isfield(online,'option'); disp('applying module is not exist');
         'host', 'JohnKim-PC'
         'port','51244'
         }; % default setting
-    opt=opt_CellToStruct(online.option{:});
+    opt=opt_cellToStruct(online.option{:});
 else
-    opt=opt_CellToStruct(online.option{:});
+    opt=opt_cellToStruct(online.option{:});
 end
 
 in=eeg;
