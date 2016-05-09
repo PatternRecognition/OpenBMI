@@ -16,6 +16,9 @@ elseif iscell(varargin) % cell to struct
         end
         opt.(str)= varargin{1}{i,2};
     end
+    if nParam == 0
+        opt = struct({});
+    end
 end
 
 end
