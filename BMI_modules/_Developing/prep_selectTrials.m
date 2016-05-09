@@ -6,13 +6,10 @@ function [out] = prep_selectTrials(dat,varargin)
 % 
 % Example:
 %     out = prep_selectTrials(dat,{'Index',[20:35]});
-%     out = prep_selectTrials(dat,{'Time',[20:35]});
-% Option for time interval is not considered yet, it should be added soon
 % 
 % Input: 
 %     dat - Structure. Data which trials are to be selected
 %     index - index of trials to be selected
-%     time - time interval of trials to be selected
 % 
 % Seon Min Kim, 04-2016
 % seonmin5055@gmail.com

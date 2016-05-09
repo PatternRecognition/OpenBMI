@@ -28,15 +28,22 @@ else
 end
 
 if isfield(opt,'Name') && isfield(opt,'Index')
-    if find(ismember(dat.chan,opt.Name))~=opt.Index
+    if find(ismember(dat2.chan,opt.Name))~=opt.Index
         warning('OpenBMI: Mismatch between name and index of channels')
         return
     end
+    ch = opt.Name;
     ch_idx = opt.Index;
 elseif isfield(opt,'Name') && ~isfield(opt,'Index')
-    ch_idx = find(ismember(dat.chan,opt.Name));
+    ch = opt.Name;
+    ch_idx = find(ismember(dat2.chan,ch));
+    if size(ch_idx)~=size(ch,2)
+        warning('OpenBMI: Error in ''Name''')
+        return
+    end
 elseif ~isfield(opt,'Name') && isfield(opt,'Index')
     ch_idx = opt.Index;
+    ch = dat2.chan(ch_idx);
 else
     warning('OpenBMI: Channels should be specified in a correct form')
     return
@@ -60,20 +67,13 @@ end
 out = rmfield(dat1,{'x','chan'});
 
 ch_ori = dat1.chan;
-idx = [];
-for i=1:size(ch_ori,2)
-    for j=1:size(ch,2)
-        if strcmp(ch_ori{i},ch{j});
-            idx = [idx,j];
-        end
-    end
-end
-ch(idx) = [];
+idx = find(ismember(ch,ch_ori));
+ch(idx)=[];
+ch_idx(idx)=[];
 
 out.chan = cat(2,dat1.chan,ch);
-ch_idx = find(ismember(dat2.chan,ch));
 d1 = ndims(dat1.x);
-if d1 ==1 || d1 == 2
+if d1 == 2
     x = dat2.x(:,ch_idx);
 elseif d1 == 3
     x = dat2.x(:,:,ch_idx);
