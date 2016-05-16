@@ -14,24 +14,11 @@ marker={'1','left';'2','right';'3','foot';'4','rest'};
 field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
 CNT=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
 CNT=prep_selectClass(CNT,{'class',{'right', 'left'}});
-SMT=prep_segmentation(CNT, {'interval',[0 4000]});
-ersp = plotERSP(SMT , {'Xaxis' , 'Frequency'; 'Yaxis' , 'Channel'});
 
+SMT=prep_segmentation(CNT, {'interval',[-2000 6000]});
 
-%% Test bci2000 data
-% load('E:\Test_OpenBMI\visualization\x1.mat');
-% load('E:\Test_OpenBMI\visualization\x2.mat');
-% A.x = x1;
-% A.fs = 160;
-% A.y_dec=1;
-% A.x = permute(A.x, [1, 3, 2]);
-% 
-% B.x = x2;
-% B.fs = 160;
-% B.y_dec=2;
-% B.x = permute(B.x, [1, 3, 2]);
-% 
-% C.x = cat(2 , A.x,B.x);
-% C.fs = 160;
-% C.y = [A.y_dec B.y_dec];
-% a = plotERSP(C , {'freqBinWidth' , 2;'spectralSize' , 333; 'spectralStep' , 166; }) ;
+%% Example of ERSP
+% ersp = plotERSP(SMT , {'Xaxis' , 'Frequency'; 'Yaxis' , 'Channel'});
+% ersp = plotERSP(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Channel'; 'Band' ,[8 13]});
+% ersp = plotERSP(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Frequency'; 'Channel' ,{'C4'}});
+
