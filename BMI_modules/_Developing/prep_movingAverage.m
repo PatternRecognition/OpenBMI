@@ -17,7 +17,6 @@ function [out] = prep_movingAverage(dat,varargin)
 % Seon Min Kim, 04-2016
 % seonmin5055@gmail.com
 
-% 0. SMT 고려
 % 1. window에 weighting하는 경우 고려 필요. window는 scalar나 vector
 % 2. samples 수 고려. time이랑 같이 들어오면 무시
 % 3. NaN이 포함될 경우.
@@ -44,15 +43,22 @@ if ~isfield(dat,'fs')
     return
 end
 
-% if ndims(dat.x)==3
-%     [s1,s2,s3] = size(dat.x);
-%     dat.x = reshape(permute(dat.x,[1 3 2]),[s1*s3 s2]);
-%     out = prep_movingAverage(dat,varargin{:});
-%     out.x = permute(reshape(out.x,[s1 s3 s2]),[1 3 2]);return
-% end
+if ~ismatrix(dat.x)==2 && ~ndims(dat.x)==3
+    warning('OpenBMI: Data dimension must be 2 or 3');return
+end
 
-if ~ismatrix(dat.x)
-    warning('OpenBMI: Data dimension must be 2');return % or 3');return
+if ndims(dat.x)==3
+    xx=zeros(size(dat.x));
+    for i=1:size(dat.x,2)
+        x=squeeze(dat.x(:,i,:));
+        temp=rmfield(dat,'x');
+        temp.x=x;
+        temp2=prep_movingAverage(temp,varargin{:});
+        xx(:,i,:)=temp2.x;
+    end
+    out = rmfield(dat,'x');
+    out.x = xx;
+    return
 end
 
 [t,~] = size(dat.x);
