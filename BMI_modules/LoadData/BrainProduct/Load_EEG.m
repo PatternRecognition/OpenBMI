@@ -4,7 +4,7 @@ function [ dat, marker, hdr] = Load_EEG( file, varargin )
 
 % opt=opt_proplistToStruct(varargin{:});
 if ~isempty(varargin)
-    opt=opt_CellToStruct(varargin{:});
+    opt=opt_cellToStruct(varargin{:});
 else % set default parameters here
     opt.device='brainVision';
 end
@@ -19,7 +19,7 @@ switch lower(opt.device)
         marker=Load_BV_mrk(file, hdr, opt);disp('Loading Marker file..');
         dat=Load_BV_data(file, hdr, opt);disp('Loading EEG data..');
         if isfield(opt,'marker')
-            [marker, markerOrigin]=prep_defineClass(marker,opt.marker);
+            [marker]=prep_defineClass(marker,opt.marker);
         end
     case 'emotive'
         
