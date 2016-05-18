@@ -1,4 +1,4 @@
-function estimatedDensity = myParzenKDE( trainData, testData, windowWidth )
+function estimatedDensity = proc_ParzenKDE( trainData, testData, windowWidth )
 % estimatedDensity = myParzenKDE(trainingData,testingData,windowWidth)
 numFeatures = size( trainData, 2 );
 covariance = estimateCovariance( trainData );

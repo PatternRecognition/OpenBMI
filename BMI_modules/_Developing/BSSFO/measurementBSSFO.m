@@ -12,14 +12,14 @@ function [updatedBSSFO, x_flt, CSPFilter, features] = measurementBSSFO( X1, X2, 
 
 %% Step 1: Spectral Filtering
 % It is free to use your own spectral filtering method.
-x_flt = spectral_filtering( X1, X2, fs, oldBSSFO, verbose );
+x_flt = bssfo_spectralFiltering( X1, X2, fs, oldBSSFO, verbose );
 
 %% Step 2: Spatial Filtering
 % It is free to use your own spatial filtering method.
-CSPFilter = spatial_filtering( x_flt, oldBSSFO, numCSPPatterns, verbose );
+CSPFilter = bssfo_spatialFiltering( x_flt, oldBSSFO, numCSPPatterns, verbose );
 
 %% Step 3: Feature Extraction
-features = feature_extraction( x_flt, CSPFilter, oldBSSFO, verbose );
+features = bssfo_featureExtraction( x_flt, CSPFilter, oldBSSFO, verbose );
 
 %% Step 4: Computer Mutual Information
 kernelWidth = 1;
@@ -40,7 +40,7 @@ for i=1:oldBSSFO.numBands
         end
     end
     % It is free to use your own method to compute mutual information.
-    miValue(i) = mutual_information( features{1, i}, features{2, i}, kernelWidth );
+    miValue(i) = proc_mutual_information( features{1, i}, features{2, i}, kernelWidth );
 end
 miValue
 if verbose == 1

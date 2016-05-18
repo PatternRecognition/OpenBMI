@@ -1,4 +1,4 @@
-function features = feature_extraction( x_flt, CSP, oldSMC, verbose )
+function features = bssfo_featureExtraction( x_flt, CSP, oldSMC, verbose )
 % x_flt: cell(2, numsamples) : 2-class
 %           x_flt{1, i} = [nChannels, nSamples, nTrials]
 
@@ -23,14 +23,11 @@ for i=1:oldSMC.numBands
     
     for k=1:nclass
         [nc, ns, nt] = size( x_flt{k, i} );
-        temp = reshape( x_flt{k, i}, [nc, ns*nt] );
-        temp = CSP{i}.W' * temp;
-        temp = reshape( temp, [size(temp, 1), ns, nt] );
-        temp = permute( temp, [2 1 3] );
-        features{k, i} = squeeze( log(var(temp, 0, 1)) );
-%         a = squeeze(var(temp, 0, 1));
-%         b = sum(a(:));
-%         features{k, i} = squeeze( log(a/b) );
+        dat = reshape( x_flt{k, i}, [nc, ns*nt] );
+        dat=func_projection(dat', CSP{i}.W);    
+        dat = reshape( dat, [ns, nt, size(dat, 2)] );
+        dat = permute( dat, [1 3 2] );
+        features{k, i} = squeeze( log(var(dat, 0, 1)) ); % log-variance feature
     end
 end
 fprintf( '\n' );

@@ -4,7 +4,7 @@
 % Feature Extraction in Brain-Computer Interfaces," IEEE Trans. on PAMI,
 % 2012. (Accepted)
 
-function newBSSFO = resamplingBSSFO( oldBSSFO )
+function newBSSFO = proc_resamplingBSSFO( oldBSSFO )
 
 accWeight = cumsum( oldBSSFO.weight );
 

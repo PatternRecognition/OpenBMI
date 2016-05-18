@@ -26,7 +26,7 @@ end
 initSMC.sample=tmp2';
 
 for i=1:initSMC.numBands
-   initSMC.sample(:, i) = checkValidity( initSMC.sample(:, i) );
+    initSMC.sample(:, i) = opt_checkValidity( initSMC.sample(:, i) );
 end
 
 if iscell(Dat)  % cell type binary classes
@@ -47,20 +47,20 @@ else
     end
 end
 
-    C1.x=permute(C1.x, [3 1 2]);
-    C2.x=permute(C2.x, [3 1 2]);
+C1.x=permute(C1.x, [3 1 2]);
+C2.x=permute(C2.x, [3 1 2]);
 initBSSFO=initSMC;
-for i=1:opt.numIteration       
-    fprintf( '%d-th iteration...\n', i );    
+for i=1:opt.numIteration
+    fprintf( '%d-th iteration...\n', i );
     if i>1
-        oldBSSFO = resamplingBSSFO( updatedBSSFO );        
-        oldBSSFO = driftBSSFO( oldBSSFO );
+        oldBSSFO = proc_resamplingBSSFO( updatedBSSFO );
+        oldBSSFO = proc_driftBSSFO( oldBSSFO );
     else
         oldBSSFO = initBSSFO;
     end
     verbose=1;
-    [updatedBSSFO, x_flt, CSP, features] = measurementBSSFO( C1.x, C2.x, opt.fs, oldBSSFO, opt.numCSPPatterns, verbose );    
-   bar(updatedBSSFO.miValue)
+    [updatedBSSFO, x_flt, CSP, features] = measurementBSSFO( C1.x, C2.x, opt.fs, oldBSSFO, opt.numCSPPatterns, verbose );
+    bar(updatedBSSFO.miValue)
 end
 
 % Determine filter banks based on the updatedBSSFO sample weights

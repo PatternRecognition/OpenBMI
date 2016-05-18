@@ -4,7 +4,7 @@
 % Feature Extraction in Brain-Computer Interfaces," IEEE Trans. on PAMI,
 % 2012. (Accepted)
 
-function sample = checkValidity( sample )
+function sample = opt_checkValidity( sample )
 % We enforce the samples to be within min_freq and max_freq
 
 min_freq = 4;

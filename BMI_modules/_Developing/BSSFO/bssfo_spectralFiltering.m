@@ -1,4 +1,4 @@
-function x_flt = spectral_filtering( X1, X2, fs, oldSMC, verbose )
+function x_flt = bssfo_spectralFiltering( X1, X2, fs, oldSMC, verbose )
 
 [nch1, ns1, nt1] = size( X1 );
 XX1 = reshape( X1, [nch1, ns1*nt1] );
@@ -30,18 +30,11 @@ for i=1:oldSMC.numBands
     end
     
     band = oldSMC.sample( :, i );
-%     band(2) = band(1) + band(2);
-    [b, a] = butter( 5, band/(fs/2), 'bandpass' );
-    temp = filter( b, a, XX1' );
-%     [b, a] = butter( 5, band(2)/(fs/2), 'low' );
-%     temp = filter( b, a, XX1' );
-%     [b, a] = butter( 5, band(1)/(fs/2), 'high' );
-%     temp = filter( b, a, temp );
-
+   temp= prep_filter(XX1',{'frequency', band; 'fs', 100});
     temp = reshape( temp, [ns1, nt1, nch1] );
     x_flt{1, i} = permute( temp, [3 1 2] );
     if ~isempty( X2 )
-        temp = filter( b, a, XX2' );
+        temp= prep_filter(XX2',{'frequency', band; 'fs', 100});     
         temp = reshape( temp, [ns2, nt2, nch2] );
         x_flt{2, i} = permute( temp, [3 1 2] );
     end

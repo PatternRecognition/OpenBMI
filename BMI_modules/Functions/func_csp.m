@@ -1,11 +1,7 @@
 function [ dat_csp, CSP_W, CSP_D ] = func_csp( dat, varargin )
 %PROC_CSP Summary of this function goes here
 %   Detailed explanation goes here
-
-% if ~varargin{end}
-%     varargin=varargin{1,1}; %cross-validation procedures
-% end;
-
+% [SMT, CSP_W, CSP_D]=func_csp(SMT,{'nPatterns', [3]});
 if nargin==0
     warning('Parameter is missing');
 end
