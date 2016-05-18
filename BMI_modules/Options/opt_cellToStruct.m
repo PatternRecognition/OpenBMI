@@ -2,7 +2,7 @@ function [ opt ] = opt_cellToStruct( varargin )
 %OPT_CELLTOSTRUCT Summary of this function goes here
 %   Detailed explanation goes here
 if nargin==0,
-  return;
+  opt = struct();return;
 end
 
 if isstruct(varargin)

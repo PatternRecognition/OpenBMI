@@ -1,7 +1,5 @@
 function [out] = prep_resample(dat, fs, varargin)
-% prep_resampling (Pre-processing procedure):
-% ***
-% Changes in t and ival should be considered, resulted from edge effect
+% prep_resample (Pre-processing procedure):
 % 
 % This function changes the sampling rate of the given EEG signal.
 % It can do both up/downsampling, considering frequency up to 3 digits.
@@ -18,7 +16,7 @@ function [out] = prep_resample(dat, fs, varargin)
 %                  resampled dat to avoid edge effects (default is 0)
 %
 % Returns:
-%     dat - Updated dat structure
+%     out - Updated dat structure
 %
 %
 % Seon Min Kim, 03-2016
@@ -53,8 +51,14 @@ if ndims(dat.x) == 3
         xt = resample(xt,p,q);
         x(:,i,:) = reshape(xt,[size(xt,1),1,n_ch]);
     end
+    if isfield(dat,'ival')
+        out = rmfield(dat,{'x','fs','ival'});
+        out.ival = linspace(dat.ival(1),dat.ival(end),size(x,1));
+        out.ival = out.ival((opt.Nr+1):end-opt.Nr);
+    end
     x = x((opt.Nr+1):end-opt.Nr,:,:);
 elseif ismatrix(dat.x)
+    out = rmfield(dat,{'x','fs'});
     x = resample(dat.x,p,q);
     x = x((opt.Nr+1):end-opt.Nr,:);
 else
@@ -62,13 +66,5 @@ else
     return
 end
 
-out = rmfield(dat,{'x','fs'});
 out.fs = fs;
 out.x = x;
-
-if isfield(dat,'t')
-    out.t = dat.t/dat.fs*fs;
-end
-if isfield(dat,'ival')
-    out.ival = linspace(dat.ival(1),dat.ival(end),size(x,1));
-end
