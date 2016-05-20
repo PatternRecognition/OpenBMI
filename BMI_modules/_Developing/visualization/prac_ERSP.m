@@ -18,7 +18,8 @@ CNT=prep_selectClass(CNT,{'class',{'right', 'left'}});
 SMT=prep_segmentation(CNT, {'interval',[-2000 6000]});
 
 %% Example of ERSP
-% ersp = plotERSP(SMT , {'Xaxis' , 'Frequency'; 'Yaxis' , 'Channel'});
-% ersp = plotERSP(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Channel'; 'Band' ,[8 13]});
-% ersp = plotERSP(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Frequency'; 'Channel' ,{'C4'}});
+% ersp = plotERSP2(SMT , {'Xaxis' , 'Frequency'; 'Yaxis' , 'Channel'});
+% ersp = plotERSP2(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Channel'; 'Band' ,[8 10]});
+% ersp = plotERSP2(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Frequency'; 'Channel' ,{'C4'}});
+
 
