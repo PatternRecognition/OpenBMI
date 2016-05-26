@@ -1,15 +1,16 @@
-function [ dat ] = plot_ERSP( data , varargin )
-% ERSP : "Event-related spectral pergurbation" 
-% Measuring the average dynamic changes in amplitude of the broad band
-% EEG Frequency band
+function [ dat ] = visual_spectrum( data , varargin )
+% visual_spectrum : It is the feature plots of data. This function can be
+% useful to see an overview of data according to time, frequency, and
+% channel. 
+%
 %
 % % Synopsis:
-%  [dat] = plot_ERSP(data , <OPT>)
+%  [dat] = visual_spectrum(data , <OPT>)
 %
-% Example of synopsis about three types of domain
-%    ersp = plot_ERSP(SMT , {'Xaxis' , 'Frequency'; 'Yaxis' , 'Channel'});
-%    ersp = plot_ERSP(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Channel'; 'Band' ,[8 10]});
-%    ersp = plot_ERSP(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Frequency'; 'Channel' ,{'C4'}});
+% Example of synopsis about three types of domain:
+%    visuspect = visual_spectrum(SMT , {'Xaxis' , 'Frequency'; 'Yaxis' , 'Channel'});
+%    visuspect = visual_spectrum(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Channel'; 'Band' ,[8 10]});
+%    visuspect = visual_spectrum(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Frequency'; 'Channel' ,{'C4'}});
 %
 % Arguments:
 %   data: Data structrue (ex) Epoched data structure
@@ -31,6 +32,10 @@ function [ dat ] = plot_ERSP( data , varargin )
 %    opt_cellToStruct
 %
 % Reference:
+%           G. Schalk, D.J. McFarland, T. Hinterberger, N. Birbaumer, and
+%           J. R. Wolpaw,"BCI2000: A General-Purpose Brain-Computer
+%           Interface (BCI) System, IEEE Transactions on Biomedical
+%           Engineering, Vol. 51, No. 6, 2004, pp.1034-1043.
 %
 % Ji Hoon, Jeong
 % jh_jeong@korea.ac.kr
@@ -38,10 +43,12 @@ function [ dat ] = plot_ERSP( data , varargin )
 
 %% Load the data
 dat = data;
-opt = opt_CellToStruct(varargin{:});
+opt = opt_cellToStruct(varargin{:});
 sampleFrequency=dat.fs;
 
 %% Setting the parameter
+% We refer to visualization matlab code in BCI 2000 open source toolbox
+%
 % modelOrder = 18+round(sampleFrequency/100);
 modelOrder = 20;
 opt.lowPassCutoff=(sampleFrequency/2);
@@ -103,12 +110,12 @@ if strcmp(opt.Xaxis, 'Frequency') == 1 && strcmp(opt.Yaxis, 'Channel') == 1
         switch(i)
             case 1
                 caxis([0 300]);
-                title('Frequency band-power per channel in Class 1');
+                title('Frequency-channel power spectrum per channel in Class 1');
             case 2
                 caxis([0 300]);
-                title('Frequency band-power per channel in Class 2');
+                title('Frequency-channel power spectrum per channel in Class 2');
             case 3
-                title('Dynamic changes per channels between classes using r^2 values');
+                title('Frequency-channel power spectrum per channels between classes using r^2 values');
         end
     end
 %%     
@@ -144,12 +151,12 @@ elseif strcmp(opt.Xaxis, 'Time') == 1 && strcmp(opt.Yaxis, 'Channel') == 1
         switch(i)
             case 1
                 caxis([0 1000]);
-                title('Frequency band-power per channel in Class 1');
+                title('Time-channel power spectrum per channel in Class 1');
             case 2
                 caxis([0 1000]);
-                title('Frequency band-power per channel in Class 2');
+                title('Time-channel power spectrum per channel in Class 2');
             case 3
-                title('Dynamic changes per channels between classes using r^2 values');
+                title('Time-channel power spectrum per channels between classes using r^2 values');
         end
     end
 %%
@@ -180,9 +187,9 @@ elseif strcmp(opt.Xaxis, 'Time') == 1 && strcmp(opt.Yaxis, 'Frequency') == 1
         xlabel('Time'); ylabel('Frequency');
         switch(i)
             case 1
-                title(['Time-frequency ERSP in channel ', char(opt.Channel),  ' and class 1']);
+                title(['Time-frequency power spectrum in channel ', char(opt.Channel),  ' and class 1']);
             case 2
-                title(['Time-frequency ERSP in channel ', char(opt.Channel),  ' and class 2']);
+                title(['Time-frequency power spectrum in channel ', char(opt.Channel),  ' and class 2']);
         end
     end
 end
