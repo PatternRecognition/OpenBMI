@@ -1,4 +1,4 @@
-function [ eeg ] = Load_BV_data( file, hdr, opt)
+function [ eeg hdr] = Load_BV_data( file, hdr, opt)
 %LOAD_BP_DATA Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -53,6 +53,12 @@ if lag~=round(lag) || lag<1,
 end
 for chan=1:hdr.NumberOfChannels
     resampled_eeg(chan,:)=chan_resampling(eeg.x(chan,:),opt.fs,hdr.fs);
+end
+if hdr.fs ~=opt.fs
+    eeg.fs=opt.fs;
+    eeg.orig_fs= hdr.fs;
+    hdr.orig_fs=hdr.fs;
+    hdr.fs=opt.fs;
 end
 % eeg.x=resampled_eeg;
 % eeg.x=eeg.x'
