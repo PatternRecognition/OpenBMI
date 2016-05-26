@@ -1,16 +1,25 @@
 function [ updatedBSSFO ] = func_bssfo( Dat, varargin )
 %FUNC_BSSFO Summary of this function goes here
 %   Detailed explanation goes here
+% [FilterBand]=func_bssfo(SMT, {'classes', {'right', 'left'};'frequency', {[7 15],[14 30]}; 'std', {5, 25}; ...
+% 'numBands', 30; 'numCSPPatterns', 2; 'numIteration', 30});
+% Dat: SMT epoched structure or data, in the case of binary data, the
+% 'fs' option is needed
+
 opt=opt_cellToStruct(varargin{:});
-
-if isfield(Dat, 'fs')
-    opt.fs=Dat.fs;
-elseif sifield(opt, 'fs')
-    
+if isstruct(Dat)
+    if isfield(Dat, 'fs')
+        opt.fs=Dat.fs;
+    elseif sifield(opt, 'fs')
+        
+    else
+        error('OpenBMI: "fs" is missing')
+    end
 else
-    error('OpenBMI: "fs" is missing')
+    if ~isfield(Dat, 'fs')
+        error('OpenBMI: "fs" is missing')
+    end
 end
-
 %% Initial frequency band
 initSMC.numBands = opt.numBands*length(opt.frequency);
 

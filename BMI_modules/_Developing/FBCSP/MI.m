@@ -47,21 +47,21 @@ function [pd] =parzen_de(X,d)
      [Nm l]=size(X);
      pd=0; 
      %!-------------------------------flexible
-%      yhap = 0;
-%      for i=1:Nm
-%         xii=X(i,:);
-%         yi(i) = d - xii;
-%         yhap = yhap + yi(i);
-%      end
-%      ymean = yhap./Nm;
-%      ystd = (sum((yi - ymean).^2)./Nm).^(1/2);
+     yhap = 0;
+     for i=1:Nm
+        xii=X(i,:);
+        yi(i) = d - xii;
+        yhap = yhap + yi(i);
+     end
+     ymean = yhap./Nm;
+     ystd = (sum((yi - ymean).^2)./Nm).^(1/2);
      %!------------------------------------------------
      
      for i=1:Nm
         xi=X(i,:);
         y = d - xi;
-%         stdv = ystd;
-        stdv = 0.25;
+        stdv = ystd;
+%         stdv = 0.25;
         h = (4/(3*Nm)).^(1/5).* stdv;
 
         pd=pd+exp((-1/2).*(y^2)./(h^2));
