@@ -7,7 +7,7 @@ function [param,m,label] = adaptLDA(data,csp_w,init_param,m,varargin)
 % [param,label] = adaptLDA(fv,csp_w,init_param,{'Method','pmean';'UC',0.03;'Nadapt',30});
 %
 % Input:
-%     data  - Data of one trial????????????????
+%     data  - Data (not a structure, data itself)
 %     csp_w - Weight of CSP
 %     init_param - Initial LDA parameters, with fields w and b
 %     m     - Global mean of two classes
@@ -36,6 +36,9 @@ end
 if ~isfield(opt,'Nadapt')
     opt.Nadapt=1;
 end
+if opt.Nadapt~=size(data,2)
+    warning('OpenBMI:');return
+end
 
 %% Extracting features in test data
 % [nt,ntr,nch]=size(data);
@@ -47,21 +50,19 @@ fv = func_featureExtraction(fv,{'feature','logvar'});
 
 switch opt.Method
     case 'pmean'
-        m=init_param.b\init_param.w; % m=? b\w? 이런 식? 이랑 값 같은지 확인!
-        label=zeros(1,size(data,2));
-        for i=1:size(data,2)
-            label(i) = real(init_param.w'*fv(:,i)' + init_param.b);
-%             label(i) = func_predict(fv,init_param);
-            if label(i)<0
-                label(i)=1;
-            else
-                label(i)=2;
-            end
-        end
-        m = (1-opt.UC)*m+opt.UC*fv(:,i)';
-        b = -init_param.w'*m;
-        param.w=init_param.w;
-        param.b=b;
+        m=init_param.cf_param.b\init_param.cf_param.w;
+        label = func_predict(fv,init_param)';
+%             switch size(data,2)
+%                 case 1
+%                     label = real(init_param.w'*fv' + init_param.b);
+%                     % label(i) = func_predict(fv,init_param);
+%                 otherwise
+%                     label = real(init_param.w'*fv + init_param.b*ones(1,size(data,2)));
+%             end
+            label(label>=0)=2;label(label<0)=1;
+        m = (1-opt.UC)*m+opt.UC*mean(fv,2);
+        param=init_param;
+        param.cf_param.b=-init_param.cf_param.w'*m;
     otherwise
         warning('OpenBMI: not implemented yet');return
 end
