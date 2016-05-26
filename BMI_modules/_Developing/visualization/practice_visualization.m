@@ -14,12 +14,19 @@ marker={'1','left';'2','right';'3','foot';'4','rest'};
 field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
 CNT=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
 CNT=prep_selectClass(CNT,{'class',{'right', 'left'}});
+SMT=prep_segmentation(CNT, {'interval',[-2000 5000]});
 
-SMT=prep_segmentation(CNT, {'interval',[-2000 6000]});
+%% Example code for visualization
+%
+%   ERSP:
+%   ersp = visual_ERSP(CNT, {'Channel' , {'C4'}; 'Interval' ,[-2000 5000]});
+%   ersp = visual_ERSP(SMT, {'Channel' , {'C4'}});
+%
+%   visual_spectrum: 
+%   visuspect = visual_spectrum(SMT , {'Xaxis' , 'Frequency'; 'Yaxis' , 'Channel'});
+%   visuspect = visual_spectrum(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Channel'; 'Band' ,[8 10]});
+%   visuspect = visual_spectrum(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Frequency'; 'Channel' ,{'C4'}});
 
-%% Example of ERSP
-% ersp = plotERSP2(SMT , {'Xaxis' , 'Frequency'; 'Yaxis' , 'Channel'});
-% ersp = plotERSP2(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Channel'; 'Band' ,[8 10]});
-% ersp = plotERSP2(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Frequency'; 'Channel' ,{'C4'}});
+
 
 
