@@ -40,6 +40,7 @@ for i=1:oldBSSFO.numBands
         end
     end
     % It is free to use your own method to compute mutual information.
+    % feature=[trialxch]
     miValue(i) = proc_mutual_information( features{1, i}, features{2, i}, kernelWidth );
 end
 miValue
