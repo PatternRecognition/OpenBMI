@@ -1,25 +1,24 @@
 function [ Lap ] = prep_laplacian( data, varargin )
-% prep_laplacian: Calculating by combining the value at that location with 
-%                 the values of a set of surrounding electrodes [Tandonnet et al., 2005]
-%                 - Small Laplacian: 3cm to set of surrounding electrodes
-%                 - Large Laplacian: 6cm to set of surrounding electrodes
+% prep_laplacian: 
+%  This function recalculates the signal of selected channels by
+%  subtracting the average value of a set of surrounding electrodes.
+%  [Tandonnet et al., 2005]
+%    - Small Laplacian: Using electrodes within 3cm from the selected channel
+%    - Large Laplacian: Using electrodes within 6cm from the selected channel
 %
-% Synopsis:
-%  [Lap] = prep_laplacian(data , <OPT>)
+% Example:
+%  [Lap] = prep_laplacian(data,{'Channel',{'C1','Cz','C2'}})
 %
-% Arguments:
-%   data: Data structrue (ex) Epoched data or EEG raw data
-%   <OPT> : 
-%      .Channel - select the channel applied Laplacian filter 
-%                 (e.g. {'Channel', {'C1', Cz', 'C2'}})
-%      .filterType - small: 3cm to set of surrounding electrodes 
-%                  - large: 6cm to set of surrounding electrodes 
+% Input:
+%   data - Data structure, segmented or raw EEG data
+% 
+% Option:
+%   Channel    - selected channels to apply Laplacian filter 
+%   filterType - 'small'(default) or 'large'
 %
-% Return:
-%    filterData:  Filtered data using Laplacian filter in selected channel
-%
-% See also:
-%    opt_cellToStruct , opt_channelMontage
+% Output:
+%   Lap -  Filtered data using Laplacian filter in selected channels
+% 
 %
 % Reference:
 %   C. Tandonnet, B. Burle, T. Hasbroucq, and F. Vidal, "Spatial Enhancement of 

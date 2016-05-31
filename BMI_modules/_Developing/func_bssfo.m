@@ -1,6 +1,22 @@
 function [ updatedBSSFO ] = func_bssfo( Dat, varargin )
-%FUNC_BSSFO Summary of this function goes here
-%   Detailed explanation goes here
+% func_bssfo (Optimization process) :
+% 
+% This function produces probabilistically optimal frequency bands by
+% Bayesian spatio-spectral filter optimization (BSSFO) [Heung-Il Suk, 2013]
+% 
+% Example:
+%   [FilterBand]=func_bssfo(dat, {'classes', {'right', 'left'}; ...
+%      'frequency', {[7 15],[14 30]}; 'std', {5, 25}; 'numBands', 30; ...
+%      'numCSPPatterns', 2; 'numIteration', 30});
+% 
+% Input:
+%     dat    - Segmented data structure
+% 
+% Reference:
+% H.-I. Suk and S.-W. Lee, "A Novel Bayesian Framework for Discriminative
+% Feature Extraction in Brain-Computer Interfaces," IEEE Trans. on Pattern
+% Analysis and Machine Intelligence, Vol. 35, No. 2, 2013, pp. 286-299.
+
 opt=opt_cellToStruct(varargin{:});
 
 if isfield(Dat, 'fs')
@@ -60,7 +76,7 @@ for i=1:opt.numIteration
     end
     verbose=1;
     [updatedBSSFO, x_flt, CSP, features] = measurementBSSFO( C1.x, C2.x, opt.fs, oldBSSFO, opt.numCSPPatterns, verbose );
-    bar(updatedBSSFO.miValue)
+%     bar(updatedBSSFO.miValue)
 end
 
 % Determine filter banks based on the updatedBSSFO sample weights
