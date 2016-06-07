@@ -15,7 +15,7 @@ function [out] = prep_baseline(dat,varargin)
 %     Criterion - 'class', 'trial', 'channel' (default: 'trial')
 %
 % Returns:
-%     dat - baseline corrected data structure
+%     out - baseline corrected data structure
 %
 %
 % Seon Min Kim, 04-2016
@@ -31,15 +31,11 @@ elseif ~isfield(dat,'fs')
     warning('OpenBMI: Data must have fields named ''fs''');return
 end
 
-if isempty(varargin)
-    opt.Time = [dat.ival(1),dat.ival(end)];
-    opt.Criterion = 'trial';
-else
-    opt = opt_cellToStruct(varargin{:});
-end
+opt = opt_cellToStruct(varargin{:});
 if ~isfield(opt,'Time')
     opt.Time = [dat.ival(1),dat.ival(end)];
-elseif ~isfield(opt,'Criterion')
+end
+if ~isfield(opt,'Criterion')
     opt.Criterion = 'trial';
 end
 if isscalar(opt.Time)

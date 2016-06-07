@@ -22,11 +22,18 @@ end
 n_c=zeros(1, n_c);
 
 %find class index
-for i=1:length(opt.class)
-    temp=ismember(dat.class(:,2),opt.class{i});
+if ischar(opt.class) % one class
+    temp=ismember(dat.class(:,2),opt.class);
     [a b]=find(temp==1);
     n_c(a)=1;
     clear a b;
+else
+    for i=1:length(opt.class)
+        temp=ismember(dat.class(:,2),opt.class{i});
+        [a b]=find(temp==1);
+        n_c(a)=1;
+        clear a b;
+    end
 end
 
 [n_d]=find(n_c==0);

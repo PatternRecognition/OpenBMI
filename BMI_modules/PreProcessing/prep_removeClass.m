@@ -9,7 +9,7 @@ end
 if ndims(dat.x)==2
     type='cnt';
 elseif ndims(dat.x)==3
-    type='epo';
+    type='smt';
 end
 
 rm_Class=varargin{:};
@@ -19,6 +19,13 @@ for i=1:length(rm_Class)
     n_c=~ismember(dat.y_class, rm_Class{i});
     msg=sprintf('OpenBMI: class "%s" is deleted',rm_Class{i});
     disp(msg);
+    
+    if strcmp(type, 'smt')
+        if isfield(dat, 'x')
+            out.x=dat.x(:,n_c,:);
+        end
+    end    
+    
     if isfield(dat, 't')
         out.t=dat.t(n_c);
     end

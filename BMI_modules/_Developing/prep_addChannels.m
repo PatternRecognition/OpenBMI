@@ -11,7 +11,9 @@ function [out] = prep_addChannels(dat1, dat2, varargin)
 % Input:
 %     dat1 - Data structure, continuous or epoched
 %     dat2 - Data structure to be added to dat1
-%     channels - Cell. Name or index of channels in dat2 to be added to dat1
+% Option:
+%     'Name' or 'Index' - Cell type. Name or index of channels in dat2 to
+%                         be added to dat1
 %
 % Returns:
 %     out - Data structure which channels are added

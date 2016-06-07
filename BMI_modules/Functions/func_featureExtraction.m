@@ -1,6 +1,19 @@
 function [ out ] = func_featureExtraction( dat, varargin )
-%PROC_FEAEXTRACTION Summary of this function goes here
-%   Detailed explanation goes here
+% func_featureExtraction:
+%
+%   This function extracts features from the data.
+% 
+% Example:
+%   fv=func_featureExtraction(dat, {'feature','logvar'});
+% 
+% Input:
+%     dat     - Data structure or data itself
+% Option:
+%     feature - 'logvar'  : log-variance
+%               'erpmean' : mean in specified time interval for each epoch
+% Returns:
+%     fv      - Feature vector
+% 
 
 if iscell(varargin)
     opt=opt_cellToStruct(varargin{:});

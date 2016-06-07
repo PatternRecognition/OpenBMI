@@ -1,10 +1,25 @@
 function [ dat_csp, CSP_W, CSP_D ] = func_csp( dat, varargin )
-%PROC_CSP Summary of this function goes here
-%   Detailed explanation goes here
-
-% if ~varargin{end}
-%     varargin=varargin{1,1}; %cross-validation procedures
-% end;
+% func_csp:
+%
+%   This function spatially filters the signal, maximizing the variance of
+% the signal under one condition(e.g. class1) while minimizing it for the
+% other condition(e.g. class2).
+% 
+% Example:
+% [smt, csp_w, csp_d]=func_csp(smt,{'nPatterns', 3});
+% 
+% Input:
+%     dat       - Segmented data structure
+% Option:
+%     nPatterns - number of patterns to be selected (default: 3)
+%     cov       - (default: 'normal')
+%     score     - (default: 'eigenvalue')
+%     policy    - (default: 'normal')
+% Returns:
+%     dat_csp - Spatially filtered signal
+%     CSP_W   - Weight vectors maximizing the discrimination
+%     CSP_D   - Scaling of each weight vector, corresponding to CSP_W
+% 
 
 if nargin==0
     warning('Parameter is missing');

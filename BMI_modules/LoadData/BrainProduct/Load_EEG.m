@@ -17,9 +17,9 @@ switch lower(opt.device)
     case 'brainvision'
         hdr=Load_BV_hdr(file);disp('Loading EEG header file..');
         marker=Load_BV_mrk(file, hdr, opt);disp('Loading Marker file..');
-        dat=Load_BV_data(file, hdr, opt);disp('Loading EEG data..');
+        [dat hdr]=Load_BV_data(file, hdr, opt);disp('Loading EEG data..');        
         if isfield(opt,'marker')
-            [marker, markerOrigin]=prep_defineClass(marker,opt.marker);
+            [marker]=prep_defineClass(marker,opt.marker);
         end
     case 'emotive'
         
