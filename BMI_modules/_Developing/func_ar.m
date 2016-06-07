@@ -37,4 +37,7 @@ for i= 1:nChans*nEvents,
   temp_ar(:,i)= ar(2:end)';
 end
 
-dat.x= temp_ar;
+Dat=permute(reshape(temp_ar, [order, nEvents,nChans]), [1 3 2])
+Dat=reshape(Dat, [order* nChans nEvents])
+
+dat.x= Dat;
