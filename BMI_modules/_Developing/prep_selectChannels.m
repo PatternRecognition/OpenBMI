@@ -10,8 +10,8 @@ function [out] = prep_selectChannels(dat, varargin)
 %
 % Input:
 %     dat - Structure. Data which channel is to be selected
-%     channels - Cell. Name or index of channels that you want to select
-%
+% Option:
+%     'Name' or 'Index' - Cell type. Name or index of channels that you want to select
 % Returns:
 %     out - Updated data structure
 %

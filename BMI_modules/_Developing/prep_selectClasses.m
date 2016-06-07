@@ -9,7 +9,8 @@ function [ out ] = prep_selectClasses( dat, varargin )
 % 
 % Input: 
 %     dat - Structure. Data which classes are to be selected
-%     classes - Cell. Name of classes that you want to select
+% Option
+%     Class - Name of classes that you want to select (e.g. {'right','left'})
 % 
 % Seon Min Kim, 04-2016
 % seonmin5055@gmail.com
