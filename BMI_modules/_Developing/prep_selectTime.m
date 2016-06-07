@@ -14,6 +14,7 @@ function [out] = prep_selectTime(dat, varargin)
 %
 % Input:
 %     dat - Data structure
+% Option:
 %     time - Time interval to be selected (ms)
 %
 % Returns:

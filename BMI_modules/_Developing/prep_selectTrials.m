@@ -9,7 +9,8 @@ function [out] = prep_selectTrials(dat,varargin)
 % 
 % Input: 
 %     dat - Structure. Data which trials are to be selected
-%     index - index of trials to be selected
+% Option:
+%     Index - index of trials to be selected
 % 
 % Seon Min Kim, 04-2016
 % seonmin5055@gmail.com
