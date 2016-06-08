@@ -9,8 +9,7 @@ function [out] = prep_selectTrials(dat,varargin)
 % 
 % Input: 
 %     dat - Structure. Data which trials are to be selected
-% Option:
-%     Index - index of trials to be selected
+%     index - index of trials to be selected
 % 
 % Seon Min Kim, 04-2016
 % seonmin5055@gmail.com
@@ -20,7 +19,12 @@ if isempty(varargin)
     out = dat;
     return
 end
-opt=opt_cellToStruct(varargin{:});
+if iscell(varargin{:})
+    opt=opt_cellToStruct(varargin{:});
+elseif isstruct(varargin{:}) % already structure(x-validation)
+    opt=varargin{:}
+end
+
 if ~isfield(dat, 'x')
     warning('OpenBMI: Data structure must have a field named ''x''');
     return

@@ -1,11 +1,11 @@
 clear all;
-OpenBMI('C:\Users\Administrator\Desktop\BCI_Toolbox\git_OpenBMI\OpenBMI') % Edit the variable BMI if necessary
+OpenBMI('C:\Users\Administrator\Desktop\BCI_Toolbox\OpenBMI\OpenBMI') % Edit the variable BMI if necessary
 global BMI;
-BMI.EEG_DIR=['C:\Users\Administrator\Desktop\BCI_Toolbox\git_OpenBMI\DemoData'];
+BMI.EEG_DIR=['C:\Users\Administrator\Desktop\BCI_Toolbox\DemoData'];
 
 %% DATA LOAD MODULE
 file=fullfile(BMI.EEG_DIR, '\feedback_motorimageryVPkg');
-marker={'1','left';'2','right';'3','foot';'4','rest'};
+marker={'1','left';'2','right';'3','foot'};
 [EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', 100});
 
 field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};

@@ -1,19 +1,18 @@
-function dat= func_powerspectrum (data, band, varargin)
-% func_powerspectrum :
-% This function calculates the power spectrum
+function dat= prep_powerspectrum (data, band, varargin)
+%PROC_SPECTRUM -  calculate the power spectrum
 %
-% Example:
-%      dat= func_powerspectrum(dat, [8 15], {'win',[];'step',100})
-% 
-% Input:
-%      dat  - data structure of continuous or epoched data
+%dat= proc_spectrum(dat, band, <win/N, step>)
+%dat= proc_spectrum(dat, band, <opts>)
+% IN   dat  - data structure of continuous or epoched data
 %      band - frequency band
-% Options:
-%      win  - window for FFT, default ones(dat.fs, 1)
+%      win  - window for FFT
 %      N    - window width for FFT -> square window, default dat.fs
 %      step - step for window (= # of overlapping samples), default N/2
-%      db_scaled - boolean, if true values are db scaled (10*log10),
-%                  default true
+%      opt  - struct of options:
+%       .win       - window for FFT, default ones(dat.fs, 1)
+%       .step      - step for window, default N/2
+%       .db_scaled - boolean, if true values are db scaled (10*log10),
+%                    default true
 
 %%
 % data
