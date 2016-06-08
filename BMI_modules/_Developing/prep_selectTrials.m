@@ -19,7 +19,12 @@ if isempty(varargin)
     out = dat;
     return
 end
-opt=opt_cellToStruct(varargin{:});
+if iscell(varargin{:})
+    opt=opt_cellToStruct(varargin{:});
+elseif isstruct(varargin{:}) % already structure(x-validation)
+    opt=varargin{:}
+end
+
 if ~isfield(dat, 'x')
     warning('OpenBMI: Data structure must have a field named ''x''');
     return

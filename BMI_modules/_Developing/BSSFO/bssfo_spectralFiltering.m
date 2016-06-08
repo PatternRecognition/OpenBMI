@@ -17,17 +17,17 @@ if verbose == 1
     fprintf( '\tSpectral Filtering...\n\t\t' );
 end
 for i=1:oldSMC.numBands
-%     if verbose == 1
-%         if mod(i, 5) == 0
-%             fprintf( '%d', i );
-%         else
-%             fprintf( '.' );
-%         end
-%         
-%         if mod(i, 100) == 0
-%             fprintf( '\n' );
-%         end
-%     end
+    if verbose == 1
+        if mod(i, 5) == 0
+            fprintf( '%d', i );
+        else
+            fprintf( '.' );
+        end
+        
+        if mod(i, 100) == 0
+            fprintf( '\n' );
+        end
+    end
     
     band = oldSMC.sample( :, i );
    temp= prep_filter(XX1',{'frequency', band; 'fs', 100});
