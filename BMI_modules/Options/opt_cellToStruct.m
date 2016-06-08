@@ -1,6 +1,11 @@
 function [ opt ] = opt_cellToStruct( varargin )
-%OPT_CELLTOSTRUCT Summary of this function goes here
-%   Detailed explanation goes here
+% opt_cellToStruct: Convert a cell into a structure.
+% 
+% Example:
+%    opt=opt_cellToStruct(varargin{:});
+% Input:
+%    Size of the input cell should be nx2.
+% 
 if nargin==0,
   opt = struct();return;
 end

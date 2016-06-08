@@ -14,6 +14,7 @@ function [out] = prep_selectTime(dat, varargin)
 %
 % Input:
 %     dat - Data structure
+% Option:
 %     time - Time interval to be selected (ms)
 %
 % Returns:
@@ -30,7 +31,7 @@ if isempty(varargin)
 end
 opt = opt_cellToStruct(varargin{:});
 if isfield(opt,'Time')
-    warning('OpenBMI: Time interval should be specified.')
+    warning('OpenBMI: Time interval should be specified')
     return
 end
 ival = opt.Time;

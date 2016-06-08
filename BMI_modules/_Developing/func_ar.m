@@ -1,15 +1,18 @@
 function dat=func_ar(dat, order, varargin)
-%Calculating the auto regression parameter / aar 
-%In dat      -     input the data structure of OpenBMI segementation original data
-%   order    -     order of AR setting
-%   varadgin -     model selection for obtatining AR parameter 
-%                  deafualt is 'aryule';
-%                  model : 'arburg', 'arcov', 'armcov' 
-
-%out dat     -     data structure of otanined ar parameter in OpenBMI sturcture
-
-% Example code func_AR(dat, 7, {'method','arburg'})
-% Example code
+% func_ar (Feature extraction) :
+% 
+% This function calculates the autoregression(AR)/adaptive AR(AAR)
+% parameter.
+% 
+% Example:
+% [out] = func_ar(dat, 7, {'method','arburg'})
+% 
+% Input:
+%     dat    - Data structure, segmented
+%     order  - Order of AR setting
+% Option: models for obtatining AR parameter
+%     method - 'arburg'(default), 'arcov', 'armcov' 
+% 
 
 opt=opt_cellToStruct(varargin{:});
 opt=struct('method',opt.method);
@@ -34,4 +37,7 @@ for i= 1:nChans*nEvents,
   temp_ar(:,i)= ar(2:end)';
 end
 
-dat.x= temp_ar;
+Dat=permute(reshape(temp_ar, [order, nEvents,nChans]), [1 3 2])
+Dat=reshape(Dat, [order* nChans nEvents])
+
+dat.x= Dat;

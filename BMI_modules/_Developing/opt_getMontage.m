@@ -1,4 +1,15 @@
 function MNT = opt_getMontage(SMT)
+% opt_getMontage:
+%   This function returns the montage of input channels
+% Example:
+%   MNT = opt_getMontage(SMT)
+% 
+% Input:
+%     SMT - Segmented data structure
+% Output:
+%     MNT - Montage
+%         .clab: channel name
+%         .x and .y: position of channels
 
 clab= {'Fpz', ...
        'Fp1','AFp1','AFp2','Fp2', ...

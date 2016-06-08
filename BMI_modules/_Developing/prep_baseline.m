@@ -15,7 +15,7 @@ function [out] = prep_baseline(dat,varargin)
 %     Criterion - 'class', 'trial', 'channel' (default: 'trial')
 %
 % Returns:
-%     dat - baseline corrected data structure
+%     out - baseline corrected data structure
 %
 %
 % Seon Min Kim, 04-2016
