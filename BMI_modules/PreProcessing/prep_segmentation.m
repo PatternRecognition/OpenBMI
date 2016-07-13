@@ -1,9 +1,9 @@
 function [ dat ] = prep_segmentation( dat, varargin )
-%PROC_EPOCHING Summary of this function goes here
-%   Detailed explanation goes here
-% if ~varargin{end}
-%     varargin=varargin{1,1}; %cross-validation procedures
-% end;
+% prep_segmentation: segmenting the data in a specific time interval based
+% on the marked point
+% 
+% Example:
+%    SMT=prep_segmentation(CNT, {"interval", [750 3500]})
 
 if iscell(varargin{:})
     opt=opt_cellToStruct(varargin{:});

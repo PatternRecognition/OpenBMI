@@ -1,11 +1,9 @@
 function [ dat ] = prep_filter( dat, varargin )
-%PROC_FILTER Summary of this function goes here
-% EEG.data=prep_filter(EEG.data, {'frequency', [7 13]});
-% data=prep_filter(data, {'frequency', [7 13];'fs',100 });
-%   Detailed explanation goes here
-% if ~varargin{end}
-%     varargin=varargin{1,1}; %cross-validation procedures
-% end;
+% prep_filter: filter the data within specified frequency band
+% 
+% Example:
+%    EEG.data=prep_filter(EEG.data, {'frequency', [7 13];'fs',100});
+% 
 
 if iscell(varargin{:})
     opt=opt_cellToStruct(varargin{:});

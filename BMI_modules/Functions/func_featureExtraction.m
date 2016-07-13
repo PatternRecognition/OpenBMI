@@ -20,23 +20,28 @@ switch lower(opt.feature)
         tDat=tDat';
         
     case 'erpmean'
-        [nDat, nTrials, nChans]= size(tDat);
-        T=param{2};
-        nMeans= round(nDat/T);
-        dat_=zeros(nMeans, nTrials, nChans);
-        for i=1:nMeans
-            if i==nMeans
-                temp=mean(tDat((i*T-T)+1:end,:,:),1);
-            else
-                temp=mean(tDat((i*T-T)+1:i*T,:,:),1);
-            end           
-            dat_(i,:,:)=temp; temp=[];
-        end
-         [nDat, nTrials, nChans]= size(dat_);       
-%          dat=dat_;
-         tDat= reshape(permute(dat_,[1 3 2]), [nDat*nChans nTrials]);        
+        %         [nDat, nTrials, nChans]= size(tDat);
+        %         T=param{2};
+        %         nMeans= round(nDat/T);
+        %         dat_=zeros(nMeans, nTrials, nChans);
+        %         for i=1:nMeans
+        %             if i==nMeans
+        %                 temp=mean(tDat((i*T-T)+1:end,:,:),1);
+        %             else
+        %                 temp=mean(tDat((i*T-T)+1:i*T,:,:),1);
+        %             end
+        %             dat_(i,:,:)=temp; temp=[];
+        %         end
+        %         [nDat, nTrials, nChans]= size(dat_);
+        %         tDat= reshape(permute(dat_,[1 3 2]), [nDat*nChans nTrials]);
+        
+%         % smkim
+%         if isstruct(dat) % 옵션 조정 필요
+%             tDat=prep_erpMeans(dat,{'Time',[1000 2000]});
+%         else
+%             error('OpenBMI: Not available data type');
+%         end
 end
-
 
 if isstruct(dat)
     dat.x=tDat;

@@ -1,23 +1,20 @@
 function [ CARfilter ] = prep_commonAverageReference( data, varargin )
-% prep_commonAverageReference: Subtracting in the average value of the entire electrode
-% montage (the common average) from the interested channel [D. J. McFarland et al., 1997]
+% prep_commonAverageReference: 
+%   Subtracting average value of the entire electrode (the common average) 
+%   from the interested channel. [D. J. McFarland et al., 1997]
 %
-% Synopsis:
-%  [filterData] = prep_commonAverageReference(data , <OPT>)
+% Example:
+%  [filteredData] = prep_commonAverageReference(data,{'Channel',{'C1',Cz','C2'}})
 %
-% Arguments:
-%   data: Data structrue (ex) Epoched data or EEG raw data
-%   <OPT> : 
-%      .Channel - select the channel applied CAR filter 
-%                 (e.g. {'Channel', {'C1', Cz', 'C2'}})
-%      .filterType - exptChan: filtering except for the selected channel
-%                  - incChan:  filtering include in the selected channel
-%
+% Input:
+%   data: Data structure, segmented or raw EEG data
+% Option: 
+%   Channel    - selected channels to apply CAR filter 
+%   filterType - exptChan: filtering except for the selected channel
+%                incChan : (default) filtering including the selected channel
+% 
 % Return:
-%    filterData:  Filtered data using common averge reference in selected channel
-%
-% See also:
-%    opt_cellToStruct
+%    filteredData - CAR filtered data in selected channel
 %
 % Reference:
 %   D. J. McFarland, L. M. McCane, S. V. David, and J. R. Wolpaw, "Spatial Filter 
@@ -33,7 +30,7 @@ opt = opt_cellToStruct(varargin{:});
 
 if ~isfield(opt,'filterType')
     warning('Set the default');
-    opt.filterType = 'exptChan';
+    opt.filterType = 'incChan';
 end
 
 all_chSum = 0;
