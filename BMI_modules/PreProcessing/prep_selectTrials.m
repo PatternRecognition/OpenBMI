@@ -1,42 +1,52 @@
-function [ out ] = prep_selectTrials( dat, varargin )
-%PROC_SELECT_TRIALS Summary of this function goes here
-%   Detailed explanation goes here
-if iscell(varargin{:})
-    opt=opt_cellToStruct(varargin{:});
-elseif isstruct(varargin{:}) % already structure(x-validation)
-    opt=varargin{:};
+function [out] = prep_selectTrials(dat,varargin)
+% prep_selectTrials (Pre-processing procedure):
+% 
+% This function selects data of specified trials 
+% from continuous or epoched data.
+% 
+% Example:
+%     out = prep_selectTrials(dat,{'Index',[20:35]});
+% 
+% Input: 
+%     dat - Structure. Data which trials are to be selected
+% Option:
+%     Index - index of trials to be selected
+% 
+% Seon Min Kim, 04-2016
+% seonmin5055@gmail.com
+
+if isempty(varargin)
+    warning('OpenBMI: Trials should be specified');
+    out = dat;
+    return
 end
-%
-if ~isfield(opt,'index')
-    warning('OpenBMI: the essential parameter "index" is missing');
-    return;
+opt=opt_cellToStruct(varargin{:});
+if ~isfield(dat, 'x')
+    warning('OpenBMI: Data structure must have a field named ''x''');
+    return
+end
+if ~isfield(dat, 't')
+    warning('OpenBMI: Data structure must have a field named ''t''');
+    return
+end
+if ~isfield(dat, 'y_dec') || ~isfield(dat, 'y_logic') || ~isfield(dat, 'y_class')
+    warning('OpenBMI: Data structure must have a field named ''y_dec'',''y_logic'',''y_class''');
+    return
 end
 
-in=dat;
-if isfield(in, 't')
-    in.t=dat.t(:,opt.index,:);
+idx = opt.Index;
+nd = ndims(dat.x);
+if nd == 3
+    x = dat.x(:,idx,:);
+elseif nd ==2 || nd ==1
+    x = dat.x;
+else
+    warning('OpenBMI: Check for the data dimensionality')
+    return
 end
-if isfield(in, 'y_dec')
-    in.y_dec=dat.y_dec(opt.index);
-end
-if isfield(in, 'y_logic')
-    in.y_logic=dat.y_logic(:,opt.index);
-end
-if isfield(in, 'y_class')
-    in.y_class=dat.y_class(opt.index);
-end
-
-if isfield(in, 'y_class')
-    in.y_class=dat.y_class(opt.index);
-end
-if isfield(in, 'x')
-    if  ndims(dat.x)==3
-        in.x=dat.x(:,opt.index,:);
-    elseif ndims(dat.x)
-        % do nothing
-    end
-    
-end
-out=in;
-end
-
+out = rmfield(dat,{'x','t','y_dec','y_logic','y_class'});
+out.x = x;
+out.t = dat.t(idx);
+out.y_dec = dat.y_dec(idx);
+out.y_logic = dat.y_logic(:,idx);
+out.y_class = dat.y_class(idx);

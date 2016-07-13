@@ -11,7 +11,7 @@ function dat=func_ar(dat, order, varargin)
 %     dat    - Data structure, segmented
 %     order  - Order of AR setting
 % Option: models for obtatining AR parameter
-%     method - 'arburg'(default), 'arcov', 'armcov' 
+%     method - 'aryule'(default), 'arburg', 'arcov', 'armcov' 
 % 
 
 opt=opt_cellToStruct(varargin{:});

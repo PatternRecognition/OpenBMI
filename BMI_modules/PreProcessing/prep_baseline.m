@@ -67,8 +67,6 @@ switch opt.Criterion
             base = nanmean(nanmean(dat.x(t_idx,k,:),1),2);
             x(:,k,:) = dat.x(:,k,:)-repmat(base,[nT,n,1]);
         end
-%     case 'channel'
-%         base = 
 end
 
 out = rmfield(dat,'x');

@@ -2,14 +2,14 @@ function [ out ] = func_train( fv, varargin )
 % func_train: Train a classifier
 % 
 % Example:
-% [cls_param]=func_train(fv,{'classifier','LDA'});
+% [clf_param]=func_train(fv,{'classifier','LDA'});
 % 
 % Input:
 %     fv - Feature vector to be trained
 % Option:
 %     classifier - 'LDA'
 % Returns:
-%     cls_param  - Structure of the classifier parameter
+%     clf_param  - Structure of the classifier parameter
 % 
 
 if iscell(varargin)

@@ -1,6 +1,6 @@
 function dat= func_spectrogram(data, frequnecy, varargin)
 % func_spectrogram :
-% calculates the power spectrum in selected band
+%    calculates the power spectrum in selected band
 % 
 % IN   dat  - data structure of continuous or epoched data
 %      band - frequency band
@@ -9,22 +9,21 @@ function dat= func_spectrogram(data, frequnecy, varargin)
 %      step - step for window (= # of overlapping samples), default N/2
 %      opt  - struct of options:
 %       .win       - window for FFT, default ones(dat.fs, 1)
-%       .noverlap      - step for window, default N/2
-%       .clab   
-%       .scale - 
+%       .noverlap  - step for window, default N/2
+%       .clab      - 
+%       .scale     - 
 
 %%
 % data
 dat=data;
-fre=frequnecy;
 opt=opt_cellToStruct(varargin{:});
 epo=struct('win',[],'noverlap',[],'clab',[],'scale',[]);
 
 if isempty(dat)
-    warning('[OpenBMI] Warning! data is empty');
+    error('OpenBMI: data is empty');
 end
-if isempty(fre)
-    warning('[OpenBMI] frequency is not exist.');
+if isempty(frequnecy)
+    warning('OpenBMI: frequency is not exist.');
 end
 
 if ~isfield(opt,'win') 
@@ -59,7 +58,7 @@ dat.x=[];
 
 %%
 for chan=1:nChans
-    [S,F,T] = spectrogram(X(:,nChans,:),epo.win,epo.noverlap,fre,dat.fs);
+    [S,F,T] = spectrogram(X(:,nChans,:),epo.win,epo.noverlap,frequency,dat.fs);
     dat.x(:,:,chan)=S;
 end
 
@@ -75,8 +74,7 @@ switch(lower(epo.scale)),
         dat.yUnit= 'log power';
     case 'phase'
         dat.x = angle(dat.x);
-        dat.yUnit= 'phase';
-              
+        dat.yUnit= 'phase'; 
 end
 
 
