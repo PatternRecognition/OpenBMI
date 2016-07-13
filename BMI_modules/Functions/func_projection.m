@@ -1,17 +1,6 @@
 function [ out ] = func_projection( dat, w )
-% func_projection:
-%
-%   This function projects the data with w(a vector or a matrix).
-% 
-% Example:
-%   dat=func_projection(dat, csp_w);
-% 
-% Input:
-%     dat - Data structure or data itself
-%     w   - Projection vector
-% Returns:
-%     fv  - Feature vector
-% 
+%PROC_PROJECTION Summary of this function goes here
+%   Detailed explanation goes here
 
 if iscell(w)
     w=w{:};

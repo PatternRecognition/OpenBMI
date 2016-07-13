@@ -1,7 +1,6 @@
 function dat= func_spectrogram(data, frequnecy, varargin)
-% func_spectrogram :
-% calculates the power spectrum in selected band
-% 
+% prep_powerspectrum : calculating the power spectrum in selected band
+
 % IN   dat  - data structure of continuous or epoched data
 %      band - frequency band
 %      win  - window for FFT

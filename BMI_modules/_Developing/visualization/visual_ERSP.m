@@ -4,7 +4,7 @@ function [ ersp ] = visual_ERSP( data, varargin )
 % EEG Frequency band
 %
 % Synopsis:
-%  [dat] = proc_ERSP(data , <OPT>)
+%  [dat] = visual_ERSP(data , <OPT>)
 %
 % Arguments:
 %   data: Data structrue (ex) Epoched data structure

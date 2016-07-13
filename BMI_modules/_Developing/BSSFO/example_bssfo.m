@@ -16,7 +16,17 @@ CNT=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
 CNT=prep_selectClass(CNT,{'class',{'right', 'left'}});
 SMT=prep_segmentation(CNT, {'interval', [750 3500]});
 
-[FilterBand]=func_bssfo(SMT, {'classes', {'right', 'left'};'frequency', {[7 15],[14 30]}; 'std', {5, 25}; ...
+
+
+%
+nFT = 9; % filter bank number
+Filters = [4 8;8 12;12 16;16 20;20 24;24 28;28 32;32 36;36 40];
+[FilterBand]=func_fbcsp(SMT, {'classes', {'right', 'left'}; 'Filters', Filters; 'numCSPPatterns', 2; 'numFeature', nFT; })
+
+
+
+%%
+[FilterBand]=func_bssfo(SMT, {'classes', {'right', 'left'};'frequency', {[0.1 5],[1 10], [8 15]}; 'std', {1, 5, 10}; ...
     'numBands', 30; 'numCSPPatterns', 2; 'numIteration', 30});
 
 CNT=prep_filter(CNT, {'frequency', FilterBand.sample(:,1)});

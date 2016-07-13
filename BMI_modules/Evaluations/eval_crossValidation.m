@@ -52,8 +52,8 @@ end
 for i = 1:CVO.NumTestSets
     idx=CVO.training(i);
     idx2=CVO.test(i);
-    train_dat=prep_selectTrials(dat,{'index', idx});
-    test_dat=prep_selectTrials(dat,{'index', idx2});
+    train_dat=prep_selectTrials(dat,{'Index', idx});
+    test_dat=prep_selectTrials(dat,{'Index', idx2});
     
     
     %Consider the number of output parameter
