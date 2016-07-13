@@ -1,4 +1,7 @@
 function [ Lar ] = prep_localAverageReference( data, varargin )
+% prep_localAverageReference:
+% 
+% 
 
 dat = data;
 opt = opt_cellToStruct(varargin{:});

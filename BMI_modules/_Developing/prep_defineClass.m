@@ -1,6 +1,6 @@
 function [ mrk ] = prep_defineClass( mrk_orig ,mrk_define )
-%MRK_DEFINE_CLASS Summary of this function goes here
-%   Detailed explanation goes here
+% prep_defineClass :
+% 
 
 for i=1:length(mrk_define)
     [nc]=find(mrk_orig.y==str2num(mrk_define{i}));

@@ -34,7 +34,7 @@ opt = opt_cellToStruct(varargin{:});
 
 channel = opt_channelMontage(varargin);
 
-if isempty(opt,'filterType')
+if ~isfield(opt,'filterType')
     warning('Set the default');
     opt.filterType = 'small';
 end

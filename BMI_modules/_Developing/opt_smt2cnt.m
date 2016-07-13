@@ -1,6 +1,7 @@
 function [ out datInfo] = opt_smt2cnt(Dat)
-%OPT_SMT2CNT Summary of this function goes here
-%   Detailed explanation goes here
+% opt_smt2cnt: 
+
+
 if isstruct(Dat)
     out=Dat;
     if isfield(Dat, 'x')

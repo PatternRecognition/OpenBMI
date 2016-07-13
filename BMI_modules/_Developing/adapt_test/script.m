@@ -15,7 +15,7 @@ date={'_10_01_13','_10_01_15','_10_01_25','_10_01_27','_10_03_05', ...
 % Learning rate
 UC = 0.05;
 % Frequency band for filtering
-% freq=[10.5 14.5];
+freq=[10.5 14.5];
 % Time interval for segmenting
 time=[1500 3500];
 % # training/test
@@ -41,17 +41,15 @@ file=fullfile(DIR2);
 cnt2=opt_eegStruct({EEG2.data, EEG2.marker, EEG2.info}, field);
 
 %% Pre-processing
-% cnt1=prep_filter(cnt1, {'frequency', freq});
+cnt1=prep_filter(cnt1, {'frequency', freq});
 cnt1=prep_selectClasses(cnt1,{'Class',{'left','right'}});
 smt1=prep_segmentation(cnt1, {'interval', time});
 
-[FilterBand]=func_bssfo(smt1, {'classes', {'right', 'left'};'frequency', {[7 15],[14 30]}; 'std', {5, 25}; ...
-    'numBands', 30; 'numCSPPatterns', 2; 'numIteration', 30});
-freq=FilterBand.sample(:,1);
-
-
-cnt1=prep_filter(cnt1, {'frequency', freq});
-smt1=prep_segmentation(cnt1, {'interval', time});
+% [FilterBand]=func_bssfo(smt1, {'classes', {'right', 'left'};'frequency', {[7 15],[14 30]}; 'std', {5, 25}; ...
+%     'numBands', 30; 'numCSPPatterns', 2; 'numIteration', 30});
+% freq=FilterBand.sample(:,1);
+% cnt1=prep_filter(cnt1, {'frequency', freq});
+% smt1=prep_segmentation(cnt1, {'interval', time});
 
 
 cnt2=prep_filter(cnt2, {'frequency', freq});

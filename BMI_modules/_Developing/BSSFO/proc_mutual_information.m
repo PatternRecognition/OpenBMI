@@ -1,4 +1,4 @@
-function mi = cal_mutual_information( f1, f2, kernelWidth )
+function mi = proc_mutual_information( f1, f2, kernelWidth )
 % Input:
 %       f1 - training data of class 1
 %       f2 - training data of cless 2

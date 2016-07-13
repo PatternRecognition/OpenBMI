@@ -21,7 +21,7 @@ opt=opt_cellToStruct(varargin{:});
 
 if isfield(Dat, 'fs')
     opt.fs=Dat.fs;
-elseif sifield(opt, 'fs')
+elseif isfield(opt, 'fs')
     
 else
     error('OpenBMI: "fs" is missing')

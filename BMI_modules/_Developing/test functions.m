@@ -15,7 +15,7 @@ CNT=prep_selectClass(CNT,{'class',{'right', 'left'}});
 
 %% PRE-PROCESSING MODULE
 CNT=prep_filter(CNT, {'frequency', [7 13]});
-SMT=prep_segmentation(CNT, {'interval', [750 3500]});
+SMT=prep_segmentation(CNT, {'interval', [-750 3500]});
 
 
 aCNT=prep_addTrials(CNT, CNT);

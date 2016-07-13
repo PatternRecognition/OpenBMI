@@ -7,7 +7,7 @@
 function sample = opt_checkValidity( sample )
 % We enforce the samples to be within min_freq and max_freq
 
-min_freq = 4;
+min_freq = 1;
 max_freq = 40;
 
 if sample(1) <= min_freq
