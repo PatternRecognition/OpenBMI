@@ -1,4 +1,4 @@
-function [ out, Lap ] = prep_laplacian( data, varargin )
+function [ dat, Lap ] = prep_laplacian( data, varargin )
 % prep_laplacian: 
 %  This function recalculates the signal of selected channels by
 %  subtracting the average value of a set of surrounding electrodes.
@@ -17,7 +17,7 @@ function [ out, Lap ] = prep_laplacian( data, varargin )
 %   filterType - 'small'(default) or 'large'
 %
 % Output:
-%   out - Filtered data using Laplacian filter in selected channels
+%   dat - Filtered data using Laplacian filter in selected channels
 %   Lap - only filtered data and channel
 % 
 %
