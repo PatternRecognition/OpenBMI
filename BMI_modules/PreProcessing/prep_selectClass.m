@@ -1,34 +1,22 @@
 function [ out ] = prep_selectClass( dat, varargin )
-% prep_selectClass (Pre-processing procedure):
-% 
-% This function selects data of specified classes 
-% from continuous or epoched data.
-% 
-% Example:
-%     out = prep_selectClass(dat,{'class',{'right', 'left','foot'}});
-% 
-% Input: 
-%     dat - Structure. Data which classes are to be selected
-% Option
-%     class - Name of classes that you want to select (e.g. {'right','left'})
-% 
+%MRK_SELECT_CLASS Summary of this function goes here
+%   Detailed explanation goes here
 
-if isempty(varargin)
-    error('OpenBMI: Classes should be specified');
-end
 opt=opt_cellToStruct(varargin{:});
-if ~isfield(dat, 'class')
-    error('OpenBMI: Data structure must have a field named ''class''');
-end
-if ~isfield(opt, 'class')
-    error('OpenBMI: Classes should be specified in a correct form');
+
+if nargin==0
+    error('parameter is missing');
 end
 
-% if ndims(dat.x)==2
-%     type='cnt';
-% elseif ndims(dat.x)==3
-%     type='smt';
-% end
+if ~isfield(opt, 'class')
+    error('parameter is missing: marker.class');
+end
+
+if ndims(dat.x)==2
+    type='cnt';
+elseif ndims(dat.x)==2
+    type='epo';
+end
 
 [n_c nn]=size(dat.class);
 n_c=zeros(1, n_c);

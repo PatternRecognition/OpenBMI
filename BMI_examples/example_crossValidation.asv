@@ -6,7 +6,7 @@ BMI.EEG_DIR=['C:\Users\Administrator\Desktop\BCI_Toolbox\DemoData'];
 %% DATA LOAD MODULE
 file=fullfile(BMI.EEG_DIR, '\hblee_160627_calib_short');
 marker={'1','left';'2','right';'3','foot'};
-[EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', 500});
+[EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', 500});gi
 
 field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
 CNT=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);

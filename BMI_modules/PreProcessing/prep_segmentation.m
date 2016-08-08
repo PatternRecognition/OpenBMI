@@ -4,6 +4,9 @@ function [ dat ] = prep_segmentation( dat, varargin )
 % 
 % Example:
 %    SMT=prep_segmentation(CNT, {"interval", [750 3500]})
+% if ~varargin{end}
+%     varargin=varargin{1,1}; %cross-validation procedures
+% end;
 
 if iscell(varargin{:})
     opt=opt_cellToStruct(varargin{:});
