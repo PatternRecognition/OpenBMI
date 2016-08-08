@@ -1,6 +1,6 @@
 function [ out ] = func_featureExtraction( dat, varargin )
-%func_featureExtraction : extracting the feature.
-% 
+%PROC_FEAEXTRACTION Summary of this function goes here
+%   Detailed explanation goes here
 
 if iscell(varargin)
     opt=opt_cellToStruct(varargin{:});

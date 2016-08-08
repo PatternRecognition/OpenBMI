@@ -4,21 +4,18 @@ global BMI;
 BMI.EEG_DIR=['C:\Users\Administrator\Desktop\BCI_Toolbox\DemoData'];
 
 %% DATA LOAD MODULE
-file=fullfile(BMI.EEG_DIR, '\hblee_160627_calib_short');
+file=fullfile(BMI.EEG_DIR, '\feedback_motorimageryVPkg');
 marker={'1','left';'2','right';'3','foot'};
-[EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', 500});
+[EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', 100});
 
 field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
 CNT=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
 CNT=prep_selectClass(CNT,{'class',{'right', 'left'}});
 
-
 %% CROSS-VALIDATION MODULE
-CV.var.band=[10 13];
-CV.var.interval=[750 3500];
 CV.prep={ % commoly applied to training and test data before data split
-    'CNT=prep_filter(CNT, {"frequency", band})'
-    'SMT=prep_segmentation(CNT, {"interval", interval})'
+    'CNT=prep_filter(CNT, {"frequency", [7 13]})'
+    'SMT=prep_segmentation(CNT, {"interval", [750 3500]})'
     };
 CV.train={
     '[SMT, CSP_W, CSP_D]=func_csp(SMT,{"nPatterns", [3]})'
