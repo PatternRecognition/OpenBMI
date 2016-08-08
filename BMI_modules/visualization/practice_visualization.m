@@ -22,7 +22,7 @@ SMT=prep_segmentation(CNT, {'interval',[-2000 5000]});
 %   ersp = visual_ERSP(CNT, {'Channel' , {'C4'}; 'Interval' ,[-2000 5000]});
 %   ersp = visual_ERSP(SMT, {'Channel' , {'C4'}});
 %
-%   visual_spectrum: 
+%   Visual_spectrum: 
 %   visuspect = visual_spectrum(SMT , {'Xaxis' , 'Frequency'; 'Yaxis' , 'Channel'});
 %   visuspect = visual_spectrum(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Channel'; 'Band' ,[8 10]});
 %   visuspect = visual_spectrum(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Frequency'; 'Channel' ,{'C4'}});

@@ -22,7 +22,7 @@ set{10}={'ovr'; {'rest', 'others'}};
 
 out=changeLabels(mCNT,{'right',1;'others',2});
 
-for i=1:length(set)
+for i=1:length(set) 
     if strcmp(set{1,i}{1,1},'binary')
         CNT=prep_selectClass(mCNT,{'class',{set{1,i}{2,1}{:}}});
     else %

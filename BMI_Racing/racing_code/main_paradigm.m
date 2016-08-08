@@ -1,8 +1,11 @@
+clc
+close all;
+clear all;
 
 %% Basic Setting
 band=[13 21];fs=1000;
+fold='G:\data2'
 
-fold='C:\Vision\Raw Files'
 %% 1. practicing with visual ERD/S
 visual_ERD_on(band,[0 20] ,2, {'C3', 'Cz', 'C4'}); % 1: envelop, 2: power
 
@@ -10,18 +13,18 @@ visual_ERD_on(band,[0 20] ,2, {'C3', 'Cz', 'C4'}); % 1: envelop, 2: power
 % we can use the paradigm solely if the parameter ['TCPIP', 'off'], while
 % in the case of ['TCPIP', 'on'], you should execute the
 % 'visual_Paradigm_on' at matlab two
-Makeparadigm_MI_fb({'time_sti',4; 'time_isi',4; 'num_trial',50; 'classes',{'right','left', 'foot','rest'}; 'time_jitter',0.1; 'screen','full'; 'TCPIP','on'});
+Makeparadigm_MI_fb({'time_sti',4; 'time_isi',4; 'num_trial',50; 'classes',{'right','left', 'foot','rest'}; 'time_jitter',0.1; 'screen','full'; 'TCPIP','off'});
 [trial, CSP, CLY_LDA]=visual_Paradigm_on([], [500 3500], [11 20] ); %ch, ival, band, varargin , % csp, and lda parrameters from the online data
 
 %% 3. Classifier Training & Visualization
-file='C:\Vision\Raw Files\2016_08_02_subject1_training'
+file='G:\data2\2016_07_28_hkkim_short_training'
 [CSP_W, CF_PARAM, loss] = racing_calibration(file, band, fs, {'visualization' , 1}); % 1: visual on, 0: off
 
 %% 4. Pseudo-online data acquisition
 Makeparadigm_MI_fb({'time_sti',8; 'time_isi',3; 'num_trial',5; 'classes',{'right','left', 'foot','rest'}; 'time_jitter',0.1; 'screen','full'; 'TCPIP','off'});
 
 %% 5. Pseudo-online emulator - check the STI and short training data
-file='C:\Vision\Raw Files\2016_07_26_sub1_short_training'
+file='G:\data2\2016_07_28_hkkim_short_training'
 marker= {'1','right';'2','left';'3','foot';'4','rest'};
 [EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', fs});
 cnt=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, {'x','t','fs','y_dec','y_logic','y_class','class', 'chan'});
@@ -47,19 +50,12 @@ racing_on2(CSP_W, CF_PARAM, band);
 visual_CFY_on(CSP_W, CF_PARAM, band)
 
 %%
-
-
-
-26: c4
-16: cz
-6: c3, 
-
-file='C:\Vision\Raw Files\20160728_mhlee_1'
+file='G:\data2\2016_07_28_hkkim_short_training'
 [CF_PARAM2] = racing_calibration_temp(file, band, fs, {'visualization' , 1}); % 1: visual on, 0: off
 
 
 %% Pseudo-online emulator
-file='C:\Vision\Raw Files\20160728_mhlee_short'
+file='G:\data2\2016_07_28_hkkim_short_training'
 marker= {'1','right';'2','left';'3','foot';'4','rest'};
 [EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', fs});
 cnt=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, {'x','t','fs','y_dec','y_logic','y_class','class', 'chan'});

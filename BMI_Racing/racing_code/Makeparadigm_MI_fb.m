@@ -35,7 +35,7 @@ else
 end
 
 %% screen setting
-screens=Screen('Screens');
+screen=Screen('Screens');
 
 if ~isfield(opt,'screen')
     screen_size='full';
