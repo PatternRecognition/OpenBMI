@@ -1,11 +1,11 @@
-function [loss,OX,LABEL,CF_OUT]=racing_pseudoOnline3(cnt,varargin)
+function [loss,OX,LABEL,CF_OUT, save_cf_out, time]=racing_pseudoOnline3(cnt,varargin)
 
 % 20160726
 % OVR 분류기 결과와 true label
 % bufferSize, windowSize, stepSize
 
 %% Data load
-duration=4;
+duration=8;
 opt=opt_cellToStruct(varargin{:});
 LDA=opt.classifier;
 CSP=opt.feature;
@@ -29,28 +29,29 @@ time_interval=1+0:bufferSize;
 
 %% Topoplot setting
 if opt.topo
-MNT = opt_getMontage(SMT_temp);
-center = [0 0];
-theta = linspace(0,2*pi,360);
-x = cos(theta)+center(1);
-y = sin(theta)+center(2);
-oldUnit = get(gcf,'units');
-set(gcf,'units','normalized');
-H = struct('ax', gca);
-set(gcf,'CurrentAxes',H.ax);
-tic
-xe_org = MNT.x';
-ye_org = MNT.y';
-resolution = 100;
-maxrad = max(1,max(max(abs(MNT.x)),max(abs(MNT.y))));
-xx = linspace(-maxrad, maxrad, resolution);
-yy = linspace(-maxrad, maxrad, resolution)';
+    MNT = opt_getMontage(SMT_temp);
+    center = [0 0];
+    theta = linspace(0,2*pi,360);
+    x = cos(theta)+center(1);
+    y = sin(theta)+center(2);
+    oldUnit = get(gcf,'units');
+    set(gcf,'units','normalized');
+    H = struct('ax', gca);
+    set(gcf,'CurrentAxes',H.ax);
+    tic
+    xe_org = MNT.x';
+    ye_org = MNT.y';
+    resolution = 100;
+    maxrad = max(1,max(max(abs(MNT.x)),max(abs(MNT.y))));
+    xx = linspace(-maxrad, maxrad, resolution);
+    yy = linspace(-maxrad, maxrad, resolution)';
 end
 
 CLASS_NAME={'non','right','left','foot','rest'};
 acc=0;n=0;
 LABEL=zeros(1,10000);
 CF_OUT=zeros(1,10000);
+time=zeros(1,10000);
 %%
 k=1;l=1;
 while time_interval(end)<=length(cnt.x)
@@ -68,6 +69,10 @@ while time_interval(end)<=length(cnt.x)
     else
         LABEL(l)=0;
     end
+    
+    %% sm 
+         time(l)=time_interval(end);
+    
     Dat=cnt.x(time_interval,:);
     fDat=prep_filter(Dat, {'frequency',opt.band;'fs',opt.fs });
     fDat2.x=fDat(end-windowSize:end,:);
@@ -77,10 +82,41 @@ while time_interval(end)<=length(cnt.x)
         tm=func_projection(fDat2.x, CSP{i});
         ft=func_featureExtraction(tm, {'feature','logvar'});
         [cf_out(opt.clf==i)]=func_predict(ft, LDA{i});
+        
     end
-    CF_OUT(l)=find(cf_out==min(cf_out));
-    time_interval=time_interval+stepSize;
+    save_cf_out(l,:)=cf_out;
     
+    %% OVR strategy
+    if cf_out(10)<0
+        CF_OUT(l)=4;
+    else
+        [a b]=min(cf_out(7:9));
+        CF_OUT(l)=b;
+    end
+    %% modified OVR
+%     if cf_out(10)<0
+%         CF_OUT(l)=4;
+%     else
+%         [tm1 tm2]=min(cf_out(7:9));
+%         if tm2==3
+%             CF_OUT(l)=tm2;
+%         else
+%             if cf_out(1)<0
+%                 CF_OUT(l)=1;
+%             else
+%                 CF_OUT(l)=2;
+%             end
+%         end
+%     end
+ %% OVR using LDA outputs as feature
+ 
+%  for i2=1:4
+%        [LDA_out(i2)]=func_predict(cf_out, opt.out_classifier{i2});       
+%  end
+%  [a CF_OUT(l)]=min(LDA_out);
+    
+    %%
+    time_interval=time_interval+stepSize;
     str2 = CLASS_NAME{LABEL(l)+1};
     str3 = CLASS_NAME{CF_OUT(l)+1};
     if strcmp(str2,str3)
@@ -101,5 +137,6 @@ end
 a=length(find(CF_OUT));
 CF_OUT(a+1:end)=[];
 LABEL(a+1:end)=[];
+time(a+1:end)=[];
 OX= CF_OUT==LABEL;
 loss=acc/n;

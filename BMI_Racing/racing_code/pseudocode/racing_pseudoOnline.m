@@ -1,6 +1,6 @@
 function [cf_out]=racing_pseudoOnline(cnt,varargin)
  
-duration=4;
+duration=8;
 
 opt=opt_cellToStruct(varargin{:});
 
@@ -70,7 +70,6 @@ for i=opt.clf
     
     % pseudo-online
 %     for j=1:(length(CNT.x)-bufferSize)/stepSize
-%   CNT=prep_filter(CNT, {'frequency',opt.band;'fs',opt.fs });
     for j=1:length(t)
         Dat=CNT.x((stepSize*(j-1)+1):(stepSize*(j-1)+bufferSize),:);
         fDat=prep_filter(Dat, {'frequency',opt.band;'fs',opt.fs });

@@ -1,10 +1,6 @@
-function [ out ] = opt_cnt2smt( dat )
-% opt_cnt2smt :
-%  This function reshapes the 2-dimensional data into 3-dimensional data.
-% 
-% Example:
-%    out = opt_cnt2smt(dat,{'dimInfo',[500 100 64]})
-% 
+function [ out ] = opt_cnt2smt( Dat )
+%OPT_CNT2SMT Summary of this function goes here
+%   Detailed explanation goes here
 if ~isfield(out, dimInfo)
     warning('OpenBMI: The "dimInfo" is missing: dat.dimInfo');
 else

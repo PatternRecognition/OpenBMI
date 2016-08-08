@@ -15,7 +15,7 @@ function [out] = prep_baseline(dat,varargin)
 %     Criterion - 'class', 'trial', 'channel' (default: 'trial')
 %
 % Returns:
-%     out - baseline corrected data structure
+%     dat - baseline corrected data structure
 %
 %
 % Seon Min Kim, 04-2016
@@ -67,6 +67,8 @@ switch opt.Criterion
             base = nanmean(nanmean(dat.x(t_idx,k,:),1),2);
             x(:,k,:) = dat.x(:,k,:)-repmat(base,[nT,n,1]);
         end
+%     case 'channel'
+%         base = 
 end
 
 out = rmfield(dat,'x');

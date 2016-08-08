@@ -1,12 +1,14 @@
+clc
+close all;
 clear all;
-OpenBMI('C:\Users\Administrator\Desktop\BCI_Toolbox\OpenBMI\OpenBMI') % Edit the variable BMI if necessary
+OpenBMI('C:\Users\CVPR\Desktop\Open_Github') % Edit the variable BMI if necessary
 global BMI;
-BMI.EEG_DIR=['C:\Users\Administrator\Desktop\BCI_Toolbox\DemoData'];
+BMI.EEG_DIR=['C:\Users\CVPR\Desktop\¿ø¾Ó\OpenBMI\data'];
 
 %% DATA LOAD MODULE
 file=fullfile(BMI.EEG_DIR, '\hblee_160627_calib_short');
 marker={'1','left';'2','right';'3','foot'};
-[EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', 500});gi
+[EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', 500});
 
 field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
 CNT=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);

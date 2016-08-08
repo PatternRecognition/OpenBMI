@@ -14,7 +14,6 @@ function [out] = prep_selectTime(dat, varargin)
 %
 % Input:
 %     dat - Data structure
-% Option:
 %     time - Time interval to be selected (ms)
 %
 % Returns:
@@ -31,7 +30,7 @@ if isempty(varargin)
 end
 opt = opt_cellToStruct(varargin{:});
 if isfield(opt,'Time')
-    warning('OpenBMI: Time interval should be specified')
+    warning('OpenBMI: Time interval should be specified.')
     return
 end
 ival = opt.Time;
@@ -49,8 +48,8 @@ else
 end
 
 d = ndims(dat.x);
-is = ceil(ival(1)*dat.fs/1000)+1;
-ie = floor(ival(2)*dat.fs/1000)+1;
+is = ceil(ival(1)*dat.fs/1000);
+ie = floor(ival(2)*dat.fs/1000);
 
 if d == 2
     if ival(1)<0 || ival(2)/1000>size(dat.x,1)/dat.fs
@@ -60,11 +59,7 @@ if d == 2
     x = dat.x(is:ie,:);
     s = find((dat.t*1000/dat.fs)>=ival(1));
     e = find((dat.t*1000/dat.fs)<=ival(2));
-    if isempty(e)
-        iv=[];
-    else
-        iv = s(1):e(end);
-    end
+    iv = s(1):e(end);
     t = dat.t(iv);
     if a
         y_dec = dat.y_dec(iv);
@@ -77,7 +72,7 @@ if d == 3
         warning('OpenBMI: Selected time interval is out of epoched interval')
         return
     end
-    iv = [is:ie]-dat.ival(1)*dat.fs/1000;
+    iv = [is:ie]-dat.ival(1)*dat.fs/1000+1;
     x = dat.x(iv,:,:);
     t = dat.t;
     time = iv/dat.fs;

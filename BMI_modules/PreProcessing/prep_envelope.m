@@ -28,3 +28,4 @@ end
 s = size(dat.x);
 dat.x= reshape(abs(hilbert(dat.x(:,:))),s);
 out= prep_movingAverage(dat,varargin{:});
+

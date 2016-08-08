@@ -79,14 +79,21 @@ else
                     type{i,j}=tCHAR;
                     in_param{i,j}=tm{j};
                 else
-                    tCHAR='variable';
+                    if isempty(strfind(tm{j},'"')) % unsigned parameter, the input parameter. CV.var will be used for assigned parameter
+                    tCHAR='unassigned_variable';
+                    type{i,j}=tCHAR;
+                    in_param{i,j}=tm{j};
+                    else
+                    tCHAR='assigned_variable';  % already assgined variable. 
                     tm{j}=strrep(tm{j},'"','');
                     type{i,j}=tCHAR;
                     in_param{i,j}=tm{j};
+                    end
                 end
             end            
         end
     end
     
 end
+
 
