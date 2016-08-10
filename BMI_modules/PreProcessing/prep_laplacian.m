@@ -1,25 +1,25 @@
-function [ Lap ] = prep_laplacian( data, varargin )
-% prep_laplacian: Calculating by combining the value at that location with 
-%                 the values of a set of surrounding electrodes [Tandonnet et al., 2005]
-%                 - Small Laplacian: 3cm to set of surrounding electrodes
-%                 - Large Laplacian: 6cm to set of surrounding electrodes
+function [ dat, Lap ] = prep_laplacian( data, varargin )
+% prep_laplacian: 
+%  This function recalculates the signal of selected channels by
+%  subtracting the average value of a set of surrounding electrodes.
+%  [Tandonnet et al., 2005]
+%    - Small Laplacian: Using electrodes within 3cm from the selected channel
+%    - Large Laplacian: Using electrodes within 6cm from the selected channel
 %
-% Synopsis:
-%  [Lap] = prep_laplacian(data , <OPT>)
+% Example:
+%  [out] = prep_laplacian(data,{'Channel',{'C1','Cz','C2'}})
 %
-% Arguments:
-%   data: Data structrue (ex) Epoched data or EEG raw data
-%   <OPT> : 
-%      .Channel - select the channel applied Laplacian filter 
-%                 (e.g. {'Channel', {'C1', Cz', 'C2'}})
-%      .filterType - small: 3cm to set of surrounding electrodes 
-%                  - large: 6cm to set of surrounding electrodes 
+% Input:
+%   data - Data structure, segmented or continuous EEG data
+% 
+% Option:
+%   Channel    - selected channels to apply Laplacian filter 
+%   filterType - 'small'(default) or 'large'
 %
-% Return:
-%    filterData:  Filtered data using Laplacian filter in selected channel
-%
-% See also:
-%    opt_cellToStruct , opt_channelMontage
+% Output:
+%   out - Filtered data using Laplacian filter in selected channels
+%   Lap - only filtered data and channel
+% 
 %
 % Reference:
 %   C. Tandonnet, B. Burle, T. Hasbroucq, and F. Vidal, "Spatial Enhancement of 
@@ -35,11 +35,11 @@ opt = opt_cellToStruct(varargin{:});
 
 channel = opt_channelMontage(varargin);
 
-if isempty(opt,'filterType')
+if ~isfield(opt,'filterType')
     warning('Set the default');
     opt.filterType = 'small';
 end
-% 들어온 채널을 channel orgin 에서의 인덱스 알기 
+% 들어온 채널을 channel orgin 에서의 인덱스 알기
 
 for numChannel = 1: size(opt.Channel,2)
     for chInxFindRow = 1 : size(channel.origin,1)
@@ -61,7 +61,7 @@ switch(opt.filterType)
                 
             else
                 checkCh = [channel.label{chInx{numChInx}(1)-1,chInx{numChInx}(2)};channel.label{chInx{numChInx}(1),chInx{numChInx}(2)-1};...
-                           channel.label{chInx{numChInx}(1)+1,chInx{numChInx}(2)};channel.label{chInx{numChInx}(1),chInx{numChInx}(2)+1};];
+                    channel.label{chInx{numChInx}(1)+1,chInx{numChInx}(2)};channel.label{chInx{numChInx}(1),chInx{numChInx}(2)+1};];
                 if sum(checkCh) == 4
                     fprintf('Possible to apply small laplacian filter in %s \n', channel.origin{chInx{numChInx}(1),chInx{numChInx}(2)});
                     
@@ -92,67 +92,90 @@ end
 Lap.x = cell(1,size(chInx,2));
 for num =1: size(chInx,2)
     Lap.clab{num} = channel.origin{chInx{num}(1),chInx{num}(2)};
+    
 end
 switch(opt.filterType)
     case 'small'
         for numChInx = 1: size(chInx,2)
-            for dataCh = 1:size(dat.chSet,2)
-                if strcmp(channel.origin{chInx{numChInx}(1),chInx{numChInx}(2)},dat.chSet{dataCh})==1
-                    dataLabel= dataCh;
+            for dataCh = 1:size(dat.chan,2)
+                if strcmp(channel.origin{chInx{numChInx}(1),chInx{numChInx}(2)},dat.chan{dataCh})==1
+                    dataLabel{numChInx}= dataCh;
                 end
-                if strcmp(channel.origin{chInx{numChInx}(1)-1,chInx{numChInx}(2)},dat.chSet{dataCh})==1
+                if strcmp(channel.origin{chInx{numChInx}(1)-1,chInx{numChInx}(2)},dat.chan{dataCh})==1
                     LapdataLabelTop = dataCh;
-                elseif strcmp(channel.origin{chInx{numChInx}(1)+1,chInx{numChInx}(2)},dat.chSet{dataCh})==1
+                elseif strcmp(channel.origin{chInx{numChInx}(1)+1,chInx{numChInx}(2)},dat.chan{dataCh})==1
                     LapdataLabelBottom = dataCh;
-                elseif strcmp(channel.origin{chInx{numChInx}(1),chInx{numChInx}(2)-1},dat.chSet{dataCh})==1
+                elseif strcmp(channel.origin{chInx{numChInx}(1),chInx{numChInx}(2)-1},dat.chan{dataCh})==1
                     LapdataLabelLeft = dataCh;
-                elseif strcmp(channel.origin{chInx{numChInx}(1),chInx{numChInx}(2)+1},dat.chSet{dataCh})==1
+                elseif strcmp(channel.origin{chInx{numChInx}(1),chInx{numChInx}(2)+1},dat.chan{dataCh})==1
                     LapdataLabelRight = dataCh;
                 end
             end
             % Trial별로 해당 채널 Laplacian 필터한 값
-            for trial = 1: size(dat.x,2)
-                avgLap(:,trial) = (dat.x(:,trial,LapdataLabelBottom)+dat.x(:,trial,LapdataLabelLeft)+dat.x(:,trial,LapdataLabelRight)+dat.x(:,trial,LapdataLabelTop))/4;
-
-                LapData(:,trial) = dat.x(:,trial,dataLabel)-avgLap(:,trial);
+            if ndims(dat.x) ==2
+                avgLap = (dat.x(:,LapdataLabelBottom)+dat.x(:,LapdataLabelLeft)+dat.x(:,LapdataLabelRight)+dat.x(:,LapdataLabelTop))/4;
+                
+                LapData = dat.x(:,dataLabel{numChInx})-avgLap;
+                
+                Lap.x{numChInx} = LapData;
+                dat.x(:,dataLabel{numChInx}) = Lap.x{numChInx};
+            else
+                for trial = 1: size(dat.x,2)
+                    avgLap(:,trial) = (dat.x(:,trial,LapdataLabelBottom)+dat.x(:,trial,LapdataLabelLeft)+dat.x(:,trial,LapdataLabelRight)+dat.x(:,trial,LapdataLabelTop))/4;
+                    
+                    LapData(:,trial) = dat.x(:,trial,dataLabel{numChInx})-avgLap(:,trial);
+                end
+                Lap.x{numChInx} = LapData;
+                dat.x(:,:,dataLabel{numChInx}) = Lap.x{numChInx};
             end
-            Lap.x{numChInx} = LapData;
+            
         end
         
     case 'large'
         for numChInx = 1: size(chInx,2)
-            for dataCh = 1:size(dat.chSet,2)
-                if strcmp(channel.origin{chInx{numChInx}(1),chInx{numChInx}(2)},dat.chSet{dataCh})==1
+            for dataCh = 1:size(dat.chan,2)
+                if strcmp(channel.origin{chInx{numChInx}(1),chInx{numChInx}(2)},dat.chan{dataCh})==1
                     dataLabel= dataCh;
                 end
-                if strcmp(channel.origin{chInx{numChInx}(1)-2,chInx{numChInx}(2)},dat.chSet{dataCh})==1
+                if strcmp(channel.origin{chInx{numChInx}(1)-2,chInx{numChInx}(2)},dat.chan{dataCh})==1
                     LapdataLabelTop = dataCh;
-                elseif strcmp(channel.origin{chInx{numChInx}(1)+2,chInx{numChInx}(2)},dat.chSet{dataCh})==1
+                elseif strcmp(channel.origin{chInx{numChInx}(1)+2,chInx{numChInx}(2)},dat.chan{dataCh})==1
                     LapdataLabelBottom = dataCh;
-                elseif strcmp(channel.origin{chInx{numChInx}(1),chInx{numChInx}(2)-2},dat.chSet{dataCh})==1
+                elseif strcmp(channel.origin{chInx{numChInx}(1),chInx{numChInx}(2)-2},dat.chan{dataCh})==1
                     LapdataLabelLeft = dataCh;
-                elseif strcmp(channel.origin{chInx{numChInx}(1),chInx{numChInx}(2)+2},dat.chSet{dataCh})==1
+                elseif strcmp(channel.origin{chInx{numChInx}(1),chInx{numChInx}(2)+2},dat.chan{dataCh})==1
                     LapdataLabelRight = dataCh;
-                elseif strcmp(channel.origin{chInx{numChInx}(1)-1,chInx{numChInx}(2)-1},dat.chSet{dataCh})==1
+                elseif strcmp(channel.origin{chInx{numChInx}(1)-1,chInx{numChInx}(2)-1},dat.chan{dataCh})==1
                     LapdataLabelMedLeft = dataCh;
-                elseif strcmp(channel.origin{chInx{numChInx}(1)-1,chInx{numChInx}(2)+1},dat.chSet{dataCh})==1
+                elseif strcmp(channel.origin{chInx{numChInx}(1)-1,chInx{numChInx}(2)+1},dat.chan{dataCh})==1
                     LapdataLabelMedRight = dataCh;
-                elseif strcmp(channel.origin{chInx{numChInx}(1)+1,chInx{numChInx}(2)-1},dat.chSet{dataCh})==1
+                elseif strcmp(channel.origin{chInx{numChInx}(1)+1,chInx{numChInx}(2)-1},dat.chan{dataCh})==1
                     LapdataLabelDownLeft = dataCh;
-                elseif strcmp(channel.origin{chInx{numChInx}(1)+1,chInx{numChInx}(2)+1},dat.chSet{dataCh})==1
+                elseif strcmp(channel.origin{chInx{numChInx}(1)+1,chInx{numChInx}(2)+1},dat.chan{dataCh})==1
                     LapdataLabelDownRight = dataCh;
                 end
             end
-            for trial = 1: size(dat.x,2)
-                avgLap(:,trial) = (dat.x(:,trial,LapdataLabelBottom)+dat.x(:,trial,LapdataLabelLeft)+dat.x(:,trial,LapdataLabelRight)+dat.x(:,trial,LapdataLabelTop)+ ...
-                    dat.x(:,trial,LapdataLabelMedLeft)+dat.x(:,trial,LapdataLabelMedRight)+dat.x(:,trial,LapdataLabelDownLeft)+dat.x(:,trial,LapdataLabelDownRight))/8;
+            if ndims(dat.x) ==2
+                avgLap = (dat.x(:,LapdataLabelBottom)+dat.x(:,LapdataLabelLeft)+dat.x(:,LapdataLabelRight)+dat.x(:,LapdataLabelTop)+ ...
+                    dat.x(:,LapdataLabelMedLeft)+dat.x(:,LapdataLabelMedRight)+dat.x(:,LapdataLabelDownLeft)+dat.x(:,LapdataLabelDownRight))/8;
                 
-                LapData(:,trial) = dat.x(:,trial,dataLabel)-avgLap(:,trial);
+                LapData = dat.x(:,dataLabel{numChInx})-avgLap;
+                Lap.x{numChInx} = LapData;
+                dat.x(:,dataLabel{numChInx}) = Lap.x{numChInx};
+            else
+                
+                for trial = 1: size(dat.x,2)
+                    avgLap(:,trial) = (dat.x(:,trial,LapdataLabelBottom)+dat.x(:,trial,LapdataLabelLeft)+dat.x(:,trial,LapdataLabelRight)+dat.x(:,trial,LapdataLabelTop)+ ...
+                        dat.x(:,trial,LapdataLabelMedLeft)+dat.x(:,trial,LapdataLabelMedRight)+dat.x(:,trial,LapdataLabelDownLeft)+dat.x(:,trial,LapdataLabelDownRight))/8;
+                    
+                    LapData(:,trial) = dat.x(:,trial,dataLabel{numChInx})-avgLap(:,trial);
+                end
+                Lap.x{numChInx} = LapData;
+                dat.x(:,:,dataLabel{numChInx}) = Lap.x{numChInx};
             end
-            Lap.x{numChInx} = LapData;
         end
 end
 
 
-end
 
+end
