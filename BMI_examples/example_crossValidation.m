@@ -3,20 +3,21 @@ close all;
 clear all;
 OpenBMI('C:\Users\CVPR\Desktop\Open_Github') % Edit the variable BMI if necessary
 global BMI;
-BMI.EEG_DIR=['C:\Users\CVPR\Desktop\¿ø¾Ó\OpenBMI\data'];
+BMI.EEG_DIR=['G:\data2'];
 
 %% DATA LOAD MODULE
-file=fullfile(BMI.EEG_DIR, '\hblee_160627_calib_short');
-marker={'1','left';'2','right';'3','foot'};
+file=fullfile(BMI.EEG_DIR, '\2016_08_05_hkkim_training');
+marker= {'1','right';'2','left';'3','foot';'4','rest'};
 [EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', 500});
 
 field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
 CNT=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
-CNT=prep_selectClass(CNT,{'class',{'right', 'left'}});
+CNT=prep_selectClass(CNT,{'class',{'right', 'rest'}});
 
-
+CNT2 = prep_laplacian(CNT, {'Channel', {'C3', 'Cz', 'C4'}})
+ 
 %% CROSS-VALIDATION MODULE
-CV.var.band=[10 13];
+CV.var.band=[7 20];
 CV.var.interval=[750 3500];
 CV.prep={ % commoly applied to training and test data before data split
     'CNT=prep_filter(CNT, {"frequency", band})'
@@ -33,7 +34,7 @@ CV.test={
     '[cf_out]=func_predict(FT, CF_PARAM)'
     };
 CV.option={
-'KFold','5'
+'KFold','7'
 % 'leaveout'
 };
 

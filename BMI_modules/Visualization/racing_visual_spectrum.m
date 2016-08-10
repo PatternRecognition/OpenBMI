@@ -1,7 +1,7 @@
 function [ dat ] = racing_visual_spectrum( data , varargin )
 % visual_spectrum : It is the feature plots of data. This function can be
 % useful to see an overview of data according to time, frequency, and
-% channel. 
+% channel.
 %
 %
 % % Synopsis:
@@ -14,10 +14,10 @@ function [ dat ] = racing_visual_spectrum( data , varargin )
 %
 % Arguments:
 %   data: Data structrue (ex) Epoched data structure
-%   <OPT> : 
-%      .Xaxis - selecting the domain what you interested in x axis  
+%   <OPT> :
+%      .Xaxis - selecting the domain what you interested in x axis
 %                 (e.g. {'Xaxis' , 'Frequency'},{'Xaxis' , 'time'})
-%      .Yaxis - selecting the domain what you interested in y axis  
+%      .Yaxis - selecting the domain what you interested in y axis
 %                 (e.g. {'Yaxis' , 'Channel'},{'Yaxis' , 'Frequency'})
 %      .Band -  Selecting the interested frequency band in Time-Channel
 %               domian
@@ -112,33 +112,33 @@ if strcmp(opt.Xaxis, 'Frequency') == 1 && strcmp(opt.Yaxis, 'Channel') == 1
     plotData = ressq;
     freqBins = C1_freqBins - opt.freqBinWidth/2;
     freqBins(end+1) = freqBins(end) + diff(freqBins(end-1:end));
-  
-        plotData=cat(2, plotData, zeros(size(plotData, 1), 1));
-        plotData=cat(1, plotData, zeros(1, size(plotData, 2)));
-
-        surf(freqBins, [1:size(plotData, 2)], plotData(1:end,:)'); hold on;
-        axis tight; set(gcf,'Renderer','Zbuffer');
-        xlim([freqBins(2) freqBins(end)]);
-        set(gca,'XTick',[freqBins(2):4: freqBins(end)]);
-        set(gca,'YTick',[1:1: size(C1Data,2)]);
-        set(gca,'Yticklabel',char(dat.chan));
-        str = dat.class{1,2};
-        str2 = dat.class{2,2};  
-        title([str,'  vs  ',str2]);
-        view(2);colormap jet;colorbar;
-        xlabel('Frequency [Hz]'); ylabel('Channels');
-%         switch(i)
-%             case 1
-%                 caxis([0 300]);
-%                 title('Frequency-channel power spectrum per channel in Class 1');
-%             case 2
-%                 caxis([0 300]);
-%                 title('Frequency-channel power spectrum per channel in Class 2');
-%             case 3
-%                 title('Frequency-channel power spectrum per channels between classes using r^2 values');
-%         end
+    
+    plotData=cat(2, plotData, zeros(size(plotData, 1), 1));
+    plotData=cat(1, plotData, zeros(1, size(plotData, 2)));
+    
+    surf(freqBins, [1:size(plotData, 2)], plotData(1:end,:)'); hold on;
+    axis tight; set(gcf,'Renderer','Zbuffer');
+    xlim([freqBins(2) freqBins(end)]);
+    set(gca,'XTick',[freqBins(2):4: freqBins(end)]);
+    set(gca,'YTick',[1:1: size(C1Data,2)]);
+    set(gca,'Yticklabel',char(dat.chan));
+    str = dat.class{1,2};
+    str2 = dat.class{2,2};
+    title([str,'  vs  ',str2]);
+    view(2);colormap jet;colorbar;
+    xlabel('Frequency [Hz]'); ylabel('Channels');
+    %         switch(i)
+    %             case 1
+    %                 caxis([0 300]);
+    %                 title('Frequency-channel power spectrum per channel in Class 1');
+    %             case 2
+    %                 caxis([0 300]);
+    %                 title('Frequency-channel power spectrum per channel in Class 2');
+    %             case 3
+    %                 title('Frequency-channel power spectrum per channels between classes using r^2 values');
+    %         end
 end
-%%     
+%%
 
 end
 
