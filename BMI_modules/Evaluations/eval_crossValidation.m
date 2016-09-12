@@ -16,6 +16,11 @@ if isfield(varargin{:},'prep')
         else
             in=param.(in_dat{1});
         end
+        for k=1:length(in_type)  % assigned a input parameter 
+            if strcmp(in_type{k}, 'unassigned_variable')
+               in_param{k}=CV.var.(in_param{k});
+            end
+        end        
         [out save{:}]= feval(nFunc, in, in_param);
         if length(out_param)==1  % save an actual output parameter with its real variable name
             param.(out_param{1})=out;
@@ -132,4 +137,3 @@ end
 loss01=mean(loss);
 
 end
-

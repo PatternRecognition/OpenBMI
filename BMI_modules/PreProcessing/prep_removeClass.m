@@ -1,6 +1,6 @@
 function [ out ] = prep_removeClass( dat, varargin )
-% prep_removeClass: remove specific class
-% example: out=prep_removeClass(dat,{'foot','right'});
+%MRK_REMOVE_CLASS Summary of this function goes here
+%   Detailed explanation goes here
 
 if iscellstr(varargin)
     warning('check the class parameter, it shold be a string');
@@ -12,7 +12,12 @@ elseif ndims(dat.x)==3
     type='smt';
 end
 
-rm_Class=varargin{:};
+tm=varargin{:};
+if ischar(tm)
+    rm_Class{1}=tm
+else
+    rm_Class=varargin{:};
+end
 
 out=dat;
 for i=1:length(rm_Class)
@@ -48,4 +53,5 @@ end
 
 
 end
+
 

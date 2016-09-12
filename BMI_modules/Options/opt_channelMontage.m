@@ -1,8 +1,4 @@
 function [ channel ] = opt_channelMontage( varargin )
-% opt_channelMontage :
-%       produces a montage of channels.
-% Example: channel=opt_channelMontage
-% 
 
 channel.origin = {               '','','','Fp1','','','', 'Fp2','','','';
                                 '','','AF7', 'AF3','','','','AF4', 'AF8','','';
@@ -21,7 +17,7 @@ channel.label  = cell(9,11);
 % 채널 이면 1, 아니면 0
 for chOrginRow =1 : size(channel.origin ,1)
     for chOriginCol = 1: size(channel.origin,2)
-        if ~isempty(channel.origin{chOrginRow,chOriginCol})
+        if length(channel.origin{chOrginRow,chOriginCol}) > 0
             channel.label{chOrginRow,chOriginCol} = 1;
         else
             channel.label{chOrginRow,chOriginCol} = 0;

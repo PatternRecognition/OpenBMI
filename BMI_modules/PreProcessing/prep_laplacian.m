@@ -17,7 +17,7 @@ function [ dat, Lap ] = prep_laplacian( data, varargin )
 %   filterType - 'small'(default) or 'large'
 %
 % Output:
-%   dat - Filtered data using Laplacian filter in selected channels
+%   out - Filtered data using Laplacian filter in selected channels
 %   Lap - only filtered data and channel
 % 
 %
@@ -179,4 +179,3 @@ end
 
 
 end
-
