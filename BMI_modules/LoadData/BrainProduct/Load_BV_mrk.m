@@ -21,7 +21,9 @@ for i=1:length(mrk_all.markerinfos)
         case 'Comment'
             Num_Stimulus=strmrk{2};
             temp=strsplit(Num_Stimulus, ' ');
-            if ~strcmp(temp{1},'actiCAP')
+            if ~strcmp(temp{1},'actiCAP') && strcmp(temp{1},'no')
+                disp(sprintf('no USB Connection to actiCAP, mrk %.0d',i));
+            elseif ~strcmp(temp{1},'actiCAP') && ~strcmp(temp{1},'no')
                 mrk_orig.y(n_s)=str2num(Num_Stimulus);
                 mrk_orig.t(n_s)=str2num(strmrk{3});
                 mrk_orig.class{n_s}='Stimulus';

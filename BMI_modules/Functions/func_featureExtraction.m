@@ -5,7 +5,7 @@ function [ out ] = func_featureExtraction( dat, varargin )
 if iscell(varargin)
     opt=opt_cellToStruct(varargin{:});
 elseif isstruct(varargin{:}) % already structure(x-validation)
-    opt=varargin{:}
+    opt=varargin{:};
 end
 
 if isstruct(dat)
@@ -35,12 +35,16 @@ switch lower(opt.feature)
         %         [nDat, nTrials, nChans]= size(dat_);
         %         tDat= reshape(permute(dat_,[1 3 2]), [nDat*nChans nTrials]);
         
-%         % smkim
-%         if isstruct(dat) % 옵션 조정 필요
-%             tDat=prep_erpMeans(dat,{'Time',[1000 2000]});
-%         else
-%             error('OpenBMI: Not available data type');
-%         end
+        % smkim
+        if isfield(opt,'nMeans')
+            nM=opt.nMeans;
+            tDat=prep_erpMeans(tDat,{'nMeans',nM});
+        elseif isfield(opt,'nSamples')
+            nS=opt.nSamples;
+            tDat=prep_erpMeans(tDat,{'nSamples',nS});
+        else
+            warning('OpenBMI: Options for prep_erpMeans (e.g. nMeans or nSamples) are needed'),return
+        end
 end
 
 if isstruct(dat)
@@ -48,7 +52,6 @@ if isstruct(dat)
 else
     dat=tDat;
 end
-out=dat;
 
 if isfield(dat,'stack') %% put in the function
     % stack
@@ -56,5 +59,7 @@ if isfield(dat,'stack') %% put in the function
     c = strsplit(c,'\');
     dat.stack{end+1}=c{end};
 end
+out=dat;
+
 end
 

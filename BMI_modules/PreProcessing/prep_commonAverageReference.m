@@ -36,8 +36,8 @@ end
 all_chSum = 0;
 CARfilter.x = dat.x;
 for numChannel = 1: size(opt.Channel,2)
-    for ch = 1: size(dat.chSet,2)
-        if isequal(dat.chSet(ch), cellstr(opt.Channel{numChannel}) )
+    for ch = 1: size(dat.chan,2)
+        if isequal(dat.chan(ch), cellstr(opt.Channel{numChannel}) )
             channelIndex{numChannel}=ch;
             SelectChan{numChannel} = dat.x(:,:,channelIndex{numChannel});
         end
@@ -46,12 +46,12 @@ for numChannel = 1: size(opt.Channel,2)
     
     switch opt.filterType
         case 'exptChan'
-            CAR_filterData = SelectChan{numChannel} - ((all_chSum - SelectChan{numChannel})/size(dat.chSet,2));         
+            CAR_filterData = SelectChan{numChannel} - ((all_chSum - SelectChan{numChannel})/size(dat.chan,2));         
         case 'incChan'
-            CAR_filterData = SelectChan{numChannel} - (all_chSum/size(dat.chSet,2));
+            CAR_filterData = SelectChan{numChannel} - (all_chSum/size(dat.chan,2));
     end
     CARfilter.data{numChannel} = CAR_filterData;
-    CARfilter.clab{numChannel} = dat.chSet{channelIndex{numChannel}};
+    CARfilter.clab{numChannel} = dat.chan{channelIndex{numChannel}};
     CARfilter.x(:,:,channelIndex{numChannel}) = CARfilter.data{numChannel};
 end
 
