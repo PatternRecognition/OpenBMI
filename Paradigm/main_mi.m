@@ -43,14 +43,14 @@ Feedback_Client(CSP, LDA, band, {'buffer_size',5000; 'data_size',1500; 'feedback
 
 %% P300 speller
 % training
-seq1=P300_OpenBMI({'text','MACHINE_LEARNING'},-1);
+seq1=Makeparadigm_speller({'text','MACHINE_LEARNING'},-1);
 % test
-seq2=P300_OpenBMI({'text','OPENBMI_SPELLER'},-1);
+seq2=Makeparadigm_speller({'text','OPENBMI_SPELLER'},-1);
 % save variables
 str=sprintf('%s\\p300_sequence_order',BMI.EEG_DIR);
 save(str,'seq1','seq2')
 
 
 %% SSVEP
-SSVEP_OpenBMI ({'time_sti',5;'num_trial',10;'time_rest',3;'freq',[7.5 10 12 15 20];'boxSize',150;'betweenBox',200});
+Makeparadigm_SSVEP ({'time_sti',5;'num_trial',10;'time_rest',3;'freq',[7.5 10 12 15 20];'boxSize',150;'betweenBox',200});
 

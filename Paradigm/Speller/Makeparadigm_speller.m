@@ -1,4 +1,4 @@
-function [flickering_order]=P300_OpenBMI( opt,varargin )
+function [flickering_order]=Makeparadigm_speller( opt,varargin )
 % original code:
 %   C:\Users\BCI_STAR_LAB\Desktop\¿À¸ñ´«ÀÌ\functions\Hybrid_P300_online
 

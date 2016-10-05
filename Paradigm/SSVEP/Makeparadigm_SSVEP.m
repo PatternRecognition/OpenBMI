@@ -1,4 +1,4 @@
-function SSVEP_OpenBMI (varargin)
+function Makeparadigm_SSVEP (varargin)
 
 %% variables
 in=opt_cellToStruct(varargin{:});
