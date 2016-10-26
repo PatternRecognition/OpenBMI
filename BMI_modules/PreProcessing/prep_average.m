@@ -26,8 +26,8 @@ if ~isfield(dat,'y_dec') || ~isfield(dat,'y_logic') || ~isfield(dat,'y_class')
 end
 
 if ndims(dat.x)~=3
-    warning('OpenBMI: Data must be epoched')
-    return
+    warning('OpenBMI: Data must be segmented. Is the number of channel 1?')
+%     return
 end
 
 n_cls = size(dat.y_logic,1);

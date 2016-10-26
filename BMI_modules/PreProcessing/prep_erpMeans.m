@@ -21,7 +21,7 @@ function [out] = prep_erpMeans(dat,varargin)
 % seonmin5055@gmail.com
 
 if ndims(dat)~=3
-    warning('OpenBMI: Data must be segmented');return
+    warning('OpenBMI: Data must be segmented. Is the number of channel 1?');
 end
 if isempty(varargin)
     warning('OpenBMI: Whole samples in each trial are averaged')

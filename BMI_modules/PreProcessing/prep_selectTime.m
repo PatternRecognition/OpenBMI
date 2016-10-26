@@ -29,7 +29,7 @@ if isempty(varargin)
     return
 end
 opt = opt_cellToStruct(varargin{:});
-if isfield(opt,'Time')
+if ~isfield(opt,'Time')
     warning('OpenBMI: Time interval should be specified.')
     return
 end
@@ -62,9 +62,9 @@ if d == 2
     iv = s(1):e(end);
     t = dat.t(iv);
     if a
-        y_dec = dat.y_dec(iv);
-        y_logic = dat.y_logic(:,iv);
-        y_class = dat.y_class(iv);
+        y_dec = dat.y_dec;
+        y_logic = dat.y_logic;
+        y_class = dat.y_class;
     end
 end
 if d == 3
