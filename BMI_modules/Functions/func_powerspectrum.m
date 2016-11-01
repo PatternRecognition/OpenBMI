@@ -8,13 +8,15 @@ function dat= func_powerspectrum (data, band, varargin)
 % Input:
 %      dat  - data structure of continuous or epoched data
 %      band - frequency band
+%
 % Options:
 %      win  - window for FFT, default ones(dat.fs, 1)
 %      N    - window width for FFT -> square window, default dat.fs
 %      step - step for window (= # of overlapping samples), default N/2
 %      db_scaled - boolean, if true values are db scaled (10*log10),
 %                  default true
-
+% Retuns:
+%     dat - Data structure of power specturm result
 %%
 % data
 dat=data;

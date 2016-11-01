@@ -1,13 +1,12 @@
 function dat=func_ar(dat, order, varargin)
 % func_ar (Feature extraction) :
 % 
-% This function calculates the autoregression(AR)/adaptive AR(AAR)
-% parameter.
+% This function calculates the autoregression(AR) parameter.
 % 
 % Example:
 % [out] = func_ar(dat, 7, {'method','arburg'})
 % 
-% Input:
+% Returs:
 %     dat    - Data structure, segmented
 %     order  - Order of AR setting
 % Option: models for obtatining AR parameter

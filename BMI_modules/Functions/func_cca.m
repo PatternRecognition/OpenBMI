@@ -1,22 +1,24 @@
 function [out,r]=func_cca(dat,refre,varargin)
 %% obtaining r values by CCA function
 % func_cca:
-%     Applying canonical correlation analysis (CCA)
-% Example:
-%     [out, r]=proc_CCA(SMT,[13,22,25],{'harmonic', 3})
-%     [out, r]=proc_CCA(SMT.x,[13,22,25],{'harmonic', 2; 'fs',100})
+%     This function calculating correlation parameters based on canonical correlation analysis(CCA).  
+%     Canonical correlation analysis is a method for calculating the relationships between two multivariate signal. 
 %
+%Example:
+%     [out, r]=func_cca(SMT,[13,22,25],{'harmonic', 3})
+%     [out, r]=func_cca(SMT.x,[13,22,25],{'harmonic', 2; 'fs',100})
 % Input:
-%     dat   - OpenBMI data structure or data itself (continuous)
-%     refre -
+%     dat - Data structure, continuous or epoched (continuous)
+%     refre - Making reference frequency
+%
 % Option:
-%     harmonic -
-% 	  fs       -
-%     channel  -
-%     m        -
-% Output:
-%     out -
-%     r   -
+%     harmonic - Number of harmonic frequncy
+% 	  fs - Setting the data sampling rate
+%     channel - Selecting specific channel
+%
+% Returns:
+%     out - Calculating classification result of class which maximum r value  
+%     r - Calculating r values 
 %
 
 %% channel must be segemented
@@ -39,13 +41,13 @@ if ~isstruct(dat)
         warning('[OpenBMI] Warning! reference frequency is empty.');
     end
     
-    if ~isfield(opt,'Harmonic')
+    if ~isfield(opt,'harmonic')
         warning('[OpenBMI]: parameter "harmonic" is missing')
         opt.Harmonic=2;
     end
     [nDat nTrial nCH]=size(dat);
 else
-    %% structure ??¢¬?
+
     if ~isfield(opt,'Channel')
         warning('OpenBMI: parameter "Channel" is missing')
         opt.Channel={'Cz'};
@@ -57,8 +59,7 @@ else
     
     ivaltime=dat.ival;
     out.ivaltime=ivaltime;
-    
-    
+        
     %     timerange=(dat.ival(end)-dat.ival(1))/opt.fs*0.1; %% check
     [nDat  nTrial nCH]=size(dat.x);
     out.class=dat.class;
@@ -72,10 +73,10 @@ out.refFreq=refre;
 
 
 if refre(end)*opt.Harmonic > opt.fs/2
-    warning('OpenBMI: harmonic frequency cannot show. Harmonic is ')
-    opt.Harmonic=2;
+    warning('OpenBMI: harmonic frequency cannot show. Harmonic is setting as 2')
+    opt.harmonic=2;
 end
-out.Harmonic=opt.Harmonic;
+out.harmonic=opt.Harmonic;
 
 
 %% calculate time ranges for generating harmonic reference frequencies

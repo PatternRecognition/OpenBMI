@@ -1,23 +1,28 @@
 function dat= func_spectrogram(data, frequnecy, varargin)
 % func_spectrogram :
-%    calculates the power spectrum in selected band
-% 
-% IN   dat  - data structure of continuous or epoched data
-%      band - frequency band
-%      win  - window for FFT
-%      N    - window width for FFT -> square window, default dat.fs
-%      step - step for window (= # of overlapping samples), default N/2
-%      opt  - struct of options:
-%       .win       - window for FFT, default ones(dat.fs, 1)
-%       .noverlap  - step for window, default N/2
-%       .clab      - 
-%       .scale     - 
+%  Calculating the spectrogram value using a Short-Time Fourier Transform
+%    
+% Example:
+% dat = func_spectrogram(dat,frquency, {'win',100})
+% dat = func_spectrogram(dat,frquency, {'noverlap',50})
+% dat = func_spectrogram(dat,frquency, {'scale',{'db'})
+% Input:
+%      dat - Data structure of continuous or epoched data
+%      band - Frequency band
+%      
+% Options:
+%      win - Window for FFT
+%      noverlap - Step for window, default N/2
+%      scale - Set the scales of FFT (amlitude, power, db, phase) 
+%
+% Returns:
+%     dat - Result of spectrogram value
 
 %%
 % data
 dat=data;
 opt=opt_cellToStruct(varargin{:});
-epo=struct('win',[],'noverlap',[],'clab',[],'scale',[]);
+epo=struct('win',[],'noverlap',[],'scale',[]);
 
 if isempty(dat)
     error('OpenBMI: data is empty');

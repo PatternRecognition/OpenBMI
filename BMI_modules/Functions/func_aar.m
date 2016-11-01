@@ -1,8 +1,12 @@
 function dat=func_aar(dat,varargin)
 % func_aar:
 %   Calculating the adaptive auto regression parameters(AAR) and 
-%   adaptive auto moving average auto regrssion parameters(AARMA)
-% 
+%   adaptive auto moving average auto regrssion parameters(AARMA).
+%   We refered aar function of http://pub.ist.ac.at/~schloegl/publications/
+%
+%	$Id: aar.m 11693 2013-03-04 06:40:14Z schloegl $
+%       Copyright (C) 1998-2003 by Alois Schloegl <a.schloegl@ieee.org>
+%
 % Example:
 %       Feature=func_aar(EMT,{'Mode',[11 2],'order', [5 2],'UC', 0.003)};
 %
@@ -21,7 +25,7 @@ function dat=func_aar(dat,varargin)
 %    order - model order [p,(q)] of AAR or AARMA  (default [10,0])
 %            AAR(p) order as [p] and AARMA(p,q) as [p,q]
 %    UC    - Update coefficeint (default 0.0085)
-% Output:
+% Returns:
 %    dat   - data structure of otanined AAR or AARMA parameter in OpenBMI sturcture
 % 
 

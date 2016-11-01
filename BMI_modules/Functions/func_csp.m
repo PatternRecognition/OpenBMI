@@ -1,13 +1,25 @@
 function [ dat_csp, CSP_W, CSP_D ] = func_csp( dat, varargin )
-%PROC_CSP Summary of this function goes here
-%   Detailed explanation goes here
-% [SMT, CSP_W, CSP_D]=func_csp(SMT,{'nPatterns', [3]});
+% PROC_CSP Summary of this function goes here
+%
+% Thi
+%
+% Example:
+%[SMT, CSP_W, CSP_D]=func_csp(SMT,{'nPatterns', [3]});
+%
+%
+% Input:
+%      dat - Data structure of epoched
+%
+% Options:
+%      cov - 'normal' or 'average'
+%
+
 if nargin==0
     warning('Parameter is missing');
 end
 
 if ~isfield(dat,'x')
-    error('Parameter is missing: dat.x')    
+    error('Parameter is missing: dat.x')
 end
 
 % Default parameters for CSP
@@ -16,7 +28,7 @@ opt_default={'nPatterns',3;
     'score','eigenvalue';
     'policy','normal'};
 
-if isempty(varargin)  % default parameter setting
+if isempty(varargin)  % Default parameter setting
     opt=opt_cellToStruct(opt_default)
 else
     if iscell(varargin{:})
@@ -50,14 +62,14 @@ switch(lower(opt.cov))
         end
         
     case 'average' %%malfunction
-        %         for c= 1:nClasses,
-        %             C= zeros(nChans, nChans);
-        %             idx= find(epo.y_logical(c,:));
-        %             for m= idx,
-        %                 C= C + cov(squeeze(epo.x(:,m,:)));
-        %             end
-        %             R(:,:,c)= C/length(idx);
-        %         end
+        for c= 1:nClasses,
+            C= zeros(nChans, nChans);
+            idx= find(epo.y_logical(c,:));
+            for m= idx,
+                C= C + cov(squeeze(epo.x(:,m,:)));
+            end
+            R(:,:,c)= C/length(idx);
+        end
     otherwise,
         error('check the cov options')
 end

@@ -3,9 +3,11 @@ function [dat,V,D]=func_pca(dat)
 %    Applying principal component analysis (PCA)
 % Example:
 %    [dat,V,D]=func_pca(dat);
-% Input:
+%
+%Input:
 %     dat - OpenBMI data structure
-% Output:
+%
+%Returns:
 %     dat - Data structure of applied PCA
 %     V   - Eigenvectors of data
 %     D   - Eigenvalues
