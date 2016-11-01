@@ -18,16 +18,15 @@ function [ out ] = opt_selectField( in, field )
 % mhlee@image.korea.ac.kr
 % 
 
-
-
-% in: structure
-% select necessary field from input structure "in"
-
-for i=1:length(field)
-    if isfield(in,field{i})
-        out.(field{i})=in.(field{i});
-    end    
+if isempty(field)
+    out=struct;
+else
+    for i=1:length(field)
+        if isfield(in,field{i})
+            out.(field{i})=in.(field{i});
+        end
+    end
+    
 end
 
 end
-

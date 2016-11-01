@@ -138,7 +138,7 @@ else
     % [UFN,ind] = unique(FN) ; % earlier ML versions, like 6.5
     
     if numel(UFN) ~= numel(FN),
-        warning('catstruct:DuplicatesFound','Fieldnames are not unique between structures.') ;
+%         warning('catstruct:DuplicatesFound','Fieldnames are not unique between structures.') ;
         sorted = 1 ;
     end
     
