@@ -1,4 +1,22 @@
 function MNT = opt_getMontage(SMT)
+% opt_getMontage:
+% 
+% Description:
+%     This function gets positions of eeg electrodes.
+% 
+% Example:
+%     MNT = opt_getMontage(SMT);
+% 
+% Input:
+%     SMT - Segmented data structure, having a field name of chan
+% Output:
+%     .x    - x coordiante of electrode positions
+%     .y    - y coordiante of electrode positions
+%     .chan - Name of the whole 144 channels
+% 
+% Keun-Tae, Kim
+% ktkim@image.korea.ac.kr
+% 
 
 clab= {'Fpz', ...
        'Fp1','AFp1','AFp2','Fp2', ...

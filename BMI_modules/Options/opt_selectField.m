@@ -1,6 +1,25 @@
 function [ out ] = opt_selectField( in, field )
-%OPT_DELECTFEIDL Summary of this function goes here
-%   Detailed explanation goes here
+% opt_selectField:
+% 
+% Description:
+%     This function takes fields of input data structure altogether
+% 
+% Example:
+%     field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
+%     out=opt_selectField(EEG,field);
+% 
+% Input:
+%     in    - EEG data structure
+%     field - Fields you want to take
+% Output:
+%     out   - Data structure with fields combined
+% 
+% Min-Ho, Lee
+% mhlee@image.korea.ac.kr
+% 
+
+
+
 % in: structure
 % select necessary field from input structure "in"
 

@@ -1,6 +1,31 @@
 function [out_param str_function in_dat in_param type] = opt_funcParsing( str )
-%OPT_FUNCPASING Summary of this function goes here
-%   Detailed explanation goes here
+% opt_funcParsing:
+% 
+% Description:
+%     This function does parsing of a string
+% 
+% Example:
+%     [out_param str_function in_dat in_param in_type] = ...
+%         opt_funcParsing('[SMT, CSP_W, CSP_D]=func_csp(SMT,{"nPatterns", [3]})');
+% 
+% Input:
+%     str - string to parsing, mostly in a form of function command
+% Output:
+%     out_param    - string before '=', meaning mainly variable names of outputs
+%                    (ex. out_param={'SMT';'CSP_W';'CSP_D'})
+%     str_function - first string after '=', meaning mainly function name
+%                    (ex. str_function='func_csp')
+%     in_dat       - following string after str_function, between '(' and ','
+%                    (ex. in_dat={'SMT';''})
+%     in_param     - parameters in a cell
+%                    (ex. in_param={'nPatterns',3})
+%     type         - types of in_param ('string','numeric','assigned_variable','unassigned_variable')
+%                    (ex. type={'string','numeric'})
+% 
+% Min-Ho, Lee
+% mhlee@image.korea.ac.kr
+% 
+
 %% single input parameter (e.g. SMTfb=func_projection(SMTfb, CSP_W))
 %% make a division with "{" or "}" symbol
 %% The first parameter we consider it as data, and rest of it is parameter(struct, numeric etc. )

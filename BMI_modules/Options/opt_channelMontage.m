@@ -1,4 +1,19 @@
 function [ channel ] = opt_channelMontage( varargin )
+% opt_channelMontage:
+% 
+% Description:
+% 	This function gets positions of standard named electrodes.
+% 
+% Example:
+%     channel = opt_channelMontage();
+% 
+% Output:
+%     .origin - 9x11 cell with standard name of electrodes
+%     .label  - 9x11 cell with value of 1 where electrodes are, 0 the rest
+% 
+% Ji Hoon, Jeong
+% jh_jeong@korea.ac.kr
+% 
 
 channel.origin = {               '','','','Fp1','','','', 'Fp2','','','';
                                 '','','AF7', 'AF3','','','','AF4', 'AF8','','';

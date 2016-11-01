@@ -1,6 +1,22 @@
 function [ eeg ] = set_EEG_defualt(hdr, opt)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+% set_EEG_defualt:
+% 
+% Description:
+%     This function sets basic frame of eeg data structure.
+% 
+% Example:
+%     eeg=set_EEG_defualt(hdr,opt);
+% 
+% Input:
+%     hdr - header of the data
+%     opt - information of the data (device, marker, sampling frequency)
+% Output:
+%     eeg - eeg data structure, with basic frame
+% 
+% Min-ho Lee
+% mhlee@image.korea.ac.kr
+%
+
 
 eeg.x= zeros(hdr.NumberOfChannels,100000);
 
