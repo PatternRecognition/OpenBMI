@@ -1,3 +1,5 @@
+%%  OpenBMI ERSP function used EEGLAB open source toolbox code related in ERSP (timef.m)  
+%
 % timef() - Returns estimates and plots of mean event-related spectral
 %           perturbation (ERSP) and inter-trial coherence (ITC) changes
 %           across event-related trials (epochs) of a single input time series.
@@ -180,7 +182,7 @@
 % 03-08-02 debug & compare to old timef function -ad
 % 03-16-02 timeout automatically adjusted if too high -ad
 % 04-02-02 added 'coher' option -ad
-
+%%
 function [P,R,mbase,times,freqs,Pboot,Rboot,Rphase,PA] = timef2(X,frames,tlimits,Fs,varwin,varargin);
 
 % Note: undocumented arg PA is output of 'phsamp','on'

@@ -1,13 +1,16 @@
 function [ ersp ] = visual_ERSP( data, varargin )
-% ERSP : "Event-related spectral pergurbation" 
-% Measuring the average dynamic changes in amplitude of the broad band
-% EEG Frequency band
+% Description:  
+%   ERSP (Event-related spectral pergurbation) measures the average dynamic changes 
+%   in amplitude of the broad band EEG frequency spectrum as a function of time 
+%   relative to an experimental event 
 %
-% Synopsis:
+% Example code:
 %  [dat] = proc_ERSP(data , <OPT>)
 %
-% Arguments:
+% Input:
 %   data: Data structrue (ex) Epoched data structure
+%
+% Options:
 %   <OPT> : 
 %      .Channel - Selecting the interested channel in Time-Frequency domain
 %                 (e.g. {'Channel', {'C4'}})

@@ -1,20 +1,18 @@
 function [ dat ] = visual_spectrum( data , varargin )
-% visual_spectrum : It is the feature plots of data. This function can be
-% useful to see an overview of data according to time, frequency, and
-% channel. 
+% Description: 
+%   It is the feature plots of data. This function can be useful to see an 
+%   overview of data according to time, frequency, and channel. 
 %
-%
-% % Synopsis:
-%  [dat] = visual_spectrum(data , <OPT>)
-%
-% Example of synopsis about three types of domain:
+% Example Code:
 %    visuspect = visual_spectrum(SMT , {'Xaxis' , 'Frequency'; 'Yaxis' , 'Channel'});
 %    visuspect = visual_spectrum(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Channel'; 'Band' ,[8 10]});
 %    visuspect = visual_spectrum(SMT , {'Xaxis' , 'Time'; 'Yaxis' , 'Frequency'; 'Channel' ,{'C4'}});
 %
-% Arguments:
+% Input:
+%   [dat] = visual_spectrum(data , <OPT>)
 %   data: Data structrue (ex) Epoched data structure
-%   <OPT> : 
+% 
+% Option:    
 %      .Xaxis - selecting the domain what you interested in x axis  
 %                 (e.g. {'Xaxis' , 'Frequency'},{'Xaxis' , 'time'})
 %      .Yaxis - selecting the domain what you interested in y axis  
@@ -67,8 +65,8 @@ params(9) = opt.spectralSize/opt.spectralStep;
 %%
 C1_idx=find(dat.y_dec==1);
 C2_idx = find(dat.y_dec==2);
-C1=prep_selectTrials(dat,C1_idx);
-C2=prep_selectTrials(dat,C2_idx);
+C1=prep_selectTrials(dat,{'Index', C1_idx});
+C2=prep_selectTrials(dat,{'Index',C2_idx});
 for trial=1:size(C1.x,2)
     plotData1=C1.x(:,trial,:);
     plotData1=squeeze(plotData1);
