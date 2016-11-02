@@ -17,4 +17,3 @@ sumsqu2=sum(r.*r);
 G=((sum1+sum2)^2)/(n1+n2);
 
 erg=(sum1^2/n1+sum2^2/n2-G)/(sumsqu1+sumsqu2-G);
-
