@@ -1,7 +1,8 @@
 function [ dat_csp, CSP_W, CSP_D ] = func_csp( dat, varargin )
-% PROC_CSP Summary of this function goes here
-%
-% Thi
+% func_csp:
+%   Computes common spatial patterns (CSP) mehtods.
+% 	this version supports binary classes. Multi class csp version will be
+% 	updated soon.
 %
 % Example:
 %[SMT, CSP_W, CSP_D]=func_csp(SMT,{'nPatterns', [3]});
@@ -11,7 +12,15 @@ function [ dat_csp, CSP_W, CSP_D ] = func_csp( dat, varargin )
 %      dat - Data structure of epoched
 %
 % Options:
+%      nPatterns - number of patterns
 %      cov - 'normal' or 'average'
+%      score -'eigenvalue';
+
+% Returs:
+%      data_csp - Obtained data calculated by CSP function.
+%      CSP-W    - Values of CSP weight.
+%      CSP_D    - Values of CSP score.
+
 %
 
 if nargin==0

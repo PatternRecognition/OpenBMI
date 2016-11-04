@@ -1,6 +1,19 @@
 function [ filters ] = func_fbcsp( Dat, varargin )
-%FUNC_FBCSP Summary of this function goes here
-%   Detailed explanation goes here
+% func_fbcsp:
+%   Computes common spatial patterns (CSP) mehtods based filter bank. 
+%   Filter bank CSP function is finding optimal frequency ranges in binary
+%   class.Multi class version will be 	updated soon.
+% Example:
+%[SMT, CSP_W, CSP_D]=func_csp(SMT,{'Filters', [5 13],[13 20]});
+%
+% Input:
+%      dat - Data structure of epoched
+%     
+% Options:
+%      Filters - setting the filter's frequency ranges. 
+
+% Returs:
+%    filters   - finding ranges of obtimal frequncy.
 opt=opt_cellToStruct(varargin{:});
 
 if isstruct(Dat)

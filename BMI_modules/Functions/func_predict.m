@@ -1,6 +1,20 @@
 function [ cf_out ] = func_predict( in, varargin )
-%PROC_APPLY_CLASSIFIER Summary of this function goes here
-%   Detailed explanation goes here
+% func_predict:
+%     Predicting the features of data based on trained classifier.
+%     In this version, only producing the lda classifier. Other classifier algorithm will be updated.
+%     Also, finding func_train.
+% 
+% Example:
+%     func_predict(fv, {'classifier','lda'};
+%
+% Input:
+%     in- Data set of test 
+%
+% Options:
+%     classifier - setting the classifier
+%
+% Retuns:
+%     cf_out - result of testing output
 
 if isstruct(varargin{:})
     opt=varargin{:};    

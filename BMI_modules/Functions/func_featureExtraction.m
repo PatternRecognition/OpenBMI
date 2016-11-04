@@ -1,6 +1,16 @@
 function [ out ] = func_featureExtraction( dat, varargin )
-%PROC_FEAEXTRACTION Summary of this function goes here
-%   Detailed explanation goes here
+%func_featureExtraction:
+%    Feature extracting the epoched or continous data.
+% Example:
+%      out=func_featureExtraction(smt, {'feature','logvar'});
+%  Input:
+%      dat - Data structure of epoched
+%     
+% Options:
+%     feature - 'logvar' or 'erpmean'
+
+% Returs:
+%    out  - Extracted features.
 
 if iscell(varargin)
     opt=opt_cellToStruct(varargin{:});
