@@ -1,7 +1,8 @@
 function [out] = prep_average(dat)
 % prep_average (Pre-processing procedure):
 %
-% This function average the data for each class
+% Description:
+%     This function average the data for each class
 %
 % Example:
 % [out] = prep_average(dat)

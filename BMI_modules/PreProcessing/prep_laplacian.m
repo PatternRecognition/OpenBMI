@@ -1,5 +1,7 @@
 function [ dat, Lap ] = prep_laplacian( data, varargin )
-% prep_laplacian: 
+% prep_laplacian (Pre-processing procedure):
+% 
+% Description:
 %  This function recalculates the signal of selected channels by
 %  subtracting the average value of a set of surrounding electrodes.
 %  [Tandonnet et al., 2005]

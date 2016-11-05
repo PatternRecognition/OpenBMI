@@ -1,7 +1,8 @@
 function [ out ] = prep_deleteChannel(dat,varargin )
 % prep_deleteChannel (Pre-processing procedure):
 %
-% This function deletes data of specific channels from the data.
+% Description:
+%     This function deletes data of specific channels from the data.
 %
 % Example:
 % out = prep_deleteChannel(dat,{'Name',{'C3','C4'}})
@@ -11,6 +12,8 @@ function [ out ] = prep_deleteChannel(dat,varargin )
 %     dat - Continuous or segmented data structure
 % Option:
 %     'Name' or 'Index' - Name or index of channels to be deleted
+% Return:
+%     out - Data structure excluding specific channels
 %
 % Seon Min Kim, 07-2016
 % seonmin5055@gmail.com

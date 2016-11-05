@@ -1,6 +1,7 @@
 function [out] = prep_selectTrials(dat,varargin)
 % prep_selectTrials (Pre-processing procedure):
 % 
+% Description:
 % This function selects data of specified trials 
 % from continuous or epoched data.
 % 
@@ -42,7 +43,14 @@ idx = opt.Index;
 nd = ndims(dat.x);
 if nd == 3
     x = dat.x(:,idx,:);
-elseif nd ==2 || nd ==1
+elseif nd==2
+    if size(dat.chan,2)==1
+        x = dat.x(:,idx);
+        warning('OpenBMI: just 1 channel data?')
+    else
+        x=dat.x;
+    end
+elseif nd ==1
     x = dat.x;
 else
     warning('OpenBMI: Check for the data dimensionality')

@@ -1,6 +1,7 @@
 function [out] = prep_selectTime(dat, varargin)
 % prep_selectTime (Pre-processing procedure):
 %
+% Description:
 % This function selects the part of a specific time interval
 % from continuous or epoched data.
 % (i)  For continuous data, this function selects data in specifie time
@@ -75,11 +76,11 @@ if d == 3
     iv = [is:ie]-dat.ival(1)*dat.fs/1000+1;
     x = dat.x(iv,:,:);
     t = dat.t;
-    time = iv/dat.fs;
+    time = iv/dat.fs*1000;
     if a
-        y_dec = dat.y_dec(iv);
-        y_logic = dat.y_logic(:,iv);
-        y_class = dat.y_class(iv);
+        y_dec = dat.y_dec;
+        y_logic = dat.y_logic;
+        y_class = dat.y_class;
     end
 end
 

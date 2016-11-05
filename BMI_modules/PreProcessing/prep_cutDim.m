@@ -1,8 +1,9 @@
 function [out] = prep_cutDim(dat)
 % prep_cutDim (Pre-processing procedure):
 %
-% This function reduces dimensionality of the data, reducing all dimensions
-% except for the trial dimension.
+% Description:
+%     This function reduces dimensionality of the data, reducing all
+%     dimensions except for the trial dimension.
 %
 % Input:
 %     dat - Segmented data structure, or the data matrix itself

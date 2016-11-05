@@ -1,6 +1,7 @@
 function [out] = prep_selectChannels(dat, varargin)
 % prep_selectChannels (Pre-processing procedure):
 %
+% Description:
 % This function selects data of specified channels
 % from continuous or epoched data.
 %

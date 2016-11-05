@@ -1,7 +1,8 @@
 function [out] = prep_addTrials(dat1, dat2)
 % prep_addTrials (Pre-processing procedure):
 %
-% This function add the latter data(dat2) to the former data(dat1)
+% Description:
+%     This function add the latter data(dat2) to the former data(dat1)
 % 
 % Example:
 % [out] = prep_addTrials(dat1,dat2)

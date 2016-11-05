@@ -1,8 +1,8 @@
 function [out] = prep_normalize(dat,varargin)
 % prep_normalize (Pre-processing procedure):
 %
-% This function normalizes the feature vection. 
-% (Input should be two-dimensional data)
+% Description:
+%     This function normalizes the feature vection (Input should be two-dimensional data)
 %
 % Example:
 % [out] = prep_normalize(dat,{'Method','std'});

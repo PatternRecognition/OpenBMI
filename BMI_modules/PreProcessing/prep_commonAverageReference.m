@@ -1,5 +1,7 @@
 function [ CARfilter ] = prep_commonAverageReference( data, varargin )
 % prep_commonAverageReference: 
+% 
+% Description:
 %   Subtracting average value of the entire electrode (the common average) 
 %   from the interested channel. [D. J. McFarland et al., 1997]
 %

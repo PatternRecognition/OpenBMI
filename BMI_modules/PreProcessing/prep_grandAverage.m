@@ -1,6 +1,7 @@
 function [out] = prep_grandAverage(dat)
 % prep_grandAverage (Pre-processing procedure):
 %
+% Description:
 % This function averages the data across subjects. It is recommended that
 % input data be separated by each class in advance.
 %

@@ -1,6 +1,7 @@
 function [out] = prep_movingAverage(dat,varargin)
-% prep_movingAverage:
+% prep_movingAverage (Pre-processing procedure):
 % 
+% Description:
 % This function averages the data with moving time window
 % 
 % Example:

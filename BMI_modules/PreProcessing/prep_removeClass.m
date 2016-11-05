@@ -1,8 +1,23 @@
-function [ out ] = prep_removeClass( dat, varargin )
-%MRK_REMOVE_CLASS Summary of this function goes here
-%   Detailed explanation goes here
+function [ out ] = prep_removeClass( dat, class )
+% prep_removeClass (Pre-processing procedure):
+% 
+% Description:
+%     prep_removeClass removes specific classes
+% 
+% Examele:
+%     dat = prep_removeClass(dat,{'right','foot'});
+% 
+% Input:
+%     dat   - data structure
+%     class - class names you want to remove
+% 
+% Output:
+%     out - data structure, designated classes removed
+% 
+% Seon Min Kim, 11-2016
+% seonmin5055@gmail.com
 
-if iscellstr(varargin)
+if iscellstr(class)
     warning('check the class parameter, it shold be a string');
 end
 
@@ -12,18 +27,18 @@ elseif ndims(dat.x)==3
     type='smt';
 end
 
-tm=varargin{:};
+tm=class{:};
 if ischar(tm)
     rm_Class{1}=tm
 else
-    rm_Class=varargin{:};
+    rm_Class=class{:};
 end
 
 out=dat;
 for i=1:length(rm_Class)
     n_c=~ismember(dat.y_class, rm_Class{i});
-    msg=sprintf('OpenBMI: class "%s" is deleted',rm_Class{i});
-    disp(msg);
+%     msg=sprintf('OpenBMI: class "%s" is deleted',rm_Class{i});
+%     disp(msg);
     
     if strcmp(type, 'smt')
         if isfield(dat, 'x')

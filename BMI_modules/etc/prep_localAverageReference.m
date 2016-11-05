@@ -1,4 +1,25 @@
 function [ Lar ] = prep_localAverageReference( data, varargin )
+% prep_localAverageReference (Pre-processing procedure):
+% 
+% Description:
+%     This function 
+% 
+% Example:
+%     LAR = prep_localAverageReference( data, {} );
+% 
+% Input:
+%     data - 
+% Option:
+%     Channel    -
+%     filterType - '1', '1.5', '2'
+% 
+% Output:
+%     x    - 
+%     clab - 
+% 
+% Ji Hoon, Jeong
+% jh_jeong@korea.ac.kr
+%
 
 dat = data;
 opt = opt_cellToStruct(varargin{:});

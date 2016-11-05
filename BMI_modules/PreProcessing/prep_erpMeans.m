@@ -1,5 +1,9 @@
 function [out] = prep_erpMeans(dat,varargin)
-% This function calculates the mean in specified time interval for each epoch
+% prep_erpMeans (Pre-processing procedure):
+% 
+% Description:
+%     This function calculates the mean in specified time interval for each
+%     epoch.
 %
 % Example:
 % out = prep_erpMeans(dat,{'nMeans',20})
@@ -16,6 +20,8 @@ function [out] = prep_erpMeans(dat,varargin)
 %     nMeans - The number of means you want to calculate in a single epoch
 %     nSamples - The number of samples used in calculating a single mean value
 % 
+% Return:
+%     out - Mean values of eeg signal
 % 
 % Seon Min Kim, 04-2016
 % seonmin5055@gmail.com

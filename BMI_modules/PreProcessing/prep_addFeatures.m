@@ -1,7 +1,9 @@
 function [out] = prep_addFeatures(dat1,dat2)
 % prep_addFeatures (Pre-processing procedure):
 %
-% This function add the latter feature vector(dat2) to the former one(dat1)
+% Description:
+%     This function add the latter feature vector(dat2) 
+%     to the former one(dat1)
 %
 % Example:
 % [out] = prep_addFeatures(dat1,dat2)

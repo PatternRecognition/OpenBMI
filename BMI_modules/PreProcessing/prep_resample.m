@@ -1,6 +1,7 @@
 function [out] = prep_resample(dat, fs, varargin)
 % prep_resample (Pre-processing procedure):
 % 
+% Description:
 % This function changes the sampling rate of the given EEG signal.
 % It can do both up/downsampling, considering frequency up to 3 digits.
 %

@@ -1,9 +1,23 @@
 function [ dat ] = prep_filter( dat, varargin )
-% prep_filter: filter the data within specified frequency band
+% prep_filter (Pre-processing procedure):
+% 
+% Description:
+%     This function filters the data within specified frequency band
 % 
 % Example:
 %    EEG.data=prep_filter(EEG.data, {'frequency', [7 13];'fs',100});
 % 
+% Input:
+%     dat       - EEG data structure
+% Option:
+%     frequency - Frequency range that you want to filter
+%     fs        - Sampling frequency
+% Return:
+%     dat       - Spectrally filtered data
+% 
+% Min-ho Lee
+% mhlee@image.korea.ac.kr
+%
 
 if iscell(varargin{:})
     opt=opt_cellToStruct(varargin{:});

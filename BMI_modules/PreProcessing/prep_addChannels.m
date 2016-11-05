@@ -1,8 +1,9 @@
 function [out] = prep_addChannels(dat1, dat2, varargin)
 % prep_addChannels (Pre-processing procedure):
 %
-% This function add data of specific channels from latter data(dat2) to the
-% former data(dat1).
+% Description:
+%     This function add data of specific channels from latter data(dat2) to
+%     the former data(dat1).
 %
 % Example:
 % out = prep_addChannels(dat1,dat2,{'Name',{'C3','C4'}})

@@ -1,8 +1,9 @@
 function [out] = prep_baseline(dat,varargin)
 % prep_baseline (Pre-processing procedure):
 % 
-% This function corrects the baseline by subtracting average amplitude in
-% the specified interval from a segmented signal.
+% Description:
+%     This function corrects the baseline by subtracting average amplitude
+%     in the specified interval from a segmented signal.
 %
 % Example:
 % [out] = prep_baseline(dat,{'Time',[-100 0];'Criterion','class'})

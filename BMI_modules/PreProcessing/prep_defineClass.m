@@ -1,11 +1,27 @@
 function [ marker, old_marker] = prep_defineClass(marker, varargin )
-% prep_defineClass defines number of markers to class name, 
-% deleting undefined classes.
+% prep_defineClass (Pre-processing procedure):
+% 
+% Description:
+%     This function defines numbers of markers to the class names, 
+%     deleting undefined classes.
 % 
 % Example:
 %  [marker,original]=prep_defineClass(marker,{'1','left';'2','right'}); 
 %  [marker]=prep_defineClass(marker,{'1','left';'2','right';'3','foot'}); 
 % 
+% Input:
+%     marker     - Loaded marker information, (See Load_BV_mrk)
+%     varargin   - Nx2 size cell. Class names should be paird with their
+%                  corresponding trigger numbers.
+% 
+% Output:
+%     marker     - Renewed marker, in a form of OpenBMI
+%     old_marker - Same as input marker
+% 
+% Min-Ho, Lee
+% mhlee@image.korea.ac.kr
+% 
+
 if ~isfield(marker,'y') && isfield(marker,'t') && isfield(marker,'class') 
     warining('Parameter is missing: .y .t .class');
 end

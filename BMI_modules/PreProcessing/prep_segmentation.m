@@ -1,9 +1,24 @@
 function [ dat ] = prep_segmentation( dat, varargin )
-% prep_segmentation: segmenting the data in a specific time interval based
-% on the marked point
+% prep_segmentation (Pre-processing procedure):
+% 
+% Description:
+%     This function segments the data in a specific time interval based on
+%     the marked point.
 % 
 % Example:
-%    SMT=prep_segmentation(CNT, {"interval", [750 3500]})
+%    SMT=prep_segmentation(CNT, {'interval', [750 3500]})
+% 
+% Input:
+%     dat - continuous EEG data structure
+% Option:
+%     interval - time interval
+% Output:
+%     dat - segmented EEG data structure
+% 
+% Min-Ho, Lee
+% mhlee@image.korea.ac.kr
+% 
+
 
 if iscell(varargin{:})
     opt=opt_cellToStruct(varargin{:});

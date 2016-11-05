@@ -1,8 +1,9 @@
 function [out] = prep_envelope(dat,varargin)
 % prep_envelope (Pre-processing procedure):
 % 
-% This function smoothly outlines the extremes of an oscillating signal,
-% continuous or epoched. 
+% Description:
+%     This function smoothly outlines the extremes of an oscillating
+%     signal, continuous or epoched.
 %
 % Example:
 % [out] = prep_envelope(dat)
