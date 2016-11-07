@@ -21,6 +21,12 @@ function [ cnt ] = opt_eegStruct( dat, field )
 % mhlee@image.korea.ac.kr
 %
 
+if isempty(field)
+    error('OpenBMI: There''s no field information')
+elseif ~prod(ismember(field,{'x','t','fs','y_dec','y_logic','y_class','class', 'chan'}))
+    error('OpenBMI: Unacceptable field name')
+end
+
 for i=1:length(field)
     [cnt(:).(field{i})]=[];
 end

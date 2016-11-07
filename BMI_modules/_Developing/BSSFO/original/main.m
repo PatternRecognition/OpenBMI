@@ -45,7 +45,7 @@ cnt2=opt_eegStruct({EEG2.data, EEG2.marker, EEG2.info}, field);
 % freq=[8 12]
 % freq=[4 8]
 % % cnt1=prep_filter(cnt1, {'frequency', freq});
-cnt1=prep_selectClasses(cnt1,{'Class',{'left','right'}});
+cnt1=prep_selectClass(cnt1,{'class',{'left','right'}});
 smt1=prep_segmentation(cnt1, {'interval', time});
 
 [FilterBand]=func_bssfo(smt1, {'classes', {'right', 'left'};'frequency', {[7 13],[14 30]}; 'std', {5, 25}; ...
@@ -58,7 +58,7 @@ smt1=prep_segmentation(flt_cnt1, {'interval', time});
 
 
 flt_cnt2=prep_filter(cnt2, {'frequency', freq});
-flt_cnt2=prep_selectClasses(flt_cnt2,{'Class',{'left','right'}});
+flt_cnt2=prep_selectClass(flt_cnt2,{'class',{'left','right'}});
 smt2=prep_segmentation(flt_cnt2, {'interval', time});
 
 %% CSP

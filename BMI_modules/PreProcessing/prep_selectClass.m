@@ -23,6 +23,21 @@ end
 if ~isfield(opt, 'class')
     error('OpenBMI: Classes should be specified in a correct form');
 end
+if ischar(opt.class) && strcmp(opt.class,'all')
+    out=dat; sprintf('you chose all classes');return
+elseif iscell(opt.class) && numel(opt.class)==1 && strcmp(opt.class{1},'all')
+    out=dat; sprintf('you chose all classes');return
+end
+
+
+
+% % smkim
+% cls_idx = find(ismember(dat.class(:,2),opt.class));
+% tr_idx = find(ismember(dat.y_dec,cls_idx));
+% out = prep_selectTrials(dat,{'Index',tr_idx});
+% out.y_logic(~ismember(dat.class(:,2),opt.class),:) = [];
+
+
 
 % if ndims(dat.x)==2
 %     type='cnt';
