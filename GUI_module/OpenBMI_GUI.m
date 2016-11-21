@@ -290,7 +290,7 @@ str={'Motor Imagery','P300 speller','SSVEP'};
     'SelectionMode','single','ListString',str)
 switch Selection
     case 1 % MI
-        BCI_Racing
+        paradigm_MI
     case 2 % speller
         paradigm_p300
     case 3 % ssvep
