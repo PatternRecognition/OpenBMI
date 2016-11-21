@@ -1,7 +1,35 @@
 function erg = rsqu(q, r)
-%RSQU   erg=rsqu(r, q) computes the r2-value for
-%       two one-dimensional distributions given by
-%       the vectors q and r
+% Description:  
+%   rsqu(r, q) computes the r2-value for two one-dimensional distributions 
+%   given by the vectors q and r
+%
+% Example code:
+%  [erg] = rsqu(q , r)
+%
+% Input:
+%   q: Data structrue (ex) Epoched data structure
+%   r: Data structrue (ex) Epoched data structure
+%
+% Options:
+%
+% Return:
+%    erg:  r2-values
+%
+% See also:
+%
+% Reference:
+%           G. Schalk, D.J. McFarland, T. Hinterberger, N. Birbaumer, and
+%           J. R. Wolpaw,"BCI2000: A General-Purpose Brain-Computer
+%           Interface (BCI) System, IEEE Transactions on Biomedical
+%           Engineering, Vol. 51, No. 6, 2004, pp.1034-1043.
+
+%         We used BCI2000 open source toolbox code related in r-square value (rsqu.m)  
+%
+%  
+% Ji Hoon, Jeong
+% jh_jeong@korea.ac.kr
+
+%%
 
 
 q=double(q);
