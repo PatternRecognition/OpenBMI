@@ -26,15 +26,14 @@ if ~isfield(dat,'y_dec') || ~isfield(dat,'y_logic') || ~isfield(dat,'y_class')
     return
 end
 
-if ndims(dat.x)~=3
-    warning('OpenBMI: Data must be segmented. Is the number of channel 1?')
-%     return
+if ndims(dat.x)~=3 && size(dat.chan,2)~=1
+    warning('OpenBMI: Data must be segmented')
 end
 
 n_cls = size(dat.y_logic,1);
 tri_cls = cell(1,n_cls);
 for cls = 1:n_cls
-    tri_cls{cls} = mean(dat.x(:,(dat.y_dec==cls),:),2);
+    tri_cls{cls} = mean(dat.x(:,(dat.y_dec==str2double(dat.class{cls,1})),:),2);
 end
 x = cat(2,tri_cls{1:end});
 

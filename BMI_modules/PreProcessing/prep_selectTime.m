@@ -52,7 +52,21 @@ d = ndims(dat.x);
 is = ceil(ival(1)*dat.fs/1000);
 ie = floor(ival(2)*dat.fs/1000);
 
-if d == 2
+if d == 3 || (d==2 && length(dat.chan)==1)
+    if ival(1)<dat.ival(1) || ival(2)>dat.ival(end)
+        warning('OpenBMI: Selected time interval is out of epoched interval')
+        return
+    end
+    iv = [is:ie]-dat.ival(1)*dat.fs/1000+1;
+    x = dat.x(iv,:,:);
+    t = dat.t;
+    time = iv/dat.fs*1000;
+    if a
+        y_dec = dat.y_dec;
+        y_logic = dat.y_logic;
+        y_class = dat.y_class;
+    end
+elseif d == 2 && length(dat.chan)>1
     if ival(1)<0 || ival(2)/1000>size(dat.x,1)/dat.fs
         warning('OpenBMI: Selected time interval is out of time range')
         return
@@ -68,22 +82,6 @@ if d == 2
         y_class = dat.y_class;
     end
 end
-if d == 3
-    if ival(1)<dat.ival(1) || ival(2)>dat.ival(end)
-        warning('OpenBMI: Selected time interval is out of epoched interval')
-        return
-    end
-    iv = [is:ie]-dat.ival(1)*dat.fs/1000+1;
-    x = dat.x(iv,:,:);
-    t = dat.t;
-    time = iv/dat.fs*1000;
-    if a
-        y_dec = dat.y_dec;
-        y_logic = dat.y_logic;
-        y_class = dat.y_class;
-    end
-end
-
 out = rmfield(dat,{'x','t'});
 out.x = x;
 out.t = t;

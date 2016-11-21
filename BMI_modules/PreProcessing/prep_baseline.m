@@ -24,8 +24,8 @@ function [out] = prep_baseline(dat,varargin)
 
 if ~isfield(dat,'x')
     warning('OpenBMI: Data must have fields named ''x''');return
-elseif ndims(dat.x)~=3
-    warning('OpenBMI: Data must be segmented. Is the number of channel 1?');
+elseif ndims(dat.x)~=3 && size(dat.chan,2)~=1
+    warning('OpenBMI: Data must be segmented');
 elseif ~isfield(dat,'ival')
     warning('OpenBMI: Data must have fields named ''ival''');return
 elseif ~isfield(dat,'fs')
