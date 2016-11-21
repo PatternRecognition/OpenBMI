@@ -2,20 +2,21 @@ function [ Lar ] = prep_localAverageReference( data, varargin )
 % prep_localAverageReference (Pre-processing procedure):
 % 
 % Description:
-%     This function 
-% 
+%    Reference to local average; subtracting average value of all electrodes within a given radius 
+
 % Example:
-%     LAR = prep_localAverageReference( data, {} );
+%     Lar = prep_localAverageReference(data, {'radius', '1'; 'channel' , 'Cz'});
 % 
 % Input:
 %     data - 
 % Option:
-%     Channel    -
-%     filterType - '1', '1.5', '2'
+%     Channel   - selected channels to apply this function
+%     radius    -  For a radius ofwithin a given boundary : 
+%                  '1' is the neighborhood of Cz extends from C1 and C2
+%                  '2' is the neighborhood of Cz extends from C3 and C4
 % 
 % Output:
-%     x    - 
-%     clab - 
+%   Lar : Filtered data using Laplacian filter in selected channels
 % 
 % Ji Hoon, Jeong
 % jh_jeong@korea.ac.kr

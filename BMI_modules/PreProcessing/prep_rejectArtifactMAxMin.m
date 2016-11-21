@@ -1,5 +1,34 @@
 function [ out ] = prep_rejectArtifactMAxMin( dat, varargin )
-
+% prep_rejectArtifactMAxMin: 
+% 
+% Description:
+%   Rejecting the trials include artifact using the selected threshold which are composed by 
+%   the maximum and maximum amplitude powers
+%
+% Example:
+%  [rejected Data] = prep_rejectArtifactMAxMin(data,{'threshold','300' ; channel,{'Cz', 'C1', 'C2'}})
+%
+% Input:
+%   data: Data structure, segmented or raw EEG data
+%
+% Option: 
+%   threshold  - selected the threshold which the user can be rejected the
+%   data
+%   channel    - selected channels to apply this function 
+% 
+% Return:
+%    rejected Data - Rejected data in selected channel
+%
+% Reference:
+%   C. A. Kothe, and S. Makeig., "BCILAB: a platform for brain?computer interface development," 
+%   Journal of Neural Engineering, Vol. 10, No. 5, 2013, pp. 056014.
+% 
+%   We have refered the BCILAB open source toolbox with respect to the  artifact rejection
+%
+% Ji Hoon, Jeong
+% jh_jeong@korea.ac.kr
+%
+%%
 % dat = data;
 opt = opt_cellToStruct(varargin{:});
 
