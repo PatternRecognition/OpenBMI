@@ -1,0 +1,15 @@
+IO_ADD=hex2dec('DFF8'); = DFF8
+
+Screen size = 1280 720
+
+
+test_character = ['BRAIN']
+
+nsequence= 10
+
+screenNum
+t_text_size
+n_text_size
+
+sti_Times
+sti_Interval
