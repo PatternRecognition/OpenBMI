@@ -1,4 +1,23 @@
 function [ output_args ] = Makeparadigm_MI( varargin )
+% Makeparadigm_MI (Experimental paradigm):
+% 
+% Description:
+%   Basic motor imagery experiment paradigm using psychtoolbox.
+%   It shows a cross, an arrow, and blank screen alternately.
+% 
+% Example:
+%   Makeparadigm_MI({'time_cross',1.5;'time_sti',60;'time_blank',5;'num_trial',1;'num_class',3});
+% 
+% Input: (Nx2 size, cell-type)
+%   time_cross  - time for concentration, showing a cross [s]
+%   time_sti    - time for a stimulus, showing an arrow (right, left, or down) [s]
+%   time_blank  - time for rest, showing nothing but gray screen [s]
+%   num_trial   - number of trials per class
+%   num_class   - number of class you want, 1 to 3, (right, left, and foot)
+%   num_screen  - number of screen to show 
+%   screen_size - size of window showing experimental stimulus
+%                 'full' or matrix (e.g.[0 0 300 300])
+% 
 
 opt=opt_cellToStruct(varargin{:});
 
@@ -8,15 +27,15 @@ if ~isfield(opt,'time_sti'),    time_sti=4;      else time_sti=opt.time_sti;    
 if ~isfield(opt,'time_cross'),  time_cross=3;    else time_cross=opt.time_cross;  end
 if ~isfield(opt,'time_blank'),  time_blank=3;    else time_blank=opt.time_blank;  end
 if ~isfield(opt,'num_trial'),   num_trial=50;    else num_trial=opt.num_trial;    end
-if ~isfield(opt,'time_jitter'), time_jitter=0.1; else time_jitter=opt.time_jitter;end
+% if ~isfield(opt,'time_jitter'), time_jitter=0.1; else time_jitter=opt.time_jitter;end
 if ~isfield(opt,'num_class'),   num_class=3;     else num_class=opt.num_class;    end
-screenNumber=2;
+% screenNumber=2;
 
 %% screen setting
 screens=Screen('Screens');
-if ~isfield(opt,'num_screen'),screenNumber=max(screens);end
-if ~isfield(opt,'screen_size'),screen_size='full';end
-if ~isfield(opt,'screen_type'),screen_type='window';end
+if ~isfield(opt,'num_screen'),screenNumber=max(screens); else screenNumber=opt.num_screen; end
+if ~isfield(opt,'screen_size'),screen_size='full'; else screen_size=opt.screen_size; end
+% if ~isfield(opt,'screen_type'),screen_type='window'; else screen_type=opt.screen_type; end
 
 %% beep setting
 beep='on';
@@ -52,12 +71,12 @@ end
 
 %% psychtoolbox setting
 gray=GrayIndex(screenNumber);
-screenRes = [0 0 300 300];
-% if strcmp(screen_size,'full')
+% screenRes = [0 0 300 300];
+if strcmp(screen_size,'full')
     [w, wRect]=Screen('OpenWindow',screenNumber, gray);
-% else
-%     [w, wRect]=Screen('OpenWindow',screenNumber, gray, screenRes);
-% end
+else
+    [w, wRect]=Screen('OpenWindow',screenNumber, gray, screen_size);
+end
 
 %% order of stimulus (random)
 for i=1:num_class

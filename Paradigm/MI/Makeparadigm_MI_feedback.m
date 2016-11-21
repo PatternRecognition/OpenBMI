@@ -1,14 +1,38 @@
 function [ output_args ] = Makeparadigm_MI_feedback(weight, bias, FOOTfb, varargin )
+% Makeparadigm_MI_feedback (Experimental paradigm):
+% 
+% Description:
+%   Basic motor imagery experiment paradigm using psychtoolbox.
+%   It shows a cross, an arrow, and blank screen alternately.
+%   As a feedback, red cross at center moves according to classified
+%   results in real time.
+% 
+% Example:
+%   Makeparadigm_MI_feedback(weight, bias, FOOTfb, {'time_sti',4;'time_blank',3;'time_cross',3;'num_trial',50;'num_class',3});
+% 
+% Input:
+%   weight - 1x2 vector
+%   bias   - 1x2 vector
+%   FOOTfb - 2 or 3
+% Option: (Nx2 size, cell-type)
+%   time_cross  - time for concentration, showing a cross [s]
+%   time_sti    - time for a stimulus, showing an arrow (right, left, or down) [s]
+%   time_blank  - time for rest, showing nothing but gray screen [s]
+%   num_trial   - number of trials per class
+%   num_class   - number of class you want, 1 to 3, (right, left, and foot)
+%   num_screen  - number of screen to show 
+%   screen_size - size of window showing experimental stimulus
+%                 'full' or matrix (e.g.[0 0 300 300])
+% 
 
 opt=opt_cellToStruct(varargin{:});
-
 
 %% default setting
 if ~isfield(opt,'time_sti'),    time_sti=4;      else time_sti=opt.time_sti;      end
 if ~isfield(opt,'time_cross'),  time_cross=3;    else time_cross=opt.time_cross;  end
 if ~isfield(opt,'time_blank'),  time_blank=3;    else time_blank=opt.time_blank;  end
 if ~isfield(opt,'num_trial'),   num_trial=50;    else num_trial=opt.num_trial;    end
-if ~isfield(opt,'time_jitter'), time_jitter=0.1; else time_jitter=opt.time_jitter;end
+% if ~isfield(opt,'time_jitter'), time_jitter=0.1; else time_jitter=opt.time_jitter;end
 if ~isfield(opt,'num_class'),   num_class=3;     else num_class=opt.num_class;    end
 
 %% trigger setting
@@ -50,11 +74,16 @@ escapeKey = KbName('esc');
 waitKey=KbName('s');
 
 %% screen setting (gray)
-screenRes = [0 0 640 480];
+% screenRes = [0 0 640 480];
 screens=Screen('Screens');
-screenNumber=max(screens);
+if ~isfield(opt,'num_screen'),screenNumber=max(screens); else screenNumber=opt.num_screen; end
+if ~isfield(opt,'screen_size'),screen_size='full'; else screen_size=opt.screen_size; end
 gray=GrayIndex(screenNumber);
-[w, wRect]=Screen('OpenWindow',screenNumber, gray);
+if strcmp(screen_size,'full')
+    [w, wRect]=Screen('OpenWindow',screenNumber, gray);
+else
+    [w, wRect]=Screen('OpenWindow',screenNumber, gray, screen_size);
+end
 [X,Y] = RectCenter(wRect);
 
 %% fixation cross

@@ -1,6 +1,17 @@
 function [flickering_order]=Makeparadigm_speller( opt,varargin )
-% original code:
-%   C:\Users\BCI_STAR_LAB\Desktop\¿À¸ñ´«ÀÌ\functions\Hybrid_P300_online
+% Makeparadigm_speller (Experimental paradigm):
+% 
+% Description:
+%   Basic p300 speller experiment paradigm using psychtoolbox.
+%   It shows 6x6 speller.
+% 
+% Example:
+%   Makeparadigm_speller({'text','MACHINE_LEARNING'},-1)
+% 
+% Input: (Nx2 size, cell-type)
+%   text - text you want to write
+% 
+
 
 global IO_LIB IO_ADD
 IO_LIB=which('inpoutx64.dll');

@@ -1,4 +1,26 @@
 function Makeparadigm_SSVEP (varargin)
+% Makeparadigm_SSVEP (Experimental paradigm):
+% 
+% Description:
+%   Basic SSVEP experiment paradigm using psychtoolbox.
+%   It shows flickering boxes. Before flickering, random target is indicated in yellow.
+% 
+% Example:
+%   Makeparadigm_SSVEP ({'time_sti',5;'num_trial',10;'time_rest',3;'freq',[7.5 10 12 15 20];'boxSize',150;'betweenBox',200});
+% 
+% Input: (Nx2 size, cell-type)
+%   time_sti   - time for a stimulus [s]
+%   time_rest  - time for rest, showing nothing but black screen [s]
+%   color      - RGB color of stimulus box (e.g.[255 255 255])
+%   num_trial  - number of trials per class
+%   freq       - number of classes you want, from 1 to 5 (up,left,center,right,down)
+%   boxSize    - size of stimulus box [pixel]
+%   betweenBox - distance between stimulus boxes [pixel]
+%   num_screen  - number of screen to show 
+%   screen_size - size of window showing experimental stimulus
+%                 'full' or matrix (e.g.[0 0 300 300])
+% 
+
 
 %% variables
 in=opt_cellToStruct(varargin{:});
@@ -15,10 +37,16 @@ IO_ADDR=hex2dec('D010');
 IO_LIB=which('inpoutx64.dll');
 
 %% psychtoolbox
-screenNum = 2;
-% screens = Screen('Screens'); %% ???????
-[w, rect] = Screen('OpenWindow', screenNum,[0 0 1680 1050]);
+% screenNum = 2;
+if ~isfield(opt,'num_screen'),num_screen=max(screens); else num_screen=opt.num_screen; end
+if ~isfield(opt,'screen_size'),screen_size='full'; else screen_size=opt.screen_size; end
 black = BlackIndex(w);
+if strcmp(screen_size,'full')
+    [w, wRect]=Screen('OpenWindow',screenNumber, black);
+else
+    [w, wRect]=Screen('OpenWindow',screenNumber, black, screen_size);
+end
+% [w, rect] = Screen('OpenWindow', num_screen,[0 0 1680 1050]);
 Screen('FillRect', w, black);
 
 %% frequency
