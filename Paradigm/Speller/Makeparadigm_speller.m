@@ -11,8 +11,6 @@ function [flickering_order]=Makeparadigm_speller( opt,varargin )
 % Input: (Nx2 size, cell-type)
 %   text - text you want to write
 % 
-
-
 global IO_LIB IO_ADD
 IO_LIB=which('inpoutx64.dll');
 IO_ADD=hex2dec('D010');
@@ -37,10 +35,7 @@ waitKey=KbName('s');
 test_character_show = opt.text;
 test_character = opt.text;
 
-
-
-
-%% (smkim 수정) flickering order가 fix 되어 있는 것 수정
+%% Random flicker order
 spell_num=reshape(1:36,[6,6]);
 flickering_order=zeros(12,10,length(test_character)); % (#flick/seq)x(#seq)x(#char)
 cell_order_all=zeros(length(flickering_order(:)),6);
