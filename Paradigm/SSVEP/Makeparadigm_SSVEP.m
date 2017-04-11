@@ -1,7 +1,7 @@
 function Makeparadigm_SSVEP (varargin)
 % Makeparadigm_SSVEP (Experimental paradigm):
 % 
-% Description:
+% Description :
 %   Basic SSVEP experiment paradigm using psychtoolbox.
 %   It shows flickering boxes. Before flickering, random target is indicated in yellow.
 % 
