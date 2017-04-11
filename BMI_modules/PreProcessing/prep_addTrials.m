@@ -58,6 +58,10 @@ switch dim1
         elseif ~isequal(size(dat1.x,3),size(dat2.x,3))
             warning('OpenBMI: Unmatched the number of channels')
             return
+        elseif isfield(dat1,'ival') && isfield(dat2,'ival')
+            if dat1.ival~=dat2.ival
+                warning('OpenBMI'),return
+            end
         end
 end
 
@@ -82,8 +86,8 @@ if isfield(dat1,'y_dec') && isfield(dat2,'y_dec')
     out.y_dec = cat(2,dat1.y_dec,dat2.y_dec);
 end
 
-if isfield(dat1,'y_logic') && isfield(dat2,'y_logic')
-    out.y_logic = cat(2,dat1.y_logic,dat2.y_logic);
+if isfield(dat1,'eog') && isfield(dat2,'eog')
+    out.eog = cat(2,dat1.eog,dat2.eog);
 end
 
 if isfield(dat1,'y_class') && isfield(dat2,'y_class')
@@ -92,9 +96,26 @@ end
 
 if isfield(dat1,'class') && isfield(dat2,'class')
     if ~isequal(dat1.class,dat2.class)
-        warning ('OpenBMI: Unmatched class')
-        out.class = cat(1,dat1.class,dat2.class);   % Need to be modified. (for duplicated entries)
+        
+        tt=ismember(dat2.class(:,2),dat1.class(:,2));
+        if ~sum(tt)
+            out.class = cat(1,dat1.class,dat2.class);
+        else
+            out.class = cat(1,dat1.class,dat2.class(~tt,:));
+        end
     else
         out.class = dat1.class;
     end
 end
+
+if isfield(dat1,'y_logic') && isfield(dat2,'y_logic')
+s=repmat((1:size(out.class,1))',[1,length(out.y_class)]);
+for i=1:size(out.class,1),out.y_logic(i,:)=(out.y_dec==s(i,:));end
+end
+
+if isfield(dat1,'weight') && isfield(dat2,'weight')
+    out.weight=cat(2,dat1.weight,dat2.weight);
+end
+
+out.chan = dat1.chan;
+if isfield(dat1,'ival'), out.ival = dat1.ival; end
