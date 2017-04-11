@@ -14,10 +14,8 @@ elseif isnumeric(opt.channel)
 elseif ischar(opt.channel) || iscell(opt.channel)
     channel=find(ismember(smt.chan,opt.channel));
 end
-
 [~,nTrial,~]=size(smt.x);
-
-%% cca
+%% adjusting CCA algorithm
 t=opt.time; f=opt.frequency;
 for i=1:length(f)
     Y{i}=[sin(2*pi*f(i)*t);cos(2*pi*f(i)*t);sin(2*pi*2*f(i)*t);cos(2*pi*2*f(i)*t);];
