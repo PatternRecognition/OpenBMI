@@ -1,0 +1,42 @@
+function [ eeg ] = Load_BP_data( file, hdr )
+%LOAD_BP_DATA Summary of this function goes here
+%   Detailed explanation goes here
+global BMI
+
+[fid, message] = fopen(fullfile(BMI.EEG_RAW_DIR, [file '.eeg']));
+if fid == -1
+    [fid, message] = fopen(fullfile(pathname, lower(filename)));
+    if fid == -1
+        error(message)
+    end
+end;
+
+% Binary Infos %BCILAB
+if strcmpi(lower(hdr.DataFormat), 'binary')
+    switch lower(hdr.BinaryFormat)
+        case 'int_16',        binformat = 'int16'; bps = 2;
+        case 'uint_16',       binformat = 'uint16'; bps = 2;
+        case 'ieee_float_32', binformat = 'float32'; bps = 4;
+        otherwise, error('Unsupported binary format');
+    end
+end
+SampleRates=0;
+fseek(fid, 0, 'eof');
+hdr.Datapoints = ftell(fid) / (hdr.NumberOfChannels * bps);
+
+fseek(fid, SampleRates * hdr.NumberOfChannels * bps, 'bof');
+eeg.cnt= fread(fid, [hdr.NumberOfChannels, hdr.Datapoints], [binformat '=>float32']);
+fclose(fid);
+
+% Convert to EEG.data to double for MATLAB < R14
+if str2double(version('-release')) < 14
+    EEG.data = double(EEG.data);
+end
+
+%re-scale
+for chan=1:length(hdr.NumberOfChannels)
+    eeg.cnt(chan,:)=eeg.cnt(chan,:)*hdr.ChannelResolution(chan)
+end
+
+end
+
