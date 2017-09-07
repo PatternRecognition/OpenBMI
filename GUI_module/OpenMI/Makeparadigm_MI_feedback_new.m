@@ -1,4 +1,4 @@
-function [ output_args ] = Makeparadigm_MI_feedback_yj(varargin )
+function [ output_args ] = Makeparadigm_MI_feedback_new(varargin )
 
 opt=opt_cellToStruct(varargin{:});
 n1=0;n2=0;n3=0;

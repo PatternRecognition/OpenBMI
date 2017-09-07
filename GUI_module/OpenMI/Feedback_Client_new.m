@@ -1,4 +1,4 @@
-function [ output_args ] = Feedback_Client_yjj( CSP, LDA, band,fs,t_stimulus,hh,hh1, varargin )
+function [ output_args ] = Feedback_Client_new( CSP, LDA, band,fs,t_stimulus,hh,hh1, varargin )
 
 opt=opt_cellToStruct(varargin{:});
 if ~isfield(opt,'channel')

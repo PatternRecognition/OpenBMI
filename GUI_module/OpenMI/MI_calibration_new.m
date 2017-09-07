@@ -1,4 +1,4 @@
-function [LOSS, CSP, LDA] = MI_calibration_yj(EEG,band,fs,interval,varargin)
+function [LOSS, CSP, LDA] = MI_calibration_new(EEG,band,fs,interval,varargin)
 
 opt=opt_cellToStruct(varargin{:});
 cls=opt.nClass;

@@ -1,4 +1,4 @@
-function [ output_args ] = Makeparadigm_MI_yj(varargin)
+function [ output_args ] = Makeparadigm_MI_new(varargin)
 
 opt=opt_cellToStruct(varargin{:});
 n1=0;n2=0;n3=0;

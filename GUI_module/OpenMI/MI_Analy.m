@@ -465,9 +465,9 @@ channel_index=1:32; % (FC1~6,C1~6,Cz,CP1~6)
 %                17, 18, 19, 20, 52, 51, 50 ...
 %                23, 24, 25,     48, 47, 46]; % (FC1~6,C1~6,Cz,CP1~6) 19개
 % 클래스 1개일때, 2개일때, 3개일때... 어떤 클래스 선택됫는지 그거 해줘야됨
-[LOSS, CSP, LDA]=MI_calibration_yj(EEG, band, fs, Interval, {'nClass',nClass;'channel',channel_index});
+[LOSS, CSP, LDA]=MI_calibration_new(EEG, band, fs, Interval, {'nClass',nClass;'channel',channel_index});
 
-Feedback_Client_yjj(CSP, LDA, band, fs, t_stimulus,handles.Graph, handles.Graph1,{'buffer_size',5000; 'data_size',1000; 'channel',channel_index; 'feedback_freq',100/1000; 'TCPIP','on'});
+Feedback_Client_new(CSP, LDA, band, fs, t_stimulus,handles.Graph, handles.Graph1,{'buffer_size',5000; 'data_size',1000; 'channel',channel_index; 'feedback_freq',100/1000; 'TCPIP','on'});
 
 
 
