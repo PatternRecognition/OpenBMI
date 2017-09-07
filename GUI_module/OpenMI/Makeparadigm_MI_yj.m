@@ -1,4 +1,4 @@
-function [ output_args ] = Makeparadigm_MI(varargin)
+function [ output_args ] = Makeparadigm_MI_yj(varargin)
 
 opt=opt_cellToStruct(varargin{:});
 n1=0;n2=0;n3=0;
@@ -98,7 +98,7 @@ else
 end
 
 Screen('TextSize',w, Textsize);
-DrawFormattedText(w,'Mouse click to start MI experiment \n\n (Press s to pause, esc to stop)','center','center',[0 0 0]);
+DrawFormattedText(w,'Mouse click to start MI experiment \n\n (Press s to pause, esc to stop)','center','center',[255 255 255]);
 Screen('Flip', w);
 GetClicks(w);
 ppWrite(IO_ADD,111);

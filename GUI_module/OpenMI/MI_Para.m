@@ -72,7 +72,6 @@ set(handles.produc,'visible','off');
 
 % Param
 set(handles.TriggerPort,'string','C010');
-
 set(handles.ScrNum,'string','2');
 set(handles.NumofTrial,'string','50');
 set(handles.Time_Stimulus,'string','3');
@@ -81,10 +80,6 @@ set(handles.Time_Rest,'string','2');
 
 set(handles.Stimulus1,'Value',1);
 set(handles.Offline,'Value',1);
-
-% panel off
-set(handles.uipanel4,'visible','off');
-% set(handles.uipanel5,'visible','off');
 
 
 % Update handles structure
@@ -270,12 +265,8 @@ function Offline_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 if (get(handles.Offline,'Value'))
     set(handles.Online,'Value',0)
-    set(handles.uipanel4,'visible','off')
-%     set(handles.uipanel5,'visible','off')
 else
     set(handles.Online,'Value',1)
-    set(handles.uipanel4,'visible','on')
-%     set(handles.uipanel5,'visible','on')
 end
 
 % Hint: get(hObject,'Value') returns toggle state of Offline
@@ -288,12 +279,8 @@ function Online_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 if (get(handles.Online,'Value'))
     set(handles.Offline,'Value',0)
-    set(handles.uipanel4,'visible','on')
-%     set(handles.uipanel5,'visible','on')
 else
     set(handles.Offline,'Value',1)
-    set(handles.uipanel4,'visible','off')
-%     set(handles.uipanel5,'visible','off')
 end
 % Hint: get(hObject,'Value') returns toggle state of Online
 
@@ -570,10 +557,18 @@ sti2=get(handles.Stimulus2,'Value');
 sti3=get(handles.Stimulus3,'Value');
 typ_stim=[sti1,sti2,sti3];
 
-% paradigm start
+% paradigm start _off
+if get(handles.Offline,'Value')
 Makeparadigm_MI_yj({'time_sti',t_stimulus;'time_cross',t_isi;'time_blank',t_rest;...
     'num_trial',N_trial;'num_class',N_class;'type_sti',typ_stim; 'port',Port;...
     'time_jitter',0.1;'num_screen',N_screen;'size_screen',Size_screen});
+end
+% paradigm start _on
+if get(handles.Online,'Value')
+Makeparadigm_MI_feedback_yj({'time_sti',t_stimulus;'time_cross',t_isi;'time_blank',t_rest;...
+    'num_trial',N_trial;'num_class',N_class;'type_sti',typ_stim;'port',Port;...
+    'time_jitter',0.1;'num_screen',N_screen;'size_screen',Size_screen});
+end
 
 function size1_Callback(hObject, eventdata, handles)
 % hObject    handle to size1 (see GCBO)
@@ -604,51 +599,6 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-% --- Executes on button press in startparadigm_on.
-function startparadigm_on_Callback(hObject, eventdata, handles)
-% hObject    handle to startparadigm_on (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-t_stimulus = str2double(get(handles.Time_Stimulus , 'String'));
-t_isi=  str2double(get(handles.Time_Interval , 'String'));
-t_rest=  str2double(get(handles.Time_Rest , 'String'));
-N_screen=  str2double(get(handles.ScrNum , 'String'));
-N_trial=  str2double(get(handles.NumofTrial , 'String'));
-Port= get(handles.TriggerPort , 'String');
-
-% screen size ...
-hori=  str2double(get(handles.size1, 'String'));
-verti=  str2double(get(handles.size2, 'String'));
-size_scr=cellstr(get(handles.screensize,'String'));
-size_scr=size_scr{get(handles.screensize,'Value')};
-if strcmp(size_scr,'Full screen')
-    Size_screen='full';
-else
-    Size_screen=[hori,verti];
-end
-
-% # of class and type of stimulus
-ncls=cellstr(get(handles.NumofClass,'String'));
-temp1=ncls{get(handles.NumofClass,'Value')};
-if strcmp(temp1,'One-class')
-    N_class=1;
-elseif strcmp(temp1,'Two-class')
-    N_class=2;
-else
-    N_class=3;
-end
-% type of stimulus
-sti1=get(handles.Stimulus1,'Value');
-sti2=get(handles.Stimulus2,'Value');
-sti3=get(handles.Stimulus3,'Value');
-typ_stim=[sti1,sti2,sti3];
-
-% paradigm start
-Makeparadigm_MI_feedback_yj({'time_sti',t_stimulus;'time_cross',t_isi;'time_blank',t_rest;...
-    'num_trial',N_trial;'num_class',N_class;'type_sti',typ_stim;'port',Port;...
-    'time_jitter',0.1;'num_screen',N_screen;'size_screen',Size_screen});
-
-
 % --- Executes on button press in pushbutton4.
 function pushbutton4_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton4 (see GCBO)
@@ -664,9 +614,9 @@ function Triggercheck_Callback(hObject, eventdata, handles)
 
 % % % % 전반적으로 좀 fancy하게 다듬을 필요가 이따
 bbci_acquire_bv('close');
-
+port=get(handles.TriggerPort,'String');
 global IO_ADDR IO_LIB;
-IO_ADDR=hex2dec('C010');
+IO_ADDR=hex2dec(port);
 IO_LIB=which('inpoutx64.dll');
 
 % bbci_acquire_bv();
@@ -735,7 +685,7 @@ if sti3
         qwe=qwe+1;
     end
 end
-bbci_acquire_bv('close');
+% bbci_acquire_bv('close');
 
 
 function TriggerPort_Callback(hObject, eventdata, handles)

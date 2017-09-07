@@ -1,4 +1,4 @@
-function [ output_args ] = Makeparadigm_MI_feedback(varargin )
+function [ output_args ] = Makeparadigm_MI_feedback_yj(varargin )
 
 opt=opt_cellToStruct(varargin{:});
 n1=0;n2=0;n3=0;
@@ -52,7 +52,7 @@ for ii=1:size(sti_stack,2)
 end
 idd=find(sti_stack);
 sti_stack=reshape(sti_stack(idd),[num_trial,num_class])';
-sti_stack=Shuffle(sti_stack);
+sti_stack=Shuffle(sti_stack(:));
 %% jittering
 a=-1;b=1;
 % association with + time jittering
@@ -111,7 +111,7 @@ else
 end
 Screen('TextSize',w, Textsize);
 % Screen('TextSize',w, 50);
-DrawFormattedText(w,'Mouse click to start MI experiment \n\n (Press s to pause, esc to stop)','center','center',[0 0 0]);
+DrawFormattedText(w,'Mouse click to start MI experiment \n\n (Press s to pause, esc to stop)','center','center',[255 255 255]);
 Screen('Flip', w);
 GetClicks(w);
 ppWrite(IO_ADD,111)
@@ -120,11 +120,9 @@ ppWrite(IO_ADD,111)
 % eyesOpenClosed2([0 0 0]) % script
 
 %% paradigm start
-% Screen('Flip', w);
-% ppWrite(IO_ADD,111);
-% WaitSecs(time_blank);
-
-% exp_on=true;
+Screen('Flip', w);
+ppWrite(IO_ADD,111);
+WaitSecs(time_blank);
 
 for num_stimulus=1:length(sti_stack)
 
@@ -162,17 +160,11 @@ for num_stimulus=1:length(sti_stack)
         end
     end
     
-%     % esc key in the cross state
-%     if ~exp_on
-%         break;
-%     end
-    
     Screen('FillRect', w, [255 255 255], FixCross');
     Screen('Flip', w);
     if sound
         Snd('Play',beep);
     end
-    
     ppWrite(IO_ADD,15);
     WaitSecs(time_cross);
     switch sti_stack(num_stimulus)
@@ -189,6 +181,7 @@ for num_stimulus=1:length(sti_stack)
             ppWrite(IO_ADD,sti_stack(num_stimulus));
             image=img_down;
     end
+    
     tex=Screen('MakeTexture', w, image );
     Screen('DrawTexture', w, tex);
     FixCross2=FixCross;
@@ -233,10 +226,9 @@ for num_stimulus=1:length(sti_stack)
         end
         
     end
-%     disp(toc);
+
     Screen('Flip', w);
     WaitSecs(time_blank);
-%     disp(toc);
 
     disp(sprintf('Trial #%.d',num_stimulus));
     disp(sprintf('1: %.0f\t2: %.0f\t3: %.0f',n1,n2,n3))
