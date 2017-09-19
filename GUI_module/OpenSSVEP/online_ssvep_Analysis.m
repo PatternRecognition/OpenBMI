@@ -1,26 +1,6 @@
 function output = online_ssvep_Analysis(axes_fft, axes_cca, results_text,varargin)
 opt.buffer_size = 5000; opt.data_size = 1500; opt.feedback_freq = 100/1000;
 opt.channel = 58; opt.TCPIP = 'off';
-% opt=opt_cellToStruct(varargin{:});
-% if ~isfield(opt,'channel')
-%     error('OpenBMI: Channels are not selected.')
-% end
-%
-% if strcmp(opt.TCPIP, 'on')
-%     d = tcpip('localhost', 3000, 'NetworkRole', 'Client');
-%     set(d, 'OutputBufferSize', 1024); % Set size of receiving buffer, if needed.
-%
-%     % Trying to open a connection to the server.
-%     while(1)
-%         try
-%             fopen(d);
-%             break;
-%         catch
-%             fprintf('%s \n','Cant find Server');
-%         end
-%     end
-%     connectionSend = d;
-% end
 % Description:
 %
 % Input:
