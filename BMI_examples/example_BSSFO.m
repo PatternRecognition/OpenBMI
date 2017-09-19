@@ -41,7 +41,6 @@ CNTfb=prep_selectClass(CNTfb,{'class',{'right', 'left'}});
 CNTfb=prep_filter(CNTfb, {'frequency', FilterBand.sample(:,1)});
 SMTfb=prep_segmentation(CNTfb, {'interval', [750 3500]});
 
-
 SMTfb=func_projection(SMTfb, CSP_W);
 FTfb=func_featureExtraction(SMTfb, {'feature','logvar'});
 [cf_out]=func_predict(FTfb, CF_PARAM);

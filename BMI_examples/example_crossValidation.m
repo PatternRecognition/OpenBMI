@@ -1,6 +1,5 @@
-clc
-close all;
-clear all;
+clear all; clc; close all;
+
 OpenBMI('C:\Users\CVPR\Desktop\Open_Github') % Edit the variable BMI if necessary
 global BMI;
 BMI.EEG_DIR=['G:\data2'];

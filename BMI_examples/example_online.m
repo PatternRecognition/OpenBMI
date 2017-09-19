@@ -1,4 +1,5 @@
-clear all;
+clear all; clc; close all;
+
 OpenBMI % Edit the variable BMI if necessary
 global BMI;
 %% DATA LOAD MODULE

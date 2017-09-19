@@ -1,6 +1,5 @@
-clc
-clear all;
-close all;
+clear all; clc; close all;
+
 OpenBMI('G:\OpenBMI') % Edit the variable BMI if necessary
 global BMI;
 BMI.EEG_DIR=['G:\OpenBMI\BMI_data\RawEEG'];

@@ -1,4 +1,5 @@
-clear all;
+clear all; clc; close all;
+
 OpenBMI % Edit the variable BMI if necessary
 global BMI;
 %% TRAIN DATA LOAD
@@ -37,7 +38,3 @@ online.option={
 };
 
 [cf_out]=MotorImagery_pseudoOnline(eeg, eegfb, online);
-
-
-
-

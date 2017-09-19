@@ -1,4 +1,4 @@
-clear all;
+clear all; clc; close all;
 OpenBMI('C:\Users\Administrator\Desktop\BCI_Toolbox\OpenBMI') % Edit the variable BMI if necessary
 global BMI;
 BMI.EEG_DIR=['C:\Users\Administrator\Desktop\BCI_Toolbox\DemoData'];
@@ -18,8 +18,6 @@ CNT=prep_selectClass(CNT,{'class',{'right', 'left'}});
 %% PRE-PROCESSING MODULE
 CNT=prep_filter(CNT, {'frequency', [7 13]});
 SMT=prep_segmentation(CNT, {'interval', [750 3500]});
-
-
 
 %% SPATIAL-FREQUENCY OPTIMIZATION MODULE
 [SMT, CSP_W, CSP_D]=func_csp(SMT,{'nPatterns', [3]});

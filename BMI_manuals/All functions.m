@@ -1,7 +1,12 @@
 %% OPTION FUNCTION
 
+%% Start OpenBMI
+OpenBMI('G:\OpenBMI') % Edit the variable BMI if necessary
+global BMI;
+BMI.EEG_DIR=['G:\OpenBMI\BMI_data\RawEEG'];
 %% DATA LOAD
-startup_openbmi % Edit the variable BMI if necessary
+file = fullfile(BMI.EEG_DIR, '\what\you\want\to\analysis');
+
 [eeg, eeg.mrk_orig, eeg.hdr]=Load_EEG_data(file,'device','brainVision','fs', 100);
 mrk_define={'1','left','2','right','3','foot'};
 eeg.mrk=mrk_redefine_class(eeg.mrk_orig, mrk_define); 
