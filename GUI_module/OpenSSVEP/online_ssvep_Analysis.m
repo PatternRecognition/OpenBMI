@@ -1,4 +1,6 @@
 function output = online_ssvep_Analysis(axes_fft, axes_cca, results_text,varargin)
+
+opt = opt_cellToStruct(varargin{:});
 opt.buffer_size = 5000; opt.data_size = 1500; opt.feedback_freq = 100/1000;
 opt.channel = 58; opt.TCPIP = 'off';
 % Description:
@@ -30,7 +32,6 @@ for i = 1:5
 end
 tot_trials = tmp;
 
-opt = opt_cellToStruct(varargin{:});
 class = opt.class;
 freq = strsplit(num2str(opt.freq));
 T = opt.time_stimulus;
