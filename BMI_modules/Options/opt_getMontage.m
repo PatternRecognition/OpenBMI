@@ -18,7 +18,7 @@ function MNT = opt_getMontage(SMT)
 % ktkim@image.korea.ac.kr
 % 
 
-clab= {'Fpz', ...
+clab_origin= {'Fpz', ...
        'Fp1','AFp1','AFp2','Fp2', ...
        'AF7','AF5','AF3','AFz','AF4','AF6','AF8', ...
        'FAF5','FAF1','FAF2','FAF6', ...
@@ -41,6 +41,7 @@ clab= {'Fpz', ...
 
 a= 90/4;
 b= 90/4;
+radius = 1.3;
 
 ea= a * [ 0 ...
           -4 -1.5 1.5 4 ...
@@ -110,11 +111,9 @@ end
 MNT.x = cx(chan_idx);
 MNT.y = cy(chan_idx);
 
-radius = 1.3;
-
 MNT.x = MNT.x/radius;
 MNT.y = MNT.y/radius;
-MNT.chan = Position.clab;
+MNT.chan = Position.clab(chan_idx);
 
 end
 
