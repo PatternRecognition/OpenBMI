@@ -1,1 +1,17 @@
 
+
+% load cnt_offline
+% load cnt_online
+
+
+%% initialization
+
+
+%% for training the classifier
+
+
+
+%% performance with each sequence
+
+
+%% ITR
