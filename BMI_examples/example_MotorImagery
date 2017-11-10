@@ -1,1 +1,44 @@
+% Motor imagery - 10-fold-cross-validation with 10-iterations
+
+% load cnt;
+% cnt variables
+%
+%
+%
+
+%% Initialization
+
+channel_index = [1:32]; %
+freq_band = [7 13];
+interval = [750 3500];
+
+%%
+CNTch = prep_selectChannels(CNT, {'Index', channel_index});
+CNTchfilt =prep_filter(CNTch , {'frequency', freq_band});
+SMT = prep_segmentation(CNTchfilt, {'interval', interval});
+
+for iter=1:10
+CV.train={
+        '[SMT, CSP_W, CSP_D]=func_csp(SMT,{"nPatterns", [3]})'
+    'FT=func_featureExtraction(SMT, {"feature","logvar"})'
+    '[CF_PARAM]=func_train(FT,{"classifier","LDA"})'
+    };
+CV.test={
+        'SMT=func_projection(SMT, CSP_W)'
+    'FT=func_featureExtraction(SMT, {"feature","logvar"})'
+    '[cf_out]=func_predict(FT, CF_PARAM)'
+    };
+CV.option={
+'KFold','10'
+% 'leaveout'
+};
+
+[loss]=eval_crossValidation(SMT, CV); % input : eeg, or eeg_epo
+result= 1-loss';
+aaa(1,iter)=result';
+cv_result=aaa';
+end
+
+acc=cv_result;
+accuracy=mean(acc,1)';
 
