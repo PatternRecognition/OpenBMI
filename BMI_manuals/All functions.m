@@ -1,4 +1,5 @@
 %% OPTION FUNCTION
+%%
 
 %% Start OpenBMI
 OpenBMI('G:\OpenBMI') % Edit the variable BMI if necessary
