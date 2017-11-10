@@ -1,1 +1,35 @@
+%% CCA - Analysis
 
+
+%
+% load cnt;
+%
+% cnt variables:
+%
+%
+%
+
+% Initialization
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+time = 4;
+freq = [5, 7, 9, 11];
+fs = CNT.fs;
+channel_index = [1:32]; %
+interval = [0 4000];  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+CNTch = prep_selectChannels(CNT, {'Index', channel_index);
+SMT = prep_segmentation(CNTch, {'interval', interval);
+
+num = size(SMT.x, 2);
+count= num;
+
+for i = 1: size(SMT.x, 2)
+    cca_result = ssvep_cca_analysis(squeeze(SMT.x(:,i,:)),{'marker',marker;'freq', freq;'fs', fs;'time',time});
+    [~, ind] = max(cca_result);
+    if SMT.y_dec(i) ~= ind
+        count = count -1;
+    end
+end
+fprintf('Accuracy: %.2f%%\n', count/num);
+Accuracy = count/num;
