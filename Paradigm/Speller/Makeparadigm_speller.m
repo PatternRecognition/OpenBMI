@@ -52,8 +52,8 @@ end
 
 
 
-
-screenNum =2;
+Screen('Preference', 'SkipSyncTests', 1);
+screenNum = 1;
 [w, rect] = Screen('OpenWindow', screenNum);
 % [w, rect] = Screen('OpenWindow', screenNum,[], [0 0 640 480]);
 % [w, rect] = Screen('OpenWindow', screenNum,[0 0 640 480]);
@@ -90,7 +90,7 @@ begin_onset = Screen('Flip',w);
 % load cell_order
 
 pause(1);
-ppWrite(IO_ADD,111);
+% ppWrite(IO_ADD,111);
 
 for cur_char = 1:length(test_character)
     target_ind = find(test_character(cur_char) == spell_char); %find the positions for target
@@ -188,9 +188,9 @@ for cur_char = 1:length(test_character)
                 target_on=true;
                 a = ismember(cell_order_all(count_run,:), target_ind); %% 鸥百何盒老版快父 trigger
                 if sum(a)       % target
-                    ppWrite(IO_ADD,1);
+%                     ppWrite(IO_ADD,1);
                 else            % non-target
-                    ppWrite(IO_ADD,2);
+%                     ppWrite(IO_ADD,2);
                 end
             end
             
@@ -234,7 +234,7 @@ for cur_char = 1:length(test_character)
 end
 
 pause(1);
-ppWrite(IO_ADD,222);
+% ppWrite(IO_ADD,222);
 
 Screen('TextSize',w, 50);
 DrawFormattedText(w, 'Thank you', 'center', 'center', [255 255 255]);

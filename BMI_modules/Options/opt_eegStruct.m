@@ -28,7 +28,7 @@ elseif ~prod(ismember(field,{'x','t','fs','y_dec','y_logic','y_class','class', '
 end
 
 for i=1:length(field)
-    [cnt(:).(field{i})]=[];
+    [cnt.(field{i})]=[];
 end
 
 stc=struct;
