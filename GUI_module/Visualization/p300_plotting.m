@@ -11,7 +11,7 @@ if isequal(filename,'p300_on')
     marker={'1',1;'2',2;'3',3;'4',4;'5',5;'6',6;'7',7;'8',8;'9',9;'10',10;'11',11;'12',12};
     spellerText_on='PATTERN_RECOGNITION_MACHINE_LEARNING';
 else
-%     marker={'21','target';'22','nontarget'};      % minho
+%     marker={'21','target';'22','nontarget'};      % s9 session1
     marker={'1','target';'2','nontarget'};
 end
 fs=100; 
@@ -21,8 +21,6 @@ field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
 
 cnt=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
 cnt=prep_selectChannels(cnt,{'Name',{'Cz', 'Oz'}});
-% cnt=prep_selectChannels(cnt,{'Index',ch_idx});
-
 cnt=prep_filter(cnt, {'frequency', Freq});
 
 % transfer trigger to target/non-target
@@ -42,6 +40,7 @@ smt=prep_selectTime(smt, {'Time',selTime});
 % avg_loss=mean(arr_loss);
 % Accuracy = 1- avg_loss;
 Accuracy=NaN;
+% accuracy with the number of correct characters
 if isequal(filename,'p300_on')
     Accuracy = P300_Ncorrect(smt,filepath,subject_info,spellerText_on);
 end
@@ -63,11 +62,3 @@ legend('target', 'non-target'); title('Oz'); ylim(y_l);
 a=suptitle(sprintf('%s / %s / %s / acc: %.2f%%',subject_info.subject,subject_info.session,filename,Accuracy*100));
 set(a,'Interpreter','none');
 saveas(f,sprintf('%s\\figure\\%s_%s_%s.jpg',filepath, subject_info.subject,subject_info.session,filename));
-
-% target = smt.x(:,smt.y_logic(1,:),:);
-% n_target = smt.x(:,smt.y_logic(2,:),:);
-% 
-% mean_target = squeeze(mean(mean(target, 3),2));
-% mean_n_target = squeeze(mean(mean(n_target, 3),2));
-% 
-% plot(0:10:800, mean_target); hold on; plot(0:10:800, mean_n_target);
