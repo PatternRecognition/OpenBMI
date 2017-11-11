@@ -36,7 +36,6 @@ y_dec=cell2mat(y_class);
 cnt_tar.y_dec=y_dec;
 cnt_tar.y_logic=y_logic;
 cnt_tar.y_class=y_class;
-% cnt_tar.class={'target',1;'non-target',2};
 cnt_tar.class={1,'target',; 2,'non-target'};
 
 end
