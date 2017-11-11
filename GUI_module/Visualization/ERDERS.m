@@ -9,16 +9,6 @@ field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
 CNT=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
 
 %%
-% OpenBMI('F:\Samsung\Toolbox')
-% dname=('C:\New_Mind\NEW_RAW_FILES\subject3_eskim\');
-% file_MI=fullfile('C:\New_Mind\NEW_RAW_FILES\subject3_eskim\mi_off'); %%%%% 파일 변경 필수
-
-% Subj=5;
-% file=(sprintf('mi_off.mat'));
-% fname=fullfile(dname,file);
-% load(fname);
-% CNT=compMI2ours(double(cnt), mrk, nfo);
-
 % laplacian
 % channel selection
 channel_index=[13, 14, 15]; % C3:52, Cz:54, C4:56
@@ -69,9 +59,3 @@ a=suptitle(sprintf('%s / %s / %s / acc: %.2f%%',subject_info.subject,subject_inf
 set(a,'Interpreter','none');
 set(f, 'Position', [0, 500, 2000, 400]);
 saveas(f,sprintf('%s\\figure\\%s_%s_%s.jpg',filepath, subject_info.subject,subject_info.session,filename));
-
-
-% ylim([-1.5 2])
-
-
-
