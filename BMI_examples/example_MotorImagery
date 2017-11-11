@@ -1,21 +1,24 @@
 % Motor imagery - 10-fold-cross-validation with 10-iterations
 
-% load cnt;
+load cnt_mi;
 % cnt variables
-%
-%
-%
+% cnt.t  :
+% cnt.fs :
+% cnt.y_dec :
+% cnt.y_logic :
+% cnt_y_class :
+% cnt.class :
+% cnt.chan : 
+% cnt. x : 
 
+% revised 2017.11.11 - Oyeon Kwon (oy_kwon@korea.ac.kr)
 %% Initialization
-
-channel_index = [1:32]; %
 freq_band = [7 13];
 interval = [750 3500];
-
-%%
-CNTch = prep_selectChannels(CNT, {'Index', channel_index});
-CNTchfilt =prep_filter(CNTch , {'frequency', freq_band});
-SMT = prep_segmentation(CNTchfilt, {'interval', interval});
+%% Analysis
+CNT = cnt_mi;
+CNTfilt =prep_filter(CNT , {'frequency', freq_band});
+SMT = prep_segmentation(CNTfilt, {'interval', interval});
 
 for iter=1:10
 CV.train={
@@ -34,11 +37,7 @@ CV.option={
 };
 
 [loss]=eval_crossValidation(SMT, CV); % input : eeg, or eeg_epo
-result= 1-loss';
-aaa(1,iter)=result';
-cv_result=aaa';
+Result_iter(1,iter)=1-loss';
 end
 
-acc=cv_result;
-accuracy=mean(acc,1)';
-
+Mean_CV_result=mean(Result_iter',1)';
