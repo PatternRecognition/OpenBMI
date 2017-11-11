@@ -1,28 +1,32 @@
-%% CCA - Analysis
 
+%% load
+load cnt_ssvep;
+CNT = cnt_ssvep;
 
-%
-% load cnt;
-%
-% cnt variables:
-%
-%
-%
+% cnt variables
+% cnt.t  :
+% cnt.fs :
+% cnt.y_dec :
+% cnt.y_logic :
+% cnt_y_class :
+% cnt.class :
+% cnt.chan : 
+% cnt. x : 
 
-% Initialization
+% revised 2017.11.11 - Oyeon Kwon (oy_kwon@korea.ac.kr)
+%% Initialization
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 time = 4;
 freq = [5, 7, 9, 11];
 fs = CNT.fs;
-channel_index = [1:32]; %
 interval = [0 4000];  %
+marker  = {'1','up';'2', 'left';'3', 'right';'4', 'down'};
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CCA - Analysis
+SMT = prep_segmentation(CNT, {'interval', interval});
 
-CNTch = prep_selectChannels(CNT, {'Index', channel_index);
-SMT = prep_segmentation(CNTch, {'interval', interval);
-
-num = size(SMT.x, 2);
-count= num;
+numTrials = size(SMT.x, 2);
+count= numTrials;
 
 for i = 1: size(SMT.x, 2)
     cca_result = ssvep_cca_analysis(squeeze(SMT.x(:,i,:)),{'marker',marker;'freq', freq;'fs', fs;'time',time});
@@ -31,5 +35,9 @@ for i = 1: size(SMT.x, 2)
         count = count -1;
     end
 end
-fprintf('Accuracy: %.2f%%\n', count/num);
-Accuracy = count/num;
+fprintf('Accuracy: %.2f%%\n', count/numTrials);
+Accuracy = count/numTrials;
+
+
+
+
