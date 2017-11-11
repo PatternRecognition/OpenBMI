@@ -18,6 +18,6 @@ disp(Accuracy);
 
 for i=1:length(spellerText_on)
     a(i)=SAVE{i}.char(1);
-    disp(SAVE{i}.char(1));
+%     disp(SAVE{i}.char(1));
 end
 end
