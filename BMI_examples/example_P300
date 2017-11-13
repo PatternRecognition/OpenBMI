@@ -37,7 +37,7 @@ char_seq= {'A', 'B', 'C', 'D', 'E', 'F', ...
 fs = CNT_on.fs;
 count_char=1;
 spellerText_on='PATTERN_RECOGNITION_MACHINE_LEARNING';
-load('C:\Users\Oyeon Kwon\Documents\MATLAB\New_starlab\DataAnalysis\random_cell_order.mat');
+load('random_cell_order.mat');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Make the classifier
 cnt=prep_filter(CNT_off, {'frequency', [0.5 40]});
