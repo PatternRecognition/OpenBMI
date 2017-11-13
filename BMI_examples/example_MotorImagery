@@ -1,15 +1,16 @@
 % Motor imagery - 10-fold-cross-validation with 10-iterations
 
 load cnt_mi;
+
 % cnt variables
-% cnt.t  :
-% cnt.fs :
-% cnt.y_dec :
-% cnt.y_logic :
-% cnt_y_class :
-% cnt.class :
-% cnt.chan : 
-% cnt. x : 
+% cnt.t  : time information 
+% cnt.fs : sampling frequency
+% cnt.y_dec : class information (e.g., left = 1, right = 2)
+% cnt.y_logic : logical format of class inforamtion 
+% cnt_y_class : class name (e.g., left, right)
+% cnt.class : number of class 
+% cnt.chan : number of electrodes
+% cnt. x : raw eeg signals
 
 % revised 2017.11.11 - Oyeon Kwon (oy_kwon@korea.ac.kr)
 %% Initialization
