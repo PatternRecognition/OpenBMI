@@ -16,7 +16,7 @@ CNT_on = cnt_p300_on;
 % cnt.chan : 
 % cnt. x : 
 
-% revised 2017.11.11 - Oyeon Kwon (oy_kwon@korea.ac.kr)
+% revised 2017.11.13 - Oyeon Kwon (oy_kwon@korea.ac.kr)
 %% Initialization
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % for offline
