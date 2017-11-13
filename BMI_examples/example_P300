@@ -5,7 +5,7 @@ load cnt_p300_on;
 
 CNT_off = cnt_p300_off;
 CNT_on = cnt_p300_on;
-
+clear cnt_p300_off cnt_p300_on 
 % cnt variables
 % cnt.t  :
 % cnt.fs :
@@ -101,8 +101,8 @@ for char = 1:length(spellerText_on)
         CF_PARAM = clf_param;
         [Y]=func_predict(tm_Dat', CF_PARAM);
         [a1 a2]=min(Y);
-        t_char2(char,nSeq)= char_seq{a2};
-        t_char22(char,nc)= char_seq{a2};
+        t_char2(char,nSeq)= char_seq{a2}; % for each sequence
+        t_char22(char,nc)= char_seq{a2}; % for each run 
         
         nc=nc+1;
         in_nc=in_nc+1;
@@ -126,5 +126,5 @@ end
 no_=sum(acc2)/length(spellerText_on);
 Accuracy=no_;
 
-
+clear acc2 fs nchar no_ seq spellerText_on CNT_off CNT_on
 
