@@ -23,7 +23,7 @@ function varargout = plot_controller(varargin)
 
 % Edit the above text to modify the response to help plot_controller
 
-% Last Modified by GUIDE v2.5 10-Nov-2017 20:54:18
+% Last Modified by GUIDE v2.5 14-Nov-2017 10:48:54
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -79,49 +79,72 @@ function varargout = plot_controller_OutputFcn(hObject, eventdata, handles)
 % Get default command line output from handles structure
 varargout{1} = handles.output;
 
-function initialize_gui(fig_handle, handles, isreset)
+function initialize_gui(hObject, handles, isreset)
 % If the metricdata field is present and the reset flag is false, it means
 % we are we are just re-initializing a GUI by calling it from the cmd line
 % while it is up. So, bail out as we dont want to reset the data.
-set(handles.sampling_rate,'String',handles.data.fs);
-set(handles.chan_num,'String',length(handles.data.chan));
 set(handles.time_seg_start, 'String', handles.data.ival(1));
 set(handles.time_seg_end, 'String', handles.data.ival(end));
-chan=handles.data.class{1,2};
-for i=2:size(handles.data.class(:,2))
-    chan=strcat(chan,',',handles.data.class{i,2});
+set(handles.sampling_rate,'String',handles.data.fs);
+
+class=handles.data.class{1,2};
+for i=2:length(handles.data.class(:,2))
+    class=strcat(class,{', '},handles.data.class{i,2});
 end
-set(handles.class,'String',chan);
-RESET(handles, true);
+set(handles.class,'String',class);
+
+set(handles.chan_num,'String',length(handles.data.chan));
+
+chan=handles.data.chan(1);
+for i=2:length(handles.data.chan)
+    chan=strcat(chan,{', '},handles.data.chan(i));
+end
+set(handles.chan_info,'String',chan);
+
 % Update handles structure
-guidata(handles.figure1, handles);
+guidata(hObject, handles);
+RESET(hObject,handles);
 
 
 
-function RESET(handles, init)
-% handles    empty - handles not created until after all CreateFcns called
+
+function RESET(hObject, handles, isreset)
+% handles     structure with handles and user data (see GUIDATA)
 % init        initialization
+handles.smt=handles.data;
+% Initialize plot type
 set(handles.check_time_plot,'Value',true);
 set(handles.check_topography,'Value',true);
-set(handles.chan_listbox, 'String', sprintf('Cz\nOz'));
-% set(handles.chan_listbox, 'Value', []);
-% set(handles.baseline_start, 'String', -100);
-% set(handles.baseline_end, 'String', 0);
 
-
-chan=handles.data.class{1,2};
-for i=2:size(handles.data.class(:,2))
-    chan=strcat(chan,'\n',handles.data.class{i,2});
+% Initialize channel
+handles.selected_chan={'Cz','Oz'};
+str=[];
+for i=1:length(handles.selected_chan)
+    tmp=sprintf('%s\n',handles.selected_chan{i});
+    str=[str tmp];
 end
-set(handles.class_listbox,'String',chan);
+% sprintf('%s',selected_chan{1});
+set(handles.chan_listbox, 'String', str);
 
-ival=[0,100;100,200;200,300;300,400;400,500];
-% show_ival='';
-% for i=1:length(ival)
-%     show_ival=strcat(show_ival,sprintf('%d ~ %d\n', ival(i,1), ival(i,2)));
-% end
-% set(handles.list_ival, 'String', show_ival);
+% Initialize interval
+handles.selected_ival=[0,100;100,200;200,300;300,400;400,500];
+ival=handles.selected_ival;
 set(handles.ival_listbox, 'String', sprintf('%d ~ %d\n%d ~ %d\n%d ~ %d\n%d ~ %d\n%d ~ %d',ival(1,1),ival(1,2),ival(2,1),ival(2,2),ival(3,1),ival(3,2),ival(4,1),ival(4,2),ival(5,1),ival(5,2)));
+
+% Initialize class
+handles.selected_class=handles.data.class(:,2);
+class=handles.data.class{1,2};
+for i=2:length(handles.data.class(:,2))
+    class=sprintf('%s\n%s',class,handles.data.class{i,2});
+end
+set(handles.class_listbox,'String',class);
+
+% Initialize baseline
+set(handles.baseline_start, 'String', -100);
+set(handles.baseline_end, 'String', 0);
+
+% Update handles structure
+guidata(hObject, handles);
 
 
 % --- Executes on button press in load_data_btn.
@@ -136,17 +159,17 @@ function select_chan_btn_Callback(hObject, eventdata, handles)
 % hObject    handle to select_chan_btn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-select_channel_v2({'chan', {'Fpz', ...
-       'Fp1','AFp1','AFp2','Fp2', ...
-       'AF7','AF5','AF3','AFz','AF4','AF6','AF8', ...
-       'FAF5','FAF1','FAF2'}});
+[~,handles.selected_chan]=GUI_selectChannels(handles.smt.chan,handles.selected_chan);
+str=[];
+for i=1:length(handles.selected_chan)
+    tmp=sprintf('%s\n',handles.selected_chan{i});
+    str=[str tmp];
+end
+set(handles.chan_listbox, 'String', str);
+clear tmp;
+% Update handles structure
+guidata(hObject, handles);
 
-% --- Executes on button press in select_ival_btn.
-function select_ival_btn_Callback(hObject, eventdata, handles)
-% hObject    handle to select_ival_btn (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-select_interval;
 
 % --- Executes on selection change in chan_listbox.
 function chan_listbox_Callback(hObject, eventdata, handles)
@@ -171,6 +194,25 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
+% --- Executes on button press in select_ival_btn.
+function select_ival_btn_Callback(hObject, eventdata, handles)
+% hObject    handle to select_ival_btn (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.selected_ival=select_interval(handles.selected_ival);
+
+ival=handles.selected_ival;
+str=sprintf('%d ~ %d',handles.selected_ival(1,1), handles.selected_ival(1,2));
+for i=2:length(handles.selected_ival(:,1))
+    str=sprintf('%s\n%d ~ %d',str,handles.selected_ival(i,1), handles.selected_ival(i,2));
+end
+% set(handles.ival_listbox, 'String', sprintf('%d ~ %d\n%d ~ %d\n%d ~ %d\n%d ~ %d\n%d ~ %d',ival(1,1),ival(1,2),ival(2,1),ival(2,2),ival(3,1),ival(3,2),ival(4,1),ival(4,2),ival(5,1),ival(5,2)));
+
+set(handles.ival_listbox, 'String',str);
+% Update handles structure
+guidata(hObject, handles);
+
+
 % --- Executes on selection change in ival_listbox.
 function ival_listbox_Callback(hObject, eventdata, handles)
 % hObject    handle to ival_listbox (see GCBO)
@@ -184,6 +226,45 @@ function ival_listbox_Callback(hObject, eventdata, handles)
 % --- Executes during object creation, after setting all properties.
 function ival_listbox_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to ival_listbox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: listbox controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+% --- Executes on button press in select_class_btn.
+function select_class_btn_Callback(hObject, eventdata, handles)
+% hObject    handle to select_class_btn (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.selected_class=select_class(handles.smt.class(:,2),handles.selected_class);
+str=[];
+for i=1:length(handles.selected_class)
+    tmp=sprintf('%s\n',handles.selected_class{i});
+    str=[str tmp];
+end
+set(handles.class_listbox, 'String', str);
+clear tmp;
+
+% Update handles structure
+guidata(hObject, handles);
+
+% --- Executes on selection change in class_listbox.
+function class_listbox_Callback(hObject, eventdata, handles)
+% hObject    handle to class_listbox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns class_listbox contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from class_listbox
+
+
+% --- Executes during object creation, after setting all properties.
+function class_listbox_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to class_listbox (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -217,7 +298,27 @@ function draw_btn_Callback(hObject, eventdata, handles)
 % hObject    handle to draw_btn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-figure;
+UPDATE(hObject,handles, true);
+visual_scalpPlot_fin(handles.smt, {'Interval', handles.selected_ival;'Channels',handles.selected_chan;,'Class',handles.selected_class});
+% visual_scalpPlot_fin(handles.smt, {'Interval', handles.selected_ival;'Channels',{'Cz', 'POz','Oz'};'Class',{'target','non-target'}});
+% visual_scalpPlot_fin(handles.smt, {'Interval', [-100 0 150 250 400];'Channels',{'Cz', 'POz','Oz'}});
+% Update handles structure
+% guidata(hObject, handles);
+
+
+
+function UPDATE(hObject, handles, init)
+% handles     structure with handles and user data (see GUIDATA)
+% init        initialization
+% update baseline
+baseline=[str2num(handles.baseline_start.String), str2num(handles.baseline_end.String)];
+handles.smt=prep_baseline(handles.data, {'Time', baseline});
+% update channels
+chan=handles.chan_listbox;
+ival=handles.ival_listbox;
+class=handles.class_listbox;
+% Update handles structure
+guidata(hObject, handles);
 
 
 % --- Executes on button press in reset_btn.
@@ -225,7 +326,7 @@ function reset_btn_Callback(hObject, eventdata, handles)
 % hObject    handle to reset_btn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-RESET(handles,false);
+RESET(hObject,handles,false);
 
 
 
@@ -366,7 +467,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in pushbutton6.
+% --- Executes on button press in pushbutton6. % baseline
 function pushbutton6_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton6 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -375,17 +476,17 @@ function pushbutton6_Callback(hObject, eventdata, handles)
 
 
 function edit7_Callback(hObject, eventdata, handles)
-% hObject    handle to edit7 (see GCBO)
+% hObject    handle to baseline_start (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit7 as text
-%        str2double(get(hObject,'String')) returns contents of edit7 as a double
+% Hints: get(hObject,'String') returns contents of baseline_start as text
+%        str2double(get(hObject,'String')) returns contents of baseline_start as a double
 
 
 % --- Executes during object creation, after setting all properties.
 function edit7_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit7 (see GCBO)
+% hObject    handle to baseline_start (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -425,49 +526,18 @@ if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColo
 end
 
 
-% --- Executes on button press in select_class_btn.
-function select_class_btn_Callback(hObject, eventdata, handles)
-% hObject    handle to select_class_btn (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-
-% --- Executes on selection change in class_listbox.
-function class_listbox_Callback(hObject, eventdata, handles)
-% hObject    handle to class_listbox (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: contents = cellstr(get(hObject,'String')) returns class_listbox contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from class_listbox
-
-
-% --- Executes during object creation, after setting all properties.
-function class_listbox_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to class_listbox (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: listbox controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
 function edit8_Callback(hObject, eventdata, handles)
-% hObject    handle to edit8 (see GCBO)
+% hObject    handle to baseline_end (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit8 as text
-%        str2double(get(hObject,'String')) returns contents of edit8 as a double
+% Hints: get(hObject,'String') returns contents of baseline_end as text
+%        str2double(get(hObject,'String')) returns contents of baseline_end as a double
 
 
 % --- Executes during object creation, after setting all properties.
 function edit8_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit8 (see GCBO)
+% hObject    handle to baseline_end (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 

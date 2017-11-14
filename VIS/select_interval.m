@@ -55,12 +55,18 @@ function select_interval_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for select_interval
 handles.output = hObject;
 
+if isempty(varargin)
+    handles.init_ival=[0,100;100,200;200,300;300,400;400,500];
+else
+    handles.init_ival=varargin{1};
+end
+
 % Update handles structure
 guidata(hObject, handles);
 initialize_gui(hObject, handles, false);
 
 % UIWAIT makes select_interval wait for user response (see UIRESUME)
-% uiwait(handles.figure1);
+uiwait(handles.figure1);
 
 
 % --- Outputs from this function are returned to the command line.
@@ -72,38 +78,43 @@ function varargout = select_interval_OutputFcn(hObject, eventdata, handles)
 
 % Get default command line output from handles structure
 varargout{1} = handles.output;
+delete(handles.figure1);
 
-function initialize_gui(fig_handle, handles, isreset)
+
+function initialize_gui(hObject, handles, isreset)
 % If the metricdata field is present and the reset flag is false, it means
 % we are we are just re-initializing a GUI by calling it from the cmd line
 % while it is up. So, bail out as we dont want to reset the data.
-RESET(handles, true);
 % Update handles structure
-guidata(handles.figure1, handles);
+% guidata(handles.figure1, handles);
+RESET(hObject,handles);
 
 
 
-function RESET(handles, init)
+function RESET(hObject,handles, init)
 % handles    empty - handles not created until after all CreateFcns called
 % init        initialization
-% set(handles.list_chan, 'String', sprintf('Cz\nOz'));
-ival=[0,100;100,200;200,300;300,400;400,500];
+ival=handles.init_ival;
 [n m]=size(ival);
-ival_name=['start', 'end'];
-% for i=1:n
-%     for j=1:m
-%         eval(sprintf(set(handles.eval%d_%s, "String", ival(1,1)),i,ival_name(m))));
-%     end
-% end
-set(handles.ival1_start, 'String', ival(1,1));
+ival_name=[{'start'}, {'end'}];
+for i=1:n
+    for j=1:m
+        eval(sprintf('handles.ival%d_%s.String=ival(i,j);',i,ival_name{j}));
+    end
+end
+guidata(hObject,handles);
 
-% show_ival='';
-% for i=1:length(ival)
-%     show_ival=strcat(show_ival,sprintf('%d ~ %d\n', ival(i,1), ival(i,2)));
-% end
-% set(handles.list_ival, 'String', show_ival);
-% set(handles.list_ival, 'String', sprintf('%d ~ %d\n%d ~ %d\n%d ~ %d\n%d ~ %d\n%d ~ %d',ival(1,1),ival(1,2),ival(2,1),ival(2,2),ival(3,1),ival(3,2),ival(4,1),ival(4,2),ival(5,1),ival(5,2)));
+function UPDATE(hObject,handles,init)
+% handles    structure with handles and user data (see GUIDATA)
+% init        initialization
+ival_name={'start', 'end'};
+handles.selected_ival=[str2num(handles.ival1_start.String), str2num(handles.ival1_end.String)];
+for i=2:5
+    eval(sprintf('handles.selected_ival=[handles.selected_ival;str2num(handles.ival%d_%s.String),str2num(handles.ival%d_%s.String)];',i,ival_name{1},i,ival_name{2}));   
+end
 
+handles.output=handles.selected_ival;
+guidata(hObject,handles);
 
 
 % --- Executes on button press in apply_btn.
@@ -111,6 +122,9 @@ function apply_btn_Callback(hObject, eventdata, handles)
 % hObject    handle to apply_btn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+UPDATE(hObject, handles,false);
+uiresume(handles.figure1);
+% The figure can be deleted now
 
 
 % --- Executes on button press in reset_btn.
