@@ -57,10 +57,10 @@ handles.output = hObject;
 
 handles.scalp_ax = axes('Units','Normalized');
 
-data.chan = varargin{1};
-data.selChan = varargin{2};
+handles.data.chan = varargin{1};
+handles.data.selChan = varargin{2};
    
-MNT = opt_getMontage(data);
+MNT = opt_getMontage(handles.data);
 % set(gcf,'units','normalized');
 % scalp_plot(handles.scalp_ax, MNT);
 center = [0 0];
@@ -71,7 +71,7 @@ y = sin(theta)+center(2);
 H.main = plot(x,y, 'k');
 set(handles.scalp_ax, 'xTick',[], 'yTick',[]);
 axis('xy', 'tight', 'equal', 'tight');
-patch(handles.scalp_ax,x, y, [1 1 1]);
+% patch(handles.scalp_ax,x, y, [1 1 1]);
 hold on;
 
 axis off;
@@ -82,23 +82,25 @@ center = [offset(1)+offset(3)/2 , offset(2)+offset(4)/2];
 prop = 2.58;
 chbox_size = [0.014, 0.014];
 
-chbox_val = ismember(MNT.chan, data.selChan);
+chbox_val = ismember(MNT.chan, handles.data.selChan);
 
 for i = 1:size(MNT.chan,2)
     handles.chbox(i) = uicontrol('Style','checkbox', 'Units', 'Normalized',...
         'Value',chbox_val(i),'Position',...
         [MNT.x(i)/prop+center(1)-(chbox_size(1)/2) MNT.y(i)/prop+center(2)-(chbox_size(2)/2) chbox_size(1) chbox_size(2)]);
     handles.txt(i) = uicontrol('Style','text', 'Units', 'Normalized',...
-        'String', MNT.chan{i},'BackgroundColor', [1 1 1], 'Position',...
+        'String', MNT.chan{i},'BackgroundColor', get(hObject, 'Color'), 'Position',...
         [MNT.x(i)/prop+center(1)-(chbox_size(1)*1.4) MNT.y(i)/prop+center(2)-(chbox_size(2)*1.5) chbox_size(1)*2.8 chbox_size(2)]);
 end
 
 handles.sel_btn = uicontrol('Style', 'pushbutton', 'Units', 'Normalized',...
-    'String', 'Select', 'CallBack', {@sel_btn_callback,handles, MNT}, 'Position', [0 0 1 0.05]);
+    'String', 'Select', 'CallBack', {@sel_btn_callback,handles, MNT}, 'Position', [0 0 1 0.05],...
+    'FontSize', 12, 'FontWeight', 'bold');
 
 handles.title = uicontrol('Style', 'edit', 'Units', 'Normalized',...
     'String', 'Select Channels', 'BackgroundColor', [0.8 0.8 0.8], ...
-    'Position', [0 0.95 1 0.05], 'Enable', 'inactive', 'BackgroundColor', [1 1 1]); 
+    'Position', [0 0.95 1 0.05], 'Enable', 'inactive', 'BackgroundColor', [1 0 0.6],...
+    'FontSize', 12, 'FontWeight', 'bold'); 
 
 % Update handles structure
 guidata(hObject, handles);
@@ -106,13 +108,14 @@ guidata(hObject, handles);
 % UIWAIT makes GUI_selectChannels wait for user response (see UIRESUME)
 uiwait(handles.figure1);
 
+
 function sel_btn_callback(hObject, eventdata, handles, MNT)
 idx = cell2mat(get(handles.chbox, 'Value'));
 idx = logical(idx);
 out = MNT.chan(idx);
 handles.selectedChannels = out;
-guidata(hObject,handles);
 uiresume(handles.figure1);
+guidata(hObject,handles);
 
 % --- Outputs from this function are returned to the command line.
 function varargout = GUI_selectChannels_OutputFcn(hObject, eventdata, handles)
@@ -122,9 +125,13 @@ function varargout = GUI_selectChannels_OutputFcn(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Get default command line output from handles structure
+if ~isfield(handles, 'output')
+    handles.output = {};
+end
 varargout{1} = handles.output;
+
 if ~isfield(handles, 'selectedChannels')
-    handles.selectedChannels = {};
+    handles.selectedChannels = handles.data.selChan;
 end
 varargout{2} = handles.selectedChannels;
 delete(handles.figure1);
