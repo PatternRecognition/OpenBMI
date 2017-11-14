@@ -57,8 +57,10 @@ handles.output = hObject;
 
 handles.scalp_ax = axes('Units','Normalized');
 
-SMT.chan = varargin{1};
-MNT = opt_getMontage(SMT);
+data.chan = varargin{1};
+data.selChan = varargin{2};
+   
+MNT = opt_getMontage(data);
 % set(gcf,'units','normalized');
 % scalp_plot(handles.scalp_ax, MNT);
 center = [0 0];
@@ -80,10 +82,11 @@ center = [offset(1)+offset(3)/2 , offset(2)+offset(4)/2];
 prop = 2.58;
 chbox_size = [0.014, 0.014];
 
+chbox_val = ismember(MNT.chan, data.selChan);
 
 for i = 1:size(MNT.chan,2)
     handles.chbox(i) = uicontrol('Style','checkbox', 'Units', 'Normalized',...
-        'Value',0,'Position',...
+        'Value',chbox_val(i),'Position',...
         [MNT.x(i)/prop+center(1)-(chbox_size(1)/2) MNT.y(i)/prop+center(2)-(chbox_size(2)/2) chbox_size(1) chbox_size(2)]);
     handles.txt(i) = uicontrol('Style','text', 'Units', 'Normalized',...
         'String', MNT.chan{i},'BackgroundColor', [1 1 1], 'Position',...
