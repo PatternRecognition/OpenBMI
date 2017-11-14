@@ -39,20 +39,15 @@ end
 Accuracy =loss/total;
 
 % y_line=[0 ceil(max([max(abs(YfreqDomain))]))];
-y_line=[0 10];
+y_line= get(gca,'Ylim');
 
 if strcmp(opt.plot,'on')
     
     xlabel('Frequency [Hz]'),ylabel('Power')
-    c_num=length(smt.class(:,2)); % legend having the number of classes
-    i_legend=cell(c_num,1);
-    for i=1:c_num
-        i_legend{i}=char(smt.class(i,2));
-    end
-    legend(i_legend);
+    
     % draw line
     if isfield(opt, 'line') && opt.line
-        line([60/5 60/5], y_line, 'Color', 'k'); hold on;ylim(y_line);
+        line([60/5 60/5], y_line, 'Color', 'k'); hold on;
         line([60/7 60/7], y_line, 'Color', 'k'); hold on;
         line([60/9 60/9], y_line, 'Color', 'k'); hold on;
         line([60/11 60/11], y_line, 'Color', 'k'); hold on;
@@ -63,12 +58,16 @@ if strcmp(opt.plot,'on')
     if isfield(opt,'title')
         title(opt.title)
     end
+    c_num=length(smt.class(:,2)); % legend having the number of classes
+    i_legend=cell(c_num,1);
+    for i=1:c_num
+        i_legend{i}=char(smt.class(i,2));
+    end
+    legend(i_legend);
 end
 title(sprintf('%s / %s / %s / acc: %.2f%%',opt.subject_info.subject,opt.subject_info.session,opt.filename, Accuracy*100),'Interpreter','none');
 saveas(f,sprintf('%s\\figure\\%s_%s_%s.jpg',opt.filepath,opt.subject_info.subject,opt.subject_info.session,opt.filename));
 end
-
-
 
 function [X,freq]=positiveFFT(x,Fs)
 N=length(x);    % get the number of points

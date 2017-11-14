@@ -10,5 +10,3 @@ cnt=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
 cnt=prep_filter(cnt, {'frequency', [5 40]});
 smt=prep_segmentation(cnt, {'interval', [0 4000]});
 visual_fft(smt,{'channel','Oz';'xlim',[3 20];'plot','on';'line',true;'filepath',filepath;'subject_info',subject_info;'filename',filename});
-
-
