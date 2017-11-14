@@ -24,6 +24,9 @@ function varargout = GUI_selectChannels(varargin)
 
 % Last Modified by GUIDE v2.5 14-Nov-2017 16:15:35
 
+% Hong Kyung, Kim
+% hk_kim@korea.ac.kr
+
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
