@@ -22,10 +22,7 @@ function varargout = GUI_selectChannels(varargin)
 
 % Edit the above text to modify the response to help GUI_selectChannels
 
-% Last Modified by GUIDE v2.5 14-Nov-2017 16:15:35
-
-% Hong Kyung, Kim
-% hk_kim@korea.ac.kr
+% Last Modified by GUIDE v2.5 14-Nov-2017 20:14:00
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -123,6 +120,24 @@ function varargout = GUI_selectChannels_OutputFcn(hObject, eventdata, handles)
 
 % Get default command line output from handles structure
 varargout{1} = handles.output;
+if ~isfield(handles, 'selectedChannels')
+    handles.selectedChannels = {};
+end
 varargout{2} = handles.selectedChannels;
 delete(handles.figure1);
 
+
+% --- Executes when user attempts to close figure1.
+function figure1_CloseRequestFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: delete(hObject) closes the figure
+if isequal(get(hObject, 'waitstatus'), 'waiting')
+    % The GUI is still in UIWAIT, us UIRESUME
+    uiresume(hObject);
+else
+    % The GUI is no longer waiting, just close it
+    delete(hObject);
+end
