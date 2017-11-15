@@ -26,23 +26,13 @@ function output = visual_scalpPlot_fin(SMT, varargin)
 % jh_jeong@korea.ac.kr
 % Hong Kyung, Kim
 % hk_kim@korea.ac.kr
-% file = fullfile('D:\OPENBMI_NEW_PROJECT\Topographic\ORIGIN_BBCI\data', '2017_10_27_yelee_exp2');
-% file = fullfile('D:\StarlabDB_2nd\subject9_mhlee\session1', 'p300_off');
-% time = [-200 1000]; baseline = [-200 0]; freq = [5 40];
-% field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
-% marker = {'1', 'target'; '2', 'non_target'};
-% % marker = {'11', 'N_target'; '12', 'N_nontarget'; '21','P_target'; '22',...
-% %     'P_nontarget'; '31','C_target'; '32', 'C_nontarget'};
-% % marker = {'11', 'target'; '12', 'non_target'};
-% [EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker',marker;'fs', 100});
-% CNT = opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
-% CNT = prep_filter(CNT, {'frequency', freq});
-% SMT = prep_segmentation(CNT, {'interval', time});
-% SMT = prep_baseline(SMT, {'Time',baseline});
-% load epo1;
-% SMT.x = epo1.x;
-% SMT.x = reshape(SMT.x, 600, 720, 19);
 
+% -----------------------------------------------------
+% FileExchange function subtightplot by F. G. Nievinski
+subplot = @(m,n,p) subtightplot(m,n,p,[0.045 0]);
+
+figure;
+set(gcf,'Position',[400 200 1000 600]);
 MNT = opt_getMontage(SMT);
 if ~isequal(MNT.chan, SMT.chan)
     if length(SMT.chan) > length(MNT.chan)
@@ -61,8 +51,10 @@ if isfield(opt, 'Interval') interval = opt.Interval; end
 if isfield(opt, 'Range') p_range = opt.Range; end
 if isfield(opt, 'Resolution') resol = opt.Resolution; else resol = 300; end
 if isfield(opt, 'Channels') chan = opt.Channels; end
-opt.Interval = abs(opt.Ival(1)-opt.Ival(2));
-
+if isfield(opt, 'Class') class = opt.Class; end
+if isfield(opt, 'Color') faceColor = opt.Color; else faceColor = [{[0.8 0.8 0.8]};{[0.5 0.5 0.5]}]; end
+% opt.Interval = abs(opt.Ival(1)-opt.Ival(2));
+SMT = prep_selectClass(SMT,{'class',class});
 avgSMT= prep_average(SMT);
 
 p_range = [-1.5 0.5];
@@ -70,28 +62,50 @@ oldUnit = get(gcf,'units');
 set(gcf,'units','normalized');
 
 sub_row = length(chan) + size(SMT.class,1);
-sub_col = size(opt.Ival,2)-1;
+sub_col = size(opt.Interval,1);
 
+%% time-domain plot
 plot_position = 1;
+
 for i = 1:length(chan)
     subplot(sub_row, sub_col, plot_position:plot_position + sub_col -1);
-    c = ismember(SMT.chan, chan{i});
+    ch_num = ismember(SMT.chan, chan{i});
+    
     for class = 1:size(SMT.class,1)
-        plot(SMT.ival, avgSMT.x(:,class,c)); hold on;
+        plot(SMT.ival, avgSMT.x(:,class,ch_num),'LineWidth',2); hold on;
     end
-    legend;
+    grid on;
+    
+    for cl_num=1:length(SMT.class(:,2))
+        i_legend{cl_num}=char(SMT.class(cl_num,2));
+    end
+    
+    legend(i_legend, 'Interpreter', 'none', 'AutoUpdate', 'off');
+    
+    ylim = get(gca,'Ylim');
+
+    for ival = 1:size(interval,1)
+        patch('XData', [interval(ival,1) interval(ival,2) interval(ival,2) interval(ival,1)],...
+        'YData', [ylim(1) ylim(1) ylim(2) ylim(2)], 'FaceColor', faceColor{mod(ival,2)+1},...
+        'FaceAlpha', 0.3, 'EdgeAlpha', 0,'faceOffsetBias', -11);
+    end
+    
+    tmp = get(gca, 'Children');
+    set(gca, 'Children', flip(tmp));
+    clear tmp;
+           
+    ylabel(sprintf('%s',SMT.chan{ch_num}), 'Rotation', 0, 'HorizontalAlignment','right');
+    
     plot_position = plot_position + sub_col;
 end
 
 %% scalp_plot
-% -----------------------------------------------------
-% FileExchange function subtightplot by F. G. Nievinski
 for i = 1: size(SMT.class,1)
-    for seg = 1: size(opt.Ival, 2)-1
-        subtightplot(sub_row, sub_col, plot_position);
-        
-        SMTintervalstart = find(avgSMT.ival == opt.Ival(seg))-1;
-        SMTintervalEnd = find(avgSMT.ival == opt.Ival(seg+1))-1;
+    for seg = 1: size(opt.Interval, 1)
+        subplot(sub_row, sub_col, plot_position);
+        SMTintervalstart = find(avgSMT.ival == opt.Interval(seg,1));
+        SMTintervalEnd = find(avgSMT.ival == opt.Interval(seg,2))-1;
+
         ivalSMT = avgSMT.x(SMTintervalstart:SMTintervalEnd,:,:);
         w = mean(squeeze(ivalSMT(:,i,:)),1);
                               
