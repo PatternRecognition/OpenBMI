@@ -24,6 +24,8 @@ function output = visual_scalpPlot_fin(SMT, varargin)
 %
 % Ji Hoon, Jeong
 % jh_jeong@korea.ac.kr
+% Hong Kyung, Kim
+% hk_kim@korea.ac.kr
 % file = fullfile('D:\OPENBMI_NEW_PROJECT\Topographic\ORIGIN_BBCI\data', '2017_10_27_yelee_exp2');
 % file = fullfile('D:\StarlabDB_2nd\subject9_mhlee\session1', 'p300_off');
 % time = [-200 1000]; baseline = [-200 0]; freq = [5 40];
@@ -32,7 +34,7 @@ function output = visual_scalpPlot_fin(SMT, varargin)
 % % marker = {'11', 'N_target'; '12', 'N_nontarget'; '21','P_target'; '22',...
 % %     'P_nontarget'; '31','C_target'; '32', 'C_nontarget'};
 % % marker = {'11', 'target'; '12', 'non_target'};
-% [EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker',marker;'fs', 1000});
+% [EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker',marker;'fs', 100});
 % CNT = opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
 % CNT = prep_filter(CNT, {'frequency', freq});
 % SMT = prep_segmentation(CNT, {'interval', time});
@@ -41,9 +43,6 @@ function output = visual_scalpPlot_fin(SMT, varargin)
 % SMT.x = epo1.x;
 % SMT.x = reshape(SMT.x, 600, 720, 19);
 
-%% FileExchange function subtightplot by F. G. Nievinski
-subplot = @(m,n,p) subtightplot(m,n,p);
-%% -----------------------------------------------------
 MNT = opt_getMontage(SMT);
 if ~isequal(MNT.chan, SMT.chan)
     if length(SMT.chan) > length(MNT.chan)
@@ -58,40 +57,56 @@ if ~isequal(MNT.chan, SMT.chan)
     clear tmp;
 end
 opt = opt_cellToStruct(varargin{:});
+if isfield(opt, 'Interval') interval = opt.Interval; end
+if isfield(opt, 'Range') p_range = opt.Range; end
+if isfield(opt, 'Resolution') resol = opt.Resolution; else resol = 300; end
+if isfield(opt, 'Channels') chan = opt.Channels; end
 opt.Interval = abs(opt.Ival(1)-opt.Ival(2));
 
 avgSMT= prep_average(SMT);
-resolution = 500;
 
 p_range = [-1.5 0.5];
-% sub_ax = subaxes(size(SMT.class,1),size(opt.Ival,2)-1,get(gcf,'DefaultAxesPosition'),gcf);
+oldUnit = get(gcf,'units');
+set(gcf,'units','normalized');
 
-% colormap(jet(51));
-% cm = get(gcf, 'Colormap');
-% colormap(cm);
+sub_row = length(chan) + size(SMT.class,1);
+sub_col = size(opt.Ival,2)-1;
+
+plot_position = 1;
+for i = 1:length(chan)
+    subplot(sub_row, sub_col, plot_position:plot_position + sub_col -1);
+    c = ismember(SMT.chan, chan{i});
+    for class = 1:size(SMT.class,1)
+        plot(SMT.ival, avgSMT.x(:,class,c)); hold on;
+    end
+    legend;
+    plot_position = plot_position + sub_col;
+end
+
+%% scalp_plot
+% -----------------------------------------------------
+% FileExchange function subtightplot by F. G. Nievinski
 for i = 1: size(SMT.class,1)
     for seg = 1: size(opt.Ival, 2)-1
-        %     figure()
-        subplot(size(SMT.class,1),size(opt.Ival,2)-1,((i-1)*(size(opt.Ival, 2)-1))+seg)
+        subtightplot(sub_row, sub_col, plot_position);
         
         SMTintervalstart = find(avgSMT.ival == opt.Ival(seg))-1;
-        SMTintervalEnd = find(avgSMT.ival == opt.Ival(seg) + opt.Interval)-1;
-        UpdatedSMT{seg} = avgSMT.x(SMTintervalstart:SMTintervalEnd,:,:);
-        w{seg,i} = UpdatedSMT{seg}(:,i,:);
-        w{seg,i} = squeeze(w{seg,i});
-        inputx{seg,i}  = mean(w{seg,i},1);
-        
-        oldUnit = get(gcf,'units');
-        set(gcf,'units','normalized');
-        
-        
-        scalp_plot(gca, inputx{seg,i}, MNT, p_range, resolution);
-        
-        axis off;
-        
-%         title(gca,{[SMT.class{i,2},' class'];['[' , num2str(opt.Ival(seg)), ' ~ ' , num2str(opt.Ival(seg+1)) , '] ms']})
-        %         colorbar('vert');
+        SMTintervalEnd = find(avgSMT.ival == opt.Ival(seg+1))-1;
+        ivalSMT = avgSMT.x(SMTintervalstart:SMTintervalEnd,:,:);
+        w = mean(squeeze(ivalSMT(:,i,:)),1);
+                              
+        scalp_plot(gca, w, MNT, p_range, resol);
+        plot_position = plot_position + 1;
     end
+%     subplot(size(SMT.class,1),size(opt.Ival,2),plot_position)
+    % Keeping scalp size;
+    last_position = get(gca, 'Position');
+    colorbar('vert');
+    tmp = get(gca, 'Position');
+    tmp(3:4) = last_position(3:4);
+    set(gca,'Position',tmp);
+%     axis off;
+%     plot_position = plot_position + 1;
 end
 output = gcf;
 end
@@ -165,6 +180,8 @@ H.main = plot(x,y, 'k');
 set(H.ax, 'xTick',[], 'yTick',[]);
 axis('xy', 'tight', 'equal', 'tight');
 hold on;
+
+axis off;
 end
 
 %% FileExchange function subtightplot by F. G. Nievinski
