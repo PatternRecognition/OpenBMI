@@ -61,7 +61,7 @@ if strcmp(opt.plot,'on')
     c_num=length(smt.class(:,2)); % legend having the number of classes
     i_legend=cell(c_num,1);
     for i=1:c_num
-        i_legend{i}=char(smt.class(i,2));
+        i_legend{i}=smt.class{i,2};
     end
     legend(i_legend);
 end
