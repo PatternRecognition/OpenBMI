@@ -34,9 +34,27 @@ subplot = @(m,n,p) subtightplot(m,n,p,[0.045 0]);
 figure;
 set(gcf,'Position',[400 200 1000 600]);
 MNT = opt_getMontage(SMT);
+
+opt = opt_cellToStruct(varargin{:});
+if isfield(opt, 'Interval') interval = opt.Interval; end
+if isfield(opt, 'Range') p_range = opt.Range; end
+if isfield(opt, 'Resolution') resol = opt.Resolution; else resol = 300; end
+if isfield(opt, 'Channels') chan = opt.Channels; end
+if isfield(opt, 'Class') class = opt.Class; end
+if isfield(opt, 'Color') faceColor = opt.Color; else faceColor = [{[0.8 0.8 0.8]};{[0.5 0.5 0.5]}]; end
+if isfield(opt, 'TimePlot') TimePlot = opt.TimePlot; else TimePlot = 'on'; end
+if isfield(opt, 'TimePlot') TopoPlot = opt.TopoPlot; else TopoPlot = 'on'; end
+
+output_str = 'Finished';
+
 if ~isequal(MNT.chan, SMT.chan)
     if length(SMT.chan) > length(MNT.chan)
-        warning('Some channels are missed');
+        tmp = SMT.chan(~ismember(SMT.chan, MNT.chan));
+        output_str = tmp{1};
+        for i = 2:length(tmp)
+            output_str = [output_str sprintf(', %s',tmp{i})];
+        end
+        output_str = [output_str, ' are missed'];
     end
     tmp = zeros(1,length(MNT.x));
     for i = 1:length(MNT.chan)
@@ -46,14 +64,11 @@ if ~isequal(MNT.chan, SMT.chan)
     SMT.chan = SMT.chan(tmp);
     clear tmp;
 end
-opt = opt_cellToStruct(varargin{:});
-if isfield(opt, 'Interval') interval = opt.Interval; end
-if isfield(opt, 'Range') p_range = opt.Range; end
-if isfield(opt, 'Resolution') resol = opt.Resolution; else resol = 300; end
-if isfield(opt, 'Channels') chan = opt.Channels; end
-if isfield(opt, 'Class') class = opt.Class; end
-if isfield(opt, 'Color') faceColor = opt.Color; else faceColor = [{[0.8 0.8 0.8]};{[0.5 0.5 0.5]}]; end
-% opt.Interval = abs(opt.Ival(1)-opt.Ival(2));
+
+if isempty(interval)
+    interval = [SMT.ival(1) SMT.ival(end)];
+end
+
 SMT = prep_selectClass(SMT,{'class',class});
 avgSMT= prep_average(SMT);
 
@@ -62,67 +77,69 @@ oldUnit = get(gcf,'units');
 set(gcf,'units','normalized');
 
 sub_row = length(chan) + size(SMT.class,1);
-sub_col = size(opt.Interval,1);
+sub_col = size(interval,1);
 
 %% time-domain plot
 plot_position = 1;
-
-for i = 1:length(chan)
-    subplot(sub_row, sub_col, plot_position:plot_position + sub_col -1);
-    ch_num = ismember(SMT.chan, chan{i});
-    
-    for class = 1:size(SMT.class,1)
-        plot(SMT.ival, avgSMT.x(:,class,ch_num),'LineWidth',2); hold on;
+if isequal(TimePlot, 'on')
+    for i = 1:length(chan)
+        subplot(sub_row, sub_col, plot_position:plot_position + sub_col -1);
+        ch_num = ismember(SMT.chan, chan{i});
+        
+        for class = 1:size(SMT.class,1)
+            plot(SMT.ival, avgSMT.x(:,class,ch_num),'LineWidth',2); hold on;
+        end
+        grid on;
+        
+        for cl_num=1:length(SMT.class(:,2))
+            i_legend{cl_num}=char(SMT.class(cl_num,2));
+        end
+        
+        legend(i_legend, 'Interpreter', 'none', 'AutoUpdate', 'off');
+        
+        ylim = get(gca,'Ylim');
+        
+        for ival = 1:size(interval,1)
+            patch('XData', [interval(ival,1) interval(ival,2) interval(ival,2) interval(ival,1)],...
+                'YData', [ylim(1) ylim(1) ylim(2) ylim(2)], 'FaceColor', faceColor{mod(ival,2)+1},...
+                'FaceAlpha', 0.3, 'EdgeAlpha', 0,'faceOffsetBias', -11);
+        end
+        
+        tmp = get(gca, 'Children');
+        set(gca, 'Children', flip(tmp));
+        clear tmp;
+        
+        ylabel(sprintf('%s',SMT.chan{ch_num}), 'Rotation', 0, 'HorizontalAlignment','right');
+        
+        plot_position = plot_position + sub_col;
     end
-    grid on;
-    
-    for cl_num=1:length(SMT.class(:,2))
-        i_legend{cl_num}=char(SMT.class(cl_num,2));
-    end
-    
-    legend(i_legend, 'Interpreter', 'none', 'AutoUpdate', 'off');
-    
-    ylim = get(gca,'Ylim');
-
-    for ival = 1:size(interval,1)
-        patch('XData', [interval(ival,1) interval(ival,2) interval(ival,2) interval(ival,1)],...
-        'YData', [ylim(1) ylim(1) ylim(2) ylim(2)], 'FaceColor', faceColor{mod(ival,2)+1},...
-        'FaceAlpha', 0.3, 'EdgeAlpha', 0,'faceOffsetBias', -11);
-    end
-    
-    tmp = get(gca, 'Children');
-    set(gca, 'Children', flip(tmp));
-    clear tmp;
-           
-    ylabel(sprintf('%s',SMT.chan{ch_num}), 'Rotation', 0, 'HorizontalAlignment','right');
-    
-    plot_position = plot_position + sub_col;
 end
-
-%% scalp_plot
-for i = 1: size(SMT.class,1)
-    for seg = 1: size(opt.Interval, 1)
-        subplot(sub_row, sub_col, plot_position);
-        SMTintervalstart = find(avgSMT.ival == opt.Interval(seg,1));
-        SMTintervalEnd = find(avgSMT.ival == opt.Interval(seg,2))-1;
-
-        ivalSMT = avgSMT.x(SMTintervalstart:SMTintervalEnd,:,:);
-        w = mean(squeeze(ivalSMT(:,i,:)),1);
-                              
-        scalp_plot(gca, w, MNT, p_range, resol);
-        plot_position = plot_position + 1;
+if isequal(TopoPlot, 'on')
+    %% scalp_plot
+    for i = 1: size(SMT.class,1)
+        for seg = 1: size(interval, 1)
+            subplot(sub_row, sub_col, plot_position);
+            SMTintervalstart = find(avgSMT.ival == interval(seg,1));
+            SMTintervalEnd = find(avgSMT.ival == interval(seg,2))-1;
+            
+            ivalSMT = avgSMT.x(SMTintervalstart:SMTintervalEnd,:,:);
+            w = mean(squeeze(ivalSMT(:,i,:)),1);
+            
+            scalp_plot(gca, w, MNT, p_range, resol);
+            plot_position = plot_position + 1;
+        end
+        %     subplot(size(SMT.class,1),size(opt.Ival,2),plot_position)
+        % Keeping scalp size;
+        last_position = get(gca, 'Position');
+        colorbar('vert');
+        tmp = get(gca, 'Position');
+        tmp(3:4) = last_position(3:4);
+        set(gca,'Position',tmp);
+        %     axis off;
+        %     plot_position = plot_position + 1;
     end
-%     subplot(size(SMT.class,1),size(opt.Ival,2),plot_position)
-    % Keeping scalp size;
-    last_position = get(gca, 'Position');
-    colorbar('vert');
-    tmp = get(gca, 'Position');
-    tmp(3:4) = last_position(3:4);
-    set(gca,'Position',tmp);
-%     axis off;
-%     plot_position = plot_position + 1;
 end
-output = gcf;
+output = output_str;
 end
 
 %% Function scalp_plot

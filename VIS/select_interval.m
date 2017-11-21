@@ -22,7 +22,7 @@ function varargout = select_interval(varargin)
 
 % Edit the above text to modify the response to help select_interval
 
-% Last Modified by GUIDE v2.5 10-Nov-2017 11:48:08
+% Last Modified by GUIDE v2.5 16-Nov-2017 19:25:22
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -95,15 +95,26 @@ function RESET(hObject,handles, init)
 % handles    empty - handles not created until after all CreateFcns called
 % init        initialization
 ival=handles.init_ival;
-[n m]=size(ival);
-ival_name=[{'start'}, {'end'}];
-for i=1:n
-    for j=1:m
-        eval(sprintf('handles.ival%d_%s.String=ival(i,j);',i,ival_name{j}));
-    end
+length_ival = size(ival,1);
+for i=1:length_ival
+    eval(sprintf('set(handles.ival%d_start,''String'', ival(%d,1))',i,i));
+    eval(sprintf('set(handles.ival%d_end,''String'', ival(%d,2))',i,i));
+end
+
+set(handles.pop_intervals, 'Value', length_ival+1);
+
+for i = length_ival+1:5
+    eval(sprintf('set(handles.ti%d,''Visible'',''off'')',i));
+    eval(sprintf('set(handles.tx%d,''Visible'',''off'')',i));
+    eval(sprintf('set(handles.tm%d,''Visible'',''off'')',i));
+    eval(sprintf('set(handles.ival%d_start,''Visible'',''off'')',i));
+    eval(sprintf('set(handles.ival%d_start,''String'','''')',i));
+    eval(sprintf('set(handles.ival%d_end,''Visible'',''off'')',i));
+    eval(sprintf('set(handles.ival%d_end,''String'','''')',i));
 end
 guidata(hObject,handles);
 
+%% Todo
 function UPDATE(hObject,handles,init)
 % handles    structure with handles and user data (see GUIDATA)
 % init        initialization
@@ -132,7 +143,7 @@ function reset_btn_Callback(hObject, eventdata, handles)
 % hObject    handle to reset_btn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-RESET(handles,false);
+RESET(hObject,handles,false);
 
 
 
@@ -359,6 +370,45 @@ function ival5_end_CreateFcn(hObject, eventdata, handles)
 % handles    empty - handles not created until after all CreateFcns called
 
 % Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on selection change in pop_intervals.
+function pop_intervals_Callback(hObject, eventdata, handles)
+% hObject    handle to pop_intervals (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns pop_intervals contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from pop_intervals
+for i = 1:5
+    eval(sprintf('set(handles.ti%d,''Visible'',''on'')',i));
+    eval(sprintf('set(handles.tx%d,''Visible'',''on'')',i));
+    eval(sprintf('set(handles.tm%d,''Visible'',''on'')',i));
+    eval(sprintf('set(handles.ival%d_start,''Visible'',''on'')',i));
+    eval(sprintf('set(handles.ival%d_end,''Visible'',''on'')',i));
+end
+for i = 5:-1:get(handles.pop_intervals, 'Value')
+    eval(sprintf('set(handles.ti%d,''Visible'',''off'')',i));
+    eval(sprintf('set(handles.tx%d,''Visible'',''off'')',i));
+    eval(sprintf('set(handles.tm%d,''Visible'',''off'')',i));
+    eval(sprintf('set(handles.ival%d_start,''Visible'',''off'')',i));
+    eval(sprintf('set(handles.ival%d_start,''String'','''')',i));
+    eval(sprintf('set(handles.ival%d_end,''Visible'',''off'')',i));
+    eval(sprintf('set(handles.ival%d_end,''String'','''')',i));
+end
+
+
+% --- Executes during object creation, after setting all properties.
+function pop_intervals_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to pop_intervals (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
 %       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');

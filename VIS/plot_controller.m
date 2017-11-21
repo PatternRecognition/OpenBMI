@@ -2,7 +2,7 @@ function varargout = plot_controller(varargin)
 % PLOT_CONTROLLER MATLAB code for plot_controller.fig
 %      PLOT_CONTROLLER, by itself, creates a new PLOT_CONTROLLER or raises the existing
 %      singleton*.
-%       
+%
 %       excute with plot_controller(SMT)
 %      H = PLOT_CONTROLLER returns the handle to a new PLOT_CONTROLLER or the handle to
 %      the existing singleton*.
@@ -23,16 +23,16 @@ function varargout = plot_controller(varargin)
 
 % Edit the above text to modify the response to help plot_controller
 
-% Last Modified by GUIDE v2.5 14-Nov-2017 10:48:54
+% Last Modified by GUIDE v2.5 16-Nov-2017 16:44:22
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
-                   'gui_Singleton',  gui_Singleton, ...
-                   'gui_OpeningFcn', @plot_controller_OpeningFcn, ...
-                   'gui_OutputFcn',  @plot_controller_OutputFcn, ...
-                   'gui_LayoutFcn',  [] , ...
-                   'gui_Callback',   []);
+    'gui_Singleton',  gui_Singleton, ...
+    'gui_OpeningFcn', @plot_controller_OpeningFcn, ...
+    'gui_OutputFcn',  @plot_controller_OutputFcn, ...
+    'gui_LayoutFcn',  [] , ...
+    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
     gui_State.gui_Callback = str2func(varargin{1});
 end
@@ -56,9 +56,9 @@ function plot_controller_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for plot_controller
 handles.output = hObject;
 if ~sum(size(varargin))
-    warning('OpenBMI: No data input');return
+    error('OpenBMI: No data input');
 elseif ~isfield(varargin{1},'x')
-    warning('OpenBMI: Data must have fields named ''x''');return
+    error('OpenBMI: Data must have fields named ''x''');
 else
     handles.data=varargin{1};
 end
@@ -70,7 +70,7 @@ initialize_gui(hObject, handles, false);
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = plot_controller_OutputFcn(hObject, eventdata, handles) 
+function varargout = plot_controller_OutputFcn(hObject, eventdata, handles)
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -87,11 +87,7 @@ set(handles.time_seg_start, 'String', handles.data.ival(1));
 set(handles.time_seg_end, 'String', handles.data.ival(end));
 set(handles.sampling_rate,'String',handles.data.fs);
 
-class=handles.data.class{1,2};
-for i=2:length(handles.data.class(:,2))
-    class=strcat(class,{', '},handles.data.class{i,2});
-end
-set(handles.class,'String',class);
+set(handles.num_class,'String',size(handles.data.class, 1));
 
 set(handles.chan_num,'String',length(handles.data.chan));
 
@@ -118,30 +114,37 @@ set(handles.check_topography,'Value',true);
 
 % Initialize channel
 handles.selected_chan={'Cz','Oz'};
-str=[];
+str={};
 for i=1:length(handles.selected_chan)
-    tmp=sprintf('%s\n',handles.selected_chan{i});
-    str=[str tmp];
+    str=[str; sprintf('%s',handles.selected_chan{i})];
 end
 % sprintf('%s',selected_chan{1});
 set(handles.chan_listbox, 'String', str);
 
 % Initialize interval
+str ={};
 handles.selected_ival=[0,100;100,200;200,300;300,400;400,500];
 ival=handles.selected_ival;
-set(handles.ival_listbox, 'String', sprintf('%d ~ %d\n%d ~ %d\n%d ~ %d\n%d ~ %d\n%d ~ %d',ival(1,1),ival(1,2),ival(2,1),ival(2,2),ival(3,1),ival(3,2),ival(4,1),ival(4,2),ival(5,1),ival(5,2)));
-
-% Initialize class
-handles.selected_class=handles.data.class(:,2);
-class=handles.data.class{1,2};
-for i=2:length(handles.data.class(:,2))
-    class=sprintf('%s\n%s',class,handles.data.class{i,2});
+for i = 1:size(ival,1)
+    str = [str; sprintf('%d ~ %d',ival(i,1), ival(i,2))];
 end
-set(handles.class_listbox,'String',class);
+set(handles.ival_listbox, 'String', str);
+
+% Initialize num_class
+str = {};
+handles.selected_class=handles.data.class(:,2);
+
+for i=1:length(handles.selected_class)
+    str = [str; sprintf('%s', handles.selected_class{i})];
+end
+
+set(handles.class_listbox,'String', str);
 
 % Initialize baseline
 set(handles.baseline_start, 'String', -100);
 set(handles.baseline_end, 'String', 0);
+
+set(handles.note_txt,'String', {'';'';'Welcome'});
 
 % Update handles structure
 guidata(hObject, handles);
@@ -159,13 +162,24 @@ function select_chan_btn_Callback(hObject, eventdata, handles)
 % hObject    handle to select_chan_btn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-[~,handles.selected_chan]=GUI_selectChannels(handles.smt.chan,handles.selected_chan);
-str=[];
+try
+    [~,selected_chan]=GUI_selectChannels(handles.smt.chan,handles.selected_chan);
+    if length(selected_chan) > 5
+        set(handles.note_txt, 'String', {'';'';'Don''t you think channels are too many selected?'});
+        return;
+    else
+        handles.selected_chan = selected_chan;
+    end
+catch
+    return;
+end
+str={};
 for i=1:length(handles.selected_chan)
-    tmp=sprintf('%s\n',handles.selected_chan{i});
-    str=[str tmp];
+    str=[str; sprintf('%s',handles.selected_chan{i})];
 end
 set(handles.chan_listbox, 'String', str);
+set(handles.note_txt, 'String', {'';'';'Channels are selected'});
+
 clear tmp;
 % Update handles structure
 guidata(hObject, handles);
@@ -199,16 +213,32 @@ function select_ival_btn_Callback(hObject, eventdata, handles)
 % hObject    handle to select_ival_btn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-handles.selected_ival=select_interval(handles.selected_ival);
-
-ival=handles.selected_ival;
-str=sprintf('%d ~ %d',handles.selected_ival(1,1), handles.selected_ival(1,2));
-for i=2:length(handles.selected_ival(:,1))
-    str=sprintf('%s\n%d ~ %d',str,handles.selected_ival(i,1), handles.selected_ival(i,2));
+try
+    ival = select_interval(handles.selected_ival);
+    if ~isempty(ival)&(min(ival(:)) < handles.smt.ival(1) | max(ival(:)) > handles.smt.ival(end))
+        set(handles.note_txt,'String', {'';'';'Please select intervals between segmented data'});
+        return;
+    end
+    ival = sort(ival,2);
+    [~, sort_] = sort(ival,1);
+    ival = ival(sort_(:,1),:);
+catch
+    return;
+end
+handles.selected_ival=ival;
+% str=sprintf('%d ~ %d',handles.selected_ival(1,1), handles.selected_ival(1,2));
+% for i=2:length(handles.selected_ival(:,1))
+%     str=sprintf('%s\n%d ~ %d',str,handles.selected_ival(i,1), handles.selected_ival(i,2));
+% end
+str = {};
+for i = 1:size(ival,1)
+    str = [str; sprintf('%d ~ %d', ival(i,1), ival(i,2))];
 end
 % set(handles.ival_listbox, 'String', sprintf('%d ~ %d\n%d ~ %d\n%d ~ %d\n%d ~ %d\n%d ~ %d',ival(1,1),ival(1,2),ival(2,1),ival(2,2),ival(3,1),ival(3,2),ival(4,1),ival(4,2),ival(5,1),ival(5,2)));
 
 set(handles.ival_listbox, 'String',str);
+set(handles.note_txt, 'String', {'';'';'Itervals are selected'});
+
 % Update handles structure
 guidata(hObject, handles);
 
@@ -240,14 +270,18 @@ function select_class_btn_Callback(hObject, eventdata, handles)
 % hObject    handle to select_class_btn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-handles.selected_class=select_class(handles.smt.class(:,2),handles.selected_class);
-str=[];
+try
+    handles.selected_class=select_class(handles.smt.class(:,2),handles.selected_class);
+catch
+    return;
+end
+str={};
 for i=1:length(handles.selected_class)
-    tmp=sprintf('%s\n',handles.selected_class{i});
-    str=[str tmp];
+    str=[str; sprintf('%s',handles.selected_class{i});];
 end
 set(handles.class_listbox, 'String', str);
 clear tmp;
+set(handles.note_txt, 'String', {'';'';'Classes are selected'});
 
 % Update handles structure
 guidata(hObject, handles);
@@ -298,28 +332,26 @@ function draw_btn_Callback(hObject, eventdata, handles)
 % hObject    handle to draw_btn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-UPDATE(hObject,handles, true);
-visual_scalpPlot_fin(handles.smt, {'Interval', handles.selected_ival;'Channels',handles.selected_chan;,'Class',handles.selected_class});
-% visual_scalpPlot_fin(handles.smt, {'Interval', handles.selected_ival;'Channels',{'Cz', 'POz','Oz'};'Class',{'target','non-target'}});
+baseline=[str2double(handles.baseline_start.String), str2double(handles.baseline_end.String)];
+
+handles.smt=prep_baseline(handles.data, {'Time', baseline});
+
+if get(handles.check_topography,'Value'), TopoPlot = 'on'; else TopoPlot = 'off'; end
+if get(handles.check_time_plot,'Value'), TimePlot = 'on'; else TimePlot = 'off'; end
+set(handles.note_txt, 'String', {'';'';'Wait for Drawing'}); drawnow;
+try
+    output = visual_scalpPlot_fin(handles.smt, {'Interval', handles.selected_ival;...
+        'Channels',handles.selected_chan;'Class',handles.selected_class;...
+        'TimePlot', TimePlot; 'TopoPlot', TopoPlot});
+catch
+    close gcf;
+    output = {'';'';'Unexpected Error Occurred'};
+end
+set(handles.note_txt, 'String', output);
+% visual_scalpPlot_fin(handles.smt, {'Interval', handles.selected_ival;'Channels',{'Cz', 'POz','Oz'};'num_class',{'target','non-target'}});
 % visual_scalpPlot_fin(handles.smt, {'Interval', [-100 0 150 250 400];'Channels',{'Cz', 'POz','Oz'}});
 % Update handles structure
 % guidata(hObject, handles);
-
-
-
-function UPDATE(hObject, handles, init)
-% handles     structure with handles and user data (see GUIDATA)
-% init        initialization
-% update baseline
-baseline=[str2num(handles.baseline_start.String), str2num(handles.baseline_end.String)];
-handles.smt=prep_baseline(handles.data, {'Time', baseline});
-% update channels
-chan=handles.chan_listbox;
-ival=handles.ival_listbox;
-class=handles.class_listbox;
-% Update handles structure
-guidata(hObject, handles);
-
 
 % --- Executes on button press in reset_btn.
 function reset_btn_Callback(hObject, eventdata, handles)
@@ -429,6 +461,19 @@ function baseline_start_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of baseline_start as text
 %        str2double(get(hObject,'String')) returns contents of baseline_start as a double
+input = get(handles.baseline_start, 'String');
+[~, len] = regexp(input, '^-?[0-9]+');
+
+if ~isequal(len, length(input))
+    set(handles.note_txt, 'String',{'';'';sprintf('[%s] is not acceptable', input)});
+    set(handles.baseline_start, 'String', '-100');
+    return;
+end
+if str2double(input) < handles.smt.ival(1) || str2double(input) > handles.smt.ival(end)
+    set(handles.note_txt, 'String',{'';'';sprintf('[%s] is not acceptable', input)});
+    set(handles.baseline_start, 'String', '-100');
+    return;
+end
 
 
 % --- Executes during object creation, after setting all properties.
@@ -452,6 +497,19 @@ function baseline_end_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of baseline_end as text
 %        str2double(get(hObject,'String')) returns contents of baseline_end as a double
+input = get(handles.baseline_end, 'String');
+[~, len] = regexp(input, '^-?[0-9]+');
+
+if ~isequal(len, length(input))
+    set(handles.note_txt, 'String',{'';'';sprintf('[%s] is not acceptable', input)});
+    set(handles.baseline_end, 'String', '0');
+    return;
+end
+if str2double(input) < handles.smt.ival(1) || str2double(input) > handles.smt.ival(end)
+    set(handles.note_txt, 'String',{'';'';sprintf('[%s] is not acceptable', input)});
+    set(handles.baseline_end, 'String', '0');
+    return;
+end
 
 
 % --- Executes during object creation, after setting all properties.
