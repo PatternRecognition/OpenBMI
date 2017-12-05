@@ -30,26 +30,28 @@ function output = visual_scalpPlot_fin(SMT, varargin)
 % -----------------------------------------------------
 % FileExchange function subtightplot by F. G. Nievinski
 subplot = @(m,n,p) subtightplot(m,n,p,[0.045 0]);
-
-figure;
-
-set(gcf,'Position',[400 200 1000 600]);
-MNT = opt_getMontage(SMT);
+output_str = {'';'';'Finished'};
 
 opt = opt_cellToStruct(varargin{:});
 if isfield(opt, 'Interval') interval = opt.Interval; end
 if isfield(opt, 'Range') p_range = opt.Range; else p_range ='mintomax'; end
-if isfield(opt, 'Resolution') resol = opt.Resolution; else resol = 300; end
+if isfield(opt, 'Resolution') resol = opt.Resolution; else resol = 250; end
 if isfield(opt, 'Channels') chan = opt.Channels; else chan = {SMT.chan{1:2}}; end
 if isfield(opt, 'Class') class = opt.Class; else class = {SMT.class{1:2,2}}; end
 if isfield(opt, 'Color') faceColor = opt.Color; else faceColor = [{[0.8 0.8 0.8]};{[0.6 0.6 0.6]}]; end
 if isfield(opt, 'TimePlot') TimePlot = opt.TimePlot; else TimePlot = 'on'; end
 if isfield(opt, 'ErspPlot') ErspPlot = opt.ErspPlot; else ErspPlot = 'on'; end
-if isfield(opt, 'EnvPlot') EnvPlot = opt.EnvPlot; else EnvPlot = 'on'; end
+if isfield(opt, 'ErdPlot') ErdPlot = opt.ErdPlot; else ErdPlot = 'on'; end
 if isfield(opt, 'TopoPlot') TopoPlot = opt.TopoPlot; else TopoPlot = 'on'; end
 if isfield(opt, 'Baseline') baseline = opt.Baseline; else baseline = [0 0]; end
 
-output_str = {'';'';'Finished'};
+
+fig = figure;
+set(fig, 'MenuBar', 'none');
+set(fig, 'ToolBar', 'none');
+
+set(gcf,'Position',[400 200 1000 600]);
+MNT = opt_getMontage(SMT);
 
 if ~isequal(MNT.chan, SMT.chan)
     if length(SMT.chan) > length(MNT.chan)
@@ -58,7 +60,7 @@ if ~isequal(MNT.chan, SMT.chan)
         for i = 2:length(tmp)
             output_str = [output_str sprintf(', %s',tmp{i})];
         end
-        output_str = [output_str, ' are missed'];
+        output_str = {''; [output_str, ' are missed']};
     end
     tmp = zeros(1,length(MNT.x));
     for i = 1:length(MNT.chan)
@@ -72,14 +74,15 @@ end
 if isempty(interval)
     interval = [SMT.ival(1) SMT.ival(end)];
 end
-% 
-SMT = prep_selectClass(SMT,{'class',class});
-avgSMT= prep_average(SMT);
+
+avgSMT = prep_baseline(SMT, {'Time', baseline});
+avgSMT = prep_selectClass(avgSMT,{'class',class});
+avgSMT = prep_average(avgSMT);
 
 oldUnit = get(gcf,'units');
 set(gcf,'units','normalized');
 
-sub_row = length(chan) + size(SMT.class,1);
+sub_row = length(chan) * sum(ismember({TimePlot, ErspPlot, ErdPlot}, 'on')) + size(SMT.class,1) * isequal(TopoPlot, 'on');
 sub_col = size(interval,1);
 
 %% time-domain plot
@@ -89,7 +92,7 @@ if isequal(TimePlot, 'on')
     ch_idx = find(ismember(avgSMT.chan, chan));
     time_range = [floor(min(reshape(avgSMT.x(:,:,ch_idx), [], 1))),...
         ceil(max(reshape(avgSMT.x(:,:,ch_idx), [], 1)))];
-    
+    base_idx = [find(avgSMT.ival == baseline(1)), find(avgSMT.ival == baseline(2))];
     for i = 1:length(chan)
         subplot(sub_row, sub_col, plot_position:plot_position + sub_col -1);
         ch_num = ismember(avgSMT.chan, chan{i});
@@ -101,11 +104,19 @@ if isequal(TimePlot, 'on')
         grid on;
         ylim(time_range);
         
-        for cl_num=1:length(SMT.class(:,2))
-            i_legend{cl_num}=char(SMT.class(cl_num,2));
+        for cl_num=1:length(avgSMT.class(:,2))
+            i_legend{cl_num}=char(avgSMT.class(cl_num,2));
         end
         
         legend(i_legend, 'Interpreter', 'none', 'AutoUpdate', 'off');
+        
+        base_avgSMT = reshape(avgSMT.x(base_idx(1):base_idx(2), :, ch_num), [], 1);
+        base_minmax = [min(base_avgSMT), max(base_avgSMT)];
+        
+        patch('XData', [baseline(1)  baseline(2) baseline(2) baseline(1)], ...
+            'YData', [base_minmax(1) base_minmax(1) base_minmax(2) base_minmax(2)],...
+            'FaceColor', 'k',...
+            'FaceAlpha', 0.5, 'EdgeAlpha', 0,'faceOffsetBias', -11);
         
         for ival = 1:size(interval,1)
             patch('XData', [interval(ival,1) interval(ival,2) interval(ival,2) interval(ival,1)],...
@@ -118,13 +129,48 @@ if isequal(TimePlot, 'on')
         set(gca, 'Children', flip(tmp));
         clear tmp;
         
-        ylabel(sprintf('%s',SMT.chan{ch_num}), 'Rotation', 0, 'HorizontalAlignment','right');
+        ylabel(SMT.chan{ch_num}, 'Rotation', 0, ...
+            'HorizontalAli','right', 'FontWeight', 'bold', 'FontSize', 12);
         
         plot_position = plot_position + sub_col;
     end
 end
+%% ERDERS plot
+if isequal(ErdPlot, 'on')
+    envSMT = prep_envelope(SMT);
+    envSMT = prep_baseline(envSMT, {'Time', baseline});
+    envSMT = prep_selectClass(envSMT, {'class',class});
+    envSMT = prep_average(envSMT);
+        
+    ch_idx = find(ismember(envSMT.chan, chan));
+    erd_range = [floor(min(reshape(envSMT.x(:,:,ch_idx), [], 1))),...
+        ceil(max(reshape(envSMT.x(:,:,ch_idx), [], 1)))];
+    
+    for i = 1:length(chan)
+        subplot(sub_row, sub_col, plot_position:plot_position + sub_col -1);
+        ch_num = ismember(envSMT.chan, chan{i});
+        for j = 1:size(SMT.class,1)
+            plot(SMT.ival, envSMT.x(:,j,ch_num),'LineWidth',2); hold on;
+        end
+        
+        ylim(erd_range);
+        
+        for cl_num=1:length(SMT.class(:,2))
+            i_legend{cl_num}=char(envSMT.class(cl_num,2));
+        end
+        
+        legend(i_legend, 'Interpreter', 'none', 'AutoUpdate', 'off');
+        
+        ylabel(SMT.chan{ch_num}, 'Rotation', 0, ...
+            'HorizontalAli','right', 'FontWeight', 'bold', 'FontSize', 12);
+        
+        plot_position = plot_position + sub_col;
+    end
+end
+%% ERSP plot
 if isequal(ErspPlot, 'on')
 end
+%% Topo plot
 if isequal(TopoPlot, 'on')
     ivalSegment = size(interval,1);
     minmax = [];
@@ -159,6 +205,7 @@ if isequal(TopoPlot, 'on')
         for seg = 1: size(interval, 1)
             subplot(sub_row, sub_col, plot_position);
             plot_scalp(gca, w{i, seg}, MNT, p_range, resol);
+            xlabel(sprintf('[%d - %d] ms',interval(seg,:)));
             plot_position = plot_position + 1;
         end
         % Keeping scalp size;
@@ -167,6 +214,9 @@ if isequal(TopoPlot, 'on')
         tmp = get(gca, 'Position');
         tmp(3:4) = last_position(3:4);
         set(gca,'Position',tmp);
+        subplot(sub_row, sub_col, plot_position - size(interval,1));%
+        set(get(gca,'Ylabel'), 'Visible','on', 'String', {class{i}; ''; ''}, ...
+            'HorizontalAli','right', 'Interpreter', 'none', 'FontWeight', 'bold', 'FontSize', 12);
     end
 end
 output = output_str;

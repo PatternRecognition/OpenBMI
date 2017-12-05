@@ -47,7 +47,8 @@ Accuracy = 1- avg_loss;
 
 %% plot
 x=-490:10:4000;
-y_l = [min([min(cls1_C3),min(cls1_Cz),min(cls1_C4),min(cls2_C3),min(cls2_Cz),min(cls2_C4)])*1.1 max([max(cls1_C3),max(cls1_Cz),max(cls1_C4),max(cls2_C3),max(cls2_Cz),max(cls2_C4)])*1.1];
+y_l = [min([min(cls1_C3),min(cls1_Cz),min(cls1_C4),min(cls2_C3),min(cls2_Cz),min(cls2_C4)])*1.1...
+    max([max(cls1_C3),max(cls1_Cz),max(cls1_C4),max(cls2_C3),max(cls2_Cz),max(cls2_C4)])*1.1];
 f=figure;
 subplot(1,3,1); plot(x,cls1_C3,'r',x,cls2_C3,'b');
 title('C3'); legend('right', 'left'); xlim([-490 4000]); ylim(y_l);

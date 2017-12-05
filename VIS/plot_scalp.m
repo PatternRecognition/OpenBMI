@@ -26,7 +26,6 @@ hold on;
 patch([0 0], [0 0], [1 2]);
 ccc = get(ax, 'children');
 set(ccc(1), 'Visible', 'off');
-
 set(ax, 'CLim', p_range);
 % ----------------------------------------------------------------------
 % contour line
@@ -68,4 +67,5 @@ axis('xy', 'tight', 'equal', 'tight');
 hold on;
 
 axis off;
+set(get(gca,'XLabel'),'Visible','on')
 end
