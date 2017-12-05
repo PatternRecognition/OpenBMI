@@ -32,6 +32,7 @@ function output = visual_scalpPlot_fin(SMT, varargin)
 subplot = @(m,n,p) subtightplot(m,n,p,[0.045 0]);
 
 figure;
+
 set(gcf,'Position',[400 200 1000 600]);
 MNT = opt_getMontage(SMT);
 
@@ -43,10 +44,12 @@ if isfield(opt, 'Channels') chan = opt.Channels; end
 if isfield(opt, 'Class') class = opt.Class; end
 if isfield(opt, 'Color') faceColor = opt.Color; else faceColor = [{[0.8 0.8 0.8]};{[0.6 0.6 0.6]}]; end
 if isfield(opt, 'TimePlot') TimePlot = opt.TimePlot; else TimePlot = 'on'; end
-if isfield(opt, 'TimePlot') TopoPlot = opt.TopoPlot; else TopoPlot = 'on'; end
+if isfield(opt, 'ErspPlot') ErspPlot = opt.ErspPlot; else ErspPlot = 'on'; end
+if isfield(opt, 'EnvPlot') EnvPlot = opt.EnvPlot; else EnvPlot = 'on'; end
+if isfield(opt, 'TopoPlot') TopoPlot = opt.TopoPlot; else TopoPlot = 'on'; end
 if isfield(opt, 'Baseline') baseline = opt.Baseline; else baseline = [0 0]; end
 
-output_str = 'Finished';
+output_str = {'';'';'Finished'};
 
 if ~isequal(MNT.chan, SMT.chan)
     if length(SMT.chan) > length(MNT.chan)
@@ -83,11 +86,11 @@ sub_col = size(interval,1);
 %% time-domain plot
 plot_position = 1;
 
-ch_idx = find(ismember(SMT.chan, chan));
-time_range = [floor(min(reshape(avgSMT.x(:,:,ch_idx), [], 1))),...
-    ceil(max(reshape(avgSMT.x(:,:,ch_idx), [], 1)))];
-
 if isequal(TimePlot, 'on')
+    ch_idx = find(ismember(SMT.chan, chan));
+    time_range = [floor(min(reshape(avgSMT.x(:,:,ch_idx), [], 1))),...
+        ceil(max(reshape(avgSMT.x(:,:,ch_idx), [], 1)))];
+    
     for i = 1:length(chan)
         subplot(sub_row, sub_col, plot_position:plot_position + sub_col -1);
         ch_num = ismember(SMT.chan, chan{i});
@@ -121,29 +124,36 @@ if isequal(TimePlot, 'on')
         plot_position = plot_position + sub_col;
     end
 end
+if isequal(ErspPlot, 'on')
+end
 if isequal(TopoPlot, 'on')
+    ivalSegment = size(interval,1);
+    for seg = 1: ivalSegment
+        SMTintervalstart = find(avgSMT.ival == interval(seg,1));
+        SMTintervalEnd = find(avgSMT.ival == interval(seg,2))-1;
+        ivalSMT = avgSMT.x(SMTintervalstart:SMTintervalEnd,:,:);
+        w{seg} = mean(squeeze(ivalSMT(:,i,:)),1);
+    end
+    %% range_options
+    if true
+        min_max = zeros(ivalSegment, 2);
+        for i = 
+        min_max(seg, :) = [min(w(:)) max(w(:))];
+        p_range = [mean(min_max(:,1)), mean(min_max(:,2))];
+    end
+    
     %% scalp_plot
     for i = 1: size(SMT.class,1)
         for seg = 1: size(interval, 1)
-            subplot(sub_row, sub_col, plot_position);
-            SMTintervalstart = find(avgSMT.ival == interval(seg,1));
-            SMTintervalEnd = find(avgSMT.ival == interval(seg,2))-1;
-            
-            ivalSMT = avgSMT.x(SMTintervalstart:SMTintervalEnd,:,:);
-            w = mean(squeeze(ivalSMT(:,i,:)),1);
-            
-            scalp_plot(gca, w, MNT, p_range, resol);
+            scalp_plot(gca, w{seg}, MNT, p_range, resol);
             plot_position = plot_position + 1;
         end
-        %     subplot(size(SMT.class,1),size(opt.Ival,2),plot_position)
         % Keeping scalp size;
         last_position = get(gca, 'Position');
         colorbar('vert');
         tmp = get(gca, 'Position');
         tmp(3:4) = last_position(3:4);
         set(gca,'Position',tmp);
-        %     axis off;
-        %     plot_position = plot_position + 1;
     end
 end
 output = output_str;

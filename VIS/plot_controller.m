@@ -23,7 +23,7 @@ function varargout = plot_controller(varargin)
 
 % Edit the above text to modify the response to help plot_controller
 
-% Last Modified by GUIDE v2.5 16-Nov-2017 16:44:22
+% Last Modified by GUIDE v2.5 04-Dec-2017 22:08:10
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -110,6 +110,8 @@ function RESET(hObject, handles, isreset)
 handles.smt=handles.data;
 % Initialize plot type
 set(handles.check_time_plot,'Value',true);
+set(handles.check_ersp,'Value',true);
+set(handles.check_env,'Value',true);
 set(handles.check_topography,'Value',true);
 
 % Initialize channel
@@ -318,13 +320,13 @@ function check_time_plot_Callback(hObject, eventdata, handles)
 % Hint: get(hObject,'Value') returns toggle state of check_time_plot
 
 
-% --- Executes on button press in check_topography.
-function check_topography_Callback(hObject, eventdata, handles)
-% hObject    handle to check_topography (see GCBO)
+% --- Executes on button press in check_env.
+function check_env_Callback(hObject, eventdata, handles)
+% hObject    handle to check_env (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of check_topography
+% Hint: get(hObject,'Value') returns toggle state of check_env
 
 
 % --- Executes on button press in draw_btn.
@@ -335,17 +337,24 @@ function draw_btn_Callback(hObject, eventdata, handles)
 baseline=[str2double(handles.baseline_start.String), str2double(handles.baseline_end.String)];
 
 handles.smt=prep_baseline(handles.data, {'Time', baseline});
-
-if get(handles.check_topography,'Value'), TopoPlot = 'on'; else TopoPlot = 'off'; end
+%
 if get(handles.check_time_plot,'Value'), TimePlot = 'on'; else TimePlot = 'off'; end
+if get(handles.check_ersp,'Value'), EnvPlot = 'on'; else EnvPlot = 'off'; end
+if get(handles.check_env,'Value'), ErspPlot = 'on'; else ErspPlot = 'off'; end
+if get(handles.check_topography,'Value'), TopoPlot = 'on'; else TopoPlot = 'off'; end
+
 set(handles.note_txt, 'String', {'';'';'Wait for Drawing'}); drawnow;
+
 try
     output = visual_scalpPlot_fin(handles.smt, {'Interval', handles.selected_ival;...
         'Channels',handles.selected_chan;'Class',handles.selected_class;...
-        'TimePlot', TimePlot; 'TopoPlot', TopoPlot; 'Baseline', baseline});
-catch
+        'TimePlot', TimePlot; 'TopoPlot', TopoPlot; ...
+        'ErspPlot', ErspPlot; 'EnvPlot', EnvPlot; 'Baseline', baseline});
+catch error
     close gcf;
-    output = {'';'';'Unexpected Error Occurred'};
+    output = {'';'Unexpected Error Occurred in';...
+        sprintf('%s (line: %d)', error.stack(1).name, error.stack(1).line);...
+        error.message};
 end
 set(handles.note_txt, 'String', output);
 % visual_scalpPlot_fin(handles.smt, {'Interval', handles.selected_ival;'Channels',{'Cz', 'POz','Oz'};'num_class',{'target','non-target'}});
@@ -604,3 +613,12 @@ function edit8_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on button press in check_ersp.
+function check_ersp_Callback(hObject, eventdata, handles)
+% hObject    handle to check_ersp (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of check_ersp
