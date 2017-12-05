@@ -23,7 +23,7 @@ function varargout = plot_controller(varargin)
 
 % Edit the above text to modify the response to help plot_controller
 
-% Last Modified by GUIDE v2.5 04-Dec-2017 22:08:10
+% Last Modified by GUIDE v2.5 05-Dec-2017 16:32:19
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -343,13 +343,27 @@ if get(handles.check_ersp,'Value'), EnvPlot = 'on'; else EnvPlot = 'off'; end
 if get(handles.check_env,'Value'), ErspPlot = 'on'; else ErspPlot = 'off'; end
 if get(handles.check_topography,'Value'), TopoPlot = 'on'; else TopoPlot = 'off'; end
 
+switch get(handles.pop_range, 'Value')
+    case 1
+        range = 'sym';
+    case 2
+        range = '0tomax';
+    case 3
+        range = 'minto0';
+    case 4
+        range = 'mintomax';
+    case 5
+        range = 'mean';
+    case 6
+        range = [-1.5, 0.5];
+end
 set(handles.note_txt, 'String', {'';'';'Wait for Drawing'}); drawnow;
 
 try
     output = visual_scalpPlot_fin(handles.smt, {'Interval', handles.selected_ival;...
         'Channels',handles.selected_chan;'Class',handles.selected_class;...
-        'TimePlot', TimePlot; 'TopoPlot', TopoPlot; ...
-        'ErspPlot', ErspPlot; 'EnvPlot', EnvPlot; 'Baseline', baseline});
+        'TimePlot', TimePlot; 'TopoPlot', TopoPlot; 'ErspPlot', ErspPlot;...
+        'EnvPlot', EnvPlot; 'Range', range; 'Baseline', baseline});
 catch error
     close gcf;
     output = {'';'Unexpected Error Occurred in';...
@@ -622,3 +636,26 @@ function check_ersp_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of check_ersp
+
+
+% --- Executes on selection change in pop_range.
+function pop_range_Callback(hObject, eventdata, handles)
+% hObject    handle to pop_range (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns pop_range contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from pop_range
+
+
+% --- Executes during object creation, after setting all properties.
+function pop_range_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to pop_range (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
