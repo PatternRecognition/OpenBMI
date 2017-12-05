@@ -38,10 +38,10 @@ MNT = opt_getMontage(SMT);
 
 opt = opt_cellToStruct(varargin{:});
 if isfield(opt, 'Interval') interval = opt.Interval; end
-if isfield(opt, 'Range') p_range = opt.Range; end
+if isfield(opt, 'Range') p_range = opt.Range; else p_range ='mintomax'; end
 if isfield(opt, 'Resolution') resol = opt.Resolution; else resol = 300; end
-if isfield(opt, 'Channels') chan = opt.Channels; end
-if isfield(opt, 'Class') class = opt.Class; end
+if isfield(opt, 'Channels') chan = opt.Channels; else chan = {SMT.chan{1:2}}; end
+if isfield(opt, 'Class') class = opt.Class; else class = {SMT.class{1:2,2}}; end
 if isfield(opt, 'Color') faceColor = opt.Color; else faceColor = [{[0.8 0.8 0.8]};{[0.6 0.6 0.6]}]; end
 if isfield(opt, 'TimePlot') TimePlot = opt.TimePlot; else TimePlot = 'on'; end
 if isfield(opt, 'ErspPlot') ErspPlot = opt.ErspPlot; else ErspPlot = 'on'; end
@@ -76,7 +76,6 @@ end
 SMT = prep_selectClass(SMT,{'class',class});
 avgSMT= prep_average(SMT);
 
-p_range = [-1.5 0.5];
 oldUnit = get(gcf,'units');
 set(gcf,'units','normalized');
 
@@ -87,16 +86,16 @@ sub_col = size(interval,1);
 plot_position = 1;
 
 if isequal(TimePlot, 'on')
-    ch_idx = find(ismember(SMT.chan, chan));
+    ch_idx = find(ismember(avgSMT.chan, chan));
     time_range = [floor(min(reshape(avgSMT.x(:,:,ch_idx), [], 1))),...
         ceil(max(reshape(avgSMT.x(:,:,ch_idx), [], 1)))];
     
     for i = 1:length(chan)
         subplot(sub_row, sub_col, plot_position:plot_position + sub_col -1);
-        ch_num = ismember(SMT.chan, chan{i});
+        ch_num = ismember(avgSMT.chan, chan{i});
         
-        for class = 1:size(SMT.class,1)
-            plot(SMT.ival, avgSMT.x(:,class,ch_num),'LineWidth',2); hold on;
+        for j = 1:size(SMT.class,1)
+            plot(SMT.ival, avgSMT.x(:,j,ch_num),'LineWidth',2); hold on;
         end
         
         grid on;
@@ -128,24 +127,38 @@ if isequal(ErspPlot, 'on')
 end
 if isequal(TopoPlot, 'on')
     ivalSegment = size(interval,1);
-    for seg = 1: ivalSegment
-        SMTintervalstart = find(avgSMT.ival == interval(seg,1));
-        SMTintervalEnd = find(avgSMT.ival == interval(seg,2))-1;
-        ivalSMT = avgSMT.x(SMTintervalstart:SMTintervalEnd,:,:);
-        w{seg} = mean(squeeze(ivalSMT(:,i,:)),1);
+    minmax = [];
+    for i = 1:size(class, 1)
+        for seg = 1: ivalSegment
+            SMTintervalstart = find(avgSMT.ival == interval(seg,1));
+            SMTintervalEnd = find(avgSMT.ival == interval(seg,2))-1;
+            ivalSMT = avgSMT.x(SMTintervalstart:SMTintervalEnd,:,:);
+            w{i, seg} = mean(squeeze(ivalSMT(:,i,:)),1);
+            minmax = [minmax; min(w{i,seg}(:)), max(w{i,seg}(:))];
+        end
     end
     %% range_options
-    if true
-        min_max = zeros(ivalSegment, 2);
-        for i = 
-        min_max(seg, :) = [min(w(:)) max(w(:))];
-        p_range = [mean(min_max(:,1)), mean(min_max(:,2))];
+    if ~isfloat(p_range)
+        if isequal(p_range, 'sym')
+            p_range = [-max(abs(minmax(:,2))), max(abs(minmax(:,2)))];
+        elseif isequal(p_range, '0tomax')
+            p_range = [0, max(minmax(:,2))];
+        elseif isequal(p_range, 'minto0')
+            p_range = [min(minmax(:,1)), 0];
+        elseif isequal(p_range, 'mintomax')
+            p_range = [min(minmax(:,1)) max(minmax(:,2))];
+        elseif isequal(p_range, 'mean')
+            p_range = [mean(minmax(:,1)) mean(minmax(:,2))];
+        end
     end
-    
-    %% scalp_plot
-    for i = 1: size(SMT.class,1)
+    if diff(p_range)==0
+        p_range(2)= p_range(2)+eps;
+    end
+    %% scalp_plot 
+    for i = 1: size(class, 1)
         for seg = 1: size(interval, 1)
-            scalp_plot(gca, w{seg}, MNT, p_range, resol);
+            subplot(sub_row, sub_col, plot_position);
+            plot_scalp(gca, w{i, seg}, MNT, p_range, resol);
             plot_position = plot_position + 1;
         end
         % Keeping scalp size;
@@ -158,6 +171,7 @@ if isequal(TopoPlot, 'on')
 end
 output = output_str;
 end
+
 
 %% FileExchange function subtightplot by F. G. Nievinski
 function h=subtightplot(m,n,p,gap,marg_h,marg_w,varargin)
