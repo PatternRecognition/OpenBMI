@@ -1,5 +1,5 @@
-%% Function scalp_plot
-function scalp_plot(ax, w, MNT, p_range, resolution)
+%% Function plot_scalp
+function plot_scalp(ax, w, MNT, p_range, resolution)
 line_width = 1;
 
 center = [0 0];
@@ -27,7 +27,6 @@ patch([0 0], [0 0], [1 2]);
 ccc = get(ax, 'children');
 set(ccc(1), 'Visible', 'off');
 
-if diff(p_range)==0, p_range(2)= p_range(2)+eps; end
 set(ax, 'CLim', p_range);
 % ----------------------------------------------------------------------
 % contour line
