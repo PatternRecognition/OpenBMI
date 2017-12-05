@@ -342,7 +342,7 @@ set(handles.note_txt, 'String', {'';'';'Wait for Drawing'}); drawnow;
 try
     output = visual_scalpPlot_fin(handles.smt, {'Interval', handles.selected_ival;...
         'Channels',handles.selected_chan;'Class',handles.selected_class;...
-        'TimePlot', TimePlot; 'TopoPlot', TopoPlot});
+        'TimePlot', TimePlot; 'TopoPlot', TopoPlot; 'Baseline', baseline});
 catch
     close gcf;
     output = {'';'';'Unexpected Error Occurred'};

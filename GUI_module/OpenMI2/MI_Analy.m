@@ -839,7 +839,7 @@ channel_index=1:32; % (FC1~6,C1~6,Cz,CP1~6)
 %                17, 18, 19, 20, 52, 51, 50 ...
 %                23, 24, 25,     48, 47, 46]; % (FC1~6,C1~6,Cz,CP1~6) 19개
 % 클래스 1개일때, 2개일때, 3개일때... 어떤 클래스 선택됫는지 그거 해줘야됨
-[LOSS, CSP, LDA]=MI_calibration_yj(EEG, band, fs, Interval, {'nClass',nClass;'channel',channel_index});
+[LOSS, CSP, LDA]=MI_calibration_new(EEG, band, fs, Interval, {'nClass',nClass;'channel',channel_index});
 acc=(1-LOSS{1,1})*100;
 set(handles.accur,'String',acc);
 

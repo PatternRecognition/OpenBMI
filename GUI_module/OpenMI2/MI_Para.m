@@ -22,7 +22,7 @@ function varargout = MI_Para(varargin)
 
 % Edit the above text to modify the response to help MI_Para
 
-% Last Modified by GUIDE v2.5 04-Sep-2017 13:36:14
+% Last Modified by GUIDE v2.5 24-Nov-2017 15:37:01
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -519,9 +519,9 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in startparadigm_off.
-function startparadigm_off_Callback(hObject, eventdata, handles)
-% hObject    handle to startparadigm_off (see GCBO)
+% --- Executes on button press in startparadigm.
+function startparadigm_Callback(hObject, eventdata, handles)
+% hObject    handle to startparadigm (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 t_stimulus = str2double(get(handles.Time_Stimulus , 'String'));

@@ -1,7 +1,5 @@
-
 %% load
-load cnt_p300_off;
-load cnt_p300_on;
+
 
 CNT_off = cnt_p300_off;
 CNT_on = cnt_p300_on;
@@ -39,6 +37,11 @@ count_char=1;
 spellerText_on='PATTERN_RECOGNITION_MACHINE_LEARNING';
 load('random_cell_order.mat');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%
+CNT_on = trigtotrig(CNT_on, spellerText_on);
+
+
 %% Make the classifier
 cnt=prep_filter(CNT_off, {'frequency', [0.5 40]});
 smt=prep_segmentation(cnt, {'interval', ival});
@@ -51,6 +54,7 @@ fv.x= reshape(permute(fv.x,[1 3 2]), [nDat*nChans nTrials]);
 clear cnt smt fv nDat nTrials nChans 
 %%
 cnt =prep_filter(CNT_on, {'frequency', [0.5 40]});
+% cnt = CNT_on;
 smt=prep_segmentation(cnt, {'interval', ival});
 smt=prep_baseline(smt, {'Time',baseTime});
 smt=prep_selectTime(smt, {'Time',selTime});

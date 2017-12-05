@@ -46,10 +46,10 @@ n=size(CNT_.class,1);
 pairIndex=[];
 for i=1:(n-1)
     pairIndex=[pairIndex,[1:i;(1:i)+(n-i)]];
+    [~,I]=sort(sum(pairIndex));
+    pairIndex=pairIndex(:,I);
+    pairClass=cell(size(pairIndex));
 end
-[~,I]=sort(sum(pairIndex));
-pairIndex=pairIndex(:,I);
-pairClass=cell(size(pairIndex));
 for i=1:length(pairClass(:))
     pairClass{i}=CNT_.class(pairIndex(i),2);
 end
