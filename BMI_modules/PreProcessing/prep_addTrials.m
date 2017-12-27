@@ -19,6 +19,8 @@ function [out] = prep_addTrials(dat1, dat2)
 %
 % Description:
 %     Append trials to the former data(dat1) from the latter data(dat2)     
+%     continuous data should be [time * channels]
+%     epoched data should be [time * channels * trials]
 %
 % See also 'https://github.com/PatternRecognition/OpenBMI'
 %
