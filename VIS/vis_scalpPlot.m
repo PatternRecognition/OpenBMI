@@ -1,4 +1,4 @@
-function output = visual_scalpPlot_fin(SMT, varargin)
+function output = vis_scalpPlot(SMT, varargin)
 % Description:
 %   Draw  scalp topographies for all selected intervals,separately for each each class.
 %   Scalp topographies of each classe are plotted in one row, and shared the same color map
