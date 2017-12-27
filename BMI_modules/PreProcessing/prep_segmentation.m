@@ -1,23 +1,32 @@
 function [ dat ] = prep_segmentation( dat, varargin )
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % prep_segmentation (Pre-processing procedure):
-% 
+%
+% Synopsis:
+%     [out] = prep_segmentation(DAT,<OPT>)
+%
+% Example:
+%    SMT=prep_segmentation(CNT, {'interval', [750 3500]})
+%
+% Arguments:
+%     dat - continuous EEG data structure
+%     Opt - struct or property/value list of optional properties:
+%         : interval - time interval
+%
+% Returns:
+%     dat - segmented EEG data structure
+%
 % Description:
 %     This function segments the data in a specific time interval based on
 %     the marked point.
-% 
-% Example:
-%    SMT=prep_segmentation(CNT, {'interval', [750 3500]})
-% 
-% Input:
-%     dat - continuous EEG data structure
-% Option:
-%     interval - time interval
-% Output:
-%     dat - segmented EEG data structure
-% 
-% Min-Ho, Lee
-% mhlee@image.korea.ac.kr
-% 
+%     continuous data should be [time * channels]
+%     epoched data should be [time * channels * trials]
+%
+% See also 'https://github.com/PatternRecognition/OpenBMI'
+%
+% Min-ho Lee, 12-2017
+% minho_lee@korea.ac.kr
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 if iscell(varargin{:})
