@@ -22,7 +22,8 @@ function [out] = prep_addChannels(dat1, dat2, varargin)
 %
 % Description:
 %     Add specific channels to the former data(dat1) from dat2
-%     
+%     continuous data should be [time * channels]
+%     epoched data should be [time * channels * trials]
 %
 % See also 'https://github.com/PatternRecognition/OpenBMI'
 %
