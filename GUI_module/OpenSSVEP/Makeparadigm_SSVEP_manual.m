@@ -30,10 +30,12 @@ fclose('all');
 %% variables
 opt=opt_cellToStruct(varargin{:});
 if ~isfield(opt,'port'), error('No input port information');
-else port= opt.port;end
+else port= opt.port;
+end
 f=opt.freq;
 if isfield(opt,'color'),color = opt.color;
-else color=[255 255 255];end
+else color=[255 255 255];
+end
 n1=0;n2=0;n3=0;n4=0;n5=0;
 escapeKey = KbName('esc');
 waitKey=KbName('*');
@@ -99,7 +101,7 @@ topPriorityLevel = MaxPriority(w);
 ifi = Screen('GetFlipInterval', w);
 num_frame = round(opt.time_sti / ifi);
 tot_frame = zeros(4, num_frame);
-opt.freq = [5, 7, 9, 11];
+% opt.freq = [5, 7, 9, 11];
 for i = 1:length(f)
     tot_frame(i, 1:f(i):num_frame) = 1;
 end

@@ -1,26 +1,35 @@
 function [out] = prep_addChannels(dat1, dat2, varargin)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % prep_addChannels (Pre-processing procedure):
 %
-% Description:
-%     This function add data of specific channels from latter data(dat2) to
-%     the former data(dat1).
+% Synopsis:
+%     [out] = prep_addChannels(DAT,DAT2,<OPT>)
 %
-% Example:
-% out = prep_addChannels(dat1,dat2,{'Name',{'C3','C4'}})
-% out = prep_addChannels(dat1,dat2,{'Index',[25,29]})
+% Example :
+%     out = prep_addChannels(dat1,dat2,{'Name',{'C3','C4'}})
+%     out = prep_addChannels(dat1,dat2,{'Index',[25,29]})
 %
-% Input:
-%     dat1 - Data structure, continuous or epoched
-%     dat2 - Data structure to be added to dat1
-%     channels - Cell. Name or index of channels in dat2 to be added to dat1
+% Arguments:
+%     dat1 - Data structure, continuous or epoched 
+%     dat2 - Data structure, continuous or epoched (NOTE: specified channels should be included)
+%     varargin - struct or property/value list of optional properties:
+%           'Name'- Cell type. channel name in dat2 to be added to dat1
+%           'Index'- channel index in dat2 to be added to dat1
 %
 % Returns:
-%     out - Data structure which channels are added
+%     out - Data structure which channels are added (continuous or epoched)
 %
 %
-% Seon Min Kim, 04-2016
-% seonmin5055@gmail.com
-
+% Description:
+%     Add specific channels to the former data(dat1) from dat2
+%     continuous data should be [time * channels]
+%     epoched data should be [time * channels * trials]
+%
+% See also 'https://github.com/PatternRecognition/OpenBMI'
+%
+% Min-ho Lee, 12-2017
+% minho_lee@korea.ac.kr
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if isempty(varargin)
     warning('OpenBMI: Data of all channels from the latter data will be added to the former data')
     opt.Name = dat2.chan;
