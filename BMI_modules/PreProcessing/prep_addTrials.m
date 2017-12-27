@@ -1,24 +1,32 @@
 function [out] = prep_addTrials(dat1, dat2)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % prep_addTrials (Pre-processing procedure):
 %
-% Description:
-%     This function add the latter data(dat2) to the former data(dat1)
-% 
-% Example:
-% [out] = prep_addTrials(dat1,dat2)
-% [out] = prep_addTrials({dat1,dat2,dat3,dat4,...})
+% Synopsis:
+%     [out] = prep_addTrials(DAT,DAT2)
 %
-% Input:
+% Example :
+%    [out] = prep_addTrials(dat1,dat2)
+%    [out] = prep_addTrials({dat1,dat2,dat3,dat4,...})
+%
+% Arguments:
 %     dat1 - Data structure, continuous or epoched
 %     dat2 - Data structure to be added to dat1
 %
 % Returns:
-%     out - Updated data structure
+%     out - Append trials to the original data structure (continuous or
+%     epoched)
 %
+% Description:
+%     Append trials to the former data(dat1) from the latter data(dat2)     
 %
-% Seon Min Kim, 04-2016
-% seonmin5055@gmail.com
+% See also 'https://github.com/PatternRecognition/OpenBMI'
+%
+% Min-ho Lee, 12-2017
+% minho_lee@korea.ac.kr
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% error check
 if iscell(dat1)
     temp = dat1{1};
     for i=2:size(dat1,2)
@@ -65,7 +73,7 @@ switch dim1
         end
 end
 
-
+% append dat
 out.x = cat(dim1-1, dat1.x, dat2.x);
 
 if isfield(dat1,'t') && isfield(dat2,'t')
