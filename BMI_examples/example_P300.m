@@ -1,17 +1,11 @@
-%% load
-
-
-CNT_off = cnt_p300_off;
-CNT_on = cnt_p300_on;
-clear cnt_p300_off cnt_p300_on 
-
+function out = example_P300(CNT_off, CNT_on)
 % cnt variables
-% cnt.t  : time information 
+% cnt.t  : time information
 % cnt.fs : sampling frequency
 % cnt.y_dec : class information (e.g., target = 1, non-target = 2)
-% cnt.y_logic : logical format of class inforamtion 
+% cnt.y_logic : logical format of class inforamtion
 % cnt_y_class : class name (e.g., target, non-target)
-% cnt.class : number of class 
+% cnt.class : number of class
 % cnt.chan : number of electrodes
 % cnt. x : raw eeg signals
 
@@ -24,7 +18,7 @@ baseTime =[-200 0];
 selTime =[0 800];
 nFeatures=10;
 
-% for online 
+% for online
 char_seq= {'A', 'B', 'C', 'D', 'E', 'F', ...
     'G', 'H', 'I', 'J', 'K', 'L', ...
     'M', 'N', 'O', 'P', 'Q', 'R', ...
@@ -34,12 +28,12 @@ char_seq= {'A', 'B', 'C', 'D', 'E', 'F', ...
 
 fs = CNT_on.fs;
 count_char=1;
-spellerText_on='PATTERN_RECOGNITION_MACHINE_LEARNING';
-load('random_cell_order.mat');
+spellerText_on='KOREA_UNIVERSITY';
+load('rc_order_small.mat');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%
-CNT_on = trigtotrig(CNT_on, spellerText_on);
+% CNT_on = trigtotrig(CNT_on, spellerText_on);
 
 
 %% Make the classifier
@@ -51,7 +45,6 @@ fv=func_featureExtraction(smt,{'feature','erpmean';'nMeans',nFeatures});
 [nDat, nTrials, nChans]= size(fv.x);
 fv.x= reshape(permute(fv.x,[1 3 2]), [nDat*nChans nTrials]);
 [clf_param] = func_train(fv,{'classifier','LDA'});
-clear cnt smt fv nDat nTrials nChans 
 %%
 cnt =prep_filter(CNT_on, {'frequency', [0.5 40]});
 % cnt = CNT_on;
@@ -93,7 +86,7 @@ for char = 1:length(spellerText_on)
     % predict character
     for i=1:60
         for i2=1:6
-            DAT{cell_order{nSeq}(in_nc,i2)}(end+1,:) = ft_dat.x(:,nc);
+            DAT{rc_order{nSeq}(in_nc,i2)}(end+1,:) = ft_dat.x(:,nc);
         end
         for i2=1:36
             if size(DAT{i2},1)==1
@@ -107,7 +100,7 @@ for char = 1:length(spellerText_on)
         [Y]=func_predict(tm_Dat', CF_PARAM);
         [a1 a2]=min(Y);
         t_char2(char,nSeq)= char_seq{a2}; % for each sequence
-        t_char22(char,nc)= char_seq{a2}; % for each run 
+        t_char22(char,nc)= char_seq{a2}; % for each run
         
         nc=nc+1;
         in_nc=in_nc+1;
@@ -116,12 +109,7 @@ for char = 1:length(spellerText_on)
             nSeq=nSeq+1;
         end
     end
-    clear DAT tm_Dat Y a b a1 a2
 end
-clear add baseTime count_char CF_PARAM char clf_param cnt dat dat_char dat_char_all tm_Dat Y DAT
-clear ft_dat fv i i2 in_nc ival nc nCh nDat nFeatures nSeq nTrials segTime selTime smt char_seq nChans
-clear BMI CNT EEG field file file3 marker rc_order
-
 for seq=1:5
     for nchar=1:length(spellerText_on)
         acc2(nchar, seq)=strcmp(spellerText_on(nchar),t_char2(nchar,seq));
@@ -131,5 +119,5 @@ end
 no_=sum(acc2)/length(spellerText_on);
 Accuracy=no_;
 
-clear acc2 fs nchar no_ seq spellerText_on CNT_off CNT_on
-
+out = Accuracy;
+end

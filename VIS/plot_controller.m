@@ -23,7 +23,7 @@ function varargout = plot_controller(varargin)
 
 % Edit the above text to modify the response to help plot_controller
 
-% Last Modified by GUIDE v2.5 05-Dec-2017 21:23:15
+% Last Modified by GUIDE v2.5 26-Dec-2017 20:36:21
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -107,7 +107,6 @@ RESET(hObject,handles);
 function RESET(hObject, handles, isreset)
 % handles     structure with handles and user data (see GUIDATA)
 % init        initialization
-handles.smt=handles.data;
 % Initialize plot type
 set(handles.check_time_plot,'Value',true);
 set(handles.check_ersp,'Value',true);
@@ -125,7 +124,13 @@ set(handles.chan_listbox, 'String', str);
 
 % Initialize interval
 str ={};
-handles.selected_ival=[0,100;100,200;200,300;300,400;400,500];
+
+ival = handles.data.ival([1, end]);
+if ival(1) < 0, ival(1) = 0; end
+selected_ival = linspace(ival(1), ival(2), 6);
+handles.selected_ival=[selected_ival(1),selected_ival(2);...
+    selected_ival(2),selected_ival(3);selected_ival(3),selected_ival(4);...
+    selected_ival(4),selected_ival(5); selected_ival(5),selected_ival(6)];
 ival=handles.selected_ival;
 for i = 1:size(ival,1)
     str = [str; sprintf('%d ~ %d',ival(i,1), ival(i,2))];
@@ -143,8 +148,8 @@ end
 set(handles.class_listbox,'String', str);
 
 % Initialize baseline
-set(handles.baseline_start, 'String', -100);
-set(handles.baseline_end, 'String', 0);
+set(handles.baseline_start, 'String', string(handles.data.ival(1)));
+set(handles.baseline_end, 'String', '0');
 
 set(handles.note_txt,'String', {'';'';'Welcome'});
 
@@ -165,7 +170,7 @@ function select_chan_btn_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 try
-    [~,selected_chan]=GUI_selectChannels(handles.smt.chan,handles.selected_chan);
+    [~,selected_chan]=GUI_selectChannels(handles.data.chan,handles.selected_chan);
     if length(selected_chan) > 5
         set(handles.note_txt, 'String', {'';'';'Don''t you think channels are too many selected?'});
         return;
@@ -217,13 +222,18 @@ function select_ival_btn_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 try
     ival = select_interval(handles.selected_ival);
-    if ~isempty(ival)&(min(ival(:)) < handles.smt.ival(1) | max(ival(:)) > handles.smt.ival(end))
+    if ~isempty(ival)&&(min(ival(:)) < handles.data.ival(1) || max(ival(:)) > handles.data.ival(end))
         set(handles.note_txt,'String', {'';'';'Please select intervals between segmented data'});
         return;
     end
-    ival = sort(ival,2);
-    [~, sort_] = sort(ival,1);
-    ival = ival(sort_(:,1),:);
+    if ~isempty(ival)
+        ival = sort(ival,2);
+        [~, sort_] = sort(ival,1);
+        ival = ival(sort_(:,1),:);
+    else
+        ival = handles.data.ival([1, end]);
+        if ival(1) < 0, ival(1) = 0; end
+    end
 catch
     return;
 end
@@ -273,7 +283,7 @@ function select_class_btn_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 try
-    handles.selected_class=select_class(handles.smt.class(:,2),handles.selected_class);
+    handles.selected_class=select_class(handles.data.class(:,2),handles.selected_class);
 catch
     return;
 end
@@ -334,13 +344,19 @@ function draw_btn_Callback(hObject, eventdata, handles)
 % hObject    handle to draw_btn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-baseline=[str2double(handles.baseline_start.String), str2double(handles.baseline_end.String)];
+baseline=[str2double(get(handles.baseline_start,'String')), str2double(get(handles.baseline_end,'String'))];
+if baseline(1) > baseline(2)
+    baseline = flip(baseline);
+    set(handles.baseline_start,'String', baseline(1));
+    set(handles.baseline_end, 'String', baseline(2));
+end
 
 %
 if get(handles.check_time_plot,'Value'), TimePlot = 'on'; else TimePlot = 'off'; end
 if get(handles.check_ersp,'Value'), ErspPlot = 'on'; else ErspPlot = 'off'; end
 if get(handles.check_erd,'Value'), ErdPlot = 'on'; else ErdPlot = 'off'; end
 if get(handles.check_topography,'Value'), TopoPlot = 'on'; else TopoPlot = 'off'; end
+if get(handles.check_patch,'Value'), Patch = 'on'; else Patch = 'off'; end
 
 switch get(handles.pop_range, 'Value')
     case 1
@@ -356,13 +372,23 @@ switch get(handles.pop_range, 'Value')
     case 6
         range = [-1.5, 0.5];
 end
+
+switch get(handles.pop_color, 'Value')
+    case 1
+        cm = 'parula';
+    case 2
+        cm = 'jet';
+    case 3
+        cm = 'hsv';
+end
 set(handles.note_txt, 'String', {'';'';'Wait for Drawing'}); drawnow;
 
 try
     output = visual_scalpPlot_fin(handles.data, {'Interval', handles.selected_ival;...
         'Channels',handles.selected_chan;'Class',handles.selected_class;...
         'TimePlot', TimePlot; 'TopoPlot', TopoPlot; 'ErspPlot', ErspPlot;...
-        'ErdPlot', ErdPlot; 'Range', range; 'Baseline', baseline});
+        'ErdPlot', ErdPlot; 'Range', range; 'Baseline', baseline;...
+        'Colormap', cm; 'Patch', Patch});
 catch error
     close gcf;
     output = {'';'Unexpected Error Occurred in';...
@@ -370,8 +396,8 @@ catch error
         error.message};
 end
 set(handles.note_txt, 'String', output);
-% visual_scalpPlot_fin(handles.smt, {'Interval', handles.selected_ival;'Channels',{'Cz', 'POz','Oz'};'num_class',{'target','non-target'}});
-% visual_scalpPlot_fin(handles.smt, {'Interval', [-100 0 150 250 400];'Channels',{'Cz', 'POz','Oz'}});
+% visual_scalpPlot_fin(handles.data, {'Interval', handles.selected_ival;'Channels',{'Cz', 'POz','Oz'};'num_class',{'target','non-target'}});
+% visual_scalpPlot_fin(handles.data, {'Interval', [-100 0 150 250 400];'Channels',{'Cz', 'POz','Oz'}});
 % Update handles structure
 % guidata(hObject, handles);
 
@@ -487,13 +513,13 @@ input = get(handles.baseline_start, 'String');
 [~, len] = regexp(input, '^-?[0-9]+');
 
 if ~isequal(len, length(input))
-    set(handles.note_txt, 'String',{'';'';sprintf('[%s] is not acceptable', input)});
-    set(handles.baseline_start, 'String', '-100');
+    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input the number'});
+    set(handles.baseline_start, 'String', string(handles.data.ival(1)));
     return;
 end
-if str2double(input) < handles.smt.ival(1) || str2double(input) > handles.smt.ival(end)
-    set(handles.note_txt, 'String',{'';'';sprintf('[%s] is not acceptable', input)});
-    set(handles.baseline_start, 'String', '-100');
+if str2double(input) < handles.data.ival(1) || str2double(input) > handles.data.ival(end)
+    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input between the segmentation range'});
+    set(handles.baseline_start, 'String', string(handles.data.ival(1)));
     return;
 end
 
@@ -523,12 +549,12 @@ input = get(handles.baseline_end, 'String');
 [~, len] = regexp(input, '^-?[0-9]+');
 
 if ~isequal(len, length(input))
-    set(handles.note_txt, 'String',{'';'';sprintf('[%s] is not acceptable', input)});
+    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input the number'});
     set(handles.baseline_end, 'String', '0');
     return;
 end
-if str2double(input) < handles.smt.ival(1) || str2double(input) > handles.smt.ival(end)
-    set(handles.note_txt, 'String',{'';'';sprintf('[%s] is not acceptable', input)});
+if str2double(input) < handles.data.ival(1) || str2double(input) > handles.data.ival(end)
+    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input between the segmentation range'});
     set(handles.baseline_end, 'String', '0');
     return;
 end
@@ -667,3 +693,81 @@ function pop_range_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on selection change in popupmenu10.
+function popupmenu10_Callback(hObject, eventdata, handles)
+% hObject    handle to popupmenu10 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu10 contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from popupmenu10
+
+
+% --- Executes during object creation, after setting all properties.
+function popupmenu10_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to popupmenu10 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on selection change in popupmenu11.
+function popupmenu11_Callback(hObject, eventdata, handles)
+% hObject    handle to popupmenu11 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu11 contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from popupmenu11
+
+
+% --- Executes during object creation, after setting all properties.
+function popupmenu11_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to popupmenu11 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on selection change in pop_color.
+function pop_color_Callback(hObject, eventdata, handles)
+% hObject    handle to pop_color (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns pop_color contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from pop_color
+
+
+% --- Executes during object creation, after setting all properties.
+function pop_color_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to pop_color (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in check_patch.
+function check_patch_Callback(hObject, eventdata, handles)
+% hObject    handle to check_patch (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of check_patch
