@@ -34,8 +34,8 @@ output_str = {'';'';'Finished'};
 
 opt = opt_cellToStruct(varargin{:});
 if isfield(opt, 'Interval') interval = opt.Interval; end
-if isfield(opt, 'Range') plot_range = opt.Range; end
-if isfield(opt, 'Resolution') resol = opt.Resolution; else resol = 256; end
+if isfield(opt, 'Range') plot_range = opt.Range; else plot_range = 'sym'; end
+if isfield(opt, 'Quality') quality = opt.Quality; else quality = 'high'; end
 if isfield(opt, 'Channels') chan = opt.Channels; else chan = {SMT.chan{1:2}}; end
 if isfield(opt, 'Class') class = opt.Class; else class = {SMT.class{1:2,2}}; end
 if isfield(opt, 'Patch') Patch = opt.Patch; end
@@ -49,8 +49,8 @@ if isfield(opt, 'Colororder') co = opt.Colororder; else co = {[ 0 0.4470 0.7410]
     [0.8500 0.3250 0.0980]; [0.9290 0.6940 0.1250]; [0.4940 0.1840 0.5560]; [0.4660 0.6740 0.1880];};end
 
 fig = figure('Color', 'w');
-set(fig, 'MenuBar', 'none');
-% set(fig, 'ToolBar', 'none');
+% set(fig, 'MenuBar', 'none');
+set(fig, 'ToolBar', 'none');
 
 set(gcf,'Position',[400 200 1000 600]);
 MNT = opt_getMontage(SMT);
@@ -107,11 +107,11 @@ if isequal(TimePlot, 'on')
     time_range = [floor(min(reshape(avgSMT.x(:,:,ch_idx), [], 1))),...
         ceil(max(reshape(avgSMT.x(:,:,ch_idx), [], 1)))]*1.2;
     for i = 1:length(chan)
-        subplot(sub_row, sub_col, plot_position:plot_position + sub_col -1);
+        time_plt{i} = subplot(sub_row, sub_col, plot_position:plot_position + sub_col -1);
         ch_num = ismember(avgSMT.chan, chan{i});
           
-        plt = plot(SMT.ival, avgSMT.x(:,:,ch_num),'LineWidth',2); hold on;
-        set(plt, {'color'}, co(1:size(avgSMT.class, 1)));
+        plot(SMT.ival, avgSMT.x(:,:,ch_num),'LineWidth',2); hold on;
+%         set({'color'}, co(1:size(avgSMT.class, 1)));
         
 %         grid on;
         ylim(time_range);
@@ -133,23 +133,15 @@ if isequal(TimePlot, 'on')
                     'FaceAlpha', 0.7, 'EdgeAlpha', 0,'faceOffsetBias', -11);
             end
             
-            tmp = get(gca, 'Children');
-            set(gca, 'Children', flip(tmp));
-            clear tmp;
+            tmp = get(time_plt{i}, 'Children');
+            set(time_plt{i}, 'Children', flip(tmp));
         end
         ylabel(SMT.chan{ch_num}, 'Rotation', 0, ...
-            'HorizontalAli','right', 'FontWeight', 'bold', 'FontSize', 10);
+             'FontWeight', 'normal', 'FontSize', 10);
         hold off;
         plot_position = plot_position + sub_col;
     end
-%     subplot(sub_row, sub_col, [plot_position-(sub_col * length(chan)),plot_position-sub_col-1]);
-%     set(get(gca,'Ylabel'), 'Visible','on', 'String', 'Time', ...
-%             'Interpreter', 'none', 'FontWeight', 'bold', 'FontSize', 12);
-    pos = get(gca, 'Position');
-    axes('Position',[pos(1), pos(2), 0.01, 0.4], 'Visible', 'off');
-        set(get(gca,'Ylabel'), 'Visible','on', 'String', 'Title', ...
-            'Interpreter', 'none', 'FontWeight', 'bold', 'FontSize', 10);
-%     text(0, 0.5, 'TimePlot', 'Rotation', 90, 'FontWeight', 'bold', 'Fontsize', 12);
+    grp_ylabel(time_plt, 'Time-Domain');
 end
 %% ERDERS plot
 if isequal(ErdPlot, 'on')
@@ -163,9 +155,9 @@ if isequal(ErdPlot, 'on')
         ceil(max(reshape(envSMT.x(:,:,ch_idx), [], 1)))]*1.2;
     
     for i = 1:length(chan)
-        subplot(sub_row, sub_col, plot_position:plot_position + sub_col -1);
+        erders_plt{i} = subplot(sub_row, sub_col, plot_position:plot_position + sub_col -1);
         ch_num = ismember(envSMT.chan, chan{i});
-            plot(SMT.ival, envSMT.x(:,:,ch_num),'LineWidth',2); hold on;
+        plot(SMT.ival, envSMT.x(:,:,ch_num),'LineWidth',2); hold on;
         
         ylim(erd_range);
                 
@@ -173,13 +165,13 @@ if isequal(ErdPlot, 'on')
         
         base_avgSMT = reshape(avgSMT.x(base_idx(1):base_idx(2), :, ch_num), [], 1);
         base_minmax = [min(base_avgSMT), max(base_avgSMT)];
+            
+        patch('XData', [baseline(1)  baseline(2) baseline(2) baseline(1)], ...
+            'YData', [base_minmax(1) base_minmax(1) base_minmax(2) base_minmax(2)]*0.3,...
+            'FaceColor', 'k',...
+            'FaceAlpha', 0.5, 'EdgeAlpha', 0,'faceOffsetBias', -11);
+        
         if isequal(Patch, 'on')
-            
-            patch('XData', [baseline(1)  baseline(2) baseline(2) baseline(1)], ...
-                'YData', [base_minmax(1) base_minmax(1) base_minmax(2) base_minmax(2)]*0.3,...
-                'FaceColor', 'k',...
-                'FaceAlpha', 0.5, 'EdgeAlpha', 0,'faceOffsetBias', -11);
-            
             for ival = 1:size(interval,1)
                 patch('XData', [interval(ival,1) interval(ival,2) interval(ival,2) interval(ival,1)],...
                     'YData', [erd_range(1) erd_range(1) erd_range(2) erd_range(2)],...
@@ -191,11 +183,11 @@ if isequal(ErdPlot, 'on')
             set(gca, 'Children', flip(tmp));
             clear tmp;
         end
-        ylabel(SMT.chan{ch_num}, 'Rotation', 0, ...
-            'HorizontalAli','right', 'FontWeight', 'bold', 'FontSize', 10);
+        ylabel(SMT.chan{ch_num}, 'Rotation', 0, 'FontWeight', 'normal', 'FontSize', 10);
         
         plot_position = plot_position + sub_col;
     end
+    grp_ylabel(erders_plt, 'ERD/ERS');
 end
 %% ERSP plot
 if isequal(ErspPlot, 'on')
@@ -203,14 +195,25 @@ end
 %% Topo plot
 if isequal(TopoPlot, 'on')
     %% scalp_plot
+    switch quality
+        case 'high'
+            resol = 256;
+        case 'medium'
+            resol = 144;
+        case 'low'
+            resol = 32;
+        otherwise
+            resol = 256;
+    end
+            
     for i = 1: size(class, 1)
         ivalSegment = size(interval,1);
         minmax = [];
         for seg = 1: ivalSegment
             SMTintervalstart = find(avgSMT.ival == interval(seg,1));
             SMTintervalEnd = find(avgSMT.ival == interval(seg,2))-1;
-            ivalSMT = avgSMT.x(SMTintervalstart:SMTintervalEnd,:,:);
-            w{i, seg} = mean(squeeze(ivalSMT(:,i,:)),1);
+            ivalSMT = squeeze(avgSMT.x(SMTintervalstart:SMTintervalEnd,i,:));
+            w{i, seg} = mean(ivalSMT,1);
             minmax = [minmax; min(w{i,seg}(:)), max(w{i,seg}(:))];
         end
         %% range_options
@@ -235,9 +238,9 @@ if isequal(TopoPlot, 'on')
         end
         %% Draw
         for seg = 1: size(interval, 1)
-            subplot(sub_row, sub_col, plot_position);
+            topo_plt{i,seg} = subplot(sub_row, sub_col, plot_position);
             plot_scalp(gca, w{i, seg}, MNT, p_range, resol);
-            xlabel(sprintf('[%d - %d] ms',interval(seg,:)));
+            xlabel(sprintf('[%d - %d] ms',interval(seg,:)), 'FontWeight', 'normal');
             plot_position = plot_position + 1;
         end
         % Keeping scalp size;
@@ -248,12 +251,20 @@ if isequal(TopoPlot, 'on')
         set(gca,'Position',tmp);
         subplot(sub_row, sub_col, plot_position - size(interval,1));%
         set(get(gca,'Ylabel'), 'Visible','on', 'String', {class{i}; ''; ''}, ...
-            'Interpreter', 'none', 'FontWeight', 'bold', 'FontSize', 10);
+            'Interpreter', 'none', 'FontWeight', 'normal', 'FontSize', 10);
     end
+    grp_ylabel(topo_plt, 'Topography');
 end
 output = output_str;
 end
 
+function grp_ylabel(plots, title)
+    pos = get([plots{:}], 'Position');
+    if iscell(pos), pos = cell2mat(pos); end
+    axes('Position',[0.045, min(pos(:,2)), 0.01, abs(max(pos(:,2))-min(pos(:,2)))+max(pos(:,4))], 'Visible', 'off');
+    set(get(gca,'Ylabel'), 'Visible','on', 'String', title, ...
+        'Interpreter', 'none', 'FontWeight', 'bold', 'FontSize', 12);
+end
 
 %% FileExchange function subtightplot by F. G. Nievinski
 function h=subtightplot(m,n,p,gap,marg_h,marg_w,varargin)

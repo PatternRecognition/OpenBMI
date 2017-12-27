@@ -23,7 +23,7 @@ function varargout = plot_controller(varargin)
 
 % Edit the above text to modify the response to help plot_controller
 
-% Last Modified by GUIDE v2.5 26-Dec-2017 20:36:21
+% Last Modified by GUIDE v2.5 27-Dec-2017 15:05:41
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -246,7 +246,6 @@ str = {};
 for i = 1:size(ival,1)
     str = [str; sprintf('%d ~ %d', ival(i,1), ival(i,2))];
 end
-% set(handles.ival_listbox, 'String', sprintf('%d ~ %d\n%d ~ %d\n%d ~ %d\n%d ~ %d\n%d ~ %d',ival(1,1),ival(1,2),ival(2,1),ival(2,2),ival(3,1),ival(3,2),ival(4,1),ival(4,2),ival(5,1),ival(5,2)));
 
 set(handles.ival_listbox, 'String',str);
 set(handles.note_txt, 'String', {'';'';'Itervals are selected'});
@@ -381,20 +380,30 @@ switch get(handles.pop_color, 'Value')
     case 3
         cm = 'hsv';
 end
-set(handles.note_txt, 'String', {'';'';'Wait for Drawing'}); drawnow;
 
+switch get(handles.pop_quality, 'Value')
+    case 1
+        quality = 'high';
+    case 2
+        quality = 'medium';
+    case 3
+        quality = 'low';
+end
+set(handles.note_txt, 'String', {'';'';'Wait for Drawing'}); drawnow;
+tic;
 try
     output = vis_scalpPlot(handles.data, {'Interval', handles.selected_ival;...
         'Channels',handles.selected_chan;'Class',handles.selected_class;...
         'TimePlot', TimePlot; 'TopoPlot', TopoPlot; 'ErspPlot', ErspPlot;...
         'ErdPlot', ErdPlot; 'Range', range; 'Baseline', baseline;...
-        'Colormap', cm; 'Patch', Patch});
+        'Colormap', cm; 'Patch', Patch; 'Quality', quality});
 catch error
     close gcf;
     output = {'';'Unexpected Error Occurred in';...
         sprintf('%s (line: %d)', error.stack(1).name, error.stack(1).line);...
         error.message};
 end
+toc
 set(handles.note_txt, 'String', output);
 % visual_scalpPlot_fin(handles.data, {'Interval', handles.selected_ival;'Channels',{'Cz', 'POz','Oz'};'num_class',{'target','non-target'}});
 % visual_scalpPlot_fin(handles.data, {'Interval', [-100 0 150 250 400];'Channels',{'Cz', 'POz','Oz'}});
@@ -771,3 +780,26 @@ function check_patch_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of check_patch
+
+
+% --- Executes on selection change in pop_quality.
+function pop_quality_Callback(hObject, eventdata, handles)
+% hObject    handle to pop_quality (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns pop_quality contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from pop_quality
+
+
+% --- Executes during object creation, after setting all properties.
+function pop_quality_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to pop_quality (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
