@@ -440,8 +440,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
-
 function time_seg_end_Callback(hObject, eventdata, handles)
 % hObject    handle to time_seg_end (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
