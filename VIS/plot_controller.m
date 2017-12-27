@@ -83,12 +83,11 @@ function initialize_gui(hObject, handles, isreset)
 % If the metricdata field is present and the reset flag is false, it means
 % we are we are just re-initializing a GUI by calling it from the cmd line
 % while it is up. So, bail out as we dont want to reset the data.
-set(handles.time_seg_start, 'String', handles.data.ival(1));
-set(handles.time_seg_end, 'String', handles.data.ival(end));
+% set(handles.time_seg_start, 'String', handles.data.ival(1));
+% set(handles.time_seg_end, 'String', handles.data.ival(end));
+set(handles.time_seg, 'String', sprintf('%d ~ %d', handles.data.ival(1), handles.data.ival(end)));
 set(handles.sampling_rate,'String',handles.data.fs);
-
 set(handles.num_class,'String',size(handles.data.class, 1));
-
 set(handles.chan_num,'String',length(handles.data.chan));
 
 chan=handles.data.chan(1);
@@ -172,7 +171,7 @@ function select_chan_btn_Callback(hObject, eventdata, handles)
 try
     [~,selected_chan]=GUI_selectChannels(handles.data.chan,handles.selected_chan);
     if length(selected_chan) > 5
-        set(handles.note_txt, 'String', {'';'';'Don''t you think channels are too many selected?'});
+        set(handles.note_txt, 'String', {'';'';'Don''t you think that selected channels are too many?'});
         return;
     else
         handles.selected_chan = selected_chan;
@@ -343,6 +342,8 @@ function draw_btn_Callback(hObject, eventdata, handles)
 % hObject    handle to draw_btn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+%% Update baseline range
 baseline=[str2double(get(handles.baseline_start,'String')), str2double(get(handles.baseline_end,'String'))];
 if baseline(1) > baseline(2)
     baseline = flip(baseline);
@@ -350,11 +351,16 @@ if baseline(1) > baseline(2)
     set(handles.baseline_end, 'String', baseline(2));
 end
 
-%
+%% Get plots
 if get(handles.check_time_plot,'Value'), TimePlot = 'on'; else TimePlot = 'off'; end
 if get(handles.check_ersp,'Value'), ErspPlot = 'on'; else ErspPlot = 'off'; end
 if get(handles.check_erd,'Value'), ErdPlot = 'on'; else ErdPlot = 'off'; end
 if get(handles.check_topography,'Value'), TopoPlot = 'on'; else TopoPlot = 'off'; end
+if ~sum(ismember({TimePlot, ErspPlot, ErdPlot, TopoPlot}, 'on'))
+    set(handles.note_txt, 'String', {'';'';'Choose at least one plot type'});
+    return;
+end
+%% Options
 if get(handles.check_patch,'Value'), Patch = 'on'; else Patch = 'off'; end
 
 switch get(handles.pop_range, 'Value')
@@ -389,8 +395,9 @@ switch get(handles.pop_quality, 'Value')
     case 3
         quality = 'low';
 end
+
+%% Start visualization
 set(handles.note_txt, 'String', {'';'';'Wait for Drawing'}); drawnow;
-tic;
 try
     output = vis_scalpPlot(handles.data, {'Interval', handles.selected_ival;...
         'Channels',handles.selected_chan;'Class',handles.selected_class;...
@@ -403,7 +410,6 @@ catch error
         sprintf('%s (line: %d)', error.stack(1).name, error.stack(1).line);...
         error.message};
 end
-toc
 set(handles.note_txt, 'String', output);
 % visual_scalpPlot_fin(handles.data, {'Interval', handles.selected_ival;'Channels',{'Cz', 'POz','Oz'};'num_class',{'target','non-target'}});
 % visual_scalpPlot_fin(handles.data, {'Interval', [-100 0 150 250 400];'Channels',{'Cz', 'POz','Oz'}});

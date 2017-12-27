@@ -52,7 +52,11 @@ fig = figure('Color', 'w');
 % set(fig, 'MenuBar', 'none');
 set(fig, 'ToolBar', 'none');
 
-set(gcf,'Position',[400 200 1000 600]);
+monitor_screensize = get(0, 'screensize');
+
+
+set(gcf,'Position',[monitor_screensize(3)/4,  monitor_screensize(4)/4,...
+    monitor_screensize(3)/2, monitor_screensize(4)/2]);
 MNT = opt_getMontage(SMT);
 
 if ~isequal(MNT.chan, SMT.chan)
@@ -118,11 +122,10 @@ if isequal(TimePlot, 'on')
         
         legend(avgSMT.class(:,2), 'Interpreter', 'none', 'AutoUpdate', 'off');
         
-        base_avgSMT = reshape(avgSMT.x(base_idx(1):base_idx(2), :, ch_num), [], 1);
-        base_minmax = [min(base_avgSMT), max(base_avgSMT)];
+        base_patch = min(abs(time_range))*0.05;
         
         patch('XData', [baseline(1)  baseline(2) baseline(2) baseline(1)], ...
-            'YData', [base_minmax(1) base_minmax(1) base_minmax(2) base_minmax(2)]*0.3,...
+            'YData', [-base_patch -base_patch base_patch base_patch],...
             'FaceColor', 'k',...
             'FaceAlpha', 0.5, 'EdgeAlpha', 0,'faceOffsetBias', -11);
         if isequal(Patch, 'on')
@@ -151,7 +154,7 @@ if isequal(ErdPlot, 'on')
     envSMT = prep_average(envSMT);
         
     ch_idx = find(ismember(envSMT.chan, chan));
-    erd_range = [floor(min(reshape(envSMT.x(:,:,ch_idx), [], 1))),...
+    erders_range = [floor(min(reshape(envSMT.x(:,:,ch_idx), [], 1))),...
         ceil(max(reshape(envSMT.x(:,:,ch_idx), [], 1)))]*1.2;
     
     for i = 1:length(chan)
@@ -159,22 +162,21 @@ if isequal(ErdPlot, 'on')
         ch_num = ismember(envSMT.chan, chan{i});
         plot(SMT.ival, envSMT.x(:,:,ch_num),'LineWidth',2); hold on;
         
-        ylim(erd_range);
+        ylim(erders_range);
                 
         legend(envSMT.class(:,2), 'Interpreter', 'none', 'AutoUpdate', 'off');
         
-        base_avgSMT = reshape(avgSMT.x(base_idx(1):base_idx(2), :, ch_num), [], 1);
-        base_minmax = [min(base_avgSMT), max(base_avgSMT)];
+        base_patch = min(abs(erders_range))*0.05;
             
         patch('XData', [baseline(1)  baseline(2) baseline(2) baseline(1)], ...
-            'YData', [base_minmax(1) base_minmax(1) base_minmax(2) base_minmax(2)]*0.3,...
+            'YData', [-base_patch -base_patch base_patch base_patch],...
             'FaceColor', 'k',...
             'FaceAlpha', 0.5, 'EdgeAlpha', 0,'faceOffsetBias', -11);
         
         if isequal(Patch, 'on')
             for ival = 1:size(interval,1)
                 patch('XData', [interval(ival,1) interval(ival,2) interval(ival,2) interval(ival,1)],...
-                    'YData', [erd_range(1) erd_range(1) erd_range(2) erd_range(2)],...
+                    'YData', [erders_range(1) erders_range(1) erders_range(2) erders_range(2)],...
                     'FaceColor', faceColor{mod(ival,2)+1},...
                     'FaceAlpha', 0.7, 'EdgeAlpha', 0,'faceOffsetBias', -11);
             end
@@ -261,7 +263,8 @@ end
 function grp_ylabel(plots, title)
     pos = get([plots{:}], 'Position');
     if iscell(pos), pos = cell2mat(pos); end
-    axes('Position',[0.045, min(pos(:,2)), 0.01, abs(max(pos(:,2))-min(pos(:,2)))+max(pos(:,4))], 'Visible', 'off');
+    axes('Position',[min(pos(:,1))*0.8, min(pos(:,2)), min(pos(:,1))*0.2,...
+        abs(max(pos(:,2))-min(pos(:,2)))+max(pos(:,4))], 'Visible', 'off');
     set(get(gca,'Ylabel'), 'Visible','on', 'String', title, ...
         'Interpreter', 'none', 'FontWeight', 'bold', 'FontSize', 12);
 end
