@@ -29,7 +29,7 @@ function [out] = prep_resample(dat, fs, varargin)
 % See also 'https://github.com/PatternRecognition/OpenBMI'
 %
 % Min-ho Lee, 12-2017
-% minho_lee@korea.ac.kr
+% mh_lee@korea.ac.kr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if isempty(varargin)
