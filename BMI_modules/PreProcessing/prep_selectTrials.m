@@ -9,17 +9,17 @@ function [out] = prep_selectTrials(dat,varargin)
 %     out = prep_selectTrials(dat,{'Index',[20:35]});
 %
 % Arguments:
-%     dat - Structure. Continuous data or epoched data
+%     dat - Structure. epoched data
 %         - Data which trials are to be selected   
 %     varargin - struct or property/value list of optional properties:
 %          :  index - index of trials to be selected
 %           
 % Returns:
-%     out - Data structure which has selected channels (continuous or epoched)
+%     out - Data structure which has selected channels from epoched data
 %
 % Description:
 %     This function selects data of specified trials 
-%     from continuous or epoched data.
+%     from  epoched data.
 %     continuous data should be [time * channels]
 %     epoched data should be [time * channels * trials]
 %
