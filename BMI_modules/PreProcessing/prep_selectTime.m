@@ -31,7 +31,7 @@ function [out] = prep_selectTime(dat, varargin)
 % See also 'https://github.com/PatternRecognition/OpenBMI'
 %
 % Min-ho Lee, 12-2017
-% minho_lee@korea.ac.kr
+% mh_lee@korea.ac.kr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
