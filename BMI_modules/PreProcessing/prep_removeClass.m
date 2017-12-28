@@ -1,21 +1,33 @@
 function [ out ] = prep_removeClass( dat, class )
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % prep_removeClass (Pre-processing procedure):
-% 
+%
+% Synopsis:
+%     [out] = prep_removeClass(DAT,<OPT>)
+%
+% Example :
+%     out = prep_removeClass(dat,{'right','foot'});
+%
+% Arguments:
+%     dat - Structure. Continuous data or epoched data
+%     varargin - struct or property/value list of optional properties:
+%          : class - Name of classes that you want to delete (e.g. {'right','left'})
+%           
+% Returns:
+%     out - Data structure which deleted class (continuous or epoched)
+%
+%
 % Description:
-%     prep_removeClass removes specific classes
-% 
-% Examele:
-%     dat = prep_removeClass(dat,{'right','foot'});
-% 
-% Input:
-%     dat   - data structure
-%     class - class names you want to remove
-% 
-% Output:
-%     out - data structure, designated classes removed
-% 
-% Seon Min Kim, 11-2016
-% seonmin5055@gmail.com
+%     This function removes specific classes
+%     from continuous or epoched data.
+%     continuous data should be [time * channels]
+%     epoched data should be [time * channels * trials]
+%
+% See also 'https://github.com/PatternRecognition/OpenBMI'
+%
+% Min-ho Lee, 12-2017
+% minho_lee@korea.ac.kr
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % if iscellstr(class)
 %     warning('check the class parameter, it should be a string');
