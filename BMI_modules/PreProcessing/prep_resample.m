@@ -1,28 +1,36 @@
 function [out] = prep_resample(dat, fs, varargin)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % prep_resample (Pre-processing procedure):
-% 
-% Description:
-% This function changes the sampling rate of the given EEG signal.
-% It can do both up/downsampling, considering frequency up to 3 digits.
 %
-% Example:
-% [out] = prep_resample(dat, fs, {'Nr', n_samples})
+% Synopsis:
+%     [out] = prep_resample(DAT, fs, <OPT>)
 %
-% Input:
-%     dat    - dat structure to be changed, continuous or epoched
+% Example :
+%     [out] = prep_resample(dat, fs, {'Nr', n_samples})
+%
+% Arguments:
+%     dat - Structure. Continuous data or epoched data
+%         - Data which channel is to be selected     
 %     fs[Hz] - Desired sampling frequency (scalar)
-%
-% Options:
-%     Nr(scalar) - Remove the first and last Nr samples from the
-%                  resampled dat to avoid edge effects (default is 0)
-%
+%     varargin - struct or property/value list of optional properties:
+%          : Nr(scalar) - Remove the first and last Nr samples from the
+%            resampled dat to avoid edge effects (default is 0)
+%           
 % Returns:
-%     out - Updated dat structure
+%     out - Data structure which changed sampling freqeuncy 
 %
 %
-% Seon Min Kim, 03-2016
-% seonmin5055@gmail.com
-
+% Description:
+%     This function changes the sampling rate of the given EEG signal.
+%     It can do both up/downsampling, considering frequency up to 3 digits.
+%     continuous data should be [time * channels]
+%     epoched data should be [time * channels * trials]
+%
+% See also 'https://github.com/PatternRecognition/OpenBMI'
+%
+% Min-ho Lee, 12-2017
+% minho_lee@korea.ac.kr
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if isempty(varargin)
     disp('The number of removed samples is 0 (default)');
