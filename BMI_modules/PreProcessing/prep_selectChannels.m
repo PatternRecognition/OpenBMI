@@ -1,24 +1,35 @@
 function [out] = prep_selectChannels(dat, varargin)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % prep_selectChannels (Pre-processing procedure):
 %
-% Description:
-% This function selects data of specified channels
-% from continuous or epoched data.
+% Synopsis:
+%     [out] = prep_selectChannels(DAT,<OPT>)
 %
-% Example:
-% out = prep_selectChannels(data, {'Name',{'Fp1', 'Fp2'}})
-% out = prep_selectChannels(data, {'Index',[1 2]})
+% Example :
+%     out = prep_selectChannels(data, {'Name',{'Fp1', 'Fp2'}})
+%     out = prep_selectChannels(data, {'Index',[1 2]})
 %
-% Input:
-%     dat - Structure. Data which channel is to be selected
-%     channels - Cell. Name or index of channels that you want to select
-%
+% Arguments:
+%     dat - Structure. Continuous data or epoched data
+%         - Data which channel is to be selected        
+%     varargin - struct or property/value list of optional properties:
+%          : channels - 'cell Name' or 'index' of channels that you want to select
+%           
 % Returns:
-%     out - Updated data structure
+%     out - Data structure which has selected channels (continuous or epoched)
 %
 %
-% Seon Min Kim, 03-2016
-% seonmin5055@gmail.com
+% Description:
+%     This function selects data of specified channels
+%     from continuous or epoched data.
+%     continuous data should be [time * channels]
+%     epoched data should be [time * channels * trials]
+%
+% See also 'https://github.com/PatternRecognition/OpenBMI'
+%
+% Min-ho Lee, 12-2017
+% minho_lee@korea.ac.kr
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if isempty(varargin)
     warning('OpenBMI: Channels should be specified')
