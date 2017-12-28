@@ -28,7 +28,7 @@ function [out] = prep_addChannels(dat1, dat2, varargin)
 % See also 'https://github.com/PatternRecognition/OpenBMI'
 %
 % Min-ho Lee, 12-2017
-% minho_lee@korea.ac.kr
+% mh_lee@korea.ac.kr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if isempty(varargin)
     warning('OpenBMI: Data of all channels from the latter data will be added to the former data')
