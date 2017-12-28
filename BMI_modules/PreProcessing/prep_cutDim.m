@@ -1,20 +1,31 @@
 function [out] = prep_cutDim(dat)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % prep_cutDim (Pre-processing procedure):
+%
+% Synopsis:
+%     [out] = prep_cutDim(DAT)
+%
+% Example :
+%     [out] = prep_cutDim(epoched_data)%    
+%
+% Arguments:
+%     dat - Structure. Segmented data structure, or the data matrix itself
+%           (Result will be same as input when the data is continuous)   
+%           
+% Returns:
+%     out - Stacked data with reduced dimensionality
 %
 % Description:
 %     This function reduces dimensionality of the data, reducing all
 %     dimensions except for the trial dimension.
+%     epoched data should be [time * channels * trials]
+%     reduced data form would be [1 * 2, 3] --> '2-dimension'
 %
-% Input:
-%     dat - Segmented data structure, or the data matrix itself
-%     (Result will be same as input when the data is continuous)
+% See also 'https://github.com/PatternRecognition/OpenBMI'
 %
-% Returns:
-%     out - Stacked data with reduced dimensionality
-%
-%
-% Seon Min Kim, 04-2016
-% seonmin5055@gmail.com
+% Min-ho Lee, 12-2017
+% minho_lee@korea.ac.kr
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if isstruct(dat)
     if ~isfield(dat, 'x')
