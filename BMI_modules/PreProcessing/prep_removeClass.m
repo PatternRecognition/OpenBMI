@@ -26,7 +26,7 @@ function [ out ] = prep_removeClass( dat, class )
 % See also 'https://github.com/PatternRecognition/OpenBMI'
 %
 % Min-ho Lee, 12-2017
-% minho_lee@korea.ac.kr
+% mh_lee@korea.ac.kr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % if iscellstr(class)
