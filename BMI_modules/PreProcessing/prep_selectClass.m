@@ -1,17 +1,33 @@
 function [ out ] = prep_selectClass( dat, varargin )
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % prep_selectClass (Pre-processing procedure):
-% 
-% This function selects data of specified classes 
-% from continuous or epoched data.
-% 
-% Example:
+%
+% Synopsis:
+%     [out] = prep_selectClass(DAT,<OPT>)
+%
+% Example :
 %     out = prep_selectClass(dat,{'class',{'right', 'left','foot'}});
-% 
-% Input: 
-%     dat - Structure. Data which classes are to be selected
-% Option
-%     class - Name of classes that you want to select (e.g. {'right','left'})
-% 
+%
+% Arguments:
+%     dat - Structure. Continuous data or epoched data
+%     varargin - struct or property/value list of optional properties:
+%          : class - Name of classes that you want to select (e.g. {'right','left'})
+%           
+% Returns:
+%     out - Data structure which has selected class (continuous or epoched)
+%
+%
+% Description:
+%     This function selects data of specified classes 
+%     from continuous or epoched data.
+%     continuous data should be [time * channels]
+%     epoched data should be [time * channels * trials]
+%
+% See also 'https://github.com/PatternRecognition/OpenBMI'
+%
+% Min-ho Lee, 12-2017
+% minho_lee@korea.ac.kr
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if isempty(varargin)
     error('OpenBMI: Classes should be specified');
@@ -28,16 +44,6 @@ if ischar(opt.class) && strcmp(opt.class,'all')
 elseif iscell(opt.class) && numel(opt.class)==1 && strcmp(opt.class{1},'all')
     out=dat; sprintf('you chose all classes');return
 end
-
-
-
-% % smkim
-% cls_idx = find(ismember(dat.class(:,2),opt.class));
-% tr_idx = find(ismember(dat.y_dec,cls_idx));
-% out = prep_selectTrials(dat,{'Index',tr_idx});
-% out.y_logic(~ismember(dat.class(:,2),opt.class),:) = [];
-
-
 
 % if ndims(dat.x)==2
 %     type='cnt';
