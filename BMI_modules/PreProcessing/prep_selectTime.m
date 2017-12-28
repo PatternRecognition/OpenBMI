@@ -1,28 +1,39 @@
 function [out] = prep_selectTime(dat, varargin)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % prep_selectTime (Pre-processing procedure):
 %
+% Synopsis:
+%     [out] = prep_selectTime(DAT,<OPT>)
+%
+% Example :
+%      out = prep_selectTime(dat, {'Time',[1000 3000]})
+%
+% Arguments:
+%     dat - Structure. epoched data
+%     varargin - struct or property/value list of optional properties:
+%          : time - Time interval to be selected (ms)
+%           
+% Returns:
+%     out - Data structure which has selected time from epoched data
+%
+%
 % Description:
-% This function selects the part of a specific time interval
-% from continuous or epoched data.
-% (i)  For continuous data, this function selects data in specifie time
+%     This function selects the part of a specific time interval
+%     from continuous or epoched data.
+%     (i)  For continuous data, this function selects data in specifie time
 %      interval from the whole data.
-% (ii) For epoched data, this function selects time interval in each trial.
+%     (ii) For epoched data, this function selects time interval in each trial.
 %      If you want to select trials in specific time interval, you can use
 %      a function 'prep_selectTrials'
+%     continuous data should be [time * channels]
+%     epoched data should be [time * channels * trials]
 %
-% Example:
-% out = prep_selectTime(dat, {'Time',[1000 3000]})
+% See also 'https://github.com/PatternRecognition/OpenBMI'
 %
-% Input:
-%     dat - Data structure
-%     time - Time interval to be selected (ms)
-%
-% Returns:
-%     out - Time selected data structure
-%
-%
-% Seon Min Kim, 04-2016
-% seonmin5055@gmail.com
+% Min-ho Lee, 12-2017
+% minho_lee@korea.ac.kr
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 if isempty(varargin)
     warning('OpenBMI: Time interval should be specified')
