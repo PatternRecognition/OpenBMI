@@ -1,21 +1,30 @@
 function [out] = prep_average(dat)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % prep_average (Pre-processing procedure):
 %
-% Description:
-%     This function average the data for each class
+% Synopsis:
+%   [out] = prep_average(dat)
 %
-% Example:
-% [out] = prep_average(dat)
+% Example :
+%    [out] = prep_average(SMT)
 %
-% Input:
+% Arguments:
 %     dat - Epoched data structure
 %
 % Returns:
-%     out - Averaged data structure, classwise
+%     out - Class-wise averaged data structure 
 %
 %
-% Seon Min Kim, 04-2016
-% seonmin5055@gmail.com
+% Description:
+%     Add specific channels to the former data(dat1) from dat2
+%     continuous data should be [time * channels]
+%     epoched data should be [time * channels * trials]
+%
+% See also 'https://github.com/PatternRecognition/OpenBMI'
+%
+% Min-ho Lee, 12-2017
+% mh_lee@korea.ac.kr
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if ~isfield(dat,'x')
     warning('OpenBMI: Data structure must have a field named ''x''')
