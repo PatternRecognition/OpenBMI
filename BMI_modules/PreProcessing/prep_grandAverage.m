@@ -1,21 +1,30 @@
 function [out] = prep_grandAverage(dat)
-% prep_grandAverage (Pre-processing procedure):
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% prep_grandAverage
 %
-% Description:
-% This function averages the data across subjects. It is recommended that
-% input data be separated by each class in advance.
+% Synopsis:
+%   [out] = prep_grandAverage(dat,<var>)
 %
-% Example:
-% [out] = prep_grandAverage({dat1,dat2,...,datN});
+% Example :
+%   [out] = prep_grandAverage({dat1,dat2,...,datN});
 %
-% Input:
+% Arguments:
 %     dat - Segmented data, structure or data itself, in a cell type
+%
 % Returns:
 %     out - Data structure averaged across subjects
 %
-% Seon Min Kim, 05-2016
-% seonmin5055@gmail.com
-
+% Description:
+%    This function averages the data across subjects. It is recommended that
+%    input data be separated by each class in advance.
+%     continuous data should be [time * channels]
+%     epoched data should be [time * channels * trials]
+%
+% See also 'https://github.com/PatternRecognition/OpenBMI'
+%
+% Min-ho Lee, 01-2018
+% mh_lee@korea.ac.kr
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 s = length(dat);
 x = cell(1,s);
 if isstruct(dat{1})
@@ -26,7 +35,7 @@ if isstruct(dat{1})
     if ~isequal(EachDataSize{:})
         warning('OpenBMI: Data size must be same (Epoched or continuous)');return
     end
-% chan, class °°ÀºÁö È®ÀÎ ÇÊ¿ä.
+% chan, class Â°Â°Ã€ÂºÃÃ¶ ÃˆÂ®Ã€Ã Ã‡ÃŠÂ¿Ã¤.
     for i=1:s
         x{i} = dat{i}.x;
     end
