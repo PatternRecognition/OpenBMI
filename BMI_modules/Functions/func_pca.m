@@ -1,18 +1,31 @@
 function [dat,V,D]=func_pca(dat)
-% func_pca:
-%    Applying principal component analysis (PCA)
-% Example:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% func_pca
+%
+% Synopsis:
+%   [out] = func_pca(dat,<var>)
+%
+% Example :
 %    [dat,V,D]=func_pca(dat);
 %
-%Input:
-%     dat - OpenBMI data structure
+% Arguments:
+%     dat - Segmented data itself
 %
-%Returns:
+%   Returns:
 %     dat - Data structure of applied PCA
 %     V   - Eigenvectors of data
 %     D   - Eigenvalues
-% 
-
+%
+% Description:
+%     Applying principal component analysis (PCA)
+%     continuous data should be [time * channels]
+%     epoched data should be [time * channels * trials]
+%
+% See also 'https://github.com/PatternRecognition/OpenBMI'
+%
+% Min-ho Lee, 01-2018
+% mh_lee@korea.ac.kr
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if isempty(dat)
     warning('[OpenBMI] Warning! data is empty.');
