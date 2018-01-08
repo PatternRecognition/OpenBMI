@@ -1,16 +1,16 @@
 function [out] = prep_baseline(dat,varargin)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % prep_baseline (Pre-processing procedure):
-% 
-% Description:
-%     This function corrects the baseline by subtracting average amplitude
-%     in the specified interval from a segmented signal.
 %
-% Example:
-% [out] = prep_baseline(dat,{'Time',[-100 0];'Criterion','class'})
+% Synopsis:
+%   [out] = prep_baseline(dat,<var>)
 %
-% Input:
-%     dat       - segmented data structure
-% Option:
+% Example :
+%   [out] = prep_baseline(dat,{'Time',[-100 0];'Criterion','class'})
+%
+% Arguments:
+%     dat - segmented data structure
+%   Option:
 %     Time      - time interval. [start ms, end ms] or time(ms) from the
 %                 beginning (default: all)
 %     Criterion - 'class', 'trial', 'channel' (default: 'trial')
@@ -19,9 +19,17 @@ function [out] = prep_baseline(dat,varargin)
 %     dat - baseline corrected data structure
 %
 %
-% Seon Min Kim, 04-2016
-% seonmin5055@gmail.com
-
+% Description:
+%     This function corrects the baseline by subtracting average amplitude
+%     in the specified interval from a segmented signal.
+%     continuous data should be [time * channels]
+%     epoched data should be [time * channels * trials]
+%
+% See also 'https://github.com/PatternRecognition/OpenBMI'
+%
+% Min-ho Lee, 12-2017
+% mh_lee@korea.ac.kr
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if ~isfield(dat,'x')
     warning('OpenBMI: Data must have fields named ''x''');return
 elseif ndims(dat.x)~=3 && size(dat.chan,2)~=1
