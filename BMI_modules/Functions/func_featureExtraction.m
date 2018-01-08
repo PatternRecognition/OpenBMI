@@ -23,7 +23,7 @@ function [ out ] = func_featureExtraction( dat, varargin )
 %
 % See also 'https://github.com/PatternRecognition/OpenBMI'
 %
-% Min-ho Lee, 12-2017
+% Min-ho Lee, 01-2018
 % mh_lee@korea.ac.kr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
