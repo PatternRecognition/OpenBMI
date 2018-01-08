@@ -16,7 +16,7 @@ function [out] = prep_average(dat)
 %
 %
 % Description:
-%     Add specific channels to the former data(dat1) from dat2
+%     Average epoched data with class-wise   
 %     continuous data should be [time * channels]
 %     epoched data should be [time * channels * trials]
 %
