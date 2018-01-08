@@ -1,16 +1,31 @@
 function [ out ] = func_featureExtraction( dat, varargin )
-%func_featureExtraction:
-%    Feature extracting the epoched or continous data.
-% Example:
-%      out=func_featureExtraction(smt, {'feature','logvar'});
-%  Input:
-%      dat - Data structure of epoched
-%     
-% Options:
-%     feature - 'logvar' or 'erpmean'
-
-% Returs:
-%    out  - Extracted features.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% func_featureExtraction (Pre-processing procedure):
+%
+% Synopsis:
+%   [out] = func_featureExtraction(dat,<var>)
+%
+% Example :
+%    out=func_featureExtraction(smt, {'feature','logvar'});
+%
+% Arguments:
+%     dat - Epoched data structure
+%       Options:
+%        feature - 'logvar' or 'erpmean'
+% Returns:
+%     out  - Extracted features.
+%
+%
+% Description:
+%     Feature extracting the epoched or continous data.
+%     continuous data should be [time * channels]
+%     epoched data should be [time * channels * trials]
+%
+% See also 'https://github.com/PatternRecognition/OpenBMI'
+%
+% Min-ho Lee, 12-2017
+% mh_lee@korea.ac.kr
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if iscell(varargin)
     opt=opt_cellToStruct(varargin{:});
