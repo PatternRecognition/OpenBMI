@@ -33,7 +33,7 @@ switch lower(opt.classifier)
         if ntri~=1
            dat=dat';
         end
-        cf_out= real( dat*opt.cf_param.w+opt.cf_param.b);% + repmat(opt.cf_param.b, [1 size(fv.x,1)]) );
+        cf_out= real( dat*opt.cf_param.w+opt.cf_param.b);
 end
 
 end
