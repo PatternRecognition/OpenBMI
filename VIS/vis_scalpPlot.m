@@ -108,8 +108,13 @@ plot_position = 1;
 
 if isequal(TimePlot, 'on')
     ch_idx = find(ismember(avgSMT.chan, chan));
+    
+    if isfield(opt, 'TimeRange')
+        time_range = opt.TimeRange;
+    else
     time_range = [floor(min(reshape(avgSMT.x(:,:,ch_idx), [], 1))),...
         ceil(max(reshape(avgSMT.x(:,:,ch_idx), [], 1)))]*1.2;
+    end
     for i = 1:length(chan)
         time_plt{i} = subplot(sub_row, sub_col, plot_position:plot_position + sub_col -1);
         ch_num = ismember(avgSMT.chan, chan{i});
@@ -117,7 +122,7 @@ if isequal(TimePlot, 'on')
         plot(SMT.ival, avgSMT.x(:,:,ch_num),'LineWidth',2); hold on;
 %         set({'color'}, co(1:size(avgSMT.class, 1)));
         
-%         grid on;
+        grid on;
         ylim(time_range);
         
         legend(avgSMT.class(:,2), 'Interpreter', 'none', 'AutoUpdate', 'off');
