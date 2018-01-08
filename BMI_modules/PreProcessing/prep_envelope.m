@@ -1,15 +1,15 @@
 function [out] = prep_envelope(dat,varargin)
-% prep_envelope (Pre-processing procedure):
-% 
-% Description:
-%     This function smoothly outlines the extremes of an oscillating
-%     signal, continuous or epoched.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% prep_envelope
 %
-% Example:
-% [out] = prep_envelope(dat)
+% Synopsis:
+%   [out] = prep_envelope(dat,<var>)
 %
-% Input:
-%     dat    - Oscillating signal
+% Example :
+%    [out] = prep_envelope(dat)
+%
+% Arguments:
+%     dat    - Epoched signal
 % Options:
 %     Time[ms] - time window. scalar or nx1 vector for weighting (default: 100)
 %     Method - 'centered' or 'causal' (default: causal)
@@ -17,9 +17,17 @@ function [out] = prep_envelope(dat,varargin)
 % Returns:
 %     out - Envelope of the signal
 %
+% Description:
+%     This function smoothly outlines the extremes of an oscillating
+%     signal, continuous or epoched.
+%     continuous data should be [time * channels]
+%     epoched data should be [time * channels * trials]
 %
-% Seon Min Kim, 04-2016
-% seonmin5055@gmail.com
+% See also 'https://github.com/PatternRecognition/OpenBMI'
+%
+% Min-ho Lee, 01-2018
+% mh_lee@korea.ac.kr
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if ~isfield(dat,'x')
     warning('OpenBMI: Data structure must have a field named ''x''')
