@@ -23,7 +23,7 @@ function varargout = plot_controller(varargin)
 
 % Edit the above text to modify the response to help plot_controller
 
-% Last Modified by GUIDE v2.5 27-Dec-2017 15:05:41
+% Last Modified by GUIDE v2.5 29-Jan-2018 15:25:10
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -143,6 +143,15 @@ handles.selected_class=handles.data.class(:,2);
 for i=1:length(handles.selected_class)
     str = [str; sprintf('%s', handles.selected_class{i})];
 end
+
+set(handles.inputToggle, 'Value', false);
+set(handles.pop_range, 'Visible', 'on');
+set(handles.maxTopo, 'Visible', 'off');
+set(handles.minTopo, 'Visible', 'off');
+set(handles.tildeTopo, 'Visible', 'off');
+set(handles.selToggle, 'Value', false);
+set(handles.maxSelect, 'Enable', 'off');
+set(handles.minSelect, 'Enable', 'off');
 
 set(handles.class_listbox,'String', str);
 
@@ -363,20 +372,30 @@ end
 %% Options
 if get(handles.check_patch,'Value'), Patch = 'on'; else Patch = 'off'; end
 
-switch get(handles.pop_range, 'Value')
-    case 1
-        range = 'sym';
-    case 2
-        range = '0tomax';
-    case 3
-        range = 'minto0';
-    case 4
-        range = 'mintomax';
-    case 5
-        range = 'mean';
-    case 6
-        range = [-1.5, 0.5];
+if get(handles.inputToggle, 'Value')
+    range = [get(handles.minTopo, 'Value'), get(handles.maxTopo, 'Value')];
+    range = sort(range);
+else
+    switch get(handles.pop_range, 'Value')
+        case 1
+            range = 'sym';
+        case 2
+            range = '0tomax';
+        case 3
+            range = 'minto0';
+        case 4
+            range = 'mintomax';
+        case 5
+            range = 'mean';
+    end
 end
+
+if get(handles.selToggle, 'Value')
+    selTime = [get(handles.minSelect, 'Value'), get(handles.maxSelect, 'Value')];
+    selTime = sort(selTime);
+else
+    selTime = [0 0];
+end;
 
 switch get(handles.pop_color, 'Value')
     case 1
@@ -807,3 +826,193 @@ function pop_quality_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+
+function minYlim_Callback(hObject, eventdata, handles)
+% hObject    handle to minYlim (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of minYlim as text
+%        str2double(get(hObject,'String')) returns contents of minYlim as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function minYlim_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to minYlim (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function maxYlim_Callback(hObject, eventdata, handles)
+% hObject    handle to maxYlim (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of maxYlim as text
+%        str2double(get(hObject,'String')) returns contents of maxYlim as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function maxYlim_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to maxYlim (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in inputToggle.
+function inputToggle_Callback(hObject, eventdata, handles)
+% hObject    handle to inputToggle (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of inputToggle
+if get(handles.inputToggle, 'Value')
+    set(handles.pop_range, 'Visible', 'off'); 
+    set(handles.maxTopo, 'Visible', 'on');
+    set(handles.minTopo, 'Visible', 'on');
+    set(handles.tildeTopo, 'Visible', 'on');
+else
+    set(handles.pop_range, 'Visible', 'on');
+    set(handles.maxTopo, 'Visible', 'off');
+    set(handles.minTopo, 'Visible', 'off');
+    set(handles.tildeTopo, 'Visible', 'off');
+end
+
+
+
+function minTopo_Callback(hObject, eventdata, handles)
+% hObject    handle to minTopo (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of minTopo as text
+%        str2double(get(hObject,'String')) returns contents of minTopo as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function minTopo_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to minTopo (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function maxTopo_Callback(hObject, eventdata, handles)
+% hObject    handle to maxTopo (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of maxTopo as text
+%        str2double(get(hObject,'String')) returns contents of maxTopo as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function maxTopo_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to maxTopo (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function minSelect_Callback(hObject, eventdata, handles)
+% hObject    handle to minSelect (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of minSelect as text
+%        str2double(get(hObject,'String')) returns contents of minSelect as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function minSelect_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to minSelect (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function maxSelect_Callback(hObject, eventdata, handles)
+% hObject    handle to maxSelect (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of maxSelect as text
+%        str2double(get(hObject,'String')) returns contents of maxSelect as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function maxSelect_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to maxSelect (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+input = get(handles.maxSelect_start, 'String');
+[~, len] = regexp(input, '^-?[0-9]+');
+
+if ~isequal(len, length(input))
+    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input the number'});
+    set(handles.baseline_start, 'String', string(handles.data.ival(1)));
+    return;
+end
+
+% --- Executes on button press in selToggle.
+function selToggle_Callback(hObject, eventdata, handles)
+% hObject    handle to selToggle (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of selToggle
+if get(handles.selToggle, 'Value')
+    set(handles.maxSelect, 'Enable', 'on');
+    set(handles.minSelect, 'Enable', 'on');
+else
+    set(handles.maxSelect, 'Enable', 'off');
+    set(handles.minSelect, 'Enable', 'off');
+end
+
+
+% --- Executes on button press in ylimToggle.
+function ylimToggle_Callback(hObject, eventdata, handles)
+% hObject    handle to ylimToggle (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of ylimToggle
