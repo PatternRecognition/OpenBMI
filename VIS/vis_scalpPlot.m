@@ -46,7 +46,7 @@ if isfield(opt, 'TopoPlot') TopoPlot = opt.TopoPlot; else TopoPlot = 'on'; end
 if isfield(opt, 'Baseline') baseline = opt.Baseline; else baseline = [0 0]; end
 if isfield(opt, 'Colormap') cm = opt.Colormap; else cm = 'parula'; end
 if isfield(opt, 'Colororder') co = opt.Colororder; else co = {[ 0 0.4470 0.7410];...
-    [0.8500 0.3250 0.0980]; [0.9290 0.6940 0.1250]; [0.4940 0.1840 0.5560]; [0.4660 0.6740 0.1880];};end
+        [0.8500 0.3250 0.0980]; [0.9290 0.6940 0.1250]; [0.4940 0.1840 0.5560]; [0.4660 0.6740 0.1880];};end
 
 fig = figure('Color', 'w');
 % set(fig, 'MenuBar', 'none');
@@ -91,15 +91,17 @@ set(gcf,'units','normalized');
 colormap(cm);
 faceColor = [{[0.8 0.8 0.8]};{[0.6 0.6 0.6]}];
 
-if size(interval, 1) > size(SMT.class, 1)
+% if size(interval, 1) > size(SMT.class, 1)
+%     sub_row = length(chan) * sum(ismember({TimePlot, ErspPlot, ErdPlot}, 'on'))...
+%         + size(SMT.class,1) * isequal(TopoPlot, 'on');
+%     sub_col = size(interval,1);
+% else
+%     sub_row = length(chan) * sum(ismember({TimePlot, ErspPlot, ErdPlot}, 'on')) + 1;
+%     sub_col = size(SMT.class, 1);
+% end
     sub_row = length(chan) * sum(ismember({TimePlot, ErspPlot, ErdPlot}, 'on'))...
         + size(SMT.class,1) * isequal(TopoPlot, 'on');
     sub_col = size(interval,1);
-else
-    sub_row = length(chan) * sum(ismember({TimePlot, ErspPlot, ErdPlot}, 'on')) + 1;
-    sub_col = size(SMT.class, 1);
-end
-
 
 base_idx = [find(avgSMT.ival == baseline(1)), find(avgSMT.ival == baseline(2))];
 
@@ -112,15 +114,15 @@ if isequal(TimePlot, 'on')
     if isfield(opt, 'TimeRange')
         time_range = opt.TimeRange;
     else
-    time_range = [floor(min(reshape(avgSMT.x(:,:,ch_idx), [], 1))),...
-        ceil(max(reshape(avgSMT.x(:,:,ch_idx), [], 1)))]*1.2;
+        time_range = [floor(min(reshape(avgSMT.x(:,:,ch_idx), [], 1))),...
+            ceil(max(reshape(avgSMT.x(:,:,ch_idx), [], 1)))]*1.2;
     end
     for i = 1:length(chan)
         time_plt{i} = subplot(sub_row, sub_col, plot_position:plot_position + sub_col -1);
         ch_num = ismember(avgSMT.chan, chan{i});
-          
+        
         plot(SMT.ival, avgSMT.x(:,:,ch_num),'LineWidth',2); hold on;
-%         set({'color'}, co(1:size(avgSMT.class, 1)));
+        %         set({'color'}, co(1:size(avgSMT.class, 1)));
         
         grid on;
         ylim(time_range);
@@ -145,7 +147,7 @@ if isequal(TimePlot, 'on')
             set(time_plt{i}, 'Children', flip(tmp));
         end
         ylabel(SMT.chan{ch_num}, 'Rotation', 0, ...
-             'FontWeight', 'normal', 'FontSize', 10);
+            'FontWeight', 'normal', 'FontSize', 10);
         hold off;
         plot_position = plot_position + sub_col;
     end
@@ -157,7 +159,7 @@ if isequal(ErdPlot, 'on')
     envSMT = prep_baseline(envSMT, {'Time', baseline});
     envSMT = prep_selectClass(envSMT, {'class',class});
     envSMT = prep_average(envSMT);
-        
+    
     ch_idx = find(ismember(envSMT.chan, chan));
     erders_range = [floor(min(reshape(envSMT.x(:,:,ch_idx), [], 1))),...
         ceil(max(reshape(envSMT.x(:,:,ch_idx), [], 1)))]*1.2;
@@ -168,11 +170,11 @@ if isequal(ErdPlot, 'on')
         plot(SMT.ival, envSMT.x(:,:,ch_num),'LineWidth',2); hold on;
         
         ylim(erders_range);
-                
+        
         legend(envSMT.class(:,2), 'Interpreter', 'none', 'AutoUpdate', 'off');
         
         base_patch = min(abs(erders_range))*0.05;
-            
+        
         patch('XData', [baseline(1)  baseline(2) baseline(2) baseline(1)], ...
             'YData', [-base_patch -base_patch base_patch base_patch],...
             'FaceColor', 'k',...
@@ -212,7 +214,7 @@ if isequal(TopoPlot, 'on')
         otherwise
             resol = 256;
     end
-            
+    
     for i = 1: size(class, 1)
         ivalSegment = size(interval,1);
         minmax = [];
@@ -266,12 +268,12 @@ output = output_str;
 end
 
 function grp_ylabel(plots, title)
-    pos = get([plots{:}], 'Position');
-    if iscell(pos), pos = cell2mat(pos); end
-    axes('Position',[min(pos(:,1))*0.8, min(pos(:,2)), min(pos(:,1))*0.2,...
-        abs(max(pos(:,2))-min(pos(:,2)))+max(pos(:,4))], 'Visible', 'off');
-    set(get(gca,'Ylabel'), 'Visible','on', 'String', title, ...
-        'Interpreter', 'none', 'FontWeight', 'bold', 'FontSize', 12);
+pos = get([plots{:}], 'Position');
+if iscell(pos), pos = cell2mat(pos); end
+axes('Position',[min(pos(:,1))*0.8, min(pos(:,2)), min(pos(:,1))*0.2,...
+    abs(max(pos(:,2))-min(pos(:,2)))+max(pos(:,4))], 'Visible', 'off');
+set(get(gca,'Ylabel'), 'Visible','on', 'String', title, ...
+    'Interpreter', 'none', 'FontWeight', 'bold', 'FontSize', 12);
 end
 
 %% FileExchange function subtightplot by F. G. Nievinski
