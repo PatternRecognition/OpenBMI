@@ -23,7 +23,7 @@ function varargout = plot_controller(varargin)
 
 % Edit the above text to modify the response to help plot_controller
 
-% Last Modified by GUIDE v2.5 29-Jan-2018 15:25:10
+% Last Modified by GUIDE v2.5 30-Jan-2018 20:16:14
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -152,6 +152,9 @@ set(handles.tildeTopo, 'Visible', 'off');
 set(handles.selToggle, 'Value', false);
 set(handles.maxSelect, 'Enable', 'off');
 set(handles.minSelect, 'Enable', 'off');
+set(handles.ylimToggle, 'Value', false);
+set(handles.maxYlim, 'Enable', 'off');
+set(handles.minYlim, 'Enable', 'off');
 
 set(handles.class_listbox,'String', str);
 
@@ -359,7 +362,16 @@ if baseline(1) > baseline(2)
     set(handles.baseline_start,'String', baseline(1));
     set(handles.baseline_end, 'String', baseline(2));
 end
-
+if get(handles.selToggle, 'Value')
+    selTime = [str2double(get(handles.minSelect, 'String')), str2double(get(handles.maxSelect, 'String'))];
+        if selTime(1) > selTime(2)
+        selTime = flip(selTime);
+        set(handles.minSelect, 'String', selTime(1));
+        set(handles.maxSelect, 'String', selTime(2));
+        end
+else
+    selTime = [SMT.ival(1), SMT.ival(end)];
+end
 %% Get plots
 if get(handles.check_time_plot,'Value'), TimePlot = 'on'; else TimePlot = 'off'; end
 if get(handles.check_ersp,'Value'), ErspPlot = 'on'; else ErspPlot = 'off'; end
@@ -390,12 +402,6 @@ else
     end
 end
 
-if get(handles.selToggle, 'Value')
-    selTime = [get(handles.minSelect, 'Value'), get(handles.maxSelect, 'Value')];
-    selTime = sort(selTime);
-else
-    selTime = [0 0];
-end;
 
 switch get(handles.pop_color, 'Value')
     case 1
@@ -422,7 +428,7 @@ try
         'Channels',handles.selected_chan;'Class',handles.selected_class;...
         'TimePlot', TimePlot; 'TopoPlot', TopoPlot; 'ErspPlot', ErspPlot;...
         'ErdPlot', ErdPlot; 'Range', range; 'Baseline', baseline;...
-        'Colormap', cm; 'Patch', Patch; 'Quality', quality});
+        'Colormap', cm; 'Patch', Patch; 'Quality', quality; 'SelectTime', selTime});
 catch error
     close gcf;
     output = {'';'Unexpected Error Occurred in';...
@@ -948,7 +954,14 @@ function minSelect_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of minSelect as text
 %        str2double(get(hObject,'String')) returns contents of minSelect as a double
+input = get(handles.minSelect, 'String');
+[~, len] = regexp(input, '^-?[0-9]+');
 
+if ~isequal(len, length(input))
+    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input the number'});
+    set(handles.minSelect, 'String', string(handles.data.ival(1)));
+    return;
+end
 
 % --- Executes during object creation, after setting all properties.
 function minSelect_CreateFcn(hObject, eventdata, handles)
@@ -971,7 +984,14 @@ function maxSelect_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of maxSelect as text
 %        str2double(get(hObject,'String')) returns contents of maxSelect as a double
+input = get(handles.maxSelect, 'String');
+[~, len] = regexp(input, '^-?[0-9]+');
 
+if ~isequal(len, length(input))
+    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input the number'});
+    set(handles.maxSelect, 'String', string(handles.data.ival(end)));
+    return;
+end
 
 % --- Executes during object creation, after setting all properties.
 function maxSelect_CreateFcn(hObject, eventdata, handles)
@@ -983,14 +1003,6 @@ function maxSelect_CreateFcn(hObject, eventdata, handles)
 %       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
-end
-input = get(handles.maxSelect_start, 'String');
-[~, len] = regexp(input, '^-?[0-9]+');
-
-if ~isequal(len, length(input))
-    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input the number'});
-    set(handles.baseline_start, 'String', string(handles.data.ival(1)));
-    return;
 end
 
 % --- Executes on button press in selToggle.
@@ -1008,7 +1020,6 @@ else
     set(handles.minSelect, 'Enable', 'off');
 end
 
-
 % --- Executes on button press in ylimToggle.
 function ylimToggle_Callback(hObject, eventdata, handles)
 % hObject    handle to ylimToggle (see GCBO)
@@ -1016,3 +1027,10 @@ function ylimToggle_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of ylimToggle
+if get(handles.ylimToggle, 'Value')
+    set(handles.maxYlim, 'Enable', 'on');
+    set(handles.minYlim, 'Enable', 'on');
+else
+    set(handles.maxYlim, 'Enable', 'off');
+    set(handles.minYlim, 'Enable', 'off');
+end
