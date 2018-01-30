@@ -72,7 +72,7 @@ if d == 3 || (d==2 && length(dat.chan)==1)
     x = dat.x(iv,:,:);
     t = dat.t;
 %     time = iv/dat.fs*1000; %% Revised hkkim
-    time = ival(iv);
+    time = dat.ival(iv);
     if a
         y_dec = dat.y_dec;
         y_logic = dat.y_logic;
