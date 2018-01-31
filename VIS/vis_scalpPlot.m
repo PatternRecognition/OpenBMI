@@ -29,7 +29,7 @@ function output = vis_scalpPlot(SMT, varargin)
 
 % -----------------------------------------------------
 % FileExchange function subtightplot by F. G. Nievinski
-subplot = @(m,n,p) subtightplot(m,n,p,[0.045 0]);
+subplot = @(m,n,p) subtightplot(m,n,p,[0.045 0], 0.05, [0.06, 0.02]);
 output_str = {'';'';'Finished'};
 
 opt = opt_cellToStruct(varargin{:});
@@ -112,7 +112,7 @@ plot_position = 1;
 if isequal(TimePlot, 'on')
     ch_idx = find(ismember(avgSMT.chan, chan));
     
-    if isfield(opt, 'TimeRange')
+    if isfield(opt, 'TimeRange') && ~isempty(opt.TimeRange)
         time_range = opt.TimeRange;
     else
         time_range = [floor(min(reshape(avgSMT.x(:,:,ch_idx), [], 1))),...
@@ -122,7 +122,7 @@ if isequal(TimePlot, 'on')
         time_plt{i} = subplot(sub_row, sub_col, plot_position:plot_position + sub_col -1);
         ch_num = ismember(avgSMT.chan, chan{i});
         
-        plot(SMT.ival, avgSMT.x(:,:,ch_num),'LineWidth',2); hold on;
+        plot(avgSMT.ival, avgSMT.x(:,:,ch_num),'LineWidth',2); hold on;
         %         set({'color'}, co(1:size(avgSMT.class, 1)));
         
         grid on;
@@ -147,7 +147,7 @@ if isequal(TimePlot, 'on')
             tmp = get(time_plt{i}, 'Children');
             set(time_plt{i}, 'Children', flip(tmp));
         end
-        ylabel(SMT.chan{ch_num}, 'Rotation', 0, ...
+        ylabel(avgSMT.chan{ch_num}, 'Rotation', 90, ...
             'FontWeight', 'normal', 'FontSize', 10);
         hold off;
         plot_position = plot_position + sub_col;
@@ -158,6 +158,7 @@ end
 if isequal(ErdPlot, 'on')
     envSMT = prep_envelope(SMT);
     envSMT = prep_baseline(envSMT, {'Time', baseline});
+    envSMT = prep_selectTime(SMT, {'Time', seltime});
     envSMT = prep_selectClass(envSMT, {'class',class});
     envSMT = prep_average(envSMT);
     
@@ -168,7 +169,7 @@ if isequal(ErdPlot, 'on')
     for i = 1:length(chan)
         erders_plt{i} = subplot(sub_row, sub_col, plot_position:plot_position + sub_col -1);
         ch_num = ismember(envSMT.chan, chan{i});
-        plot(SMT.ival, envSMT.x(:,:,ch_num),'LineWidth',2); hold on;
+        plot(envSMT.ival, envSMT.x(:,:,ch_num),'LineWidth',2); hold on;
         
         grid on;
         
@@ -195,7 +196,7 @@ if isequal(ErdPlot, 'on')
             set(gca, 'Children', flip(tmp));
             clear tmp;
         end
-        ylabel(SMT.chan{ch_num}, 'Rotation', 0, 'FontWeight', 'normal', 'FontSize', 10);
+        ylabel(envSMT.chan{ch_num}, 'Rotation', 90, 'FontWeight', 'normal', 'FontSize', 10);
         
         plot_position = plot_position + sub_col;
     end

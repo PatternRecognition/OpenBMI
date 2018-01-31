@@ -373,6 +373,7 @@ if baseline(1) > baseline(2)
     set(handles.baseline_start,'String', baseline(1));
     set(handles.baseline_end, 'String', baseline(2));
 end
+%% Select time
 if get(handles.selToggle, 'Value')
     selTime = [str2double(get(handles.minSelect, 'String')), str2double(get(handles.maxSelect, 'String'))];
     if selTime(1) > selTime(2)
@@ -383,6 +384,12 @@ if get(handles.selToggle, 'Value')
 else
     selTime = [handles.data.ival(1), handles.data.ival(end)];
 end
+%% Ylim range
+if get(handles.ylimToggle, 'Value')
+    ylimRange = [str2double(get(handles.minYlim, 'String')), str2double(get(handles.maxYlim, 'String'))];
+else
+    ylimRange = [];
+end
 %% Get plots
 if get(handles.check_time_plot,'Value'), TimePlot = 'on'; else TimePlot = 'off'; end
 if get(handles.check_ersp,'Value'), ErspPlot = 'on'; else ErspPlot = 'off'; end
@@ -392,9 +399,9 @@ if ~sum(ismember({TimePlot, ErspPlot, ErdPlot, TopoPlot}, 'on'))
     set(handles.note_txt, 'String', {'';'';'Choose at least one plot type'});
     return;
 end
-%% Options
+%% Patch
 if get(handles.check_patch,'Value'), Patch = 'on'; else Patch = 'off'; end
-
+%% Topography range
 if get(handles.inputToggle, 'Value')
     range = [str2double(get(handles.minTopo, 'String')), str2double(get(handles.maxTopo, 'String'))];
     if range(1) > range(2)
@@ -416,8 +423,7 @@ else
             range = 'mean';
     end
 end
-
-
+%% Topography color
 switch get(handles.pop_color, 'Value')
     case 1
         cm = 'parula';
@@ -426,7 +432,7 @@ switch get(handles.pop_color, 'Value')
     case 3
         cm = 'hsv';
 end
-
+%% Topography quality
 switch get(handles.pop_quality, 'Value')
     case 1
         quality = 'high';
@@ -436,14 +442,21 @@ switch get(handles.pop_quality, 'Value')
         quality = 'low';
 end
 
+%% Interval check
+if sum(handles.selected_ival(:,1) < selTime(1)) || sum(handles.selected_ival(:,2) > selTime(2))
+    set(handles.note_txt, 'String', {'';'';'Choose intervals between selected time'});
+    return;
+end
+
 %% Start visualization
 set(handles.note_txt, 'String', {'';'';'Wait for Drawing'}); drawnow;
 try
     output = vis_scalpPlot(handles.data, {'Interval', handles.selected_ival;...
         'Channels',handles.selected_chan;'Class',handles.selected_class;...
         'TimePlot', TimePlot; 'TopoPlot', TopoPlot; 'ErspPlot', ErspPlot;...
-        'ErdPlot', ErdPlot; 'Range', range; 'Baseline', baseline;...
-        'Colormap', cm; 'Patch', Patch; 'Quality', quality; 'SelectTime', selTime});
+        'ErdPlot', ErdPlot; 'TimeRange', range; 'Baseline', baseline;...
+        'Colormap', cm; 'Patch', Patch; 'Quality', quality; ...
+        'SelectTime', selTime; 'TimeRange', ylimRange});
 catch error
     close gcf;
     output = {'';'Unexpected Error Occurred in';...
@@ -608,7 +621,7 @@ if ~isequal(len, length(input))
 end
 if str2double(input) < handles.data.ival(1) || str2double(input) > handles.data.ival(end)
     set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input between the segmentation range'});
-    set(handles.baseline_end, 'String', '0');
+    set(handles.baseline_end, 'String', string(handles.data.ival(end)));
     return;
 end
 
@@ -865,7 +878,6 @@ if ~isequal(len, length(input))
     set(handles.minYlim, 'String', '0');
     return;
 end
-
 % --- Executes during object creation, after setting all properties.
 function minYlim_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to minYlim (see GCBO)
@@ -939,6 +951,14 @@ function minTopo_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of minTopo as text
 %        str2double(get(hObject,'String')) returns contents of minTopo as a double
+input = get(handles.minTopo, 'String');
+[~, len] = regexp(input, '^-?[0-9]+');
+
+if ~isequal(len, length(input))
+    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input the number'});
+    set(handles.minTopo, 'String', '0');
+    return;
+end
 
 
 % --- Executes during object creation, after setting all properties.
@@ -962,6 +982,15 @@ function maxTopo_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of maxTopo as text
 %        str2double(get(hObject,'String')) returns contents of maxTopo as a double
+input = get(handles.maxTopo, 'String');
+[~, len] = regexp(input, '^-?[0-9]+');
+
+if ~isequal(len, length(input))
+    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input the number'});
+    set(handles.maxTopo, 'String', '0');
+    return;
+end
+
 
 
 % --- Executes during object creation, after setting all properties.
@@ -993,6 +1022,11 @@ if ~isequal(len, length(input))
     set(handles.minSelect, 'String', string(handles.data.ival(1)));
     return;
 end
+if str2double(input) < handles.data.ival(1) || str2double(input) > handles.data.ival(end)
+    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input between the segmentation range'});
+    set(handles.minSelect, 'String', string(handles.data.ival(1)));
+    return;
+end
 
 % --- Executes during object creation, after setting all properties.
 function minSelect_CreateFcn(hObject, eventdata, handles)
@@ -1020,6 +1054,11 @@ input = get(handles.maxSelect, 'String');
 
 if ~isequal(len, length(input))
     set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input the number'});
+    set(handles.maxSelect, 'String', string(handles.data.ival(end)));
+    return;
+end
+if str2double(input) < handles.data.ival(1) || str2double(input) > handles.data.ival(end)
+    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input between the segmentation range'});
     set(handles.maxSelect, 'String', string(handles.data.ival(end)));
     return;
 end
