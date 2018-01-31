@@ -29,7 +29,7 @@ function output = vis_scalpPlot(SMT, varargin)
 
 % -----------------------------------------------------
 % FileExchange function subtightplot by F. G. Nievinski
-subplot = @(m,n,p) subtightplot(m,n,p,[0.045 0], 0.05, [0.06, 0.02]);
+subplot = @(m,n,p) subtightplot(m,n,p,[0.045 0], 0.05, [0.06, 0.048]);
 output_str = {'';'';'Finished'};
 
 opt = opt_cellToStruct(varargin{:});
@@ -92,13 +92,13 @@ set(gcf,'units','normalized');
 colormap(cm);
 faceColor = [{[0.8 0.8 0.8]};{[0.6 0.6 0.6]}];
 
-if size(interval, 1) > size(class, 1)
+if size(interval, 1) * size(class, 1) > 5
     sub_row = length(chan) * sum(ismember({TimePlot, ErspPlot, ErdPlot}, 'on'))...
         + size(class,1) * isequal(TopoPlot, 'on');
     sub_col = size(interval,1);
 else
     sub_row = length(chan) * sum(ismember({TimePlot, ErspPlot, ErdPlot}, 'on')) + 1;
-    sub_col = size(class, 1);
+    sub_col = size(interval, 1) * size(class, 1)    ;
 end
 %     sub_row = length(chan) * sum(ismember({TimePlot, ErspPlot, ErdPlot}, 'on'))...
 %         + size(class,1) * isequal(TopoPlot, 'on');
@@ -148,7 +148,7 @@ if isequal(TimePlot, 'on')
             set(time_plt{i}, 'Children', flip(tmp));
         end
         ylabel(avgSMT.chan{ch_num}, 'Rotation', 90, ...
-            'FontWeight', 'normal', 'FontSize', 10);
+            'FontWeight', 'normal', 'FontSize', 12);
         hold off;
         plot_position = plot_position + sub_col;
     end
@@ -196,7 +196,7 @@ if isequal(ErdPlot, 'on')
             set(gca, 'Children', flip(tmp));
             clear tmp;
         end
-        ylabel(envSMT.chan{ch_num}, 'Rotation', 90, 'FontWeight', 'normal', 'FontSize', 10);
+        ylabel(envSMT.chan{ch_num}, 'Rotation', 90, 'FontWeight', 'normal', 'FontSize', 12);
         
         plot_position = plot_position + sub_col;
     end
@@ -263,8 +263,8 @@ if isequal(TopoPlot, 'on')
         tmp(3:4) = last_position(3:4);
         set(gca,'Position',tmp);
         subplot(sub_row, sub_col, plot_position - size(interval,1));%
-        set(get(gca,'Ylabel'), 'Visible','on', 'String', {class{i}; ''; ''}, ...
-            'Interpreter', 'none', 'FontWeight', 'normal', 'FontSize', 10);
+        set(get(gca,'Ylabel'), 'Visible','on', 'String', {class{i}}, ...
+            'Interpreter', 'none', 'FontWeight', 'normal', 'FontSize', 12);
     end
     grp_ylabel(topo_plt, 'Topography');
 end

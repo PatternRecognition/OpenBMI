@@ -23,7 +23,7 @@ function varargout = plot_controller(varargin)
 
 % Edit the above text to modify the response to help plot_controller
 
-% Last Modified by GUIDE v2.5 30-Jan-2018 20:16:14
+% Last Modified by GUIDE v2.5 31-Jan-2018 20:04:12
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -1103,8 +1103,10 @@ if isequal(get(handles.ylimToggle, 'String'), 'Select')
     set(handles.maxYlim, 'Enable', 'on');
     set(handles.minYlim, 'Enable', 'on');
     set(handles.ylimToggle, 'String', 'Deselect');
+    set(handles.ylimToggle, 'Value', true);
 else
     set(handles.maxYlim, 'Enable', 'off');
     set(handles.minYlim, 'Enable', 'off');
     set(handles.ylimToggle, 'String', 'Select');
+    set(handles.ylimToggle, 'Value', false);
 end
