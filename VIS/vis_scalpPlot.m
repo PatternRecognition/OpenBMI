@@ -92,17 +92,17 @@ set(gcf,'units','normalized');
 colormap(cm);
 faceColor = [{[0.8 0.8 0.8]};{[0.6 0.6 0.6]}];
 
-% if size(interval, 1) > size(SMT.class, 1)
-%     sub_row = length(chan) * sum(ismember({TimePlot, ErspPlot, ErdPlot}, 'on'))...
-%         + size(SMT.class,1) * isequal(TopoPlot, 'on');
-%     sub_col = size(interval,1);
-% else
-%     sub_row = length(chan) * sum(ismember({TimePlot, ErspPlot, ErdPlot}, 'on')) + 1;
-%     sub_col = size(SMT.class, 1);
-% end
+if size(interval, 1) > size(class, 1)
     sub_row = length(chan) * sum(ismember({TimePlot, ErspPlot, ErdPlot}, 'on'))...
-        + size(SMT.class,1) * isequal(TopoPlot, 'on');
+        + size(class,1) * isequal(TopoPlot, 'on');
     sub_col = size(interval,1);
+else
+    sub_row = length(chan) * sum(ismember({TimePlot, ErspPlot, ErdPlot}, 'on')) + 1;
+    sub_col = size(class, 1);
+end
+%     sub_row = length(chan) * sum(ismember({TimePlot, ErspPlot, ErdPlot}, 'on'))...
+%         + size(class,1) * isequal(TopoPlot, 'on');
+%     sub_col = size(interval,1);
 
 base_idx = [find(avgSMT.ival == baseline(1)), find(avgSMT.ival == baseline(2))];
 
@@ -169,6 +169,8 @@ if isequal(ErdPlot, 'on')
         erders_plt{i} = subplot(sub_row, sub_col, plot_position:plot_position + sub_col -1);
         ch_num = ismember(envSMT.chan, chan{i});
         plot(SMT.ival, envSMT.x(:,:,ch_num),'LineWidth',2); hold on;
+        
+        grid on;
         
         ylim(erders_range);
         

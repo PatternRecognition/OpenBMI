@@ -108,7 +108,9 @@ function RESET(hObject, handles, isreset)
 % init        initialization
 % Initialize plot type
 set(handles.check_time_plot,'Value',true);
-set(handles.check_ersp,'Value',true);
+% set(handles.check_ersp,'Value',true);
+set(handles.check_ersp, 'Value', false);
+set(handles.check_ersp, 'Enable', 'off');
 set(handles.check_erd,'Value',true);
 set(handles.check_topography,'Value',true);
 
@@ -145,16 +147,25 @@ for i=1:length(handles.selected_class)
 end
 
 set(handles.inputToggle, 'Value', false);
+set(handles.inputToggle, 'String', 'Direct');
 set(handles.pop_range, 'Visible', 'on');
 set(handles.maxTopo, 'Visible', 'off');
 set(handles.minTopo, 'Visible', 'off');
+set(handles.maxTopo, 'String', '0');
+set(handles.minTopo, 'String', '0');
 set(handles.tildeTopo, 'Visible', 'off');
 set(handles.selToggle, 'Value', false);
+set(handles.selToggle, 'String', 'Select');
 set(handles.maxSelect, 'Enable', 'off');
 set(handles.minSelect, 'Enable', 'off');
+set(handles.maxSelect, 'String', '0');
+set(handles.minSelect, 'String', '0');
 set(handles.ylimToggle, 'Value', false);
+set(handles.ylimToggle, 'String', 'Select');
 set(handles.maxYlim, 'Enable', 'off');
 set(handles.minYlim, 'Enable', 'off');
+set(handles.maxYlim, 'String', '0');
+set(handles.minYlim, 'String', '0');
 
 set(handles.class_listbox,'String', str);
 
@@ -243,7 +254,7 @@ try
         ival = ival(sort_(:,1),:);
     else
         ival = handles.data.ival([1, end]);
-        if ival(1) < 0, ival(1) = 0; end
+%         if ival(1) < 0, ival(1) = 0; end % ival 0 to max -> min to max
     end
 catch
     return;
@@ -364,11 +375,11 @@ if baseline(1) > baseline(2)
 end
 if get(handles.selToggle, 'Value')
     selTime = [str2double(get(handles.minSelect, 'String')), str2double(get(handles.maxSelect, 'String'))];
-        if selTime(1) > selTime(2)
+    if selTime(1) > selTime(2)
         selTime = flip(selTime);
         set(handles.minSelect, 'String', selTime(1));
         set(handles.maxSelect, 'String', selTime(2));
-        end
+    end
 else
     selTime = [handles.data.ival(1), handles.data.ival(end)];
 end
@@ -385,8 +396,12 @@ end
 if get(handles.check_patch,'Value'), Patch = 'on'; else Patch = 'off'; end
 
 if get(handles.inputToggle, 'Value')
-    range = [get(handles.minTopo, 'Value'), get(handles.maxTopo, 'Value')];
-    range = sort(range);
+    range = [str2double(get(handles.minTopo, 'String')), str2double(get(handles.maxTopo, 'String'))];
+    if range(1) > range(2)
+        range = flip(range);
+        set(handles.minTopo,'String', range(1));
+        set(handles.maxTopo,'String', range(2));
+    end
 else
     switch get(handles.pop_range, 'Value')
         case 1
@@ -420,11 +435,6 @@ switch get(handles.pop_quality, 'Value')
     case 3
         quality = 'low';
 end
-
-
-%%%%%%%%
-%주석주석주석
-%%%%%%%%
 
 %% Start visualization
 set(handles.note_txt, 'String', {'';'';'Wait for Drawing'}); drawnow;
@@ -847,7 +857,14 @@ function minYlim_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of minYlim as text
 %        str2double(get(hObject,'String')) returns contents of minYlim as a double
+input = get(handles.minYlim, 'String');
+[~, len] = regexp(input, '^-?[0-9]+');
 
+if ~isequal(len, length(input))
+    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input the number'});
+    set(handles.minYlim, 'String', '0');
+    return;
+end
 
 % --- Executes during object creation, after setting all properties.
 function minYlim_CreateFcn(hObject, eventdata, handles)
@@ -870,7 +887,14 @@ function maxYlim_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of maxYlim as text
 %        str2double(get(hObject,'String')) returns contents of maxYlim as a double
+input = get(handles.maxYlim, 'String');
+[~, len] = regexp(input, '^-?[0-9]+');
 
+if ~isequal(len, length(input))
+    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input the number'});
+    set(handles.maxYlim, 'String', '0');
+    return;
+end
 
 % --- Executes during object creation, after setting all properties.
 function maxYlim_CreateFcn(hObject, eventdata, handles)
@@ -897,11 +921,13 @@ if get(handles.inputToggle, 'Value')
     set(handles.maxTopo, 'Visible', 'on');
     set(handles.minTopo, 'Visible', 'on');
     set(handles.tildeTopo, 'Visible', 'on');
+    set(handles.inputToggle, 'String', 'Options');
 else
     set(handles.pop_range, 'Visible', 'on');
     set(handles.maxTopo, 'Visible', 'off');
     set(handles.minTopo, 'Visible', 'off');
     set(handles.tildeTopo, 'Visible', 'off');
+    set(handles.inputToggle, 'String', 'Direct');
 end
 
 
@@ -1020,9 +1046,11 @@ function selToggle_Callback(hObject, eventdata, handles)
 if get(handles.selToggle, 'Value')
     set(handles.maxSelect, 'Enable', 'on');
     set(handles.minSelect, 'Enable', 'on');
+    set(handles.selToggle, 'String', 'Deselect');
 else
     set(handles.maxSelect, 'Enable', 'off');
     set(handles.minSelect, 'Enable', 'off');
+	set(handles.selToggle, 'String', 'Select');
 end
 
 % --- Executes on button press in ylimToggle.
@@ -1032,10 +1060,12 @@ function ylimToggle_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of ylimToggle
-if get(handles.ylimToggle, 'Value')
+if isequal(get(handles.ylimToggle, 'String'), 'Select')
     set(handles.maxYlim, 'Enable', 'on');
     set(handles.minYlim, 'Enable', 'on');
+    set(handles.ylimToggle, 'String', 'Deselect');
 else
     set(handles.maxYlim, 'Enable', 'off');
     set(handles.minYlim, 'Enable', 'off');
+    set(handles.ylimToggle, 'String', 'Select');
 end
