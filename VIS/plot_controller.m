@@ -370,7 +370,7 @@ if get(handles.selToggle, 'Value')
         set(handles.maxSelect, 'String', selTime(2));
         end
 else
-    selTime = [SMT.ival(1), SMT.ival(end)];
+    selTime = [handles.data.ival(1), handles.data.ival(end)];
 end
 %% Get plots
 if get(handles.check_time_plot,'Value'), TimePlot = 'on'; else TimePlot = 'off'; end
