@@ -421,6 +421,11 @@ switch get(handles.pop_quality, 'Value')
         quality = 'low';
 end
 
+
+%%%%%%%%
+%주석주석주석
+%%%%%%%%
+
 %% Start visualization
 set(handles.note_txt, 'String', {'';'';'Wait for Drawing'}); drawnow;
 try
