@@ -38,7 +38,7 @@ cl = cl(2:end-1);
 contour(xg, yg, zg, cl, 'k-');
 % ----------------------------------------------------------------------
 % disp electrodes
-plot(xe, ye, 'k.'); hold on;
+plot(xe, ye, 'k.', 'MarkerSize', 1, 'LineWidth', 0.2); hold on;
 set(0,'defaultfigurecolor',[1 1 1])
 
 % ----------------------------------------------------------------------
