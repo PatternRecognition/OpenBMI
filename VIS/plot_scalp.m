@@ -20,10 +20,10 @@ yy = linspace(-maxrad, maxrad, resolution)';
 mask = ~(sqrt(xg.^2+yg.^2)<=maxrad);
 zg(mask)=NaN;
 
-contourf(xg, yg, zg, 50, 'LineStyle','none');
-hold on;
+contourf(ax, xg, yg, zg, 50, 'LineStyle','none');
+hold(ax,'on');
 
-patch([0 0], [0 0], [1 2]);
+patch(ax, [0 0], [0 0], [1 2]);
 ccc = get(ax, 'children');
 set(ccc(1), 'Visible', 'off');
 set(ax, 'CLim', p_range);
@@ -35,37 +35,42 @@ p_max = p_range(2);
 cl = linspace(p_min, p_max, 7);
 cl = cl(2:end-1);
 
-contour(xg, yg, zg, cl, 'k-');
+contour(ax, xg, yg, zg, cl, 'k-');
 % ----------------------------------------------------------------------
 % disp electrodes
-plot(xe, ye, 'k.', 'MarkerSize', 1, 'LineWidth', 0.2); hold on;
+plot(ax, xe, ye, 'k.', 'MarkerSize', 1, 'LineWidth', 0.2); hold on;
 set(0,'defaultfigurecolor',[1 1 1])
 
 % ----------------------------------------------------------------------
-H = struct('ax', ax);
-set(gcf,'CurrentAxes',ax);
+% H = struct('ax', ax);
+% set(gcf,'CurrentAxes',ax);
 % ----------------------------------------------------------------------
 % nose plot
 nose = [1 1.2 1];
 nosi = [83 90 97]+1;
-H.nose = plot(nose.*x(nosi), nose.*y(nosi), 'k', 'linewidth', line_width );
+% nose = plot(nose.*x(nosi), nose.*y(nosi), 'k', 'linewidth', line_width );
+plot(ax, nose.*x(nosi), nose.*y(nosi), 'k', 'linewidth', line_width );
 
-hold on;
+hold(ax, 'on');
 
 % ----------------------------------------------------------------------
 % ears plot
 earw = .08; earh = .3;
-H.ears(1) = plot(x*earw-1-earw, y*earh, 'k', 'linewidth', line_width);
-H.ears(2) = plot(x*earw+1+earw, y*earh, 'k', 'linewidth', line_width);
-hold on;
+% H.ears(1) = plot(x*earw-1-earw, y*earh, 'k', 'linewidth', line_width);
+% H.ears(2) = plot(x*earw+1+earw, y*earh, 'k', 'linewidth', line_width);
+plot(ax, x*earw-1-earw, y*earh, 'k', 'linewidth', line_width);
+plot(ax, x*earw+1+earw, y*earh, 'k', 'linewidth', line_width);
+
+hold(ax, 'on');
 
 % ----------------------------------------------------------------------
 % main circle plot
-H.main = plot(x,y, 'k');
-set(H.ax, 'xTick',[], 'yTick',[]);
-axis('xy', 'tight', 'equal', 'tight');
-hold on;
+plot(ax, x,y, 'k');
+set(ax, 'xTick',[], 'yTick',[]);
+axis(ax, 'xy', 'tight', 'equal', 'tight');
 
-axis off;
-set(get(gca,'XLabel'),'Visible','on')
+hold(ax, 'on');
+
+axis(ax, 'off');
+set(get(ax,'XLabel'),'Visible','on')
 end
