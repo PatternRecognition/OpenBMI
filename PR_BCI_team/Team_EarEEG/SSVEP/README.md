@@ -1,1 +1,1 @@
-SSVEP for ear-EEG
+Steady-State Visual Evoked Potential (SSVEP) using ear-EEG
