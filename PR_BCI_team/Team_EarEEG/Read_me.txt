@@ -1,1 +1,0 @@
-Brain-Computer Interface (BCI) using ear-EEG
