@@ -1,6 +1,7 @@
-% 1step: Subject 내에서 trial randomization
+% 1step: trial randomization in the same subject
 % -----------------------------------------------------------------------------------
 % 1-1) struct -> arracy
+
 
 clc; clear; close;
 
@@ -20,7 +21,7 @@ for sub=1:10
     file_ROC=fullfile(fpath, fname_ROC);
     file_REV=fullfile(fpath, fname_REV);
         
-    %% 구조체 형태 -> array로
+    %% Struct -> Array
     MM_WFN=load(file_WFN);
     MM_LOC=load(file_LOC);
     MM_UCS=load(file_UCS);
