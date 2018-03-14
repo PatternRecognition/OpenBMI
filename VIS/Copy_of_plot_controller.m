@@ -23,7 +23,7 @@ function varargout = plot_controller(varargin)
 
 % Edit the above text to modify the response to help plot_controller
 
-% Last Modified by GUIDE v2.5 09-Mar-2018 21:13:22
+% Last Modified by GUIDE v2.5 27-Dec-2017 15:05:41
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -83,11 +83,12 @@ function initialize_gui(hObject, handles, isreset)
 % If the metricdata field is present and the reset flag is false, it means
 % we are we are just re-initializing a GUI by calling it from the cmd line
 % while it is up. So, bail out as we dont want to reset the data.
-% set(handles.time_seg_start, 'String', handles.data.ival(1));
-% set(handles.time_seg_end, 'String', handles.data.ival(end));
-set(handles.time_seg, 'String', sprintf('%d ~ %d', handles.data.ival(1), handles.data.ival(end)));
+set(handles.time_seg_start, 'String', handles.data.ival(1));
+set(handles.time_seg_end, 'String', handles.data.ival(end));
 set(handles.sampling_rate,'String',handles.data.fs);
+
 set(handles.num_class,'String',size(handles.data.class, 1));
+
 set(handles.chan_num,'String',length(handles.data.chan));
 
 chan=handles.data.chan(1);
@@ -108,9 +109,7 @@ function RESET(hObject, handles, isreset)
 % init        initialization
 % Initialize plot type
 set(handles.check_time_plot,'Value',true);
-% set(handles.check_ersp,'Value',true);
-set(handles.check_ersp, 'Value', false);
-% set(handles.check_ersp, 'Enable', 'off');
+set(handles.check_ersp,'Value',true);
 set(handles.check_erd,'Value',true);
 set(handles.check_topography,'Value',true);
 
@@ -146,27 +145,6 @@ for i=1:length(handles.selected_class)
     str = [str; sprintf('%s', handles.selected_class{i})];
 end
 
-set(handles.inputToggle, 'Value', false);
-set(handles.inputToggle, 'String', 'Direct');
-set(handles.pop_range, 'Visible', 'on');
-set(handles.maxTopo, 'Visible', 'off');
-set(handles.minTopo, 'Visible', 'off');
-set(handles.maxTopo, 'String', '0');
-set(handles.minTopo, 'String', '0');
-set(handles.tildeTopo, 'Visible', 'off');
-set(handles.selToggle, 'Value', false);
-set(handles.selToggle, 'String', 'Select');
-set(handles.maxSelect, 'Enable', 'off');
-set(handles.minSelect, 'Enable', 'off');
-set(handles.maxSelect, 'String', '0');
-set(handles.minSelect, 'String', '0');
-set(handles.ylimToggle, 'Value', false);
-set(handles.ylimToggle, 'String', 'Select');
-set(handles.maxYlim, 'Enable', 'off');
-set(handles.minYlim, 'Enable', 'off');
-set(handles.maxYlim, 'String', '0');
-set(handles.minYlim, 'String', '0');
-
 set(handles.class_listbox,'String', str);
 
 % Initialize baseline
@@ -194,7 +172,7 @@ function select_chan_btn_Callback(hObject, eventdata, handles)
 try
     [~,selected_chan]=GUI_selectChannels(handles.data.chan,handles.selected_chan);
     if length(selected_chan) > 5
-        set(handles.note_txt, 'String', {'';'';'Don''t you think that selected channels are too many?'});
+        set(handles.note_txt, 'String', {'';'';'Don''t you think channels are too many selected?'});
         return;
     else
         handles.selected_chan = selected_chan;
@@ -254,7 +232,7 @@ try
         ival = ival(sort_(:,1),:);
     else
         ival = handles.data.ival([1, end]);
-%         if ival(1) < 0, ival(1) = 0; end % ival 0 to max -> min to max
+        if ival(1) < 0, ival(1) = 0; end
     end
 catch
     return;
@@ -373,23 +351,7 @@ if baseline(1) > baseline(2)
     set(handles.baseline_start,'String', baseline(1));
     set(handles.baseline_end, 'String', baseline(2));
 end
-%% Select time
-if get(handles.selToggle, 'Value')
-    selTime = [str2double(get(handles.minSelect, 'String')), str2double(get(handles.maxSelect, 'String'))];
-    if selTime(1) > selTime(2)
-        selTime = flip(selTime);
-        set(handles.minSelect, 'String', selTime(1));
-        set(handles.maxSelect, 'String', selTime(2));
-    end
-else
-    selTime = [handles.data.ival(1), handles.data.ival(end)];
-end
-%% Ylim range
-if get(handles.ylimToggle, 'Value')
-    ylimRange = [str2double(get(handles.minYlim, 'String')), str2double(get(handles.maxYlim, 'String'))];
-else
-    ylimRange = [];
-end
+
 %% Get plots
 if get(handles.check_time_plot,'Value'), TimePlot = 'on'; else TimePlot = 'off'; end
 if get(handles.check_ersp,'Value'), ErspPlot = 'on'; else ErspPlot = 'off'; end
@@ -399,31 +361,24 @@ if ~sum(ismember({TimePlot, ErspPlot, ErdPlot, TopoPlot}, 'on'))
     set(handles.note_txt, 'String', {'';'';'Choose at least one plot type'});
     return;
 end
-%% Patch
+%% Options
 if get(handles.check_patch,'Value'), Patch = 'on'; else Patch = 'off'; end
-%% Topography range
-if get(handles.inputToggle, 'Value')
-    range = [str2double(get(handles.minTopo, 'String')), str2double(get(handles.maxTopo, 'String'))];
-    if range(1) > range(2)
-        range = flip(range);
-        set(handles.minTopo,'String', range(1));
-        set(handles.maxTopo,'String', range(2));
-    end
-else
-    switch get(handles.pop_range, 'Value')
-        case 1
-            range = 'sym';
-        case 2
-            range = '0tomax';
-        case 3
-            range = 'minto0';
-        case 4
-            range = 'mintomax';
-        case 5
-            range = 'mean';
-    end
+
+switch get(handles.pop_range, 'Value')
+    case 1
+        range = 'sym';
+    case 2
+        range = '0tomax';
+    case 3
+        range = 'minto0';
+    case 4
+        range = 'mintomax';
+    case 5
+        range = 'mean';
+    case 6
+        range = [-1.5, 0.5];
 end
-%% Topography color
+
 switch get(handles.pop_color, 'Value')
     case 1
         cm = 'parula';
@@ -432,7 +387,7 @@ switch get(handles.pop_color, 'Value')
     case 3
         cm = 'hsv';
 end
-%% Topography quality
+
 switch get(handles.pop_quality, 'Value')
     case 1
         quality = 'high';
@@ -442,12 +397,6 @@ switch get(handles.pop_quality, 'Value')
         quality = 'low';
 end
 
-%% Interval check
-if sum(handles.selected_ival(:,1) < selTime(1)) || sum(handles.selected_ival(:,2) > selTime(2))
-    set(handles.note_txt, 'String', {'';'';'Choose intervals between selected time'});
-    return;
-end
-
 %% Start visualization
 set(handles.note_txt, 'String', {'';'';'Wait for Drawing'}); drawnow;
 try
@@ -455,8 +404,7 @@ try
         'Channels',handles.selected_chan;'Class',handles.selected_class;...
         'TimePlot', TimePlot; 'TopoPlot', TopoPlot; 'ErspPlot', ErspPlot;...
         'ErdPlot', ErdPlot; 'Range', range; 'Baseline', baseline;...
-        'Colormap', cm; 'Patch', Patch; 'Quality', quality; ...
-        'SelectTime', selTime; 'TimeRange', ylimRange});
+        'Colormap', cm; 'Patch', Patch; 'Quality', quality});
 catch error
     close gcf;
     output = {'';'Unexpected Error Occurred in';...
@@ -621,7 +569,7 @@ if ~isequal(len, length(input))
 end
 if str2double(input) < handles.data.ival(1) || str2double(input) > handles.data.ival(end)
     set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input between the segmentation range'});
-    set(handles.baseline_end, 'String', string(handles.data.ival(end)));
+    set(handles.baseline_end, 'String', '0');
     return;
 end
 
@@ -852,279 +800,6 @@ function pop_quality_Callback(hObject, eventdata, handles)
 % --- Executes during object creation, after setting all properties.
 function pop_quality_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to pop_quality (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: popupmenu controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function minYlim_Callback(hObject, eventdata, handles)
-% hObject    handle to minYlim (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of minYlim as text
-%        str2double(get(hObject,'String')) returns contents of minYlim as a double
-input = get(handles.minYlim, 'String');
-[~, len] = regexp(input, '^-?[0-9]+');
-
-if ~isequal(len, length(input))
-    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input the number'});
-    set(handles.minYlim, 'String', '0');
-    return;
-end
-% --- Executes during object creation, after setting all properties.
-function minYlim_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to minYlim (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function maxYlim_Callback(hObject, eventdata, handles)
-% hObject    handle to maxYlim (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of maxYlim as text
-%        str2double(get(hObject,'String')) returns contents of maxYlim as a double
-input = get(handles.maxYlim, 'String');
-[~, len] = regexp(input, '^-?[0-9]+');
-
-if ~isequal(len, length(input))
-    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input the number'});
-    set(handles.maxYlim, 'String', '0');
-    return;
-end
-
-% --- Executes during object creation, after setting all properties.
-function maxYlim_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to maxYlim (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on button press in inputToggle.
-function inputToggle_Callback(hObject, eventdata, handles)
-% hObject    handle to inputToggle (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of inputToggle
-if get(handles.inputToggle, 'Value')
-    set(handles.pop_range, 'Visible', 'off'); 
-    set(handles.maxTopo, 'Visible', 'on');
-    set(handles.minTopo, 'Visible', 'on');
-    set(handles.tildeTopo, 'Visible', 'on');
-    set(handles.inputToggle, 'String', 'Options');
-else
-    set(handles.pop_range, 'Visible', 'on');
-    set(handles.maxTopo, 'Visible', 'off');
-    set(handles.minTopo, 'Visible', 'off');
-    set(handles.tildeTopo, 'Visible', 'off');
-    set(handles.inputToggle, 'String', 'Direct');
-end
-
-
-
-function minTopo_Callback(hObject, eventdata, handles)
-% hObject    handle to minTopo (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of minTopo as text
-%        str2double(get(hObject,'String')) returns contents of minTopo as a double
-input = get(handles.minTopo, 'String');
-[~, len] = regexp(input, '^-?[0-9]+');
-
-if ~isequal(len, length(input))
-    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input the number'});
-    set(handles.minTopo, 'String', '0');
-    return;
-end
-
-
-% --- Executes during object creation, after setting all properties.
-function minTopo_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to minTopo (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function maxTopo_Callback(hObject, eventdata, handles)
-% hObject    handle to maxTopo (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of maxTopo as text
-%        str2double(get(hObject,'String')) returns contents of maxTopo as a double
-input = get(handles.maxTopo, 'String');
-[~, len] = regexp(input, '^-?[0-9]+');
-
-if ~isequal(len, length(input))
-    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input the number'});
-    set(handles.maxTopo, 'String', '0');
-    return;
-end
-
-
-
-% --- Executes during object creation, after setting all properties.
-function maxTopo_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to maxTopo (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function minSelect_Callback(hObject, eventdata, handles)
-% hObject    handle to minSelect (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of minSelect as text
-%        str2double(get(hObject,'String')) returns contents of minSelect as a double
-input = get(handles.minSelect, 'String');
-[~, len] = regexp(input, '^-?[0-9]+');
-
-if ~isequal(len, length(input))
-    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input the number'});
-    set(handles.minSelect, 'String', string(handles.data.ival(1)));
-    return;
-end
-if str2double(input) < handles.data.ival(1) || str2double(input) > handles.data.ival(end)
-    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input between the segmentation range'});
-    set(handles.minSelect, 'String', string(handles.data.ival(1)));
-    return;
-end
-
-% --- Executes during object creation, after setting all properties.
-function minSelect_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to minSelect (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-
-function maxSelect_Callback(hObject, eventdata, handles)
-% hObject    handle to maxSelect (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of maxSelect as text
-%        str2double(get(hObject,'String')) returns contents of maxSelect as a double
-input = get(handles.maxSelect, 'String');
-[~, len] = regexp(input, '^-?[0-9]+');
-
-if ~isequal(len, length(input))
-    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input the number'});
-    set(handles.maxSelect, 'String', string(handles.data.ival(end)));
-    return;
-end
-if str2double(input) < handles.data.ival(1) || str2double(input) > handles.data.ival(end)
-    set(handles.note_txt, 'String',{'';sprintf('[%s] is not acceptable', input);'please input between the segmentation range'});
-    set(handles.maxSelect, 'String', string(handles.data.ival(end)));
-    return;
-end
-
-% --- Executes during object creation, after setting all properties.
-function maxSelect_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to maxSelect (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-% --- Executes on button press in selToggle.
-function selToggle_Callback(hObject, eventdata, handles)
-% hObject    handle to selToggle (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of selToggle
-if get(handles.selToggle, 'Value')
-    set(handles.maxSelect, 'Enable', 'on');
-    set(handles.minSelect, 'Enable', 'on');
-    set(handles.selToggle, 'String', 'Deselect');
-else
-    set(handles.maxSelect, 'Enable', 'off');
-    set(handles.minSelect, 'Enable', 'off');
-	set(handles.selToggle, 'String', 'Select');
-end
-
-% --- Executes on button press in ylimToggle.
-function ylimToggle_Callback(hObject, eventdata, handles)
-% hObject    handle to ylimToggle (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of ylimToggle
-if isequal(get(handles.ylimToggle, 'String'), 'Select')
-    set(handles.maxYlim, 'Enable', 'on');
-    set(handles.minYlim, 'Enable', 'on');
-    set(handles.ylimToggle, 'String', 'Deselect');
-    set(handles.ylimToggle, 'Value', true);
-else
-    set(handles.maxYlim, 'Enable', 'off');
-    set(handles.minYlim, 'Enable', 'off');
-    set(handles.ylimToggle, 'String', 'Select');
-    set(handles.ylimToggle, 'Value', false);
-end
-
-
-% --- Executes on selection change in popupmenu14.
-function popupmenu14_Callback(hObject, eventdata, handles)
-% hObject    handle to popupmenu14 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu14 contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from popupmenu14
-
-
-% --- Executes during object creation, after setting all properties.
-function popupmenu14_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to popupmenu14 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 

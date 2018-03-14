@@ -21,27 +21,7 @@ switch nargin
 end
 
 %% Creating Montage
-MNT = opt_getMontage(SMT);
 output_str = [];
-
-if ~isequal(MNT.chan, SMT.chan)
-    if length(SMT.chan) > length(MNT.chan)
-        tmp = SMT.chan(~ismember(SMT.chan, MNT.chan));
-        output_str = tmp{1};
-        for i = 2:length(tmp)
-            output_str = [output_str sprintf(', %s',tmp{i})];
-        end
-        output_str = {''; [output_str, ' are missed']};
-    end
-    tmp = zeros(1,length(MNT.x));
-    for i = 1:length(MNT.chan)
-        tmp(i) = find(ismember(SMT.chan, MNT.chan{i}));
-    end
-    SMT.x = SMT.x(:,:,tmp);
-    SMT.chan = SMT.chan(tmp);
-    clear tmp;
-end
-
 if ~isfield(opt, 'Colormap') opt.Colormap = 'parula'; end
 if ~isfield(opt, 'Quality') opt.Quality = 'high'; end
 if ~isfield(opt, 'Class') opt.Class = {SMT.class{1:2,2}}; end
@@ -67,33 +47,66 @@ end
 % Scalp colormap;
 colormap(opt.Colormap);
 
-if size(SMT.x, 2) > PREVENT_OVERFLOW
-    divis = divisors(size(SMT.x, 2));
-    divis = divis(divis < PREVENT_OVERFLOW);
-    divis = divis(end);
-    SMT_size = size(SMT.x, 2);
-    for i = 1:divis:SMT_size
-        tmpSMT = prep_selectTrials(SMT, {'Index', i:i+divis-1});
-        tmpSMT = prep_selectClass(tmpSMT ,{'class',opt.Class});
-        %         tmpSMT = prep_selectClass(tmpSMT ,{'class',opt.Class});
-        if opt.Envelope
-            tmpSMT = prep_envelope(tmpSMT);
-        end
-        tmpSMT = prep_baseline(tmpSMT, {'Time', opt.Baseline});
-        SMT.x(:,i:i+divis-1,:) = tmpSMT.x;
-    end
-    
-    clear tmpSMT;
-else
-    SMT = prep_selectClass(SMT,{'class',opt.Class});
-    if isfield(opt, 'Envelope') && opt.Envelope
-        SMT = prep_envelope(SMT);
-    end
-    SMT = prep_baseline(SMT, {'Time', opt.Baseline});
-end
-SMT = prep_selectTime(SMT, {'Time', opt.SelectTime});
-SMT = prep_average(SMT);
 
+MNT = opt_getMontage(SMT);
+
+if ~isequal(MNT.chan, SMT.chan)
+    if length(SMT.chan) > length(MNT.chan)
+        tmp = SMT.chan(~ismember(SMT.chan, MNT.chan));
+        output_str = tmp{1};
+        for i = 2:length(tmp)
+            output_str = [output_str sprintf(', %s',tmp{i})];
+        end
+        output_str = {''; [output_str, ' are missed']};
+    end
+    tmp = zeros(1,length(MNT.x));
+    for i = 1:length(MNT.chan)
+        tmp(i) = find(ismember(SMT.chan, MNT.chan{i}));
+    end
+    SMT.x = SMT.x(:,:,tmp);
+    SMT.chan = SMT.chan(tmp);
+    clear tmp;
+end
+
+if ~iscell(SMT)
+    if size(SMT.x, 2) > PREVENT_OVERFLOW
+        divis = divisors(size(SMT.x, 2));
+        divis = divis(divis < PREVENT_OVERFLOW);
+        divis = divis(end);
+        SMT_size = size(SMT.x, 2);
+        for i = 1:divis:SMT_size
+            tmpSMT = prep_selectTrials(SMT, {'Index', i:i+divis-1});
+            tmpSMT = prep_selectClass(tmpSMT ,{'class',opt.Class});
+            %         tmpSMT = prep_selectClass(tmpSMT ,{'class',opt.Class});
+            if opt.Envelope
+                tmpSMT = prep_envelope(tmpSMT);
+            end
+            tmpSMT = prep_baseline(tmpSMT, {'Time', opt.Baseline});
+            SMT.x(:,i:i+divis-1,:) = tmpSMT.x;
+        end
+        
+        clear tmpSMT;
+    else
+        SMT = prep_selectClass(SMT,{'class',opt.Class});
+        if isfield(opt, 'Envelope') && opt.Envelope
+            SMT = prep_envelope(SMT);
+        end
+        SMT = prep_baseline(SMT, {'Time', opt.Baseline});
+    end
+    SMT = prep_selectTime(SMT, {'Time', opt.SelectTime});
+    SMT = prep_average(SMT);
+else
+    for i = 1:length(SMT)
+        SMT{i} = prep_selecClass(SMT{i}, {'class', opt.Class});
+        if isfield(opt, 'Envelope') && opt.Envelope
+            SMT{i} = prep_envelope(SMT{i});
+        end
+        SMT{i} = prep_baseline(SMT{i}, {'Time', opt.Baseline});
+        SMT{i} = prep_selectTime(SMT, {'Time', opt.SelectTime});
+        SMT{i} = prep_average(SMT);
+    end
+end
+    
 idx = 1;
 for i = 1: size(opt.Class, 1)
     ivalSegment = size(opt.Interval,1);

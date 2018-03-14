@@ -36,7 +36,8 @@ for ch_num = 1:length(opt.Channels)
         legend(grp_plots{idx}, SMT.class(cl,2), 'Interpreter', 'none', 'AutoUpdate', 'off');
         
         grid(grp_plots{idx},'on');
-        
+        xlim(grp_plots{idx}, [0 25]);
+        ylim(grp_plots{idx}, [0 4]);
         ylabel(grp_plots{idx},SMT.chan{ch_num}, 'Rotation', 90, 'FontWeight', 'normal', 'FontSize', 12);
         idx = idx + 1;
     end
