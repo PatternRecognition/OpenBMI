@@ -1,0 +1,1 @@
+The codes in this folder aims to convert '.mat' format to '.set' format. This format ('set) is the file format used within the EEGLAB and BCILAB toolbox.
