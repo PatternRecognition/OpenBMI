@@ -1,6 +1,7 @@
 % 1step: trial randomization in the same subject
 % -----------------------------------------------------------------------------------
 % 1-1) struct -> arracy
+% 1-2) This step will be uploaded later..........
 
 
 clc; clear; close;
