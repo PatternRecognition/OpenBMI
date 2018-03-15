@@ -1,13 +1,13 @@
 clear all; clc;
 
-%% 프로그램 세팅
+%% Openvibe setting
 %   openvibe acquisition sever
 %       Driver: mBrainTrain Smarting
 %       Driver Properties
 %           number of channels: 24
 %           port number: 5
 %           sampling frequency: 500
-%           change channel name -> load -> 내문서\ear_chan_name.csv
+%           change channel name -> load -> Document\ear_chan_name.csv
 %
 %       Preferences
 %           Select only named channels: check
@@ -15,19 +15,19 @@ clear all; clc;
 %           LSL_EnableSLOutput: check
 %
 %       connect -> play
-%       => 연결 완료
+%       => connection complete!
 %
 %   openvibe designer
-%       열기- 파일명:design2_TCP.mxs
-%       재생
-%       => 저장, display, matlab 연결
+%       open - filename: design2_TCP.mxs
+%       play
+%       => save, display, matlab connection
 %
 %% matlab setting
-%   경로추가
-%       matlab-openvibe 통신
-%           external\liblsl-Matlab
-%       openvibe에서 online data 받아오기
-%           external\eeglab_10_0_1_0x
+%   add path in matlab
+%       matlab-openvibe communication
+%           > external\liblsl-Matlab
+%       get online data from openvibe
+%           > external\eeglab_10_0_1_0x
 
 %% send trigger
 % brain vision setting
