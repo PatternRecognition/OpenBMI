@@ -25,9 +25,9 @@ clear all; clc;
 %% matlab setting
 %   경로추가
 %       matlab-openvibe 통신
-%           C:\Users\cvpr\Documents\BCILAB-master\dependencies\liblsl-Matlab
+%           external\liblsl-Matlab
 %       openvibe에서 online data 받아오기
-%           C:\Users\cvpr\Documents\BCILAB-master\dependencies\eeglab_10_0_1_0x
+%           external\eeglab_10_0_1_0x
 %       EEG plot하기, brain vision에서 online data 가져오기
 %           C:\Users\cvpr\Documents\OpenBMI-master
 
