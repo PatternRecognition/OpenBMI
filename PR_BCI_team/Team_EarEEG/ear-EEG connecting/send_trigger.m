@@ -30,12 +30,12 @@ clear all; clc;
 %           > external\eeglab_10_0_1_0x
 
 %% send trigger
-% brain vision setting
+% trigger setting for brain vision 
 global IO_LIB IO_ADD;
 IO_LIB=which('inpoutx64.dll');
 IO_ADD=hex2dec('E010');
 
-% openviber setting
+% trigger setting for openvibe
 t = tcpclient('localhost', 15361);
 padding=uint64(0);
 timestamp=uint64(0);
