@@ -44,8 +44,6 @@ timestamp=uint64(0);
 stimulus1=[padding; uint64(1); timestamp];
 stimulus2=[padding; uint64(2); timestamp];
 stimulus3=[padding; uint64(3); timestamp];
-stimulus4=[padding; uint64(4); timestamp];
-stimulus5=[padding; uint64(5); timestamp];
 
 % send trigger
 while true
