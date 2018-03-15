@@ -28,8 +28,6 @@ clear all; clc;
 %           external\liblsl-Matlab
 %       openvibe에서 online data 받아오기
 %           external\eeglab_10_0_1_0x
-%       EEG plot하기, brain vision에서 online data 가져오기
-%           C:\Users\cvpr\Documents\OpenBMI-master
 
 %% send trigger
 % brain vision setting
