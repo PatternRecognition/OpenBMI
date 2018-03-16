@@ -89,7 +89,7 @@ end
 if isfield(opt, 'RPlot') 
     RPlot = opt.RPlot; 
 else
-    opt.RPlot = 'off'; 
+    opt.RPlot = 'on'; 
     RPlot = opt.RPlot; 
 end
 if isfield(opt, 'FFTPlot') 
