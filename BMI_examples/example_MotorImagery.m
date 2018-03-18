@@ -1,6 +1,6 @@
 % Motor imagery - 10-fold-cross-validation with 10-iterations
 
-load cnt_mi;
+load cnt_mi; % download in the mat 'folder'
 
 % cnt variables
 % cnt.t  : time information 
