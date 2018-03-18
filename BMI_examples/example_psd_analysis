@@ -1,0 +1,78 @@
+clear all; close all; clc;
+%% Initialization 
+%data load
+% name={'1_bykim','2_dblee','3_eskim','9_prchoi','10_smkang','12_yskim'}; %session 0
+% name={'1_bykim','2_dblee','3_eskim','4_jhsuh','5_mgjung','6_mhlee','7_mjkim','8_oykwon','9_prchoi','10_smkang','11_spseo','12_yskim','13_jyha','14_hmyoo','15_jwlee','16_wbsim','17_hwnoh','18_dysull','19_jyhan','20_jwbae','21_syjung','22_dkhan','23_hjwon','24_nkkil'}; % session 1
+name={'1_bykim','2_dblee','3_eskim','4_jhsuh','5_mgjung','7_mjkim','9_prchoi','10_smkang','12_yskim','13_jyha','14_hmyoo','15_jwlee','16_wbsim','17_hwnoh','18_dysull','19_jyhan','20_jwbae','21_syjung','22_dkhan'}; % session 2
+session = {'session2'};
+task = {'ssvep_off','ssvep_on'};
+time = 4;
+freq = [5, 7, 9, 11];
+% sti_freq = [5.45, 6.67, 8.57, 12];
+sti_freq = [12, 8.57, 6.67, 5.45];
+% tol=0.5; % 허용 오차 +- 0.5 정도
+fs = 100;
+band = [2 40];
+channel_index = [23:32]; % {'P7','P3','Pz','P4','P8','PO9','O1','Oz','O2','PO10'}
+time_interval = [0 4000]; 
+%% Data load and mat save
+for sub=1:length(name)
+    for onoff=1:2
+        file3 = ['E:\Users\cvpr\Desktop\StarlabDB_2nd\',name{sub},'\'];
+        BMI.EEG_DIR=['E:\Users\cvpr\Desktop\StarlabDB_2nd\',name(sub),'\',session];
+        BMI.EEG_DIR=cell2mat(BMI.EEG_DIR);
+        file=fullfile(BMI.EEG_DIR, task{onoff});
+        marker  = {'1','up';'2', 'left';'3', 'right';'4', 'down'};
+        field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
+        [EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', fs});
+        CNT=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
+        CNTT{sub,onoff} = CNT;
+    end
+    clear file3 BMI file field EEG CNT
+    %     filename1= ['mi_cnt_s1_on'];
+    %     save([file3, filename1], 'CNT');
+end
+%% PSD - Anaysis    
+for sub= 1: length(CNTT)
+    for onoff = 1:2        
+        cnt=prep_filter(CNTT{sub,onoff}, {'frequency', band});
+        CNTch = prep_selectChannels(cnt, {'Name',{'Oz'}});
+%         CNTch = prep_selectChannels(cnt, {'Index',[23:32]});
+        SMT = prep_segmentation(CNTch, {'interval', time_interval});    
+        tot = size(SMT.x, 2);
+        count1= tot;             
+        for i = 1: size(SMT.x, 2)            
+            [power freq_index mod_power_dB] = psd_analysis_re(SMT.x(:,i,:));            
+%             for nclass=1:4
+%                 A(nclass)=abs(freq_index - sti_freq(nclass));
+%                 [~, index] =min(A);
+%             end            
+            if SMT.y_dec(i) ~= freq_index
+                count1 = count1 -1;
+            end
+            clear index freq_index
+            dbpower(i,:)= mod_power_dB;
+        end
+        fprintf('Accuracy: %.2f%%\n', count1/tot);
+        Acc(sub,onoff) =count1/tot;
+        clear CNTch SMT tot count1 i A ind        
+    end
+end
+
+
+% A = mean(ssvep_psd_session1,1);
+% B = mean(ssvep_psd_session2,1);
+% C = [A B];
+
+
+
+
+
+
+
+
+
+
+
+
+
