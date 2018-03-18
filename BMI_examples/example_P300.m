@@ -1,5 +1,5 @@
 
-%% load
+%% load - see the example mat folder
 load cnt_p300_off;
 load cnt_p300_on;
  	 
