@@ -16,9 +16,12 @@ CNT=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
 CNT=prep_selectClass(CNT,{'class',{'right', 'left'}});
 SMT=prep_segmentation(CNT, {'interval', [750 3500]});
 
+% only find the optimal frequency - 
 [FilterBand]=func_bssfo(SMT, {'classes', {'right', 'left'};'frequency', {[7 15],[14 30]}; 'std', {5, 25}; ...
     'numBands', 30; 'numCSPPatterns', 2; 'numIteration', 30});
 
+-----------------------------------------------------
+% need another line for classiciation 'see the 2013 Suk, 2013'
 CNT=prep_filter(CNT, {'frequency', FilterBand.sample(:,1)});
 SMT=prep_segmentation(CNT, {'interval', [750 3500]});
 
