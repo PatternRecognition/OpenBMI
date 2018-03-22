@@ -19,10 +19,10 @@ for i=1:length(filelist)
     epo=cntToEpo(cnt,mrk,ival);
     
     %% CSP - FEATURE EXTRACTION
-    [csp_fv,csp_w,csp_eig]=proc_csp_multiclass(epo,3);
+    [csp_fv,csp_w,csp_eig]=proc_multicsp(epo,3);
     proc=struct('memo','csp_w');
     
-    proc.train= ['[fv,csp_w]=  proc_csp_multiclass(fv, 3); ' ...
+    proc.train= ['[fv,csp_w]=  proc_multicsp(fv, 3); ' ...
         'fv= proc_variance(fv); ' ...
         'fv= proc_logarithm(fv);'];
     
