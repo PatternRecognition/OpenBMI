@@ -1,7 +1,6 @@
-clear all;
-clc;
+clear all; clc;
 
-%% ear EEG
+%% ear EEG setting
 % instantiate the library
 disp('Loading the library...');
 lib = lsl_loadlib();
