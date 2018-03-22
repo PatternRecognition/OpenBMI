@@ -1,4 +1,5 @@
 clear all;
+clc;
 
 %% ear EEG
 % instantiate the library
