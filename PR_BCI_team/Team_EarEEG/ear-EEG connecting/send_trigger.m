@@ -5,7 +5,7 @@ clc;
 %   openvibe acquisition sever
 %       Driver: mBrainTrain Smarting
 %       Driver Properties
-%           number of channels: 24
+%           number of channels: 27 (24 for ear-EEG signals and 3 for gyro)
 %           port number: 5
 %           sampling frequency: 500
 %           change channel name -> load -> Document\ear_chan_name.csv
@@ -24,13 +24,13 @@ clc;
 %       => save, display, matlab connection
 %
 %% matlab setting
-%   add path in matlab
+%   add path in matlab for communication
 %       matlab-openvibe communication
 %           > external\liblsl-Matlab
 %       get online data from openvibe
 %           > external\eeglab_10_0_1_0x
 
-%% send trigger
+%% An example of sending trigger
 % trigger setting for brain vision 
 global IO_LIB IO_ADD;
 IO_LIB=which('inpoutx64.dll');
