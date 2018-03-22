@@ -1,5 +1,4 @@
-clear all;
-clc;
+clear all; clc;
 
 %% Openvibe setting
 %   openvibe acquisition sever
