@@ -40,7 +40,7 @@ for sub=1:10
     arr_MM_ROC=c_MM_ROC{1};
     arr_MM_REV=c_MM_REV{1};
     
-    %% epoch 수정
+    %% modifying the length of epoch (5sec)
     % WFN 1~1000
     epo_MM_WFN = arr_MM_WFN(:, (1:1000), :);
     
