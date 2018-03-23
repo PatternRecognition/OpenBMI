@@ -63,22 +63,22 @@ for sub=1:10
     %% UCS epoch 1과 2 합치기
     epo_MM_UCS = cat(3, epo1_MM_UCS, epo2_MM_UCS);
     
-    %% WFN random 추출
-    % WFN trial을 random으로 2개 뽑고, 하나로 합치기
+    %% WFN randomization
+    % extracting 2 WFN trials randomly -> merge them
     MM_WFN_1 = epo_MM_WFN(:, :, randperm(29, 1));
     MM_WFN_2 = epo_MM_WFN(:, :, randperm(29, 1));
 
     MM_WFN_rnd = cat(3, MM_WFN_1, MM_WFN_2);    
     
-    %% LOC random 추출
-    % LOC trial을 random으로 2개 뽑고, 하나로 합치기
+    %% LOC randomization
+    % extracting 2 LOC trials randomly -> merge them
     MM_LOC_1 = epo_MM_LOC(:, :, randperm(3, 1));
     MM_LOC_2 = epo_MM_LOC(:, :, randperm(3, 1));
     
     MM_LOC_rnd = cat(3, MM_LOC_1, MM_LOC_2);  
     
-    %% UCS random 추출
-    % UCS trial을 random으로 4개 뽑고, 하나로 합치기 
+    %% UCS randomization
+    % extracting 4 UCS trials randomly -> merge them 
     MM_UCS_1 = epo_MM_UCS(:, :, randperm(6, 1));
     MM_UCS_2 = epo_MM_UCS(:, :, randperm(6, 1));
     MM_UCS_3 = epo_MM_UCS(:, :, randperm(6, 1));
@@ -86,15 +86,15 @@ for sub=1:10
    
     MM_UCS_rnd = cat(3, MM_UCS_1, MM_UCS_2, MM_UCS_3, MM_UCS_4);
     
-    %% ROC random 추출
-    % ROC trial을 random으로 2개 뽑고, 하나로 합치기
+    %% ROC randomization
+    % extracting 2 ROC trials randomly -> merge them
     MM_ROC_1 = epo_MM_ROC(:, :, randperm(3, 1));
     MM_ROC_2 = epo_MM_ROC(:, :, randperm(3, 1));
    
     MM_ROC_rnd = cat(3, MM_ROC_1, MM_ROC_2);  
     
-    %% REV random 추출
-    % REV trial을 random으로 2개 뽑고, 하나로 합치기
+    %% REV randomization
+    % extracting 2 REV trials randomly -> merge them
     MM_REV_1 = epo_MM_REV(:, :, randperm(30, 1));
     MM_REV_2 = epo_MM_REV(:, :, randperm(30, 1));
 
