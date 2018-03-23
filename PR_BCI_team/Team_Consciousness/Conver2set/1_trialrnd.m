@@ -2,6 +2,7 @@
 % -----------------------------------------------------------------------------------
 % 1-1) struct -> arracy
 % 1-2) modifying the length of epoch: 10sec for each class -> 5 sec
+%      this step is aim to double the number of UCS trials
 
 clc; clear; close;
 
