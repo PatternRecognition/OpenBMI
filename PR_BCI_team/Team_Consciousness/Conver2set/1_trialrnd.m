@@ -3,6 +3,9 @@
 % 1-1) struct -> arracy
 % 1-2) modifying the length of epoch: 10sec for each class -> 5 sec
 %      this step is aim to double the number of UCS trials
+% 1-3) WFN LOC UCS ROC REV randomization -> extracting the same number of
+%      trials for each class
+% 1-4) merge 5 states to 3 classes
 
 clc; clear; close;
 
@@ -60,7 +63,7 @@ for sub=1:10
     % REV 1~1000
     epo_MM_REV = arr_MM_REV(:, (1:1000), :);
     
-    %% UCS epoch 1과 2 합치기
+    %% concatenating UCS epoch 1 and 2
     epo_MM_UCS = cat(3, epo1_MM_UCS, epo2_MM_UCS);
     
     %% WFN randomization
@@ -99,3 +102,23 @@ for sub=1:10
     MM_REV_2 = epo_MM_REV(:, :, randperm(30, 1));
 
     MM_REV_rnd = cat(3, MM_REV_1, MM_REV_2);
+    
+       %% concatenating 5 states to CS / US / TR
+    MM_CS = cat(3, MM_WFN_rnd, MM_REV_rnd);
+    MM_US = MM_UCS_rnd;
+    MM_TR = cat(3, MM_LOC_rnd, MM_ROC_rnd);
+    
+    %% concatenating three classes
+    % concatenating CS/US/TR
+    MM_10_order = cat(3, MM_CS, MM_US, MM_TR);
+    
+    % trial numbering: CS 1 2 3 4 / US 5 6 7 8 / TR 9 10 11 12
+    n = size(MM_10_order, 3);
+    
+    % trial randomization
+    trial_rnd = randperm(n);
+    
+    % insert concatenated trials into 3rd element of 3D data
+    MM_10 = MM_10_order(:, :, trial_rnd);
+    
+    save MM_10_1step
