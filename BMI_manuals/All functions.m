@@ -8,7 +8,7 @@ BMI.EEG_DIR=['G:\OpenBMI\BMI_data\RawEEG'];
 %% DATA LOAD
 file = fullfile(BMI.EEG_DIR, '\what\you\want\to\analysis');
 
-[eeg, eeg.mrk_orig, eeg.hdr]=Load_EEG_data(file,'device','brainVision','fs', 100);
+[eeg, eeg.mrk_orig, eeg.hdr]=Load_EEG(file,'device','brainVision','fs', 100);
 mrk_define={'1','left','2','right','3','foot'};
 eeg.mrk=mrk_redefine_class(eeg.mrk_orig, mrk_define); 
 eeg.mrk=mrk_select_class(eeg.mrk,{'right', 'left'});
@@ -26,3 +26,8 @@ eeg_feature=proc_feature_extraction(eeg_csp, 'feature', 'logvar');
 
 %% CLASSIFIER MODULE
 [CF_PARAM]=proc_train_classifier(eeg_feature,'LDA');
+
+
+% We recommend 'check example codes' 
+% Some lines changes but it didn't reflect here yet
+% Please see "Example code" (e.g., example_offline) 
