@@ -1,4 +1,4 @@
-% 1step: trial randomization in the same subject
+% 1st step: trial randomization in the same subject
 % -----------------------------------------------------------------------------------
 % 1-1) struct -> arracy
 % 1-2) modifying the length of epoch: 10sec for each class -> 5 sec
@@ -6,6 +6,7 @@
 % 1-3) WFN LOC UCS ROC REV randomization -> extracting the same number of
 %      trials for each class
 % 1-4) merge 5 states to 3 classes
+% -----------------------------------------------------------------------------------
 
 clc; clear; close;
 
@@ -122,3 +123,23 @@ for sub=1:10
     MM_10 = MM_10_order(:, :, trial_rnd);
     
     save MM_10_1step
+
+%% 2nd step: changing dimension from 3-d to 2-d in the data of each subject
+% -----------------------------------------------------------------------------------
+% 2-1) assigning variables for each trial
+% 2-2) updating later............
+% -----------------------------------------------------------------------------------
+
+%% assigning variables for each trial
+    t1 = MM_10(:, :, 1);
+    t2 = MM_10(:, :, 2);
+    t3 = MM_10(:, :, 3);
+    t4 = MM_10(:, :, 4);
+    t5 = MM_10(:, :, 5);
+    t6 = MM_10(:, :, 6);
+    t7 = MM_10(:, :, 7);
+    t8 = MM_10(:, :, 8);
+    t9 = MM_10(:, :, 9);
+    t10 = MM_10(:, :, 10);
+    t11 = MM_10(:, :, 11);
+    t12 = MM_10(:, :, 12);
