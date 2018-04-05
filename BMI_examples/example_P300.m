@@ -89,7 +89,7 @@ for char = 1:length(spellerText_on)
     % predict character
     for i=1:60
         for i2=1:6
-            DAT{cell_order{nSeq}(in_nc,i2)}(end+1,:) = ft_dat.x(:,nc);
+            DAT{rc_order{nSeq}(in_nc,i2)}(end+1,:) = ft_dat.x(:,nc);
         end
         for i2=1:36
             if size(DAT{i2},1)==1
