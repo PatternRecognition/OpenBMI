@@ -25,7 +25,8 @@ for j=1:length(filename)
     %% grouped by each class
     epoNRest=proc_selectClasses(temp_epo_all,{'class1-1','class1-2','class2-1','class2-2'});
     epoRest=proc_selectClasses(temp_epo_call,{'Rest'});
-    %% extract the Rest trial as normal trial of classes
+    
+    %% extract the same amount of Rest as other classe
     % here the amount of trials per class is 20
     epoRest.x=datasample(epoRest.x,trial,3,'Replace',false);
     epoRest.y=datasample(epoRest.y,trial,2,'Replace',false);
