@@ -70,6 +70,7 @@ switch isstruct(dat)
         elseif ndims(tDat)==2  %cnt
             band=opt.frequency;
             [b,a]= butter(5, band/(opt.fs/2),'bandpass');
+            %% TODO: It' doesn't work when the sampling rate is 1000 Hz;
             tDat(:,:)=filter(b, a, tDat(:,:));
             fld='x';
             dat=tDat;
