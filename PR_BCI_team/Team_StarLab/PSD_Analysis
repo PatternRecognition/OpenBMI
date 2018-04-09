@@ -1,0 +1,110 @@
+function [answer freq_index mod_power_dB] = psd_analysis_re(X,sample_freq,sti_freq,tol)
+
+
+
+% using bandpower function 
+% stimulus 
+%   mod_power_dB = 10*log10(bandpower(x, Fs, Fc + [-50e3 50e3]))
+
+% tm=squeeze(X);
+% Y = fft(tm);
+% Y=mean(Y',1)'; 
+% L=length(Y);
+% P2 = abs(Y/L);
+% P1 = P2(1:floor(L/2+1));
+% P1(2:end-1) = 2*P1(2:end-1);
+% f = 100*(0:(L/2))/L;
+% 
+% figure;  plot(f,P1);
+% [power output] = max(P1);
+% power;
+% freq_index=f(output);
+X= permute(X,[1 3 2]);
+for nclass=1:length(sti_freq)
+    for chan=1:size(X,2)
+        mod_power_dB(nclass,chan) = 10*log10(bandpower(X(:,chan), sample_freq, sti_freq(nclass) + [-tol tol]));
+    end
+end
+mod_power_dB= mean(mod_power_dB,2);
+[a b] = max(mod_power_dB);
+
+freq_index=b;
+answer = sti_freq(b);
+  
+%% 
+% C1=P1;
+% index1 =  sti_freq(4)-tol<f;
+% a=find(index1==0);
+% aa= a(end);
+% index2 = f<sti_freq(4)+tol;
+% b=find(index2==1);
+% bb= b(end);
+% cc= [aa:bb];
+% [R T] = max(C1(cc));
+% power1= C1(cc(T));
+% 
+% [A B] =min(abs(f-sti_freq(4)));
+% S4=log((P1(B) / (P1(aa) + P1(bb)))*2) *10;
+% 
+% clear C1 YY1 sortedX sortedInds top3 A B C D AA BB index1 a aa index2 b bb cc R T C1 A B 
+% 
+% 
+% 
+% C2=P1;
+% index1 =  sti_freq(3)-tol<f;
+% a=find(index1==0);
+% aa= a(end);
+% index2 = f<sti_freq(3)+tol;
+% b=find(index2==1);
+% bb= b(end);
+% cc= [aa:bb];
+% [R T] = max(C2(cc));
+% power2= C2(cc(T));
+% [A B] =min(abs(f-sti_freq(3)));
+% S3=log((P1(B) / (P1(aa) + P1(bb)))*2) *10;
+% 
+% clear C2 YY2 sortedX sortedInds top3 A B C D AA BB index1 a aa index2 b bb cc R T C2
+% 
+% C3=P1;
+% index1 =  sti_freq(2)-tol<f;
+% a=find(index1==0);
+% aa= a(end);
+% index2 = f<sti_freq(2)+tol;
+% b=find(index2==1);
+% bb= b(end);
+% cc= [aa:bb];
+% [R T] = max(C3(cc));
+% power3= C3(cc(T));
+% 
+% [A B] =min(abs(f-sti_freq(2)));
+% S2=log((P1(B) / (P1(aa) + P1(bb)))*2) *10;
+% clear C3 YY3 sortedX sortedInds top3 A B C D AA BB index1 a aa index2 b bb cc R T C3
+% 
+% C4=P1;
+% index1 =  sti_freq(1)-tol<f;
+% a=find(index1==0);
+% aa= a(end);
+% index2 = f<sti_freq(1)+tol;
+% b=find(index2==1);
+% bb= b(end);
+% cc= [aa:bb];
+% [R T] = max(C4(cc));
+% power4= C4(cc(T));
+% 
+% [A B] =min(abs(f-sti_freq(1)));
+% S1=log((P1(B) / (P1(aa) + P1(bb)))*2) *10;
+% 
+% clear C4 YY4 sortedX sortedInds top3 A B C D AA BB index1 a aa index2 b bb cc R T C4
+
+% Index = [power1 power2 power3 power4];
+% [a b] =max(Index);
+
+
+% S = [S1 S2 S3 S4];
+% [a b] = max(S);
+% 
+% % freq_index=f(find(P1==a));
+% % power=a;
+% freq_index=b;
+% answer = sti_freq(b);
+
