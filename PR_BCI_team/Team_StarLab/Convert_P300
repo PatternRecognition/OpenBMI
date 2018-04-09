@@ -1,0 +1,33 @@
+clear all; close all; clc;
+%% Initialization
+%data load
+
+session = {'session2'};
+fs=250;
+task = {'p300_off','p300_on'};
+t_1=round((11/1000)*fs);
+t_2=round((131/1000)*fs);
+%% Data load
+for sub=1:length(name)
+    for onoff=1:2
+        %         file3 = ['E:\Users\cvpr\Desktop\StarlabDB_2nd\',name{sub},'\'];
+        BMI.EEG_DIR=['E:\Users\cvpr\Desktop\StarlabDB_2nd\',name(sub),'\',session];
+        BMI.EEG_DIR=cell2mat(BMI.EEG_DIR);
+        file=fullfile(BMI.EEG_DIR, task{onoff});
+        marker={'1','target';'2','nontarget'};
+        [EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', fs});
+        field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
+        CNT=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
+        %
+        mask = false(length(CNT.t), 1);
+        mask(1:60:length(CNT.t)) = true;
+        CNT.t(mask) = CNT.t(mask) + t_1;
+        CNT.t(~mask) = CNT.t(~mask) + t_2;
+        %
+        CNTT{sub,onoff}=CNT;        
+    end
+    clear BMI EEG field file file3 marker
+end
+
+
+
