@@ -1,0 +1,99 @@
+%% SSVEP plot
+% Data load
+% name={'1_bykim','2_dblee','3_eskim','9_prchoi','10_smkang','12_yskim'}; %session 0
+name={'1_bykim','2_dblee','3_eskim','4_jhsuh','5_mgjung','6_mhlee','7_mjkim','8_oykwon','9_prchoi','10_smkang','11_spseo','12_yskim','13_jyha','14_hmyoo','15_jwlee','16_wbsim','17_hwnoh','18_dysull','19_jyhan','20_jwbae','21_syjung','22_dkhan','23_hjwon','24_nkkil'}; % session 1
+% name={'1_bykim','2_dblee','3_eskim','4_jhsuh','5_mgjung','7_mjkim','9_prchoi','10_smkang','12_yskim','13_jyha','14_hmyoo','15_jwlee','16_wbsim','17_hwnoh','18_dysull','19_jyhan','20_jwbae','21_syjung','22_dkhan'}; % session 2
+session = {'session1'};
+task = {'ssvep_off','ssvep_on'};
+time = 4;
+freq = [5, 7, 9, 11];
+fs = 100;
+channel_index = [23:32]; % {'P7','P3','Pz','P4','P8','PO9','O1','Oz','O2','PO10'}
+time_interval = [0 4000]; 
+% Data load and mat save
+for sub=1:length(name)
+    for onoff=1:2
+        file3 = ['E:\Users\cvpr\Desktop\StarlabDB_2nd\',name{sub},'\'];
+        BMI.EEG_DIR=['E:\Users\cvpr\Desktop\StarlabDB_2nd\',name(sub),'\',session];
+        BMI.EEG_DIR=cell2mat(BMI.EEG_DIR);
+        file=fullfile(BMI.EEG_DIR, task{onoff});
+        marker  = {'1','up';'2', 'left';'3', 'right';'4', 'down'};
+        field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
+        [EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', fs});
+        CNT=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
+        CNTT{sub,onoff} = CNT;
+    end
+    clear file3 BMI file field EEG CNT
+    %     filename1= ['mi_cnt_s1_on'];
+    %     save([file3, filename1], 'CNT');
+end
+clear channel_index freq fs marker name onoff session sub task time time_interval
+% 
+channel = 'Oz';
+time = 4;
+band = [2 40];
+time_interval = [0 4000];
+freq = [5, 7, 9, 11];
+sti_freq = [5.45, 6.67, 8.57, 12];
+tol=0.5; % 허용 오차 +- 0.5 정도
+
+% line = true;
+% marker={'1','up';'2','left'; '3', 'right'; '4', 'down'};
+for sub =1:length(CNTT)
+    for onoff=1:2
+        cnt=prep_filter(CNTT{sub,onoff}, {'frequency', band});
+        smt=prep_segmentation(cnt, {'interval', time_interval});
+        avg=prep_average(smt);
+        avg=prep_selectChannels(avg,{'Name',channel});
+        
+%         Fc = [12, 8.57, 6.67, 5.45];
+%         tol= 0.3;
+        
+        mod_power_dB1 = 10*log10(bandpower(avg.x(:,1), 100, sti_freq(4) + [-tol tol]));
+        mod_power_dB2 = 10*log10(bandpower(avg.x(:,2), 100, sti_freq(3) + [-tol tol]));
+        mod_power_dB3 = 10*log10(bandpower(avg.x(:,3), 100, sti_freq(2) + [-tol tol]));
+        mod_power_dB4 = 10*log10(bandpower(avg.x(:,4), 100, sti_freq(1) + [-tol tol]));
+        
+        mod_power_dB1 = mean(mod_power_dB1,2);
+        mod_power_dB2 = mean(mod_power_dB2,2);
+        mod_power_dB3 = mean(mod_power_dB3,2);
+        mod_power_dB4 = mean(mod_power_dB4,2);
+        
+        Power(:,onoff) = [mod_power_dB1; mod_power_dB2; mod_power_dB3; mod_power_dB4];
+        clear avg cnt frequencyRange line marker smt Y1 Y2 Y3 Y4 power1 power2 power3 power4
+    end % for- end / onoff
+    sub_power{sub} = Power;
+    mean_power(:,sub) = mean(Power,2);
+    clear Power
+end% for sub-end
+clear band channel freq onoff sti_freq sub time time_interval ans
+
+
+mean_acc_se1 = mean(ssvep_mean_power_se1);
+mean_acc_se2 = mean(ssvep_mean_power_se2);
+mean_acc_se11 = mean_acc_se1';
+mean_acc_se22  = mean_acc_se2';
+
+A= ssvep_forplot(:,1);
+index=find(A==0);
+A(index)=[];
+B= ssvep_forplot(:,2);
+index=find(B==0);
+B(index)=[];
+real= [A B];
+
+figure
+scatter(ssvep_forplot(:,1),ssvep_forplot(:,2), 'MarkerEdgeColor',[0 .5 .5],...
+              'MarkerFaceColor',[0 .7 .7],...
+              'LineWidth',1.5)
+axis([0 5 0 5])
+
+x=[0,5];
+y=[0,5];
+
+hold on;
+line(x,y)
+title('SSVEP')
+xlabel('Session 1')
+ylabel('Session 2')
+          
