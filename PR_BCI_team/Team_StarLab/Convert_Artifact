@@ -1,0 +1,65 @@
+%% Initialization
+%data load
+
+session = {'session1'};
+task = {'artifact'};
+fs=250;
+time_interval = [4 10000];
+
+%% Data load and mat save
+for sub=1:length(name)
+    for onoff=1:length(task)
+%         file3 = ['E:\Users\cvpr\Desktop\StarlabDB_2nd\',name{sub},'\'];
+        BMI.EEG_DIR=['E:\Users\cvpr\Desktop\StarlabDB_2nd\',name(sub),'\',session];
+        BMI.EEG_DIR=cell2mat(BMI.EEG_DIR);
+        file=fullfile(BMI.EEG_DIR, task{onoff});
+        marker={'71','eyemovement_blinking';'72','eyemovement_horizen';'73','eyemovement_vertical';'74','teeth';'75','EMG_bothHandGrasping'};
+        [EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', fs});
+        field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
+        CNT=opt_eegStruct({EEG.data, EEG.marker, EEG.info}, field);
+        CNTT{sub,onoff} = CNT;
+    end
+    %     filename1= ['mi_cnt_s1_on'];
+    %     save([file3, filename1], 'CNT');
+end
+
+%% Pre-processing
+clear CNT clear BMI ans EEG field file file3 marker sub
+for NUM=1:length(name)
+    for onoff=1:length(task)
+        CNT= CNTT{NUM,onoff};
+        all_SMT= prep_segmentation(CNT, {'interval', time_interval});
+        if onoff==1
+            Artifact{NUM}.SMT = all_SMT.x;
+            Artifact{NUM}.x= CNT.x;
+            Artifact{NUM}.t = CNT.t;
+            Artifact{NUM}.fs = CNT.fs;
+            Artifact{NUM}.y_dec = CNT.y_dec;
+            Artifact{NUM}.y_logic= CNT.y_logic;
+            Artifact{NUM}.y_class= CNT.y_class;
+            Artifact{NUM}.class = CNT.class;
+            Artifact{NUM}.chan = CNT.chan;                        
+            Artifact{NUM}.ival= all_SMT.ival;           
+            Artifact{NUM}.time_interval = time_interval;
+        else
+%             Artifact_test{NUM}.SMT = all_SMT.x;
+%             Artifact_test{NUM}.x= CNT.x;
+%             Artifact_test{NUM}.t = CNT.t;
+%             Artifact_test{NUM}.fs = CNT.fs;
+%             Artifact_test{NUM}.y_dec= CNT.y_dec;
+%             Artifact_test{NUM}.y_logic = CNT.y_logic;
+%             Artifact_test{NUM}.y_class = CNT.y_class;
+%             Artifact_test{NUM}.class = CNT.class;
+%             Artifact_test{NUM}.chan = CNT.chan;                        
+%             Artifact_test{NUM}.ival = all_SMT.ival;           
+%             Artifact_test{NUM}.time_interval = time_interval;
+        end
+        clear CNT all_SMT
+    end
+end
+%%
+
+
+
+
+
