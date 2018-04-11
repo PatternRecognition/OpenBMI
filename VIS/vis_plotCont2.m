@@ -86,11 +86,11 @@ else
     opt.TopoPlot = 'on'; 
     TopoPlot = opt.TopoPlot; 
 end
-if isfield(opt, 'RPlot') 
-    RPlot = opt.RPlot; 
+if isfield(opt, 'rValue') 
+    rValue = opt.rValue; 
 else
-    opt.RPlot = 'off'; 
-    RPlot = opt.RPlot; 
+    opt.rValue = 'off'; 
+    rValue = opt.rValue; 
 end
 if isfield(opt, 'FFTPlot') 
     FFTPlot = opt.FFTPlot; 
@@ -113,44 +113,49 @@ else
     opt.Align = 'vert'; 
     Align = opt.Align; 
 end
-if ~isfield(opt, 'Envelope')
-    opt.Envelope = false;
+if ~isfield(opt, 'envelope')
+    opt.envelope = false;
 end
 %% Figure Settings
 plts = vis_subplotTemplate(opt);
 plt_idx = 1;
+%% Pre-processing
+[averaged_SMT, averaged_SMT_r] = untitled_function(SMT, opt);
+
 %% time-domain plot
-if isequal(TimePlot, 'on')
-    time_plt = vis_timeAveragePlot(plts(plt_idx:plt_idx+length(chan) - 1),SMT, opt);
+if isequal(opt.TimePlot, 'on')
+    time_plt = vis_timeAveragePlot(plts(plt_idx:plt_idx+length(chan) - 1),averaged_SMT, opt);
     vis_grpYlabel(time_plt, 'Time-Domain');
     plt_idx = plt_idx + length(chan);
 end
 %% ERDERS plot
-if isequal(ErdPlot, 'on')
+if isequal(opt.ErdPlot, 'on')
     opt.Envelope = true;
     erders_plt = vis_timeAveragePlot(plts(plt_idx:plt_idx+length(chan) - 1),SMT, opt);
     vis_grpYlabel(erders_plt, 'ERD/ERS');
     plt_idx = plt_idx + length(chan);
 end
-if isequal(RPlot, 'on')
-    r_plt = vis_rValuePlot(plts(plt_idx:plt_idx+length(chan) - 1), SMT, opt);
-    vis_grpYlabel(r_plt, 'r-Value');
-    plt_idx = plt_idx + length(chan);   
-end
 %% FFT Plot
-if isequal(FFTPlot , 'on')
+if isequal(opt.FFTPlot , 'on')
     fft_plt = vis_freqFFTPlot(plts(plt_idx:plt_idx+size(class,1)*length(chan) - 1), SMT, opt);
     vis_grpYlabel(fft_plt, 'FFT');
     plt_idx = plt_idx + size(class,1)*length(chan);
 end
 %% ERSP plot
-if isequal(ErspPlot, 'on')
+if isequal(opt.ErspPlot, 'on')
     %%TODO: Developing the ERSP graph
 end
 %% Topo plot
-if isequal(TopoPlot, 'on')
+if isequal(opt.TopoPlot, 'on')
     topo_plt = vis_topoPlot(plts(plt_idx:plt_idx+size(class,1)*size(interval, 1) - 1),SMT, opt);
     vis_grpYlabel(topo_plt, 'Topography');
+    plt_idx = plt_idx+size(class,1)*size(interval, 1);
+end
+%% R-value
+if isequal(opt.rValue, 'on')
+    r_plt = vis_rValuePlot(plts(plt_idx:plt_idx+(isequal(opt.TopoPlot, 'on')*size(interval, 1))), SMT, opt);
+    vis_grpYlabel(r_plt, 'r-Value');
+    plt_idx = plt_idx + length(chan);   
 end
 output = output_str;
 end

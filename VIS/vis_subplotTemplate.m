@@ -5,7 +5,7 @@ subplot = @(m,n,p) subtightplot(m,n,p,[0.045 0.01], 0.05, [0.06, 0.048]);
 % subplot = @(m,n,p) subtightplot(m,n,p);
 
 
-RATIO = 3;
+RATIO = 2;
 
 channels = length(opt.Channels);
 class = size(opt.Class, 1);
@@ -14,41 +14,66 @@ interval = size(opt.Interval, 1);
 num_fp = channels * class * strcmpi(opt.FFTPlot, 'on');
 num_tp = channels * strcmpi(opt.TimePlot, 'on');
 num_ep = channels * strcmpi(opt.ErdPlot, 'on');
-num_topo_row = class * strcmpi(opt.TopoPlot, 'on');
+num_rp = double(strcmpi(opt.rValue, 'on'));
+num_topo_row = (class + num_rp) * strcmpi(opt.TopoPlot, 'on');
 num_topo_col = interval * strcmpi(opt.TopoPlot, 'on');
 
-graph_plt = cell(1,sum([num_fp,num_tp, num_ep]));
-topo_plt = cell(1,num_topo_row*num_topo_col);
-r_plt = cell(1,sum([num_tp, num_ep]));
+graph_plt = gobjects(1,sum([num_fp,num_tp, num_ep]));
+topo_plt = gobjects(1,(num_topo_row - num_rp)*num_topo_col);
+r_plt = gobjects(1, num_rp * num_topo_col + num_rp);
+% 
+% graph_plt = [];
+% topo_plt = [];
+% r_plt = [];
+
 
 fig = figure('Color', 'w');
 set(fig, 'ToolBar', 'none');
 
 monitor_screensize = get(0, 'screensize');
 
-set(gcf,'Position',[monitor_screensize(3)/4,  monitor_screensize(4)/4,...
-    monitor_screensize(3)/2, monitor_screensize(4)/2]);
-
-oldUnit = get(gcf,'units');
-set(gcf,'units','normalized');
-
 if ~isfield(opt, 'Align')|| strcmpi(opt.Align, 'vert') || xor( sum([num_fp, num_tp, num_ep]), num_topo_row * num_topo_col)
-    sr = num_tp + num_ep + num_fp + num_topo_row;
+    set(gcf,'Position',[monitor_screensize(3)/4,  0,...
+     monitor_screensize(4)/2, monitor_screensize(3)/2]);
+ 
+
+    oldUnit = get(gcf,'units');
+    set(gcf,'units','normalized');
+    
+    sr = num_tp + num_ep + num_fp + num_topo_row + num_rp;
     sc = max(num_topo_col, 1);
     
     %% graph
     template = [1 sc];
     for i = 1:num_tp + num_ep + num_fp
-        graph_plt{i} = subplot(sr, sc, template);
+        graph_plt(i) = subplot(sr, sc, template);
         template = template + sc;
-    end
+    end    
     %% topo
     template = template(1);
-    for i = 1:num_topo_row * num_topo_col
-        topo_plt{i} = subplot(sr, sc, template);
+    for i = 1:(num_topo_row-num_rp) * num_topo_col
+        topo_plt(i) = subplot(sr, sc, template);
+        template = template + 1;
+    end    
+    %% r-value
+    template = template(1);
+    for i = 1:num_rp * num_topo_col
+        r_plt(i) = subplot(sr, sc, template);
         template = template + 1;
     end
+    template = [template template+sc-1];
+    %%TODO::
+        r_plt(i+1) = subplot(sr, sc, template);
+        template = template + sc;
+     
 elseif strcmpi(opt.Align, 'horz')
+    
+    set(gcf,'Position',[monitor_screensize(3)/4,  monitor_screensize(4)/4,...
+    monitor_screensize(3)/2, monitor_screensize(4)/2]);
+    
+
+oldUnit = get(gcf,'units');
+set(gcf,'units','normalized');
     sr = (num_tp + num_ep + num_fp) * num_topo_row;
     sc = (1 + RATIO) * num_topo_col + 2;
     
@@ -60,14 +85,14 @@ elseif strcmpi(opt.Align, 'horz')
     %% graph
     template = [1 (num_topo_row-1)*sc+num_topo_col];
     for i = 1:num_tp + num_ep + num_fp
-        graph_plt{i} = subplot(sr, sc, template);
+        graph_plt(i) = subplot(sr, sc, template);
         template = template + num_topo_row*sc;
     end
     %% topo
     template = [num_topo_col+3 (sr/class-1)*sc+RATIO-1+num_topo_col+3];
     for i = 1:num_topo_row
         for j = 1:num_topo_col
-            topo_plt{(i-1)*num_topo_col +  j} = subplot(sr, sc, template);
+            topo_plt((i-1)*num_topo_col +  j) = subplot(sr, sc, template);
             template = template + RATIO;
         end
         template = template + sr/class*sc - RATIO*num_topo_col;
@@ -76,17 +101,13 @@ elseif strcmpi(opt.Align, 'horz')
     if isequal(opt.RPlot, 'on')
         template = [sc-num_topo_col+1 num_topo_row*sc];
         for i = 1:num_tp + num_ep + num_fp
-            r_plt{i} = subplot(sr, sc, template);
+            r_plt(i) = subplot(sr, sc, template);
             template = template + num_topo_row*sc;
         end
     end
 end
 
-if isequal(opt.RPlot, 'on')
-    out = horzcat(graph_plt, r_plt, topo_plt);
-else
-    out = horzcat(graph_plt, topo_plt);
-end
+out = horzcat(graph_plt, topo_plt, r_plt);
 end
 
 function test(sr, sc)
