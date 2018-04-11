@@ -35,8 +35,8 @@ for ff= 1:length(filelist),
 
     % Load mrk file, Assign the trigger information into mrk variable
     % If you want to convert another task's data, please check the trigger
-    % information into WAM_20170814_Imag_Arrow function.
-    mrk = WAM_20170814_Imag_Arrow(mrk_orig);
+    % information into Image_Arrow function.
+    mrk = Imag_Arrow(mrk_orig);
     
     % Assign the channel montage information into mnt variable
     mnt = getElectrodePositions(cnt.clab);
