@@ -127,7 +127,7 @@ for sub=1:10
 %% 2nd step: changing dimension from 3-d to 2-d in the data of each subject
 % -----------------------------------------------------------------------------------
 % 2-1) assigning variables for each trial
-% 2-2) updating later............
+% 2-2) changing dimnsion of each trial to 2-d
 % -----------------------------------------------------------------------------------
 
 %% assigning variables for each trial
