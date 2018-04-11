@@ -5,7 +5,7 @@
 %      this step is aim to double the number of UCS trials
 % 1-3) WFN LOC UCS ROC REV randomization -> extracting the same number of
 %      trials for each class
-% 1-4) merge 5 states to 3 classes
+% 1-4) merging 5 states to 3 classes
 % -----------------------------------------------------------------------------------
 
 clc; clear; close;
@@ -127,7 +127,7 @@ for sub=1:10
 %% 2nd step: changing dimension from 3-d to 2-d in the data of each subject
 % -----------------------------------------------------------------------------------
 % 2-1) assigning variables for each trial
-% 2-2) changing dimnsion of each trial to 2-d
+% 2-2) changing dimension of each trial to 2-d
 % -----------------------------------------------------------------------------------
 
 %% assigning variables for each trial
@@ -144,7 +144,7 @@ for sub=1:10
     t11 = MM_10(:, :, 11);
     t12 = MM_10(:, :, 12);
 
-%% changing dimnsion of each trial to 2-d
+%% changing dimension of each trial to 2-d
  d2_MM_10 = cat(2, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12);
     
     save MM_10_2step 
