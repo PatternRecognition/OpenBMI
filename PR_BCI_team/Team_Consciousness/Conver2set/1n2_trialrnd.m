@@ -143,3 +143,9 @@ for sub=1:10
     t10 = MM_10(:, :, 10);
     t11 = MM_10(:, :, 11);
     t12 = MM_10(:, :, 12);
+
+%% changing dimnsion of each trial to 2-d
+ d2_MM_10 = cat(2, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12);
+    
+    save MM_10_2step 
+end
