@@ -61,10 +61,7 @@ else
     estimatedDensity=0; cov_inf=false;
 end
 
-%
-% So, it is using            1/(windowwidth^d) * Normal(0, \sigma_j / window_width)
-% as the window function for class j, instead of the spherical parzen window function
-%
+%% estimate covariance
 function covariance = estimateCovariance( samples )
 numFeatures = size( samples, 2 );
 sigma = zeros( numFeatures, numFeatures );
