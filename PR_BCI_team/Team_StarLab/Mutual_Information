@@ -1,0 +1,74 @@
+function mi = cal_mutual_information( f1, f2, kernelWidth )
+% Input:
+%       f1 - training data of class 1
+%       f2 - training data of cless 2
+%       kernelWidth - common kernel width
+% Output:
+%       mi - mutual information
+
+% avoidUnderflow = 1e-100;
+% Entropy of data A: H(A)
+[estimatedDensity cov_inf]= proc_ParzenKDE( [f1'; f2'], [f1'; f2'], kernelWidth );
+if cov_inf
+    entropy = -sum(log(estimatedDensity)) / length(estimatedDensity);
+    % entropy = -sum(log(estimatedDensity+avoidUnderflow).* estimatedDensity);
+    
+    % H(A|C) - class conditional entropy
+    classOneDensity = proc_ParzenKDE( f1', f1', kernelWidth );
+    classTwoDensity = proc_ParzenKDE( f2', f2', kernelWidth );
+    % classOneDensity = myParzenKDE( f1', [f1'; f2'], kernelWidth );
+    % classTwoDensity = myParzenKDE( f2', [f1'; f2'], kernelWidth );
+    
+    HACOne = -sum(log(classOneDensity)) / length(classOneDensity);
+    HACTwo = -sum(log(classTwoDensity)) / length(classTwoDensity);
+    % HACOne = -sum(log(classOneDensity+avoidUnderflow).* classOneDensity);
+    % HACTwo = -sum(log(classTwoDensity+avoidUnderflow).* classTwoDensity);
+    
+    condEntropy = (HACOne + HACTwo)/2;
+    
+    mi = entropy - condEntropy;
+else
+    mi=0;
+end
+
+%% Parzen window
+function [estimatedDensity cov_inf]= proc_ParzenKDE( trainData, testData, windowWidth )
+% estimatedDensity = myParzenKDE(trainingData,testingData,windowWidth)
+numFeatures = size( trainData, 2 );
+covariance = estimateCovariance( trainData );
+    
+% covariance = cov( trainData );
+
+trainDataSize = size( trainData, 1 );
+testDataSize = size( testData, 1 );
+estimatedDensity = zeros( testDataSize, 1 );
+if ~isinf(diag(covariance))
+    for i=1:testDataSize
+        x = testData(i, :);
+        testSampleMatrix = ones(trainDataSize,1)*x;
+        
+        new_diff = testSampleMatrix - trainData;
+        
+        for k=1:numFeatures
+            new_diff( abs(new_diff(:,k))>windowWidth, k ) = 10000000000; %big number;
+        end
+        
+        estimatedDensity(i) = mean( (1/(windowWidth^numFeatures)) * ...
+            mvnpdf((new_diff/windowWidth), zeros(1,numFeatures), covariance) );
+        cov_inf=true;
+    end
+else
+    estimatedDensity=0; cov_inf=false;
+end
+
+%
+% So, it is using            1/(windowwidth^d) * Normal(0, \sigma_j / window_width)
+% as the window function for class j, instead of the spherical parzen window function
+%
+function covariance = estimateCovariance( samples )
+numFeatures = size( samples, 2 );
+sigma = zeros( numFeatures, numFeatures );
+for i=1:numFeatures
+    covariance(i,i) = var( samples(:,i) );
+end
+
