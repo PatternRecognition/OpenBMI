@@ -1,0 +1,147 @@
+
+CNTT = CNTT_new;
+
+channel_index = [1:56 61:66];
+A = 8;
+B = 14;
+time_interval = [1000 3500];
+CC = time_interval(1);
+DD = time_interval(2);
+BAND = [A B];
+sub=3;
+%% make source pool based on optimal frequency
+[SMT, source] = starlab_pool(sub, CNTT, BAND, channel_index, time_interval);
+%% Logvar 
+SMT_right=prep_selectClass(SMT,{'class',{'right'}});
+SMT_left=prep_selectClass(SMT,{'class',{ 'left'}});
+FT_right = func_featureExtraction(SMT_right, {'feature','logvar'});
+FT_left = func_featureExtraction(SMT_left, {'feature','logvar'});
+
+est_right_mu = mean(FT_right.x,2);
+est_left_mu =  mean(FT_left.x,2);
+ 
+pick_sample=1:1000;
+
+for chan=1:length(channel_index)
+    right_index=[]; left_index=[];
+    [CCC DDD1] =sort(abs(est_right_mu(chan) - FT_right.x(chan,:)),'ascend');
+    index1=find(SMT.y_dec==1);
+    right_index = [right_index DDD1(pick_sample)];
+    clear D DD DDD C CC CCC
+    [CCC DDD2] =sort(abs(est_left_mu(chan) - FT_left.x(chan,:)),'ascend');
+    index2=find(SMT.y_dec==2);
+    left_index = [left_index DDD2(pick_sample)];
+    clear D DD DDD C CC CCC
+    
+    SMTT.x(:,index1(DDD1(pick_sample))) = SMT.x(:,index1(DDD1(pick_sample)),chan);
+    SMTT.x(:,index2(DDD2(pick_sample))) = SMT.x(:,index2(DDD2(pick_sample)),chan);
+    
+    index=find(abs(SMTT.x(1,:))>0);
+    SMTTT.x(:,:,chan) = SMT.x(:,index,chan);
+    SMTTT.y_dec = SMT.y_dec(:,index);
+    SMTTT.t = SMT.t(:,index);
+    SMTTT.fs=100;
+    SMTTT.y_class=SMT.y_class(:,index);
+    SMTTT.class = SMT.class;
+    SMTTT.y_logic= SMT.y_logic(:,index);
+    SMTTT.chan = SMT.chan;
+    SMTTT.ival = SMT.ival;
+    clear left_index right_index index SMTT 
+end
+clear DDD1 DDD2
+
+[estgen_SMT, CSP_W, CSP_D]=func_csp(SMTTT,{'nPatterns', 2});
+FT=func_featureExtraction(estgen_SMT, {'feature','logvar'});
+[CF_PARAM]=func_train(FT,{'classifier','LDA'});
+
+concat = prep_selectChannels(CNTT_new{sub,2}, {'Index', channel_index});
+CNTfb=prep_selectClass(concat,{'class',{'right', 'left'}});
+CNTfb=prep_filter(CNTfb, {'frequency', BAND});
+SMTfb=prep_segmentation(CNTfb, {'interval', time_interval});
+SMTfb=func_projection(SMTfb, CSP_W);
+FTfb=func_featureExtraction(SMTfb, {'feature','logvar'});
+[cf_out]=func_predict(FTfb, CF_PARAM);
+[loss out]=eval_calLoss(FTfb.y_dec, cf_out);
+estimate_acc=1-loss
+clear SMTT index1 index2 CSP_W CSP_D FT CF_PARAM
+
+%% 개인
+ 
+cnt=CNTT{sub,1};
+cnt = prep_selectChannels(cnt, {'Index', channel_index});
+cnt = prep_selectClass(cnt,{'class',{'right', 'left'}});
+cnt =prep_filter(cnt , {'frequency', BAND});
+SMT= prep_segmentation(cnt, {'interval', time_interval});
+
+SMT_right=prep_selectClass(SMT,{'class',{'right'}});
+SMT_left=prep_selectClass(SMT,{'class',{ 'left'}});
+FT_right = func_featureExtraction(SMT_right, {'feature','logvar'});
+FT_left = func_featureExtraction(SMT_left, {'feature','logvar'});
+
+% figure
+% hold on
+% plot(FT_right.x(chan,:),0,'r*');
+% hold on
+% plot(FT_left.x(chan,:),0,'b*');
+
+est_right_mu = mean(FT_right.x,2);
+est_left_mu =  mean(FT_left.x,2);
+ 
+pick_sample=1:40;
+
+for chan=1:length(channel_index)
+    right_index=[]; left_index=[];
+    [CCC DDD1] =sort(abs(est_right_mu(chan) - FT_right.x(chan,:)),'ascend');
+    index1=find(SMT.y_dec==1);
+    right_index = [right_index DDD1(pick_sample)];
+    clear D DD DDD C CC CCC
+    [CCC DDD2] =sort(abs(est_left_mu(chan) - FT_left.x(chan,:)),'ascend');
+    index2=find(SMT.y_dec==2);
+    left_index = [left_index DDD2(pick_sample)];
+    clear D DD DDD C CC CCC
+    
+    SMTT.x(:,index1(DDD1(pick_sample))) = SMT.x(:,index1(DDD1(pick_sample)),chan);
+    SMTT.x(:,index2(DDD2(pick_sample))) = SMT.x(:,index2(DDD2(pick_sample)),chan);
+    
+    index=find(abs(SMTT.x(1,:))>0);
+    SMTTT.x(:,:,chan) = SMT.x(:,index,chan);
+    SMTTT.y_dec = SMT.y_dec(:,index);
+    SMTTT.t = SMT.t(:,index);
+    SMTTT.fs=100;
+    SMTTT.y_class=SMT.y_class(:,index);
+    SMTTT.class = SMT.class;
+    SMTTT.y_logic= SMT.y_logic(:,index);
+    SMTTT.chan = SMT.chan;
+    SMTTT.ival = SMT.ival;
+    clear left_index right_index index SMTT 
+end
+clear DDD1 DDD2
+
+% [SMTTT, CSP_W, CSP_D]=func_csp(SMTTT,{'nPatterns', 2});
+FT=func_featureExtraction(SMTTT, {'feature','logvar'});
+[CF_PARAM]=func_train(FT,{'classifier','LDA'});
+
+concat = prep_selectChannels(CNTT_new{sub,2}, {'Index', channel_index});
+CNTfb=prep_selectClass(concat,{'class',{'right', 'left'}});
+CNTfb=prep_filter(CNTfb, {'frequency', BAND});
+SMTfb=prep_segmentation(CNTfb, {'interval', time_interval});
+% SMTfb=func_projection(SMTfb, CSP_W);
+FTfb=func_featureExtraction(SMTfb, {'feature','logvar'});
+[cf_out]=func_predict(FTfb, CF_PARAM);
+[loss out]=eval_calLoss(FTfb.y_dec, cf_out);
+estimate_acc=1-loss
+clear SMTT index1 index2 CSP_W CSP_D FT CF_PARAM
+clear SMT_right SMT_left FT_right FT_left
+%% plot
+SMT_right=prep_selectClass(SMTTT,{'class',{'right'}});
+SMT_left=prep_selectClass(SMTTT,{'class',{ 'left'}});
+FT_right = func_featureExtraction(SMT_right, {'feature','logvar'});
+FT_left = func_featureExtraction(SMT_left, {'feature','logvar'});
+
+% figure
+% hold on
+% plot(FT_right.x(chan,:),0,'r*');
+% hold on
+% plot(FT_left.x(chan,:),0,'b*');
+
+
