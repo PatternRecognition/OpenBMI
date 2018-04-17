@@ -22,7 +22,7 @@ for tt=1:1
         %%
         % k set
         k=5; % k-fold cross-validation
-        m=length(CNT.t)/length(CNT.class); % trial / class = 50 ÀÌ¾î¾ßÇÔ
+        m=length(CNT.t)/length(CNT.class); % trial / class = 50 
         for i=1:k
             kk{i}=(i-1)*m/k+1:m/k*i;
         end
@@ -49,7 +49,7 @@ for tt=1:1
         zz=1:k;
         
         
-        % CV ½ÃÀÛ ºý´ë°¡¸® ¤µ¤² ¤µ ¤² ¤µ ¤² ¤µ ¤² ¤¡ ¤Àºý´ë°¡¸®
+        % CV 
         for tau=1:15
             for qq=1:k
                 temp=zz;
@@ -123,7 +123,7 @@ for tt=1:1
                 % 19 channels (M1)
 %                 channel_index=[33,34,35,36,37,38,39,...
 %                     51,52,53,54,55,56,57,...
-%                     69,70,71,72,73,74,75]; % (FC1~6,C1~6,Cz,CP1~6) 21°³
+%                     69,70,71,72,73,74,75]; % (FC1~6,C1~6,Cz,CP1~6) 21ê°œ
                 %                 channel_index=[51,57, 69,75];
                 %                 channel_index=[33,39, 51,57, 69,75];
                 %         8 channels (Ear)
@@ -138,7 +138,7 @@ for tt=1:1
                             channel_index=[31,50,68,67, 41,58,76,77,...
                                            33,34,35,36,37,38,39,...
                                            51,52,53,54,55,56,57,...
-                                           69,70,71,72,73,74,75]; % (FC1~6,C1~6,Cz,CP1~6) 19°³
+                                           69,70,71,72,73,74,75]; % (FC1~6,C1~6,Cz,CP1~6) 19ê°œ
                 band=[5 30];
                 interval=[500 2490];
                 num_patt=2;
@@ -201,7 +201,7 @@ for tt=1:1
                 cor=0;
                 
                 for ii=1:N
-                    if (ii<N/2+1&&cf_out(ii)<0) % ÀÌ°Å ÀÌ·¸°Ô ÇØµµ µÇ³ª?
+                    if (ii<N/2+1&&cf_out(ii)<0) % 
                         cor=cor+1;
                     end
                     if (ii>N/2&&cf_out(ii)>0)
