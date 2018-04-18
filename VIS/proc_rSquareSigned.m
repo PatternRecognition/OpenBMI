@@ -1,7 +1,34 @@
 function out = proc_rSquareSigned(SMT, varargin)
-    SMT = proc_rValue(SMT);
-    SMT.x = SMT.x .* abs(SMT.x);
-    out = SMT;
+%     SMT = proc_rValue(SMT);
+
+if size(SMT.class, 1) > 2
+    return;
+elseif size(SMT.class, 1) == 1
+    
+end
+[time, trials, channels] = size(SMT.x);
+SMT.x = permute(SMT.x, [1 3 2]);
+SMT.x = reshape(SMT.x, [time*channels, trials]);
+
+c1 = SMT.y_logic(1,:);
+c2 = SMT.y_logic(2,:);
+lp = length(find(c1));
+lq = length(find(c2));
+
+div = std(SMT.x, 0, 2);
+iConst = find(div==0);
+div(iConst) = 1;
+rval = ((mean(SMT.x(:,c1), 2) - mean(SMT.x(:,c2),2)) * sqrt(lp*lq)) ./ (div * (lp+lq));
+rval(iConst) = NaN;
+rval = reshape(rval, [time channels 1]);
+
+SMT.x = rval;
+SMT.x = SMT.x .* abs(SMT.x);
+
+SMT.class = {'1', 'sgnr^2'};
+SMT = rmfield(SMT,{'t','y_dec','y_logic','y_class'});
+
+out = SMT;
 end
 
 function out = proc_rValue(SMT, varargin)
@@ -9,7 +36,7 @@ function out = proc_rValue(SMT, varargin)
 if size(SMT.class, 1) > 2
     return;
 elseif size(SMT.class, 1) == 1
-
+    
 end
 [time, trials, channels] = size(SMT.x);
 SMT.x = permute(SMT.x, [1 3 2]);
