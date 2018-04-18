@@ -53,6 +53,9 @@ grp_plots = plts;
 % 2. channel 선택
 % 3. ???????
 
+%% 임시
+SMT = prep_selectChannels(SMT, {'Name', opt.Channels});
+%%
 if isfield(opt, 'TimeRange') && ~isempty(opt.TimeRange)
     time_range = opt.TimeRange;
 else

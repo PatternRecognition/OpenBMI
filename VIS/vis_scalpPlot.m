@@ -334,7 +334,7 @@ if isequal(TopoPlot, 'on')
         %% Draw
         for seg = 1: size(interval, 1)
             topo_plt{i,seg} = subplot(sub_row, sub_col, topo_sub_temp);
-            plot_scalp(gca, w{i, seg}, MNT, p_range, resol);
+                plot_scalp(gca, w{i, seg}, MNT, p_range, resol);
             xlabel(sprintf('[%d - %d] ms',interval(seg,:)), 'FontWeight', 'normal');
             topo_sub_temp = topo_sub_temp + topo_sub_hop;
         end

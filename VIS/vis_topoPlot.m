@@ -3,11 +3,7 @@ function grp_plots = vis_topoPlot(plts, SMT, varargin)
 %
 %
 %
-%
-%
-%
-%
-PREVENT_OVERFLOW = 5000;
+
 %% Options
 
 switch nargin
@@ -63,10 +59,7 @@ if ~isequal(MNT.chan, SMT.chan)
         end
         output_str = {''; [output_str, ' are missed']};
     end
-    tmp = zeros(1,length(MNT.x));
-    for i = 1:length(MNT.chan)
-        tmp(i) = find(ismember(SMT.chan, MNT.chan{i}));
-    end
+    [a, tmp] = ismember(MNT.chan, SMT.chan);
     if ndims(SMT.x) == 3
         SMT.x = SMT.x(:,:,tmp);
     elseif ndims(SMT.x) == 2
@@ -79,14 +72,19 @@ end
 idx = 1;
 for i = 1: size(opt.Class, 1)
     ivalSegment = size(opt.Interval,1);
-    topo_range = [];
-    if ndims(SMT.x) == 3
-        for seg = 1: ivalSegment
+    topo_range = zeros(ivalSegment,2);
+
+    for seg = 1: ivalSegment
             SMTintervalstart = find(SMT.ival == opt.Interval(seg,1));
             SMTintervalEnd = find(SMT.ival == opt.Interval(seg,2));
+        if ndims(SMT.x) == 3
             ivalSMT = squeeze(SMT.x(SMTintervalstart:SMTintervalEnd,i,:));
             w{i, seg} = mean(ivalSMT,1);
-            topo_range = [topo_range; minmax(w{i,seg})];
+            topo_range(seg, :) = minmax(w{i,seg});
+        elseif ndims(SMT.x) == 2
+            ivalSMT = squeeze(SMT.x(SMTintervalstart:SMTintervalEnd,:));
+            w{i, seg} = mean(ivalSMT,1);
+            topo_range(seg, :) = minmax(w{i,seg});
         end
     end
     %% range_options
@@ -110,7 +108,7 @@ for i = 1: size(opt.Class, 1)
         p_range(2)= p_range(2)+eps;
     end
     %% Draw
-    for seg = 1: size(opt.Interval, 1)
+    for seg = 1: ivalSegment
         plot_scalp(grp_plots(idx), w{i, seg}, MNT, p_range, resol);
         xlabel(grp_plots(idx), sprintf('[%d - %d] ms',opt.Interval(seg,:)), 'FontWeight', 'normal');
         idx = idx + 1;

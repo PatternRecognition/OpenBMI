@@ -6,16 +6,18 @@ function [averagedSMT, rvaluedSMT] = untitled_function(SMT, opt)
 if ~isstruct(opt)
     opt = opt_cellTostruct(opt);
 end
-if ~isfield(opt, 'envelope') opt.envelope = false; end
+if ~isfield(opt, 'MIPlot') opt.MIPlot = 'off'; end
 if ~isfield(opt, 'rValue') opt.rValue = false; end
 if ~isfield(opt, 'baseline') opt.baseline = []; end
 
-if opt.envelope
+if isequal(opt.MIPlot, 'on')
     SMT = prep_envelope(SMT);
 end
 if ~isempty(opt.baseline)
     SMT = prep_baseline(SMT, {'Time', opt.baseline});
 end
+
+SMT = prep_selectClass(SMT, {'class', opt.Class});
 
 averagedSMT = prep_average(SMT);
 

@@ -53,19 +53,20 @@ if ~isfield(opt, 'Patch') opt.Patch = 'off'; end
 if ~isfield(opt, 'TopoPlot') opt.TopoPlot = 'off'; end
 
 grp_plots = plts;
-SMT = prep_selectClass(SMT,{'class', opt.Class});
-if isfield(opt, 'Envelope') && opt.Envelope
-    SMT = prep_envelope(SMT);
-end
-SMT = prep_baseline(SMT, {'Time', opt.Baseline});
-SMT = prep_selectTime(SMT, {'Time', opt.SelectTime});
-SMT = proc_rSquareSigned(SMT);
+% SMT = prep_selectClass(SMT,{'class', opt.Class});
+% if isfield(opt, 'Envelope') && opt.Envelope
+%     SMT = prep_envelope(SMT);
+% end
+% SMT = prep_baseline(SMT, {'Time', opt.Baseline});
+% SMT = prep_selectTime(SMT, {'Time', opt.SelectTime});
+% SMT = proc_rSquareSigned(SMT);
 
 opt.Class = SMT.class(1,2);
 
 idx = 1;
 
 if strcmpi(opt.TopoPlot, 'on')
+    opt.Range = 'sym';
     vis_topoPlot(plts(1:end-1),SMT, opt);
 end
 

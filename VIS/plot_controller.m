@@ -23,7 +23,7 @@ function varargout = plot_controller(varargin)
 
 % Edit the above text to modify the response to help plot_controller
 
-% Last Modified by GUIDE v2.5 09-Mar-2018 21:13:22
+% Last Modified by GUIDE v2.5 11-Apr-2018 18:59:36
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -107,12 +107,10 @@ function RESET(hObject, handles, isreset)
 % handles     structure with handles and user data (see GUIDATA)
 % init        initialization
 % Initialize plot type
-set(handles.check_time_plot,'Value',true);
-% set(handles.check_ersp,'Value',true);
-set(handles.check_ersp, 'Value', false);
-% set(handles.check_ersp, 'Enable', 'off');
-set(handles.check_erd,'Value',true);
-set(handles.check_topography,'Value',true);
+set(handles.check_ERP,'Value',false);
+set(handles.check_SSVEP, 'Value', false);
+set(handles.check_MI,'Value',false);
+set(handles.check_Topo,'Value',false);
 
 % Initialize channel
 handles.selected_chan={'Cz','Oz'};
@@ -156,7 +154,7 @@ set(handles.minTopo, 'String', '0');
 set(handles.tildeTopo, 'Visible', 'off');
 set(handles.selToggle, 'Value', false);
 set(handles.selToggle, 'String', 'Select');
-set(handles.maxSelect, 'Enable', 'off');
+set(handles.maxSelect, 'Enable', 'off');%
 set(handles.minSelect, 'Enable', 'off');
 set(handles.maxSelect, 'String', '0');
 set(handles.minSelect, 'String', '0');
@@ -168,6 +166,11 @@ set(handles.maxYlim, 'String', '0');
 set(handles.minYlim, 'String', '0');
 
 set(handles.class_listbox,'String', str);
+
+set(handles.pop_range, 'Value', 1);
+set(handles.pop_color, 'Value', 1);
+set(handles.pop_quality, 'Value', 1);
+set(handles.pop_orient, 'Value', 1);    
 
 % Initialize baseline
 set(handles.baseline_start, 'String', string(handles.data.ival(1)));
@@ -342,22 +345,22 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in check_time_plot.
-function check_time_plot_Callback(hObject, eventdata, handles)
-% hObject    handle to check_time_plot (see GCBO)
+% --- Executes on button press in check_ERP.
+function check_ERP_Callback(hObject, eventdata, handles)
+% hObject    handle to check_ERP (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of check_time_plot
+% Hint: get(hObject,'Value') returns toggle state of check_ERP
 
 
-% --- Executes on button press in check_erd.
-function check_erd_Callback(hObject, eventdata, handles)
-% hObject    handle to check_erd (see GCBO)
+% --- Executes on button press in check_MI.
+function check_MI_Callback(hObject, eventdata, handles)
+% hObject    handle to check_MI (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of check_erd
+% Hint: get(hObject,'Value') returns toggle state of check_MI
 
 
 % --- Executes on button press in draw_btn.
@@ -391,11 +394,11 @@ else
     ylimRange = [];
 end
 %% Get plots
-if get(handles.check_time_plot,'Value'), TimePlot = 'on'; else TimePlot = 'off'; end
-if get(handles.check_ersp,'Value'), ErspPlot = 'on'; else ErspPlot = 'off'; end
-if get(handles.check_erd,'Value'), ErdPlot = 'on'; else ErdPlot = 'off'; end
-if get(handles.check_topography,'Value'), TopoPlot = 'on'; else TopoPlot = 'off'; end
-if ~sum(ismember({TimePlot, ErspPlot, ErdPlot, TopoPlot}, 'on'))
+if get(handles.check_ERP,'Value'), ERPPlot = 'on'; else ERPPlot = 'off'; end
+if get(handles.check_SSVEP,'Value'), SSVEPPlot = 'on'; else SSVEPPlot = 'off'; end
+if get(handles.check_MI,'Value'), MIPlot = 'on'; else MIPlot = 'off'; end
+if get(handles.check_Topo,'Value'), TopoPlot = 'on'; else TopoPlot = 'off'; end
+if ~sum(ismember({ERPPlot, MIPlot, SSVEPPlot, TopoPlot}, 'on'))
     set(handles.note_txt, 'String', {'';'';'Choose at least one plot type'});
     return;
 end
@@ -403,24 +406,24 @@ end
 if get(handles.check_patch,'Value'), Patch = 'on'; else Patch = 'off'; end
 %% Topography range
 if get(handles.inputToggle, 'Value')
-    range = [str2double(get(handles.minTopo, 'String')), str2double(get(handles.maxTopo, 'String'))];
-    if range(1) > range(2)
-        range = flip(range);
-        set(handles.minTopo,'String', range(1));
-        set(handles.maxTopo,'String', range(2));
+    p_range = [str2double(get(handles.minTopo, 'String')), str2double(get(handles.maxTopo, 'String'))];
+    if p_range(1) > p_range(2)
+        p_range = flip(p_range);
+        set(handles.minTopo,'String', p_range(1));
+        set(handles.maxTopo,'String', p_range(2));
     end
 else
     switch get(handles.pop_range, 'Value')
         case 1
-            range = 'sym';
+            p_range = 'sym';
         case 2
-            range = '0tomax';
+            p_range = '0tomax';
         case 3
-            range = 'minto0';
+            p_range = 'minto0';
         case 4
-            range = 'mintomax';
+            p_range = 'mintomax';
         case 5
-            range = 'mean';
+            p_range = 'mean';
     end
 end
 %% Topography color
@@ -451,10 +454,10 @@ end
 %% Start visualization
 set(handles.note_txt, 'String', {'';'';'Wait for Drawing'}); drawnow;
 try
-    output = vis_scalpPlot(handles.data, {'Interval', handles.selected_ival;...
+    output = vis_plotCont2(handles.data, {'Interval', handles.selected_ival;...
         'Channels',handles.selected_chan;'Class',handles.selected_class;...
-        'TimePlot', TimePlot; 'TopoPlot', TopoPlot; 'ErspPlot', ErspPlot;...
-        'ErdPlot', ErdPlot; 'Range', range; 'Baseline', baseline;...
+        'TimePlot', ERPPlot; 'TopoPlot', TopoPlot; 'ErdPlot', MIPlot;...
+         'Range', p_range; 'Baseline', baseline;...
         'Colormap', cm; 'Patch', Patch; 'Quality', quality; ...
         'SelectTime', selTime; 'TimeRange', ylimRange});
 catch error
@@ -720,21 +723,21 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in check_ersp.
-function check_ersp_Callback(hObject, eventdata, handles)
-% hObject    handle to check_ersp (see GCBO)
+% --- Executes on button press in check_SSVEP.
+function check_SSVEP_Callback(hObject, eventdata, handles)
+% hObject    handle to check_SSVEP (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of check_ersp
+% Hint: get(hObject,'Value') returns toggle state of check_SSVEP
 
-% --- Executes on button press in check_topography.
-function check_topography_Callback(hObject, eventdata, handles)
-% hObject    handle to check_topography (see GCBO)
+% --- Executes on button press in check_Topo.
+function check_Topo_Callback(hObject, eventdata, handles)
+% hObject    handle to check_Topo (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of check_topography
+% Hint: get(hObject,'Value') returns toggle state of check_Topo
 
 
 
@@ -1112,19 +1115,19 @@ else
 end
 
 
-% --- Executes on selection change in popupmenu14.
-function popupmenu14_Callback(hObject, eventdata, handles)
-% hObject    handle to popupmenu14 (see GCBO)
+% --- Executes on selection change in pop_orient.
+function pop_orient_Callback(hObject, eventdata, handles)
+% hObject    handle to pop_orient (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu14 contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from popupmenu14
+% Hints: contents = cellstr(get(hObject,'String')) returns pop_orient contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from pop_orient
 
 
 % --- Executes during object creation, after setting all properties.
-function popupmenu14_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to popupmenu14 (see GCBO)
+function pop_orient_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to pop_orient (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 

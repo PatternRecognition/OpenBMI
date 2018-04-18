@@ -21,7 +21,7 @@ num_topo_col = interval * strcmpi(opt.TopoPlot, 'on');
 graph_plt = gobjects(1,sum([num_fp,num_tp, num_ep]));
 topo_plt = gobjects(1,(num_topo_row - num_rp)*num_topo_col);
 r_plt = gobjects(1, num_rp * num_topo_col + num_rp);
-% 
+%
 % graph_plt = [];
 % topo_plt = [];
 % r_plt = [];
@@ -34,27 +34,22 @@ monitor_screensize = get(0, 'screensize');
 
 if ~isfield(opt, 'Align')|| strcmpi(opt.Align, 'vert') || xor( sum([num_fp, num_tp, num_ep]), num_topo_row * num_topo_col)
     set(gcf,'Position',[monitor_screensize(3)/4,  0,...
-     monitor_screensize(4)/2, monitor_screensize(3)/2]);
- 
-
-    oldUnit = get(gcf,'units');
-    set(gcf,'units','normalized');
+        monitor_screensize(4)/2, monitor_screensize(3)/2]);
     
     sr = num_tp + num_ep + num_fp + num_topo_row + num_rp;
     sc = max(num_topo_col, 1);
-    
     %% graph
     template = [1 sc];
     for i = 1:num_tp + num_ep + num_fp
         graph_plt(i) = subplot(sr, sc, template);
         template = template + sc;
-    end    
+    end
     %% topo
     template = template(1);
     for i = 1:(num_topo_row-num_rp) * num_topo_col
         topo_plt(i) = subplot(sr, sc, template);
         template = template + 1;
-    end    
+    end
     %% r-value
     template = template(1);
     for i = 1:num_rp * num_topo_col
@@ -63,25 +58,21 @@ if ~isfield(opt, 'Align')|| strcmpi(opt.Align, 'vert') || xor( sum([num_fp, num_
     end
     template = [template template+sc-1];
     %%TODO::
-        r_plt(i+1) = subplot(sr, sc, template);
-        template = template + sc;
-     
+    r_plt(i+1) = subplot(sr, sc, template);
+    template = template + sc;
+    
 elseif strcmpi(opt.Align, 'horz')
-    
     set(gcf,'Position',[monitor_screensize(3)/4,  monitor_screensize(4)/4,...
-    monitor_screensize(3)/2, monitor_screensize(4)/2]);
+        monitor_screensize(3)/2, monitor_screensize(4)/2]);
     
-
-oldUnit = get(gcf,'units');
-set(gcf,'units','normalized');
     sr = (num_tp + num_ep + num_fp) * num_topo_row;
     sc = (1 + RATIO) * num_topo_col + 2;
     
     if isequal(opt.RPlot, 'on')
         sc = sc + num_topo_col + 2;
-    end    
+    end
     %%
-%     test(sr, sc);
+    %     test(sr, sc);
     %% graph
     template = [1 (num_topo_row-1)*sc+num_topo_col];
     for i = 1:num_tp + num_ep + num_fp
@@ -112,9 +103,9 @@ end
 
 function test(sr, sc)
 subplot = @(m,n,p) subtightplot(m,n,p,[0.045 0.01], 0.05, [0.06, 0.048]);
-    for i = 1:sr*sc
-        subplot(sr, sc, i);
-    end
+for i = 1:sr*sc
+    subplot(sr, sc, i);
+end
 end
 
 %% FileExchange function subtightplot by F. G. Nievinski
