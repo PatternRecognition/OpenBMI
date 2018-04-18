@@ -1,4 +1,4 @@
-% <<<3step>>> OVR approach를 위해 subject끼리 합치기
+% <<<3step>>> Merge data from all subjects into one file
 % -----------------------------------------------------------------------------------
 % 1) loading files
 % 2) merging
