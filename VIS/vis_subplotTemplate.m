@@ -4,6 +4,24 @@ function out = vis_subplotTemplate(opt)
 subplot = @(m,n,p) subtightplot(m,n,p,[0.045 0.01], 0.05, [0.06, 0.048]);
 % subplot = @(m,n,p) subtightplot(m,n,p);
 
+if ~isfield(opt, 'FFTPlot')
+    opt.FFTPlot = 'off';
+end
+if ~isfield(opt, 'TimePlot')
+    opt.TimePlot = 'off';
+end
+if ~isfield(opt, 'ErdPlot')
+    opt.ErdPlot = 'off';
+end
+if ~isfield(opt, 'rValue')
+    opt.rValue = 'off';
+end
+if ~isfield(opt, 'TopoPlot')
+    opt.TopoPlot = 'off';
+end
+if ~isfield(opt, 'Align')
+    opt.Align = 'vert';
+end
 
 RATIO = 2;
 
@@ -32,9 +50,9 @@ set(fig, 'ToolBar', 'none');
 
 monitor_screensize = get(0, 'screensize');
 
-if ~isfield(opt, 'Align')|| strcmpi(opt.Align, 'vert') || xor( sum([num_fp, num_tp, num_ep]), num_topo_row * num_topo_col)
-    set(gcf,'Position',[monitor_screensize(3)/4,  0,...
-        monitor_screensize(4)/2, monitor_screensize(3)/2]);
+if strcmpi(opt.Align, 'vert') || xor( sum([num_fp, num_tp, num_ep]), num_topo_row * num_topo_col)
+    set(gcf,'Position',[monitor_screensize(3)/4,  monitor_screensize(4)/20,...
+        monitor_screensize(3)/2, monitor_screensize(3)/2]);
     
     sr = num_tp + num_ep + num_fp + num_topo_row + num_rp;
     sc = max(num_topo_col, 1);

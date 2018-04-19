@@ -1,26 +1,15 @@
-function grp_plots = vis_topoPlot(plts, SMT, varargin)
+function grp_plots = vis_topoPlot(SMT, varargin)
 % Description:
 %
 %
 %
 
 %% Options
-
-switch nargin
-    case 1
-        SMT = plts;
-        plts = {gca};
-        opt = [];
-    case 2
-        opt = [];
-    case 3
-        opt = varargin{:};
-        if ~isstruct(opt)
-            opt = opt_cellToStruct(opt);
-        end
+opt = [varargin{:}];
+if ~isstruct(opt) && iscell(opt)
+    opt = opt_cellToStruct(opt);
 end
 
-%% Creating Montage
 output_str = [];
 if ~isfield(opt, 'Colormap') opt.Colormap = 'parula'; end
 if ~isfield(opt, 'Quality') opt.Quality = 'high'; end
@@ -28,10 +17,10 @@ if ~isfield(opt, 'Class') opt.Class = {SMT.class{1,2}}; end
 if ~isfield(opt, 'Baseline') opt.Baseline = [SMT.ival(1) SMT.ival(1)]; end
 if ~isfield(opt, 'SelectTime') opt.SelectTime = [SMT.ival(1) SMT.ival(end)]; end
 if ~isfield(opt, 'Interval') opt.Interval = [opt.SelectTime(1) opt.SelectTime(end)]; end
-if ~isfield(opt, 'Channels') opt.Channels = {SMT.chan{1:5}}; end
 if ~isfield(opt, 'Range') opt.Range = 'sym'; end
+if ~isfield(opt, 'Plots') opt.Plots = gca; end
 
-grp_plots = plts;
+grp_plots = opt.Plots;
 
 % scalp_plot quality
 switch lower(opt.Quality)
@@ -47,7 +36,7 @@ end
 % Scalp colormap;
 colormap(opt.Colormap);
 
-
+%% Creating Montage
 MNT = opt_getMontage(SMT);
 
 if ~isequal(MNT.chan, SMT.chan)
@@ -68,24 +57,22 @@ if ~isequal(MNT.chan, SMT.chan)
     SMT.chan = SMT.chan(tmp);
     clear tmp;
 end
-    
+
 idx = 1;
 for i = 1: size(opt.Class, 1)
     ivalSegment = size(opt.Interval,1);
     topo_range = zeros(ivalSegment,2);
-
+    
     for seg = 1: ivalSegment
-            SMTintervalstart = find(SMT.ival == opt.Interval(seg,1));
-            SMTintervalEnd = find(SMT.ival == opt.Interval(seg,2));
+        SMTintervalstart = find(SMT.ival == opt.Interval(seg,1));
+        SMTintervalEnd = find(SMT.ival == opt.Interval(seg,2));
         if ndims(SMT.x) == 3
             ivalSMT = squeeze(SMT.x(SMTintervalstart:SMTintervalEnd,i,:));
-            w{i, seg} = mean(ivalSMT,1);
-            topo_range(seg, :) = minmax(w{i,seg});
         elseif ndims(SMT.x) == 2
             ivalSMT = squeeze(SMT.x(SMTintervalstart:SMTintervalEnd,:));
-            w{i, seg} = mean(ivalSMT,1);
-            topo_range(seg, :) = minmax(w{i,seg});
         end
+        w{i, seg} = mean(ivalSMT,1);
+        topo_range(seg, :) = minmax(w{i,seg});
     end
     %% range_options
     if ~isfloat(opt.Range)

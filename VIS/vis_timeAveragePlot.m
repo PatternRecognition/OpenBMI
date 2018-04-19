@@ -1,4 +1,4 @@
-function grp_plots = vis_timeAveragePlot(plts, SMT, varargin)
+function grp_plots = vis_timeAveragePlot(SMT, varargin)
 % Description:
 %
 % Input:
@@ -23,30 +23,23 @@ function grp_plots = vis_timeAveragePlot(plts, SMT, varargin)
 % Created by Hong Kyung, Kim
 % hk_kim@korea.ac.kr
 
-switch nargin
-    case 1
-        SMT = plts;
-        plts = gca;
-        opt = [];
-    case 2
-        opt = [];
-    case 3
-        opt = varargin{:};
-        if ~isstruct(opt)
-            opt = opt_cellToStruct(opt);
-        end
+
+opt = [varargin{:}];
+if ~isstruct(opt) && iscell(opt)
+    opt = opt_cellToStruct(opt);
 end
 
 faceColor = [{[0.8 0.8 0.8]};{[0.5 0.5 0.5]}];
 %% Options
 if ~isfield(opt, 'Channels') opt.Channels = {SMT.chan{1}}; end
-if ~isfield(opt, 'Class') opt.Class = {SMT.class{1:2,2}}; end
+if ~isfield(opt, 'Class') opt.Class = {SMT.class{1,2}}; end
 if ~isfield(opt, 'Baseline') opt.Baseline = [SMT.ival(1) SMT.ival(1)]; end
 if ~isfield(opt, 'SelectTime') opt.SelectTime = [SMT.ival(1) SMT.ival(end)]; end
 if ~isfield(opt, 'Interval') opt.Interval = [opt.SelectTime(1) opt.SelectTime(end)]; end
 if ~isfield(opt, 'Patch') opt.Patch = 'off'; end
+if ~isfield(opt, 'Plots') opt.Plots = gca; end
 
-grp_plots = plts;
+grp_plots = opt.Plots;
 
 %% TODO: time_range 변경
 % 1. class 선택
@@ -59,7 +52,7 @@ SMT = prep_selectChannels(SMT, {'Name', opt.Channels});
 if isfield(opt, 'TimeRange') && ~isempty(opt.TimeRange)
     time_range = opt.TimeRange;
 else
-    time_range = minmax(reshape(SMT.x, 1, [])) .* 1.2;
+    time_range = minmax(reshape(SMT.x, 1, []));
 end
 
 idx = 1;

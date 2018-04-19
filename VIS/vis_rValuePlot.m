@@ -1,4 +1,4 @@
-function grp_plots = vis_rValuePlot(plts, SMT, varargin)
+function grp_plots = vis_rValuePlot(SMT, varargin)
 % Description:
 %
 % Input:
@@ -24,23 +24,14 @@ function grp_plots = vis_rValuePlot(plts, SMT, varargin)
 
 
 %% TODO
-% 1. r-Value 검증
+% 1. r-Value 검증 -> DONE
 % 2. r-Value topo와 같이...쩝...
 %%
-
-switch nargin
-    case 1
-        SMT = plts;
-        plts = gca;
-        opt = [];
-    case 2
-        opt = [];
-    case 3
-        opt = varargin{:};
-        if ~isstruct(opt)
-            opt = opt_cellToStruct(opt);
-        end
+opt = [varargin{:}];
+if ~isstruct(opt) && iscell(opt)
+    opt = opt_cellToStruct(opt);
 end
+
 
 faceColor = [{[0.8 0.8 0.8]};{[0.5 0.5 0.5]}];
 %% Options
@@ -51,26 +42,18 @@ if ~isfield(opt, 'SelectTime') opt.SelectTime = [SMT.ival(1) SMT.ival(end)]; end
 if ~isfield(opt, 'Interval') opt.Interval = [opt.SelectTime(1) opt.SelectTime(end)]; end
 if ~isfield(opt, 'Patch') opt.Patch = 'off'; end
 if ~isfield(opt, 'TopoPlot') opt.TopoPlot = 'off'; end
+if ~isfield(opt, 'Plots') opt.Plots = gca; end
 
-grp_plots = plts;
-% SMT = prep_selectClass(SMT,{'class', opt.Class});
-% if isfield(opt, 'Envelope') && opt.Envelope
-%     SMT = prep_envelope(SMT);
-% end
-% SMT = prep_baseline(SMT, {'Time', opt.Baseline});
-% SMT = prep_selectTime(SMT, {'Time', opt.SelectTime});
-% SMT = proc_rSquareSigned(SMT);
-
+grp_plots = opt.Plots;
 opt.Class = SMT.class(1,2);
-
-idx = 1;
 
 if strcmpi(opt.TopoPlot, 'on')
     opt.Range = 'sym';
-    vis_topoPlot(plts(1:end-1),SMT, opt);
+    opt.Plots = grp_plots(1:end-1);
+    vis_topoPlot(SMT, opt);
 end
 
-idx = length(plts);    
+idx = length(grp_plots);    
 
 SMT = prep_selectChannels(SMT, {'Name',  opt.Channels});
 
