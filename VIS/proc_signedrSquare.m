@@ -1,4 +1,4 @@
-function out = proc_rSquareSigned(SMT, varargin)
+function out = proc_signedrSquare(SMT, varargin)
 %     SMT = proc_rValue(SMT);
 
 if size(SMT.class, 1) > 2
