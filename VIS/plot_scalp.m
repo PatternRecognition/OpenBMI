@@ -23,9 +23,12 @@ zg(mask)=NaN;
 contourf(ax, xg, yg, zg, 50, 'LineStyle','none');
 hold(ax,'on');
 
+
+%% TODO: patch 검증... 이게 꼭 필요한 함수인가... 2014b 호환되지 않음
 patch(ax, [0 0], [0 0], [1 2]);
 ccc = get(ax, 'children');
 set(ccc(1), 'Visible', 'off');
+%%
 set(ax, 'CLim', p_range);
 % ----------------------------------------------------------------------
 % contour line

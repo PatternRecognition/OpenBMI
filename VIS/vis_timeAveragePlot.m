@@ -58,7 +58,7 @@ end
 idx = 1;
 for ch_num = find(ismember(SMT.chan, opt.Channels)) 
     plot(grp_plots(idx), SMT.ival, SMT.x(:,:,ch_num),'LineWidth',2); hold on;
-    legend(grp_plots(idx),opt.Class, 'Interpreter', 'none', 'AutoUpdate', 'off');
+    legend(grp_plots(idx),opt.Class, 'Interpreter', 'none', 'AutoUpdate', 'off'); % TODO: 2014b 호환되지 않음 'AutoUpdate'
     %         set({'color'}, co(1:size(avgSMT.class, 1)));
     
     grid(grp_plots(idx), 'on');

@@ -61,7 +61,7 @@ time_range = [min(reshape(SMT.x, [], 1)), max(reshape(SMT.x, [], 1))]*1.2;
 
 for ch_num = 1:size(SMT.class,1)    
     plot(grp_plots(idx), SMT.ival, SMT.x,'LineWidth',2); hold on;
-    legend(grp_plots(idx), SMT.chan(:), 'Interpreter', 'none', 'AutoUpdate', 'off');
+    legend(grp_plots(idx), SMT.chan(:), 'Interpreter', 'none', 'AutoUpdate', 'off'); % TODO: 2014b 호환되지 않음 'AutoUpdate'
     %         set({'color'}, co(1:size(avgSMT.class, 1)));
     
     grid(grp_plots(idx), 'on');
