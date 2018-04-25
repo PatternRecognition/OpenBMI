@@ -1,6 +1,7 @@
 function mrk = Imag_Arrow( mrko, varargin )
 
 %classification trigger from stimulation
+%the stifDef should have 4 digit
 stimDef={'S  1','S  2','S  3';
           'class1', 'class2', 'class3'};
 
