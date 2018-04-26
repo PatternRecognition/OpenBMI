@@ -5,5 +5,5 @@ This format ('set) is the file format used within the EEGLAB and BCILAB toolbox.
 This procedure consists of total 4 steps.
 - 1st step: randomizing the order of trials in the same subject
 - 2nd step: changing the dimensions of the data from 3-d to 2-d for each subject
-- 3nd step: (updating soon)
+- 3nd step: merging data from all subjects into one file
 - 4th setp: (updating soon)
