@@ -42,7 +42,8 @@ end
 n_cls = size(dat.y_logic,1);
 tri_cls = cell(1,n_cls);
 for cls = 1:n_cls
-    tri_cls{cls} = mean(dat.x(:,(dat.y_dec==str2double(dat.class{cls,1})),:),2);
+    clsdat = dat.x(:,dat.y_logic(cls,:),:);
+    tri_cls{cls} = mean(clsdat,2);
 end
 x = cat(2,tri_cls{1:end});
 
