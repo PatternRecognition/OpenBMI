@@ -49,11 +49,7 @@ if ~isequal(MNT.chan, SMT.chan)
         output_str = {''; [output_str, ' are missed']};
     end
     [a, tmp] = ismember(MNT.chan, SMT.chan);
-    if ndims(SMT.x) == 3
-        SMT.x = SMT.x(:,:,tmp);
-    elseif ndims(SMT.x) == 2
-        SMT.x = SMT.x(:, tmp);
-    end
+    SMT.x = SMT.x(:,:,tmp);
     SMT.chan = SMT.chan(tmp);
     clear tmp;
 end
@@ -66,11 +62,7 @@ for i = 1: size(opt.Class, 1)
     for seg = 1: ivalSegment
         SMTintervalstart = find(SMT.ival == opt.Interval(seg,1));
         SMTintervalEnd = find(SMT.ival == opt.Interval(seg,2));
-        if ndims(SMT.x) == 3
-            ivalSMT = squeeze(SMT.x(SMTintervalstart:SMTintervalEnd,i,:));
-        elseif ndims(SMT.x) == 2
-            ivalSMT = squeeze(SMT.x(SMTintervalstart:SMTintervalEnd,:));
-        end
+        ivalSMT = squeeze(SMT.x(SMTintervalstart:SMTintervalEnd,i,:));
         w{i, seg} = mean(ivalSMT,1);
         topo_range(seg, :) = minmax(w{i,seg});
     end

@@ -1,4 +1,4 @@
-function output = vis_plotCont2(SMT, varargin)
+function output = vis_plotCont2(averaged_SMT, averaged_SMT_r, varargin)
 % Hong Kyung, Kim
 % hk_kim@korea.ac.kr
 
@@ -9,19 +9,19 @@ output_str = {'';'';'Finished'};
 opt = opt_cellToStruct(varargin{:});
 
 if ~isfield(opt, 'Interval')
-    opt.Interval = [SMT.ival(1) SMT.ival(end)];
+    opt.Interval = [averaged_SMT.ival(1) averaged_SMT.ival(end)];
 end
 if ~isfield(opt, 'Channels')
-    opt.Channels = {SMT.chan{1}};
+    opt.Channels = {averaged_SMT.chan{1}};
 end
 if ~isfield(opt, 'Class')
-    opt.Class = {SMT.class{1,2}};
+    opt.Class = {averaged_SMT.class{1,2}};
 end
 if ~isfield(opt, 'baseline')
     opt.baseline = [];
 end
 if ~isfield(opt, 'SelectTime')
-    opt.SelectTime = [SMT.ival(1) SMT.ival(end)];
+    opt.SelectTime = [averaged_SMT.ival(1) averaged_SMT.ival(end)];
 end
 if ~isfield(opt, 'Align')
     opt.Align = 'vert';
@@ -34,7 +34,7 @@ class = opt.Class;
 plts = vis_subplotTemplate(opt);
 plt_idx = 1;
 %% Pre-processing
-[averaged_SMT, averaged_SMT_r] = untitled_function(SMT, opt);
+% [averaged_SMT, averaged_SMT_r] = untitled_function(SMT, opt);
 %% time-domain plot
 if isfield(opt, 'TimePlot') && isequal(opt.TimePlot, 'on')
     opt.Plots = plts(plt_idx:plt_idx+length(chan) - 1);
