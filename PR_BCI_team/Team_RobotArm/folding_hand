@@ -1,7 +1,7 @@
 clc; clear all; close all;
 
 dd='E:\Code_overall\Data\Converted\Grasp_Twist\';
-filelist={'20180323_jgyoon2_twist_MI'};
+filelist={'file1'};
 
 classes=3;
 fold=5;
@@ -18,9 +18,9 @@ for i = 1:length(filelist)
    %% cnt to epoch
     epo=cntToEpo(cnt,mrk,ival);
     %% Extract the Rest class
-    epoLeft=proc_selectClasses(epo,{'Left'});
-    epoRight=proc_selectClasses(epo,{'Right'});
-    epoRest=proc_selectClasses(epo,{'Rest'});
+    epoLeft=proc_selectClasses(epo,{'class1'});
+    epoRight=proc_selectClasses(epo,{'class2'});
+    epoRest=proc_selectClasses(epo,{'class3'});
     
     %% extract the number of trial
     trial=size(epoLeft.x,3);
