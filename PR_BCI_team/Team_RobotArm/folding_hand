@@ -1,6 +1,6 @@
 clc; clear all; close all;
 
-dd='E:\Code_overall\Data\Converted\Grasp_Twist\';
+dd='dir';
 filelist={'file1'};
 
 classes=3;
