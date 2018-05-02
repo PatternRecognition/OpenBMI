@@ -1,4 +1,4 @@
-function output = vis_plotCont2(averaged_SMT, averaged_SMT_r, varargin)
+function output = vis_plotController(averaged_SMT, averaged_SMT_r, varargin)
 % Hong Kyung, Kim
 % hk_kim@korea.ac.kr
 
@@ -42,14 +42,14 @@ if isfield(opt, 'TimePlot') && isequal(opt.TimePlot, 'on')
     vis_grpYlabel(time_plt, 'Time-Domain');
     plt_idx = plt_idx + length(time_plt);
 end
-%% ERDERS plot
-if isfield(opt, 'ErdPlot') && isequal(opt.ErdPlot, 'on')
-    opt.Envelope = true;
-    opt.Plots = plts(plt_idx:plt_idx+length(chan) - 1);
-    erders_plt = vis_timeAveragePlot(averaged_SMT, opt);
-    vis_grpYlabel(erders_plt, 'ERD/ERS');
-    plt_idx = plt_idx + length(erders_plt);
-end
+% %% ERDERS plot
+% if isfield(opt, 'ErdPlot') && isequal(opt.ErdPlot, 'on')
+%     opt.Envelope = true;
+%     opt.Plots = plts(plt_idx:plt_idx+length(chan) - 1);
+%     erders_plt = vis_timeAveragePlot(averaged_SMT, opt);
+%     vis_grpYlabel(erders_plt, 'ERD/ERS');
+%     plt_idx = plt_idx + length(erders_plt);
+% end
 %% FFT Plot
 if isfield(opt, 'FFTPlot') && isequal(opt.FFTPlot , 'on')
     opt.Plots = plts(plt_idx:plt_idx+size(class,1)*length(chan) - 1);
@@ -72,7 +72,7 @@ end
 if isfield(opt, 'rValue') && isequal(opt.rValue, 'on')
     opt.Plots = plts(plt_idx:plt_idx+(isequal(opt.TopoPlot, 'on')*size(interval, 1)));
     r_plt = vis_rValuePlot(averaged_SMT_r, opt);
-    vis_grpYlabel(r_plt, 'r-Value');
+    vis_grpYlabel(r_plt, 'r-value');
     plt_idx = plt_idx + length(r_plt);
 end
 output = output_str;
