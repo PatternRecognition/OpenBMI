@@ -461,7 +461,7 @@ try
         'Colormap', cm; 'Patch', Patch; 'Quality', quality; ...
         'SelectTime', selTime; 'TimeRange', ylimRange};
     [avSMT, rSMT] = untitled_function(handles.data);
-    output = vis_plotCont2(avSMT, rSMT, options);
+    output = vis_plotController(avSMT, rSMT, options);
 catch error
     close gcf;
     output = {'';'Unexpected Error Occurred in';...
