@@ -99,6 +99,6 @@ for i = 1: size(opt.Class, 1)
     tmp(3:4) = last_position(3:4);
     set(grp_plots(idx - 1),'Position',tmp);
     set(get(grp_plots(idx - size(opt.Interval, 1)),'Ylabel'), 'Visible','on', 'String', {opt.Class{i};''}, ...
-        'Interpreter', 'none', 'FontWeight', 'normal', 'FontSize', 12);
+        'FontWeight', 'normal', 'FontSize', 12);
 end
 end
