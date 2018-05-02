@@ -48,7 +48,7 @@ grp_plots = opt.Plots;
 opt.Class = SMT.class(1,2);
 
 if strcmpi(opt.TopoPlot, 'on')
-    opt.Range = 'sym';
+    opt.Range = 'mean';
     opt.Plots = grp_plots(1:end-1);
     vis_topoPlot(SMT, opt);
 end
