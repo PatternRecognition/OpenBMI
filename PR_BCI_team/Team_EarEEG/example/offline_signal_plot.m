@@ -5,7 +5,6 @@ clc; clear all; close all;
 field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
 % marker={'1','right';'2','left';'3','rest';'11','pause';'22','resume';'111','start';'222','end'};
 marker={'1','1';'2','2';'3','3'};
-%'11','pause';'22','resume';'111','start';'222','end'};
 % marker={'1','up';'2','left'; '3', 'right'; '4', 'down'};
 fs=500;   %chan_resampling
 %% data path
