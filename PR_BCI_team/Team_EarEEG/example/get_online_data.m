@@ -18,3 +18,8 @@ inlet = lsl_inlet(result{1});
 % figure
 disp('Now receiving chunked data...');
 
+%% cap EEG
+global state ;
+bbci_acquire_bv('close');
+params = struct;
+state = bbci_acquire_bv('init', params);
