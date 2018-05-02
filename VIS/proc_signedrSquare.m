@@ -21,7 +21,7 @@ SMT.x = rval;
 SMT.x = SMT.x .* abs(SMT.x);
 SMT.se = se;
 
-SMT.class = {'1', 'sgnr^2'};
+SMT.class = {'1', 'sgn r^2'};
 SMT = rmfield(SMT,{'t','y_dec','y_logic','y_class'});
 
 out = SMT;
