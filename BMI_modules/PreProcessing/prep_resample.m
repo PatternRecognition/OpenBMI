@@ -33,7 +33,7 @@ function [out] = prep_resample(dat, fs, varargin)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if isempty(varargin)
-    disp('The number of removed samples is 0 (default)');
+%     disp('The number of removed samples is 0 (default)');
     opt.Nr = 0;
 elseif ~iscell(varargin)
     warning('OpenBMI: Number of samples to be removed should be in a correct form, cell type')
@@ -75,5 +75,9 @@ else
     return
 end
 
+lag = dat.fs/fs;
+t = dat.t./lag;
+%%
 out.fs = fs;
 out.x = x;
+out.t = t;
