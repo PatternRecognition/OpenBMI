@@ -8,12 +8,11 @@ marker={'1','1';'2','2';'3','3'};
 % marker={'1','up';'2','left'; '3', 'right'; '4', 'down'};
 fs=500;   %chan_resampling
 %% data path
-
+filepath='C:\Users\cvpr\Documents\data';
 %% eeg - ear
 % ear EEG - eeg file
-filepath='C:\Users\cvpr\Documents\data';
-ear_file='record-[2018.01.18-15.46.53]';
-ear_file=sprintf('ear_%s',filename);
+filename='record-[2018.01.18-15.46.53]';
+% ear_file=sprintf('ear_%s',filename);
 file=fullfile(filepath,filename);
 [ear_EEG.data, ear_EEG.marker, ear_EEG.info]=Load_EEG(file,{'device','brainVision';'marker',marker;'fs',fs});
 ear_cnt=opt_eegStruct({ear_EEG.data, ear_EEG.marker, ear_EEG.info}, field);
