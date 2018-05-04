@@ -37,7 +37,7 @@ faceColor = [{[0.8 0.8 0.8]};{[0.5 0.5 0.5]}];
 %% Options
 if ~isfield(opt, 'Channels') opt.Channels = {SMT.chan{1}}; end
 if ~isfield(opt, 'Class') opt.Class = {SMT.class{1,2}}; end
-if ~isfield(opt, 'Baseline') opt.Baseline = [SMT.ival(1) SMT.ival(1)]; end
+if ~isfield(opt, 'baseline') opt.baseline = [SMT.ival(1) SMT.ival(1)]; end
 if ~isfield(opt, 'SelectTime') opt.SelectTime = [SMT.ival(1) SMT.ival(end)]; end
 if ~isfield(opt, 'Interval') opt.Interval = [opt.SelectTime(1) opt.SelectTime(end)]; end
 if ~isfield(opt, 'Patch') opt.Patch = 'off'; end
@@ -49,46 +49,48 @@ opt.Class = SMT.class(1,2);
 
 if strcmpi(opt.TopoPlot, 'on')
     opt.Range = 'mean';
-    opt.Plots = grp_plots(1:end-1);
+    opt.Plots = grp_plots(1:end-(strcmpi(opt.TimePlot, 'on')));
     vis_topoPlot(SMT, opt);
 end
 
-idx = length(grp_plots);    
-
-SMT = prep_selectChannels(SMT, {'Name',  opt.Channels});
-
-time_range = [min(reshape(SMT.x, [], 1)), max(reshape(SMT.x, [], 1))]*1.2;
-
-for ch_num = 1:size(SMT.class,1)    
-    plot(grp_plots(idx), SMT.ival, squeeze(SMT.x(:,1,:)),'LineWidth',2); hold on;
-    legend(grp_plots(idx), SMT.chan(:), 'Interpreter', 'none', 'AutoUpdate', 'off'); % TODO: 2014b 호환되지 않음 'AutoUpdate'
-    %         set({'color'}, co(1:size(avgSMT.class, 1)));
+if strcmpi(opt.TimePlot, 'on')
+    idx = length(grp_plots);
     
-    grid(grp_plots(idx), 'on');
-    ylim(grp_plots(idx), time_range);
-    xlim(grp_plots(idx), [SMT.ival(1) SMT.ival(end)]);
+    SMT = prep_selectChannels(SMT, {'Name',  opt.Channels});
     
-    if isequal(opt.Patch, 'on')
-        % baselin patch
-        base_patch = min(abs(time_range))*0.05;
+    time_range = [min(reshape(SMT.x, [], 1)), max(reshape(SMT.x, [], 1))]*1.2;
+    
+    for ch_num = 1:size(SMT.class,1)
+        plot(grp_plots(idx), SMT.ival, squeeze(SMT.x(:,1,:)),'LineWidth',2); hold on;
+        legend(grp_plots(idx), SMT.chan(:), 'Interpreter', 'none', 'AutoUpdate', 'off'); % TODO: 2014b 호환되지 않음 'AutoUpdate'
+        %         set({'color'}, co(1:size(avgSMT.class, 1)));
         
-        patch(grp_plots(idx), 'XData', [opt.Baseline(1)  opt.Baseline(2) opt.Baseline(2) opt.Baseline(1)], ...
-            'YData', [-base_patch -base_patch base_patch base_patch],...
-            'FaceColor', 'k',...
-            'FaceAlpha', 0.7, 'EdgeAlpha', 0,'faceOffsetBias', -11);
-        % ival patch
-        for ival = 1:size(opt.Interval,1)
-            patch(grp_plots(idx), 'XData', [opt.Interval(ival,1) opt.Interval(ival,2) opt.Interval(ival,2) opt.Interval(ival,1)],...
-                'YData', [time_range(1) time_range(1) time_range(2) time_range(2)],...
-                'FaceColor', faceColor{mod(ival,2)+1},...
-                'FaceAlpha', 0.3, 'EdgeAlpha', 0,'faceOffsetBias', -11);
+        grid(grp_plots(idx), 'on');
+        ylim(grp_plots(idx), time_range);
+        xlim(grp_plots(idx), [SMT.ival(1) SMT.ival(end)]);
+        
+        if isequal(opt.Patch, 'on')
+            % baselin patch
+            base_patch = min(abs(time_range))*0.05;
+            
+            patch(grp_plots(idx), 'XData', [opt.Baseline(1)  opt.Baseline(2) opt.Baseline(2) opt.Baseline(1)], ...
+                'YData', [-base_patch -base_patch base_patch base_patch],...
+                'FaceColor', 'k',...
+                'FaceAlpha', 0.7, 'EdgeAlpha', 0,'faceOffsetBias', -11);
+            % ival patch
+            for ival = 1:size(opt.Interval,1)
+                patch(grp_plots(idx), 'XData', [opt.Interval(ival,1) opt.Interval(ival,2) opt.Interval(ival,2) opt.Interval(ival,1)],...
+                    'YData', [time_range(1) time_range(1) time_range(2) time_range(2)],...
+                    'FaceColor', faceColor{mod(ival,2)+1},...
+                    'FaceAlpha', 0.3, 'EdgeAlpha', 0,'faceOffsetBias', -11);
+            end
+            
+            tmp = get(grp_plots(idx), 'Children');
+            set(grp_plots(idx), 'Children', flip(tmp));
         end
-        
-        tmp = get(grp_plots(idx), 'Children');
-        set(grp_plots(idx), 'Children', flip(tmp));
+        ylabel(grp_plots(idx), SMT.class(1,2), 'Rotation', 90, 'FontWeight', 'normal', 'FontSize', 12);
+        hold(grp_plots(idx), 'off');
+        idx = idx + 1;
     end
-    ylabel(grp_plots(idx), SMT.class(1,2), 'Rotation', 90, 'FontWeight', 'normal', 'FontSize', 12);
-    hold(grp_plots(idx), 'off');
-    idx = idx + 1;
 end
 end
