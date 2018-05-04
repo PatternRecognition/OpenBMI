@@ -10,9 +10,9 @@ end
 if ~isfield(opt, 'TimePlot')
     opt.TimePlot = 'off';
 end
-if ~isfield(opt, 'ErdPlot')
-    opt.ErdPlot = 'off';
-end
+% if ~isfield(opt, 'ErdPlot')
+%     opt.ErdPlot = 'off';
+% end
 if ~isfield(opt, 'rValue')
     opt.rValue = 'off';
 end
@@ -31,53 +31,72 @@ interval = size(opt.Interval, 1);
 
 num_fp = channels * class * strcmpi(opt.FFTPlot, 'on');
 num_tp = channels * strcmpi(opt.TimePlot, 'on');
-num_ep = channels * strcmpi(opt.ErdPlot, 'on');
+% num_ep = channels * strcmpi(opt.ErdPlot, 'on');
 num_rp = double(strcmpi(opt.rValue, 'on'));
 num_topo_row = (class + num_rp) * strcmpi(opt.TopoPlot, 'on');
 num_topo_col = interval * strcmpi(opt.TopoPlot, 'on');
 
-graph_plt = gobjects(1,sum([num_fp,num_tp, num_ep]));
+% graph_plt = gobjects(1,sum([num_fp,num_tp, num_ep]));
+time_plt = gobjects(1,num_tp);
+fft_plt = gobjects(1,num_fp);
 topo_plt = gobjects(1,(num_topo_row - num_rp)*num_topo_col);
-r_plt = gobjects(1, num_rp * num_topo_col + num_rp);
+r_plt = gobjects(1, num_rp * num_topo_col + num_rp *  strcmpi(opt.TimePlot, 'on'));
 %
 % graph_plt = [];
 % topo_plt = [];
 % r_plt = [];
-
 
 fig = figure('Color', 'w');
 set(fig, 'ToolBar', 'none');
 
 monitor_screensize = get(0, 'screensize');
 
-if strcmpi(opt.Align, 'vert') || xor( sum([num_fp, num_tp, num_ep]), num_topo_row * num_topo_col)
+if strcmpi(opt.Align, 'vert') || xor(sum([num_fp, num_tp]), num_topo_row * num_topo_col)
     set(gcf,'Position',[monitor_screensize(3)/4,  monitor_screensize(4)/20,...
         monitor_screensize(3)/2, monitor_screensize(3)/2]);
     
-    sr = num_tp + num_ep + num_fp + num_topo_row + num_rp;
+%     sr = num_tp + num_ep + num_fp + num_topo_row + num_rp;
+    sr = num_tp + num_fp + num_topo_row + num_rp * strcmpi(opt.TimePlot, 'on');
     sc = max(num_topo_col, 1);
     %% graph
     template = [1 sc];
-    for i = 1:num_tp + num_ep + num_fp
-        graph_plt(i) = subplot(sr, sc, template);
-        template = template + sc;
+    if isequal(opt.TimePlot, 'on')
+        for i = 1:num_tp
+            time_plt(i) = subplot(sr, sc, template);
+            template = template + sc;
+        end
+    end
+    
+    if isequal(opt.FFTPlot, 'on')
+        for i = 1: num_fp
+            fft_plt(i) = subplot(sr, sc, template);
+            template = template + sc;
+        end
     end
     %% topo
-    template = template(1);
-    for i = 1:(num_topo_row-num_rp) * num_topo_col
-        topo_plt(i) = subplot(sr, sc, template);
-        template = template + 1;
+    if isequal(opt.TopoPlot, 'on')
+        template = template(1);
+        for i = 1:(num_topo_row-num_rp) * num_topo_col
+            topo_plt(i) = subplot(sr, sc, template);
+            template = template + 1;
+        end
     end
     %% r-value
-    template = template(1);
-    for i = 1:num_rp * num_topo_col
-        r_plt(i) = subplot(sr, sc, template);
-        template = template + 1;
+    if isequal(opt.rValue, 'on')
+        if isequal(opt.TopoPlot, 'on')
+            template = template(1);
+            for i = 1:num_rp * num_topo_col
+                r_plt(i) = subplot(sr, sc, template);
+                template = template + 1;
+            end
+        end
+        %%TODO::
+        if isequal(opt.TimePlot, 'on')
+            template = [template(1) template(1)+sc-1];
+            r_plt(max([num_rp * num_topo_col,1])) = subplot(sr, sc, template);
+            template = template + sc;
+        end
     end
-    template = [template template+sc-1];
-    %%TODO::
-    r_plt(i+1) = subplot(sr, sc, template);
-    template = template + sc;
     
 elseif strcmpi(opt.Align, 'horz')
     set(gcf,'Position',[monitor_screensize(3)/4,  monitor_screensize(4)/4,...
@@ -94,7 +113,7 @@ elseif strcmpi(opt.Align, 'horz')
     %% graph
     template = [1 (num_topo_row-1)*sc+num_topo_col];
     for i = 1:num_tp + num_ep + num_fp
-        graph_plt(i) = subplot(sr, sc, template);
+        time_plt(i) = subplot(sr, sc, template);
         template = template + num_topo_row*sc;
     end
     %% topo
@@ -116,7 +135,7 @@ elseif strcmpi(opt.Align, 'horz')
     end
 end
 
-out = horzcat(graph_plt, topo_plt, r_plt);
+out = horzcat(time_plt, fft_plt, topo_plt, r_plt);
 end
 
 function test(sr, sc)
