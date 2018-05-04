@@ -27,12 +27,12 @@ SMT = prep_selectChannels(SMT, {'Name', opt.Channels});
 %%
 [YfreqDomain, frequencyRange] = positiveFFT(SMT.x, SMT.fs);
 
-mask = frequencyRange > 0.5;
+mask = frequencyRange >= 0;
 
 YfreqDomain = abs(YfreqDomain(mask, :));
 frequencyRange = frequencyRange(mask);
 
-freqXLIM = [frequencyRange(1) 25];
+freqXLIM = [frequencyRange(1) 50];
 freqYLIM = [0 max(reshape(YfreqDomain, 1, []))];
 
 idx = 1;
