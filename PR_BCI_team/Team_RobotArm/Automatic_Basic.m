@@ -1,13 +1,10 @@
-%% �ڵ�ȭ
+%% ÀÚµ¿È­
 tic;
 clc; close all; clear all;
 
-dd='E:\Code_overall\Data\Converted\Grasp_Twist\';
-filelist={'20180323_jgyoon2_twist_MI'};
-%44%
+dd='dir';
+filelist={'subj1'};
 
-% dd='E:\Code_overall\Data\Converted\Reaching\';
-% filelist={'20180208_jgyoon_reaching_MI'};
 
 fold=5;
 
