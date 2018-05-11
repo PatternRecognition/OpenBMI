@@ -93,7 +93,7 @@ if strcmpi(opt.Align, 'vert') || xor(sum([num_fp, num_tp]), num_topo_row * num_t
         %%TODO::
         if isequal(opt.TimePlot, 'on')
             template = [template(1) template(1)+sc-1];
-            r_plt(max([num_rp * num_topo_col,1])) = subplot(sr, sc, template);
+            r_plt(num_rp * num_topo_col + 1) = subplot(sr, sc, template);
             template = template + sc;
         end
     end

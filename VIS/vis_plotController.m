@@ -1,9 +1,14 @@
-function output = vis_plotController(averaged_SMT, rval_SMT, varargin)
+function [out_str, out_plts] = vis_plotController(averaged_SMT, rval_SMT, varargin)
 % Hong Kyung, Kim
 % hk_kim@korea.ac.kr
 
 %% output_string
-output_str = {'';'';'Finished'};
+out_str = {'';'';'Finished'};
+
+if nargin == 2
+    varargin = {rval_SMT};
+    rval_SMT = [];
+end
 
 %% Options
 opt = opt_cellToStruct(varargin{:});
@@ -84,5 +89,5 @@ if isequal(opt.rValue, 'on')
     vis_grpYlabel(r_plt, 'r-value');
     plt_idx = plt_idx + length(r_plt);
 end
-output = output_str;
+out_plts = plts;
 end
