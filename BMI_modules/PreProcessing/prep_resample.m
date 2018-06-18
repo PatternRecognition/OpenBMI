@@ -75,9 +75,11 @@ else
     return
 end
 
-lag = dat.fs/fs;
-t = dat.t./lag;
+if isfield(dat, 't')
+    lag = dat.fs/fs;
+    t = dat.t./lag;
+    out.t = t;
+end
 %%
 out.fs = fs;
 out.x = x;
-out.t = t;
