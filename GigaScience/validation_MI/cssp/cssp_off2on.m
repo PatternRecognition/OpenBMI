@@ -44,7 +44,4 @@ FT_te=func_featureExtraction(SMT_te, {'feature','logvar'});
 
 [loss out]=eval_calLoss(FT_te.y_dec, cf_out);
 Acc=1-loss';
-% fprintf('CSSP: %.2f%%\n', Acc);
-
-
 end

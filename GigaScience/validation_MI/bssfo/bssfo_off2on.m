@@ -33,11 +33,11 @@ for iii=1:bssfo_opt.numIteration
     SMTfb=func_projection(SMTte, CSP_W);
     FTfb=func_featureExtraction(SMTfb, {'feature','logvar'});
     [cf_out]=func_predict(FTfb, CF_PARAM);
-    a(:,iii)=cf_out.*FilterBand.weight(iii);
+    ensemble(:,iii)=cf_out.*FilterBand.weight(iii); %
     clear CNTte SMTte FTfb CSP_W
 end
-A = sum(a,2);
+sum_ensemble = sum(ensemble,2); %
 %%
-[loss out]=eval_calLoss(CNT{2}.y_dec, A);
+[loss out]=eval_calLoss(CNT{2}.y_dec, sum_ensemble); %
 Acc=1-loss;
 end

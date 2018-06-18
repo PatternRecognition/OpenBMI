@@ -1,12 +1,17 @@
 %% MI validation
-% Initialization
-session = {'session1', 'session2'};
-dir = 'G:\DB\';
-fs=100;
-totalNUM=54;
+clear all; clc; close all;
+%% initialization
+DATADIR = 'WHERE\IS\DATA';
+%% MI
+MIDATA = 'EEG_MI.mat';
+STRUCTINFO = {'EEG_MI_train', 'EEG_MI_test'};
+SESSIONS = {'session1', 'session2'};
+TOTAL_SUBJECTS = 54;
+FS=100;
 
-general_initparam = { 'task',{'mi_off','mi_on'}; ...
-    'channel_index', [8 9 10 11 13 14 15 18 19 20 21 33 34 35 36 37 38 39 40 41]; ...
+%% PERFORMANCE PARAMETERS
+params = { 'task',{'mi_off','mi_on'}; ...
+    'channel_index', [8:11 13:15 18:21 33:41]; ...
     'band', [8 30]; ...
     'time_interval', [1000 3500]; ...
     'CSPFilter', 2; ...
@@ -27,24 +32,29 @@ bssfo_param = {'init_band', [4 40]; ...
     'beta_band', [14 30]; ...
     };
 %% validation
-for sess = 1:length(session)
-    for sub = 1:totalNUM
-        fprintf('%d-th ...\n',sub);
-        snum = num2str(sub);
-        filetrain = fullfile([dir, session{sess},'\s',snum,'\EEG_MI.mat']);
-        load(filetrain);
-        CNT{1} = prep_resample(EEG_MI_train, fs,{'Nr', 0});
-        CNT{2} = prep_resample(EEG_MI_test, fs,{'Nr', 0});
-        ACC.MI_cv(sub,sess) = mi_performance(CNT,general_initparam,Niteration);
-        ACC.MI_off2on(sub,sess) = mi_performance_off2on(CNT,general_initparam);     
-        ACC.MI_CSSP(sub,sess) = cssp_off2on(CNT,general_initparam,tau);
-        ACC.MI_FBCSP(sub,sess) = fbcsp_off2on(CNT,general_initparam,filterbank,NUMfeat);
-        ACC.MI_BSSFO(sub,sess) = bssfo_off2on(CNT,general_initparam,bssfo_param);
-        fprintf('CSP_crsval = %f\n',ACC.MI_cv(sub,sess));
-        fprintf('CSP = %f\n',ACC.MI_off2on(sub,sess));
-        fprintf('CSSP = %f\n',ACC.MI_CSSP(sub,sess));
-        fprintf('FBCSP = %f\n',ACC.MI_FBCSP(sub,sess));
-        fprintf('BSSFO = %f\n',ACC.MI_BSSFO(sub,sess));
-        clear CNT EEG_MI_test EEG_MI_train filetrain Dat1 Dat2
+for sessNum = 1:length(SESSIONS)
+    session = SESSIONS{sessNum};
+    fprintf('\n%s validation\n',session);
+    for subNum = 1:TOTAL_SUBJECTS
+        subject = sprintf('s%d',subNum);
+        fprintf('LOAD %s ...\n',subject);
+        
+        data = importdata(fullfile(DATADIR,session,subject,MIDATA));
+        
+        CNT{1} = prep_resample(data.(STRUCTINFO{1}), FS,{'Nr', 0});
+        CNT{2} = prep_resample(data.(STRUCTINFO{2}), FS,{'Nr', 0});        
+
+        ACC.MI_cv(subNum,sessNum) = mi_performance(CNT,params,Niteration);
+        ACC.MI_off2on(subNum,sessNum) = mi_performance_off2on(CNT,params);     
+        ACC.MI_CSSP(subNum,sessNum) = cssp_off2on(CNT,params,tau);
+        ACC.MI_FBCSP(subNum,sessNum) = fbcsp_off2on(CNT,params,filterbank,NUMfeat);
+        ACC.MI_BSSFO(subNum,sessNum) = bssfo_off2on(CNT,params,bssfo_param);
+        
+        fprintf('CSP_crsval = %f\n',ACC.MI_cv(subNum,sessNum));
+        fprintf('CSP = %f\n',ACC.MI_off2on(subNum,sessNum));
+        fprintf('CSSP = %f\n',ACC.MI_CSSP(subNum,sessNum));
+        fprintf('FBCSP = %f\n',ACC.MI_FBCSP(subNum,sessNum));
+        fprintf('BSSFO = %f\n',ACC.MI_BSSFO(subNum,sessNum));
+        clear CNT
     end
 end

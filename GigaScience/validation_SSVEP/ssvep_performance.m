@@ -1,5 +1,5 @@
-function [ Acc ] = ssvep_performance( CNT , initParam)
-opt = opt_cellToStruct(initParam);
+function [ Acc ] = ssvep_performance(CNT , params)
+opt = opt_cellToStruct(params);
 %% CCA - Anaysis
 SMT=[];
 for onoff=1:2

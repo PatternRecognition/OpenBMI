@@ -1,12 +1,25 @@
 %% ERP validation
-% initialization
-session = {'session1', 'session2'};
-dir = 'G:\DB\';
-fs=100;
-totalNUM=54;
+clear all; clc; close all;
+%% initialization
+DATADIR = 'WHERE\IS\DATA';
+%% ERP
+ERPDATA = 'EEG_ERP.mat';
+STRUCTINFO = {'EEG_ERP_train', 'EEG_ERP_test'};
+SESSIONS = {'session1', 'session2'};
+TOTAL_SUBJECTS = 54;
 
-%init
-initParam = {'fs',100; ...
+%% INITIALIZATION
+FS = 100;
+
+%% PERFORMANCE PARAMETERS
+MATRICES = {'A', 'B', 'C', 'D', 'E', 'F', ...
+        'G', 'H', 'I', 'J', 'K', 'L', ...
+        'M', 'N', 'O', 'P', 'Q', 'R', ...
+        'S', 'T', 'U', 'V', 'W', 'X', ...
+        'Y', 'Z', '1', '2', '3', '4', ...
+        '5', '6', '7', '8', '9', '_'};
+    
+params = {'fs',FS; ...
     'task',{'p300_off','p300_on'}; ...
     'channel_index', [1:32]; ...
     'band', [0.5 40]; ...
@@ -17,26 +30,25 @@ initParam = {'fs',100; ...
     'init_speller_length',1; ...
     'Nsequence', 5;...
     'one_seq_time', 2.75; ...
-    'speller_text', {'A', 'B', 'C', 'D', 'E', 'F', ...
-        'G', 'H', 'I', 'J', 'K', 'L', ...
-        'M', 'N', 'O', 'P', 'Q', 'R', ...
-        'S', 'T', 'U', 'V', 'W', 'X', ...
-        'Y', 'Z', '1', '2', '3', '4', ...
-        '5', '6', '7', '8', '9', '_'}; ...
+    'speller_text',  MATRICES;...
     'spellerText_on', 'PATTERN_RECOGNITION_MACHINE_LEARNING'
 };
-%% validation
-for sess = 1:length(session)
-    for sub = 1:totalNUM
-        fprintf('%d-th ...\n',sub);
-        snum = num2str(sub);
-        filetrain = fullfile([dir, session{sess},'\s',snum,'\EEG_P300.mat']);
-        load(filetrain);
-        CNT{1} = prep_resample(EEG_P300_train, fs,{'Nr', 0});
-        CNT{2} = prep_resample(EEG_P300_test, fs,{'Nr', 0});
-        [ACC.P300(sub,sess), ACC.P300_itr(sub,sess)] = erp_performance(CNT, initParam);
-        fprintf('%d = %f\n',sub, ACC.P300(sub,sess));
-        clear CNT EEG_P300_test EEG_P300_train filetrain Dat1 Dat2
+%% VALIDATION
+for sessNum = 1:length(SESSIONS)
+    session = SESSIONS{sessNum};
+    fprintf('\n%s validation\n',session);
+    for subNum = 1:TOTAL_SUBJECTS
+        subject = sprintf('s%d',subNum);
+        fprintf('LOAD %s ...\n',subject);
+        
+        data = importdata(fullfile(DATADIR,session,subject,ERPDATA));
+        
+        CNT{1} = prep_resample(data.(STRUCTINFO{1}), FS,{'Nr', 0});
+        CNT{2} = prep_resample(data.(STRUCTINFO{2}), FS,{'Nr', 0});
+        [ACC.P300(subNum,sessNum), ACC.P300_itr(subNum,sessNum)] = erp_performance(CNT, params);
+        fprintf('%s = %.2f\n',subject, ACC.P300(subNum,sessNum));
+        clear CNT
     end
 end
+
 

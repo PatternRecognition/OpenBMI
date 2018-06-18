@@ -1,13 +1,13 @@
-function [ Acc ] = mi_performance(CNT,general_initparam,Niteration)
-opt = opt_cellToStruct(general_initparam);
+function [ Acc ] = mi_performance(CNT,params,Niteration)
+opt = opt_cellToStruct(params);
 SMT=[];
 % Pre-processing
-for onoff=1:2
-    CNTch = prep_selectChannels(CNT{onoff}, {'Index', opt.channel_index});
+for idx=1:2
+    CNTch = prep_selectChannels(CNT{idx}, {'Index', opt.channel_index});
     CNTchfilt =prep_filter(CNTch , {'frequency', opt.band});
     all_SMT = prep_segmentation(CNTchfilt, {'interval', opt.time_interval});
-    if onoff==1
-        smt= all_SMT;
+    if idx==1
+        smt = all_SMT;
         clear all_SMT
     else
         SMT = prep_addTrials(smt, all_SMT);

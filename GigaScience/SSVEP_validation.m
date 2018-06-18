@@ -1,14 +1,20 @@
 %% SSVEP validation
-% initialization
-session = {'session1', 'session2'};
-dir = 'G:\DB\';
-fs=100;
-totalNUM=54;
+clear all; clc; close all;
+%% initialization
+DATADIR = 'WHERE\IS\DATA';
+%% ERP
+SSVEPDATA = 'EEG_SSVEP.mat';
+STRUCTINFO = {'EEG_SSVEP_train', 'EEG_SSVEP_test'};
+SESSIONS = {'session1', 'session2'};
+TOTAL_SUBJECTS = 54;
+
+%% INITIALIZATION
+FS = 100;
 
 %init
-initParam = {'time', 4;...
-'freq' , [5, 7, 9, 11];...
-'fs' , 100;...
+params = {'time', 4;...
+'freq' , 60./[5, 7, 9, 11];...
+'fs' , FS;...
 'band' ,[0.5 40];...
 'channel_index', [23:32]; ...
 'time_interval' ,[0 4000]; ...
@@ -16,17 +22,20 @@ initParam = {'time', 4;...
 };
 
 %% validation
-for sess = 1:length(session)
-    for sub = 1:totalNUM
-        fprintf('%d-th ...\n',sub);
-        snum = num2str(sub);
-        filetrain = fullfile([dir, session{sess},'\s',snum,'\EEG_SSVEP.mat']);
-        load(filetrain);
-        CNT{1} = prep_resample(EEG_SSVEP_train, fs,{'Nr', 0});
-        CNT{2} = prep_resample(EEG_SSVEP_test, fs,{'Nr', 0});
-        ACC.SSVEP(sub,sess) = ssvep_performance(CNT, initParam);
-        fprintf('%d = %f\n',sub, ACC.SSVEP(sub,1));
-        clear CNT EEG_SSVEP_train EEG_SSVEP_test filetrain Dat1 Dat2
+for sessNum = 1:length(SESSIONS)
+    session = SESSIONS{sessNum};
+    fprintf('\n%s validation\n',session);
+    for subNum = 1:TOTAL_SUBJECTS
+        subject = sprintf('s%d',subNum);
+        fprintf('LOAD %s ...\n',subject);
+        
+        data = importdata(fullfile(DATADIR,session,subject,SSVEPDATA));
+        
+        CNT{1} = prep_resample(data.(STRUCTINFO{1}), FS,{'Nr', 0});
+        CNT{2} = prep_resample(data.(STRUCTINFO{2}), FS,{'Nr', 0});
+        ACC.SSVEP(subNum,sessNum) = ssvep_performance(CNT, params);
+        fprintf('%d = %f\n',subNum, ACC.SSVEP(subNum,sessNum));
+        clear CNT
     end
 end
 
