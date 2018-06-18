@@ -48,8 +48,8 @@ grp_plots = opt.Plots;
 opt.Class = SMT.class(1,2);
 
 if strcmpi(opt.TopoPlot, 'on')
-%     opt.Range = 'mean';
-    opt.Range = [-0.0008, 0.0068];
+    opt.Range = 'mean';
+%     opt.Range = [-0.008, 0.003];
     opt.Plots = grp_plots(1:end-(strcmpi(opt.TimePlot, 'on')));
     vis_topoPlot(SMT, opt);
 end
@@ -59,8 +59,8 @@ if strcmpi(opt.TimePlot, 'on')
     
     SMT = prep_selectChannels(SMT, {'Name',  opt.Channels});
     
-%     time_range = [min(reshape(SMT.x, [], 1)), max(reshape(SMT.x, [], 1))]*1.2;
-    time_range = [-0.0037, 0.0070] * 1.2;
+    time_range = [min(reshape(SMT.x, [], 1)), max(reshape(SMT.x, [], 1))]*1.2;
+%     time_range = [-0.01, 0.01] * 1.2;
     for ch_num = 1:size(SMT.class,1)
         plot(grp_plots(idx), SMT.ival, squeeze(SMT.x(:,1,:)),'LineWidth',2); hold on;
         legend(grp_plots(idx), SMT.chan(:), 'Interpreter', 'none', 'AutoUpdate', 'off'); % TODO: 2014b 호환되지 않음 'AutoUpdate'
