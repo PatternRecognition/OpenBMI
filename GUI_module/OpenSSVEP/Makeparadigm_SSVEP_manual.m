@@ -25,7 +25,7 @@ fclose('all');
 %   1 - # of trials - stimulus
 %   19              - checking the connection with analysis
 %   222             - finish
-% Made by hkkim
+% Hong-Kyung Kim
 
 %% variables
 opt=opt_cellToStruct(varargin{:});
@@ -283,8 +283,8 @@ for t=1:length(order_task)
     tic; % getting wait time for network
     Screen('Flip', w);
     if opt.online
-        flushinput(sock);
-        result = fread(sock,1);
+        flushinput(connectionServer);
+        result = fread(connectionServer,1);
         if isempty(result)
             output = 'Sorry...';
             result = 1;
