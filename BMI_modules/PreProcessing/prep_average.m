@@ -41,11 +41,15 @@ end
 
 n_cls = size(dat.y_logic,1);
 tri_cls = cell(1,n_cls);
+se = cell(1,n_cls);
 for cls = 1:n_cls
     clsdat = dat.x(:,dat.y_logic(cls,:),:);
     tri_cls{cls} = mean(clsdat,2);
+    se{cls} = nanstd(clsdat, [], 2)/sqrt(length(clsdat));
 end
 x = cat(2,tri_cls{1:end});
+se = cat(2, se{1:end});
 
 out = rmfield(dat,{'t','y_dec','y_logic','y_class'});
 out.x = x;
+out.se = se;
