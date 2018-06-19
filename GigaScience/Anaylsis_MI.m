@@ -1,4 +1,4 @@
-%% MI validation
+%% Anaylsis_MI
 clear all; clc; close all;
 %% initialization
 DATADIR = 'WHERE\IS\DATA';
