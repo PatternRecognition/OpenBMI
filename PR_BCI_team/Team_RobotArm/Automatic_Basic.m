@@ -39,6 +39,7 @@ for i = 1:length(filelist)
             epo_check(ii).y=datasample(epo_check(ii).y,trial,2,'Replace',false);
         end
     end
+    %% class should be lower then 7
     if classes<7
         epo_check(size(epo_check,2)+1)=epoRest;
     end
