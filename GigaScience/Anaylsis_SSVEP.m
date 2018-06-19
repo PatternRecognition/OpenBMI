@@ -1,4 +1,4 @@
-%% SSVEP validation
+%% Anaylsis_SSVEP
 clear all; clc; close all;
 %% initialization
 DATADIR = 'WHERE\IS\DATA';
