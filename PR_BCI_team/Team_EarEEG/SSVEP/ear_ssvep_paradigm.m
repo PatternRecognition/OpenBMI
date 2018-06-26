@@ -6,10 +6,8 @@ numTrial=20; % 20 * 3 stimulus = 60 trials -> 10s -> 600s
 
 % stimulus parameters
 timeSti=10; timeRest=2;
-freq = [5,6,7];   % 12  8.57   6.67  5.45 Hz 
-% ¿À¸í¼® [5,6,7];
-% 5,6,7,8,9,11
-% freq = [5, 7, 8, 9, 11];   % 12  8.57  7.5  6.67  5.45 Hz
+freq = [5,6,7];   % 12  10  8.57 Hz 
+
 boxSize=300; btwBox=150; 
 btw_x=450;
 btw_y=50;
@@ -17,7 +15,6 @@ color=[255 255 255];
 
 % screen parameters
 scrSize='full'; scrNum=2;
-
 
 %% send trigger
 % brain vision setting
