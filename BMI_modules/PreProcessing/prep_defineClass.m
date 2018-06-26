@@ -45,7 +45,7 @@ marker.t=old_marker.t(~nc_all);
 marker.y_class=marker.y_class(~nc_all);
 marker.nClasses=length(mrk_define);
 marker.class=varargin{:};
-marker.y_logic= zeros(length(mrk_define), numel(marker.y_dec));
+marker.y_logic= zeros(size(mrk_define,1), numel(marker.y_dec)); %% 마커 클래스가 하나일때 오류
 for i=1:nclass
     c_n=str2num(cell2mat(mrk_define(i)));
     [temp idx]=find(marker.y_dec==c_n);
