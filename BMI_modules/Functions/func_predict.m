@@ -30,10 +30,14 @@ end
 switch lower(opt.classifier)
     case 'lda'
         [ntri ndim]=size(dat);
-        if ntri~=1
-           dat=dat';
+%         if ntri~=1
+%            dat=dat';
+%         end
+        if ndim ~= size(opt.cf_param.w,1) && ntri == size(opt.cf_param.w, 1)
+            dat = dat';
         end
-        cf_out= real( dat*opt.cf_param.w+opt.cf_param.b);% + repmat(opt.cf_param.b, [1 size(fv.x,1)]) );
+            
+        cf_out= real( dat*opt.cf_param.w+opt.cf_param.b');
 end
 
 end
