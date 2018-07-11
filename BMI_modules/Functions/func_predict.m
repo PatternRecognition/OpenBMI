@@ -37,7 +37,7 @@ switch lower(opt.classifier)
             dat = dat';
         end
             
-        cf_out= real( dat*opt.cf_param.w+opt.cf_param.b');
+        cf_out= real( dat*opt.cf_param.w+repmat(opt.cf_param.b', size(dat,1),1)); %% compatibility for matlab 2014b
 end
 
 end
