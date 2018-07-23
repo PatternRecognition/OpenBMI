@@ -17,7 +17,7 @@ if ~isfield(opt, 'Class') opt.Class = {SMT.class{1,2}}; end
 if ~isfield(opt, 'Baseline') opt.Baseline = [SMT.ival(1) SMT.ival(1)]; end
 if ~isfield(opt, 'SelectTime') opt.SelectTime = [SMT.ival(1) SMT.ival(end)]; end
 if ~isfield(opt, 'Interval') opt.Interval = [opt.SelectTime(1) opt.SelectTime(end)]; end
-if ~isfield(opt, 'Range') opt.Range = 'sym'; end
+if ~isfield(opt, 'Range') || isempty(opt.Range) opt.Range = 'sym'; end
 if ~isfield(opt, 'Plots') opt.Plots = gca; end
 
 grp_plots = opt.Plots;
