@@ -48,6 +48,8 @@ r_plt = gobjects(1, num_rp * num_topo_col + num_rp *  strcmpi(opt.TimePlot, 'on'
 
 fig = figure('Color', 'w');
 set(fig, 'ToolBar', 'none');
+% Rendering Issues
+set(fig, 'RendererMode', 'painters');
 
 monitor_screensize = get(0, 'screensize');
 
