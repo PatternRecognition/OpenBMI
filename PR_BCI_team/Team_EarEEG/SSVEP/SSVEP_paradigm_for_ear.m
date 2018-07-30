@@ -5,13 +5,9 @@ numTrial=50; % 50 * 3 stim`ulus = 150 trials -> 8s/12s -> 1200s/1800s(30min)
 
 % stimulus parameters
 timeCue=1.5; timeSti=6; timeRest=2;
-% timeCue=2; timeSti=8; timeRest=1.5;
-% timeCue=1; timeSti=1; timeRest=2;
-% freq = [5,6,7];   % 12  10  8.57 7.5 Hz 
+
 freq=[6 7 8];  % 10, 8.57, 6.66667 Hz
-% ¿À¸í¼® [5,6,7];
-% 5,6,7,8,9,11
-% freq = [5, 7, 8, 9, 11];   % 12  8.57  7.5  6.67  5.45 Hz
+
 boxSize=300; btwBox=150; 
 btw_x=450;
 btw_y=50;
@@ -19,7 +15,6 @@ color=[255 255 255];
 
 % screen parameters
 scrSize='full'; scrNum=1;
-
 
 %% send trigger
 % brain vision setting
