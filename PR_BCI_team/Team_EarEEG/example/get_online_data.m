@@ -15,6 +15,7 @@ end
 % create a new inlet
 disp('Opening an inlet...');
 inlet = lsl_inlet(result{1});
+
 % figure
 disp('Now receiving chunked data...');
 

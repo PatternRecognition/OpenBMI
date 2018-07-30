@@ -2,28 +2,28 @@ clear all; clc;
 
 %% Openvibe setting
 %   openvibe acquisition sever
-%       Driver: mBrainTrain Smarting
-%       Driver Properties
+%       * Driver: mBrainTrain Smarting
+%       * Driver Properties
 %           number of channels: 27 (24 for ear-EEG signals and 3 for gyro)
 %           port number: 5
 %           sampling frequency: 500
 %           change channel name -> load -> Document\ear_chan_name.csv
 %
-%       Preferences
+%       * Preferences
 %           Select only named channels: check
 %           enable External Stimulation: check
 %           LSL_EnableSLOutput: check
 %
-%       connect -> play
+%       * connect -> play
 %       => connection complete!
 %
 %   openvibe designer
-%       open - filename: design2_TCP.mxs
-%       play
+%       * open - filename: design2_TCP.mxs
+%       * play
 %       => save, display, matlab connection
 %
-%% matlab setting
-%   add path in matlab for communication
+%% matlab setting (external files)
+%   add path in matlab for communication 
 %       matlab-openvibe communication
 %           > external\liblsl-Matlab
 %       get online data from openvibe
