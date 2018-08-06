@@ -10,6 +10,7 @@ fold=5;
 
 ival=[0 3000];
 
+%% eeg channel located on the sensorimotor cortex
 selected_class=[8 9 10 11 13 14 15 18 19 20 21 43 44 47 48 49 50 52 53 54];
 
 for i = 1:length(filelist)
