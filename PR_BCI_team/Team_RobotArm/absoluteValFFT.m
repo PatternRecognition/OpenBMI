@@ -1,4 +1,4 @@
-function [X,freq] = positiveFFT(x,Fs)
+function [X,freq] = absoluteValFFT(x,Fs)
 N = length(x); %get the number of points
 k = 0:N-1;     %create a vector from 0 to N-1
 T = N/Fs;      %get the frequency interval
