@@ -1,7 +1,6 @@
 function [out_str, out_plts] = vis_plotController(averaged_SMT, rval_SMT, varargin)
 % Hong Kyung, Kim
 % hk_kim@korea.ac.kr
-
 %% output_string
 out_str = {'';'';'Finished'};
 

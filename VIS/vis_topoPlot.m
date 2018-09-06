@@ -54,8 +54,11 @@ if ~isequal(MNT.chan, SMT.chan)
     clear tmp;
 end
 
+%% opt.clas 순서대로
+[~, selected_class_order] = ismember(opt.Class, SMT.class(:,2));
+
 idx = 1;
-for i = 1: size(opt.Class, 1)
+for i = selected_class_order'
     ivalSegment = size(opt.Interval,1);
     topo_range = zeros(ivalSegment,2);
     

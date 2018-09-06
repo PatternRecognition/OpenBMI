@@ -55,9 +55,12 @@ else
     time_range = minmax(reshape(SMT.x, 1, []));
 end
 
+%% opt.class 순서대로
+[~, selected_class_order] = ismember(opt.Class, SMT.class(:,2));
+
 idx = 1;
 for ch_num = find(ismember(SMT.chan, opt.Channels)) 
-    plot(grp_plots(idx), SMT.ival, SMT.x(:,:,ch_num),'LineWidth',2); hold on;
+    plot(grp_plots(idx), SMT.ival, SMT.x(:,selected_class_order',ch_num),'LineWidth',2); hold on;
     legend(grp_plots(idx),opt.Class, 'Interpreter', 'none', 'AutoUpdate', 'off'); % TODO: 2014b 호환되지 않음 'AutoUpdate'
     %         set({'color'}, co(1:size(avgSMT.class, 1)));
     
@@ -65,19 +68,17 @@ for ch_num = find(ismember(SMT.chan, opt.Channels))
     ylim(grp_plots(idx), time_range);
     xlim(grp_plots(idx), [SMT.ival(1) SMT.ival(end)]);
     if isequal(opt.Patch, 'on')
-        % baselin patch
+        % Baseline patch
         base_patch = min(abs(time_range))*0.1;
         
         patch(grp_plots(idx), 'XData', [opt.baseline(1)  opt.baseline(2) opt.baseline(2) opt.baseline(1)], ...
             'YData', [-base_patch -base_patch base_patch base_patch],...
-            'FaceColor', 'k',...
-            'FaceAlpha', 0.7, 'EdgeAlpha', 0,'faceOffsetBias', -11);
-        % ival patch
+            'FaceColor', 'k', 'FaceAlpha', 0.7, 'EdgeAlpha', 0,'faceOffsetBias', -11);
+        % Ival patch
         for ival = 1:size(opt.Interval,1)
             patch(grp_plots(idx), 'XData', [opt.Interval(ival,1) opt.Interval(ival,2) opt.Interval(ival,2) opt.Interval(ival,1)],...
                 'YData', [time_range(1) time_range(1) time_range(2) time_range(2)],...
-                'FaceColor', faceColor{mod(ival,2)+1},...
-                'FaceAlpha', 0.3, 'EdgeAlpha', 0,'faceOffsetBias', -11);
+                'FaceColor', faceColor{mod(ival,2)+1}, 'FaceAlpha', 0.3, 'EdgeAlpha', 0,'faceOffsetBias', -11);
         end
         
         tmp = get(grp_plots(idx), 'Children');
