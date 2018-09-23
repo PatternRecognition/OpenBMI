@@ -2,149 +2,113 @@ function out = vis_subplotTemplate(opt)
 % -----------------------------------------------------
 % FileExchange function subtightplot by F. G. Nievinski
 subplot = @(m,n,p) subtightplot(m,n,p,[0.045 0.01], 0.05, [0.06, 0.048]);
-% subplot = @(m,n,p) subtightplot(m,n,p);
 
-if ~isfield(opt, 'FFTPlot')
-    opt.FFTPlot = 'off';
-end
-if ~isfield(opt, 'TimePlot')
-    opt.TimePlot = 'off';
-end
-% if ~isfield(opt, 'ErdPlot')
-%     opt.ErdPlot = 'off';
-% end
-if ~isfield(opt, 'rValue')
-    opt.rValue = 'off';
-end
-if ~isfield(opt, 'TopoPlot')
-    opt.TopoPlot = 'off';
-end
-if ~isfield(opt, 'Align')
-    opt.Align = 'vert';
-end
+def_opt = struct('align', 'vert', 'timeplot', 'off', 'topoplot', 'off',...
+    'fftplot', 'off', 'rvalue', 'off');
+
+opt = opt_defaultParsing(def_opt, opt);
 
 RATIO = 2;
 
-channels = length(opt.Channels);
-class = size(opt.Class, 1);
-interval = size(opt.Interval, 1);
+channels = length(opt.channels);
+class = size(opt.class, 1);
+interval = size(opt.interval, 1);
 
-num_fp = channels * class * strcmpi(opt.FFTPlot, 'on');
-num_tp = channels * strcmpi(opt.TimePlot, 'on');
-% num_ep = channels * strcmpi(opt.ErdPlot, 'on');
-num_rp = double(strcmpi(opt.rValue, 'on'));
-num_topo_row = (class + num_rp) * strcmpi(opt.TopoPlot, 'on');
-num_topo_col = interval * strcmpi(opt.TopoPlot, 'on');
+n_fp = channels * class * strcmpi(opt.fftplot, 'on');
+n_tp = channels * strcmpi(opt.timeplot, 'on');
+n_rp = double(strcmpi(opt.rvalue, 'on'));
+n_topo_row = (class + n_rp) * strcmpi(opt.topoplot, 'on');
+n_topo_col = interval * strcmpi(opt.topoplot, 'on');
 
-% graph_plt = gobjects(1,sum([num_fp,num_tp, num_ep]));
-time_plt = gobjects(1,num_tp);
-fft_plt = gobjects(1,num_fp);
-topo_plt = gobjects(1,(num_topo_row - num_rp)*num_topo_col);
-r_plt = gobjects(1, num_rp * num_topo_col + num_rp *  strcmpi(opt.TimePlot, 'on'));
-%
-% graph_plt = [];
-% topo_plt = [];
-% r_plt = [];
-
-fig = figure('Color', 'w');
-set(fig, 'ToolBar', 'none');
-% Rendering Issues
-set(fig, 'RendererMode', 'painters');
+time_plt = gobjects(1,n_tp);
+fft_plt = gobjects(1,n_fp);
+topo_plt = gobjects(1,(n_topo_row - n_rp)*n_topo_col);
+r_plt = gobjects(1, n_rp * n_topo_col + n_rp *  strcmpi(opt.timeplot, 'on'));
 
 monitor_screensize = get(0, 'screensize');
 
-if strcmpi(opt.Align, 'vert') || xor(sum([num_fp, num_tp]), num_topo_row * num_topo_col)
+fig = figure('Color', 'w');
+set(fig, 'ToolBar', 'none');
+
+
+if strcmpi(opt.align, 'vert') || xor(sum([n_fp, n_tp]), n_topo_row * n_topo_col)
     set(gcf,'Position',[monitor_screensize(3)/4,  monitor_screensize(4)/20,...
         monitor_screensize(3)/2, monitor_screensize(3)/2]);
-    
-%     sr = num_tp + num_ep + num_fp + num_topo_row + num_rp;
-    sr = num_tp + num_fp + num_topo_row + num_rp * strcmpi(opt.TimePlot, 'on');
-    sc = max(num_topo_col, 1);
-    %% graph
+    sr = n_tp + n_fp + n_topo_row + n_rp * strcmpi(opt.timeplot, 'on');
+    sc = max(n_topo_col, 1);
+    %% time
     template = [1 sc];
-    if isequal(opt.TimePlot, 'on')
-        for i = 1:num_tp
+    if isequal(opt.timeplot, 'on')
+        for i = 1:n_tp
             time_plt(i) = subplot(sr, sc, template);
             template = template + sc;
         end
     end
-    
-    if isequal(opt.FFTPlot, 'on')
-        for i = 1: num_fp
+    %% fft
+    if isequal(opt.fftplot, 'on')
+        for i = 1: n_fp
             fft_plt(i) = subplot(sr, sc, template);
             template = template + sc;
         end
     end
     %% topo
-    if isequal(opt.TopoPlot, 'on')
-        template = template(1);
-        for i = 1:(num_topo_row-num_rp) * num_topo_col
-            topo_plt(i) = subplot(sr, sc, template);
+    if isequal(opt.topoplot, 'on')
+        for i = 1:(n_topo_row-n_rp) * n_topo_col
+            topo_plt(i) = subplot(sr, sc, template(1));
             template = template + 1;
         end
     end
     %% r-value
-    if isequal(opt.rValue, 'on')
-        if isequal(opt.TopoPlot, 'on')
-            template = template(1);
-            for i = 1:num_rp * num_topo_col
-                r_plt(i) = subplot(sr, sc, template);
+    % TODO: multiclass rplots...
+    if isequal(opt.rvalue, 'on')
+        if isequal(opt.topoplot, 'on')
+            for i = 1:n_rp * n_topo_col
+                r_plt(i) = subplot(sr, sc, template(1));
                 template = template + 1;
             end
         end
-        %%TODO::
-        if isequal(opt.TimePlot, 'on')
-            template = [template(1) template(1)+sc-1];
-            r_plt(num_rp * num_topo_col + 1) = subplot(sr, sc, template);
+        if isequal(opt.timeplot, 'on')
+            r_plt(n_rp * n_topo_col + 1) = subplot(sr, sc, template);
             template = template + sc;
         end
     end
     
-elseif strcmpi(opt.Align, 'horz')
+elseif strcmpi(opt.align, 'horz')
     set(gcf,'Position',[monitor_screensize(3)/4,  monitor_screensize(4)/4,...
         monitor_screensize(3)/2, monitor_screensize(4)/2]);
     
-    sr = (num_tp + num_ep + num_fp) * num_topo_row;
-    sc = (1 + RATIO) * num_topo_col + 2;
+    sr = (n_tp + num_ep + n_fp) * n_topo_row;
+    sc = (1 + RATIO) * n_topo_col + 2;
     
     if isequal(opt.RPlot, 'on')
-        sc = sc + num_topo_col + 2;
+        sc = sc + n_topo_col + 2;
     end
-    %%
-    %     test(sr, sc);
     %% graph
-    template = [1 (num_topo_row-1)*sc+num_topo_col];
-    for i = 1:num_tp + num_ep + num_fp
+    template = [1 (n_topo_row-1)*sc+n_topo_col];
+    for i = 1:n_tp + num_ep + n_fp
         time_plt(i) = subplot(sr, sc, template);
-        template = template + num_topo_row*sc;
+        template = template + n_topo_row*sc;
     end
     %% topo
-    template = [num_topo_col+3 (sr/class-1)*sc+RATIO-1+num_topo_col+3];
-    for i = 1:num_topo_row
-        for j = 1:num_topo_col
-            topo_plt((i-1)*num_topo_col +  j) = subplot(sr, sc, template);
+    template = [n_topo_col+3 (sr/class-1)*sc+RATIO-1+n_topo_col+3];
+    for i = 1:n_topo_row
+        for j = 1:n_topo_col
+            topo_plt((i-1)*n_topo_col +  j) = subplot(sr, sc, template);
             template = template + RATIO;
         end
-        template = template + sr/class*sc - RATIO*num_topo_col;
+        template = template + sr/class*sc - RATIO*n_topo_col;
     end
     %% r-value
-    if isequal(opt.RPlot, 'on')
-        template = [sc-num_topo_col+1 num_topo_row*sc];
-        for i = 1:num_tp + num_ep + num_fp
+    if isequal(opt.rvalue, 'on')
+        template = [sc-n_topo_col+1 n_topo_row*sc];
+        for i = 1:n_tp + num_ep + n_fp
             r_plt(i) = subplot(sr, sc, template);
-            template = template + num_topo_row*sc;
+            template = template + n_topo_row*sc;
         end
     end
 end
 
 out = horzcat(time_plt, fft_plt, topo_plt, r_plt);
-end
-
-function test(sr, sc)
-subplot = @(m,n,p) subtightplot(m,n,p,[0.045 0.01], 0.05, [0.06, 0.048]);
-for i = 1:sr*sc
-    subplot(sr, sc, i);
-end
 end
 
 %% FileExchange function subtightplot by F. G. Nievinski
