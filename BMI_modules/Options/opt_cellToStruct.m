@@ -20,23 +20,23 @@ function [ opt ] = opt_cellToStruct( varargin )
 % Min-Ho, Lee
 % mhlee@image.korea.ac.kr
 % 
-
-if nargin==0,
+if nargin==0
   opt = struct();return;
 end
 
 if isstruct(varargin)
     opt=varargin;
 elseif iscell(varargin) % cell to struct
-    [nParam temp]=size(varargin{1});
-    for i= 1:nParam
+    [n_param, n_pair]=size(varargin{1});
+    if n_pair ~= 2
+        error('Invalid parameters: parameters are must be paired');
+    end
+    for i= 1:n_param
         str = varargin{1}{i,1};
-        if ~ischar(str),
+        if ~ischar(str)
             error('Invalid parameters: str must be string');
         end
-        opt.(str)= varargin{1}{i,2};
+        opt.(lower(str))= varargin{1}{i,2};
     end
 end
-
 end
-
