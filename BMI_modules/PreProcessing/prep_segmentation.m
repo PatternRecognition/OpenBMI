@@ -1,77 +1,71 @@
-function [ dat ] = prep_segmentation( dat, varargin )
+function [out] = prep_segmentation(dat, varargin)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREP_SEGMENTATION - segment the data in a specific time interval based on the marked point
 % prep_segmentation (Pre-processing procedure):
 %
 % Synopsis:
-%     [out] = prep_segmentation(DAT,<OPT>)
+%     [out] = prep_segmentation(DAT, <OPT>)
 %
 % Example:
-%    SMT=prep_segmentation(CNT, {'interval', [750 3500]})
+%     SMT=prep_segmentation(CNT, [750 3500])
+%     SMT=prep_segmentation(CNT, {'interval', [750 3500]})
 %
 % Arguments:
 %     dat - continuous EEG data structure
-%     Opt - struct or property/value list of optional properties:
-%         : interval - time interval
+%     varargin - struct or property/value list of optional properties:
+%           interval: time interval
 %
 % Returns:
-%     dat - segmented EEG data structure
+%     out - segmented EEG data structure
 %
 % Description:
 %     This function segments the data in a specific time interval based on
 %     the marked point.
 %     continuous data should be [time * channels]
-%     epoched data should be [time * channels * trials]
+%     epoched data should be [time * trials * channels]
 %
 % See also 'https://github.com/PatternRecognition/OpenBMI'
 %
-% Min-ho Lee, 12-2017
+% Min-ho Lee, 09-2018
 % mh_lee@korea.ac.kr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+out = dat;
 
-if iscell(varargin{:})
-    opt=opt_cellToStruct(varargin{:});
-elseif isstruct(varargin{:}) % already structure(x-validation)
-    opt=varargin{:}
+if isempty(varargin)
+    error('OpenBMI: Selected interval should be specified');
 end
 
-if ~isfield(opt,'interval')
-    error('OpenBMI: parameter "interval" is missing')
-end
-
-if isfield(dat,'x')
-    tDat=dat.x;
-    [nDat, nCh]=size(tDat);
+if isnumeric(varargin{1})
+    opt.interval = varargin{1};
 else
-    error('OpenBMI: parameter "dat.x" is missing');
+    opt = opt_cellToStruct(varargin{:});
 end
 
-if ~isfield(dat,'t')
-    error('OpenBMI: parameter "dat.t" is missing');
+if ~all(isfield(dat, {'x', 't', 'fs'}))
+    error('OpenBMI: Data must have a field named ''x'', ''t'', and ''fs''')
 end
 
-if isfield(dat,'fs')
-    fs=dat.fs;
-else
-    error('OpenBMI: parameter "dat.fs" is missing');
+% 수정하긴해야하는데...나중에 하자
+ival = opt.interval;
+
+tmp = dat.t;
+tmp(1) = [];
+if any([ival(1) < 0, ival(2) < 0, ival(1) * dat.fs / 1000 > min(tmp - dat.t(1:end - 1)), ...
+        ival(2) * dat.fs / 1000 > min(tmp - dat.t(1:end - 1)), ival(2) < ival(1)])
+    ival = [0, min(tmp - dat.t(1:end - 1)) * 1000 / dat.fs];
+    warning('OpenBMI: Interval should be proper value, so we changed it. Please check.')
 end
 
-ival=opt.interval;
-idc= floor(ival(1)*fs/1000):ceil(ival(2)*fs/1000);
-T= length(idc);
-nEvents= size(dat.t, 2);
-nChans= nCh;
+idc = floor(ival(1) * dat.fs / 1000):ceil(ival(2) * dat.fs / 1000);
+n_time = length(idc);
+n_events = size(dat.t, 2);
+n_chans = size(dat.x, 2);
 % round
-IV= round(idc(:)*ones(1,nEvents) + ones(T,1)*dat.t);
-dat.x= reshape(tDat(IV, :), [T, nEvents, nChans]);
-dat.ival= linspace(ival(1), ival(2), length(idc));
+IV = round(idc(:) * ones(1, n_events) + ones(n_time, 1) * dat.t);
+out.x = reshape(dat.x(IV, :), [n_time, n_events, n_chans]);
+out.ival = linspace(ival(1), ival(2), length(idc));
 
-% stack
-% if isfield(eeg, 'stack')
-%     c = mfilename('fullpath');
-%     c = strsplit(c,'\');
-%     epo.stack{end+1}=c{end};
-% end
+out = opt_history(out, 'prep_segmentation', opt);
 
 end
-

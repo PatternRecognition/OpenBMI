@@ -1,29 +1,31 @@
 function [out] = prep_selectChannels(dat, varargin)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREP_SELECTCHANNELS - select specific channels from continuous or epoched data
 % prep_selectChannels (Pre-processing procedure):
 %
 % Synopsis:
 %     [out] = prep_selectChannels(DAT,<OPT>)
 %
 % Example :
-%     out = prep_selectChannels(data, {'Name',{'Fp1', 'Fp2'}})
+%     out = prep_selectChannels(data, {'Name',{'Fp1','Fp2'}})
 %     out = prep_selectChannels(data, {'Index',[1 2]})
-%
+%     out = prep_selectChannels(data, {'Fp1','Fp2'})
+%     out = prep_selectChannels(data, [1 2])
+%     
 % Arguments:
-%     dat - Structure. Continuous data or epoched data
+%     dat - Structure. Continuous data or epoched data (data.x)
 %         - Data which channel is to be selected        
 %     varargin - struct or property/value list of optional properties:
-%          : channels - 'cell Name' or 'index' of channels that you want to select
+%           channels: 'index' or 'cell Name' of channels that you want to select
 %           
 % Returns:
 %     out - Data structure which has selected channels (continuous or epoched)
 %
-%
 % Description:
-%     This function selects data of specified channels
-%     from continuous or epoched data.
-%     continuous data should be [time * channels]
-%     epoched data should be [time * channels * trials]
+%     This function selects data of specified channels from continuous or epoched data.
+%     Data can be not only whole of the struct, but also be a part of struct.
+%     Continuous data should be [time * channels]
+%     Epoched data should be [time * trials * channels]
 %
 % See also 'https://github.com/PatternRecognition/OpenBMI'
 %
@@ -31,45 +33,57 @@ function [out] = prep_selectChannels(dat, varargin)
 % mh_lee@korea.ac.kr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+out = dat;
+
 if isempty(varargin)
     warning('OpenBMI: Channels should be specified')
-    out = dat;
-    return
-end
-opt = opt_cellToStruct(varargin{:});
-
-if ~isfield(dat, 'chan')
-    warning('OpenBMI: Data must have a field named ''chan''')
-    return
-end
-if ~isfield(dat,'x')
-    warning('OpenBMI: Data structure must have a field named ''x''')
     return
 end
 
-if isfield(opt,'Name') && isfield(opt,'Index')
-    if find(ismember(dat.chan,opt.Name))~=opt.Index
-        warning('OpenBMI: Mismatch between name and index of channels')
-        return
+if isnumeric(varargin{1})
+    opt.index = varargin{1};
+elseif iscell(varargin{1}) && ~any(strcmpi(varargin{1}{1}, {'name', 'index'}))
+    opt.name = varargin{1};
+else
+    opt = opt_cellToStruct(varargin{:});    
+end
+
+if ~all(isfield(dat, {'chan', 'x'}))
+    error('OpenBMI: Data must have a field named ''chan'' and ''x''')
+end
+if all(isfield(opt, {'index', 'name'}))
+    warning('OpenBMI: selectChannels should be specified in a correct form')
+    return
+end 
+
+if isfield(opt, 'index')
+    opt.index = sort(opt.index);
+    ch_idx = opt.index(opt.index <= length(dat.chan));
+    if ~isequal(ch_idx, opt.index)
+        warning('OpenBMI: Please check your channel configuration');
     end
-    ch_idx = opt.Index;
-elseif isfield(opt,'Name') && ~isfield(opt,'Index')
-    ch_idx = find(ismember(dat.chan,opt.Name));
-elseif ~isfield(opt,'Name') && isfield(opt,'Index')
-    ch_idx = opt.Index;
+elseif isfield(opt, 'name')
+    ch_idx = find(ismember(dat.chan, opt.name));
+    if ~all(ismember(opt.name, dat.chan(ch_idx)))
+        warning('OpenBMI: Please check your channel configuration');
+    end
 else
     warning('OpenBMI: Channels should be specified in a correct form')
     return
 end
-
-out = rmfield(dat,{'x','chan'});
+    
 out.chan = dat.chan(ch_idx);
-d = ndims(dat.x);
-if d==3
-    out.x = dat.x(:,:,ch_idx);
-elseif d==2
-    out.x = dat.x(:,ch_idx);
-else
-    warning('OpenBMI: Check for the dimension of input data')
+
+switch ndims(dat.x)
+    case 2
+        out.x = dat.x(:, ch_idx);
+    case 3
+        out.x = dat.x(:, :, ch_idx);
+    otherwise
+        warning('OpenBMI: Check for the dimension of input data');
     return
+end
+
+out = opt_history(out, 'prep_selectChannels', opt);
+
 end

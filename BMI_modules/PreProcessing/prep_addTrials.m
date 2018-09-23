@@ -1,13 +1,15 @@
-function [out] = prep_addTrials(dat1, dat2)
+function [out] = prep_addTrials_(cell_dat, varargin)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREP_ADDTRIALS - append trials to the former data 
 % prep_addTrials (Pre-processing procedure):
 %
 % Synopsis:
-%     [out] = prep_addTrials(DAT,DAT2)
+%     [out] = prep_addTrials(DAT1, DAT2)
+%     [out] = prep_addTrials({DAT1, DAT2, DAT3, ...})
 %
 % Example :
-%    [out] = prep_addTrials(dat1,dat2)
-%    [out] = prep_addTrials({dat1,dat2,dat3,dat4,...})
+%     out = prep_addTrials(dat1, dat2)
+%     out = prep_addTrials({dat1, dat2, dat3, dat4, ...})
 %
 % Arguments:
 %     dat1 - Data structure, continuous or epoched
@@ -18,9 +20,9 @@ function [out] = prep_addTrials(dat1, dat2)
 %     epoched)
 %
 % Description:
-%     Append trials to the former data(dat1) from the latter data(dat2)     
+%     This function append trials to the former data from the latter data
 %     continuous data should be [time * channels]
-%     epoched data should be [time * channels * trials]
+%     epoched data should be [time * trials * channels]
 %
 % See also 'https://github.com/PatternRecognition/OpenBMI'
 %
@@ -28,104 +30,75 @@ function [out] = prep_addTrials(dat1, dat2)
 % mh_lee@korea.ac.kr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% error check
-if iscell(dat1)
-    temp = dat1{1};
-    for i=2:size(dat1,2)
-        temp = prep_addTrials(temp,dat1{i});
-    end
-    out = temp;
-    return
-end
-
-if ~isfield(dat1,'x') || ~isfield(dat2,'x')
-    warning('OpenBMI: Data structure must have a field named ''x''')
-    return
-end
-if isfield(dat1,'chan') && isfield(dat2,'chan')
-    if ~isequal(dat1.chan,dat2.chan)
-        warning('OpenBMI: Unmatched channel')
-        return
+if ~isempty(varargin)
+    if all(cellfun(@isstruct, {cell_dat, varargin{1}}))
+        cell_dat = {cell_dat, varargin{1}};
+    else
+        error('OpenBMI: addTrials should be specified in a correct form');
     end
 end
 
-dim1 = ndims(dat1.x);
-dim2 = ndims(dat2.x);
-if dim1~=dim2
+if ~all(cellfun(@(x) all(isfield(x, {'t', 'fs', 'chan', 'x'})), cell_dat))
+    error('OpenBMI: Data structure must have a field named ''t'', ''fs'', ''chan'', and ''x''');
+end
+
+out = cell_dat{1};
+
+if ~all(cellfun(@(x) isequal(cell_dat{1}.chan, x.chan), cell_dat))
+    warning('OpenBMI: Check channels configurations');
+    return
+end
+
+if ~all(cellfun(@(x) isequal(cell_dat{1}.fs, x.fs), cell_dat))
+    warning('OpenBMI: Check sampling frequencies of your data');
+    return
+end
+
+if all(cellfun(@(x) ndims(x.x)==3 || (ismatrix(x.x) && length(x.chan)==1), cell_dat))
+    if ~all(diff(cellfun(@(x) size(x.x,1), cell_dat))==0) %-->time size
+        warning('OpenBMI: Unmatched Epoched data size')
+        return;
+    end
+    for i = 2:length(cell_dat)
+        out.x = cat(2, out.x, cell_dat{i}.x);
+    end
+elseif all(cellfun(@(x) ndims(x.x), cell_dat)==2)
+    for i = 2:length(cell_dat)
+        out.x = cat(1, out.x, cell_dat{i}.x);
+    end
+else    
     warning('OpenBMI: Unmatched data dimensions (Epoched or continuous)')
     return
 end
-switch dim1
-    case 2
-        if ~isequal(size(dat1.x,2),size(dat2.x,2))
-            warning ('OpenBMI: Unmatched the number of channels')
-            return
-        end
-    case 3
-        if ~isequal(size(dat1.x,1),size(dat2.x,1))
-            warning('OpenBMI: Unmatched data size')
-            return
-        elseif ~isequal(size(dat1.x,3),size(dat2.x,3))
-            warning('OpenBMI: Unmatched the number of channels')
-            return
-        elseif isfield(dat1,'ival') && isfield(dat2,'ival')
-            if dat1.ival~=dat2.ival
-                warning('OpenBMI'),return
-            end
-        end
-end
 
-% append dat
-out.x = cat(dim1-1, dat1.x, dat2.x);
-
-if isfield(dat1,'t') && isfield(dat2,'t')
-    out.t = cat(2,dat1.t,dat2.t);
+if all(cellfun(@(x) isfield(x, 't'), cell_dat))
+    for i = 2:length(cell_dat)
+        out.t = cat(2, out.t, cell_dat{i}.t + size(out.x,1));
+    end
 else
-    warning('OpenBMI: Data should have a field named ''t''')
+    warning('OpenBMI: Time information');   
 end
-
-if isfield(dat1,'fs') && isfield(dat2,'fs')
-    if dat1.fs == dat2.fs
-        out.fs = dat1.fs;
-    else
-        warning('OpenBMI: Two input data have different frequency')
+if all(cellfun(@(x) all(isfield(x, {'class', 'y_logic', 'y_dec', 'y_class'})), cell_dat))
+    for i = 2:length(cell_dat)
+        cls = ~ismember(cell_dat{i}.class(:,2), out.class(:,2));
+        out.class = cat(1, out.class, cell_dat{i}.class(cls,:));
+        out.y_class = cat(2, out.y_class, cell_dat{i}.y_class);
+        out.y_dec = cat(2, out.y_dec, cell_dat{i}.y_dec);
     end
-end
-
-if isfield(dat1,'y_dec') && isfield(dat2,'y_dec')
-    out.y_dec = cat(2,dat1.y_dec,dat2.y_dec);
-end
-
-if isfield(dat1,'eog') && isfield(dat2,'eog')
-    out.eog = cat(2,dat1.eog,dat2.eog);
-end
-
-if isfield(dat1,'y_class') && isfield(dat2,'y_class')
-    out.y_class = cat(2,dat1.y_class,dat2.y_class);
-end
-
-if isfield(dat1,'class') && isfield(dat2,'class')
-    if ~isequal(dat1.class,dat2.class)
-        
-        tt=ismember(dat2.class(:,2),dat1.class(:,2));
-        if ~sum(tt)
-            out.class = cat(1,dat1.class,dat2.class);
-        else
-            out.class = cat(1,dat1.class,dat2.class(~tt,:));
-        end
-    else
-        out.class = dat1.class;
+    out.y_logic = [];
+    for i = 1:size(out.class,1)    
+        out.y_logic = [out.y_logic; ismember(out.y_class, out.class(i,2))];
     end
+else
+    warning('OpenBMI: Class informations are missed');   
 end
 
-if isfield(dat1,'y_logic') && isfield(dat2,'y_logic')
-s=repmat((1:size(out.class,1))',[1,length(out.y_class)]);
-for i=1:size(out.class,1),out.y_logic(i,:)=(out.y_dec==s(i,:));end
+if ~exist('opt')
+    opt = struct([]);
 end
-
-if isfield(dat1,'weight') && isfield(dat2,'weight')
-    out.weight=cat(2,dat1.weight,dat2.weight);
+if ~isfield(dat, 'history')
+    out.history = {'addTrials', opt};
+else
+    out.history(end + 1, :) = {'prep_addTrials', opt};
 end
-
-out.chan = dat1.chan;
-if isfield(dat1,'ival'), out.ival = dat1.ival; end
+end

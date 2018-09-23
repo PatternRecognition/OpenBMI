@@ -1,32 +1,33 @@
-function [out] = prep_selectTime(dat, varargin)
+function [out] = prep_selectTime_(dat, varargin)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREP_SELECTTIME - selects the part of a specific time interval from continuous or epoched data.
 % prep_selectTime (Pre-processing procedure):
 %
 % Synopsis:
-%     [out] = prep_selectTime(DAT,<OPT>)
+%     [out] = prep_selectTime(DAT, <OPT>)
 %
-% Example :
-%      out = prep_selectTime(dat, {'Time',[1000 3000]})
+% Example:
+%     out = prep_selectTime(dat, {'time', [1000 3000]})
+%     out = prep_selectTime(dat, [1000 3000])
 %
 % Arguments:
 %     dat - Structure. epoched data
 %     varargin - struct or property/value list of optional properties:
-%          : time - Time interval to be selected (ms)
-%           
+%           time: Time interval to be selected (ms)
+%
 % Returns:
 %     out - Data structure which has selected time from epoched data
-%
 %
 % Description:
 %     This function selects the part of a specific time interval
 %     from continuous or epoched data.
 %     (i)  For continuous data, this function selects data in specifie time
-%      interval from the whole data.
+%          interval from the whole data.
 %     (ii) For epoched data, this function selects time interval in each trial.
-%      If you want to select trials in specific time interval, you can use
-%      a function 'prep_selectTrials'
+%          If you want to select trials in specific time interval, you can use
+%          a function 'prep_selectTrials'
 %     continuous data should be [time * channels]
-%     epoched data should be [time * channels * trials]
+%     epoched data should be [time * trials * channels]
 %
 % See also 'https://github.com/PatternRecognition/OpenBMI'
 %
@@ -34,74 +35,67 @@ function [out] = prep_selectTime(dat, varargin)
 % mh_lee@korea.ac.kr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+out = dat;
 
 if isempty(varargin)
     warning('OpenBMI: Time interval should be specified')
-    out = dat;
     return
 end
-opt = opt_cellToStruct(varargin{:});
-if ~isfield(opt,'Time')
+
+if iscell(varargin{1}) && strcmpi(varargin{1}{1}, {'time'})
+    opt.time = varargin{1}{2};
+elseif ismatrix(varargin{1})
+    opt.time = varargin{1};
+end
+
+if ~isfield(opt, 'time')
     warning('OpenBMI: Time interval should be specified.')
     return
 end
-ival = opt.Time;
 
-if ~isfield(dat,'x') || ~isfield(dat,'t') || ~isfield(dat,'fs')
-    warning('OpenBMI: Data must have fields named ''x'',''t'',''fs''')
+if ~all(isfield(dat, {'x', 't', 'chan', 'fs'}))
+    warning('OpenBMI: Data must have fields named ''x'', ''t'', ''chan'', and ''fs''')
     return
 end
 
-if isfield(dat,'y_dec') && isfield(dat,'y_logic') && isfield(dat,'y_class')
-    a=1;
-else
-    a=0;
-    warning('OpenBMI: Data should have fields named ''y_dec'',''y_logic'',''y_class''')
-end
-
+ival = opt.time;
 d = ndims(dat.x);
-is = ceil(ival(1)*dat.fs/1000);
-ie = floor(ival(2)*dat.fs/1000);
+ival_start = ceil(ival(1) * dat.fs / 1000);
+ival_end = floor(ival(2) * dat.fs / 1000);
 
-if d == 3 || (d==2 && length(dat.chan)==1)
-    if ival(1)<dat.ival(1) || ival(2)>dat.ival(end)
+if d == 3 || (d == 2 && length(dat.chan) == 1)
+    if ~isfield(dat, 'ival')
+        warning('OpenBMI: Epoched data must have fields named ''ival''')
+    return
+    end
+    if ival(1) < dat.ival(1) || ival(2) > dat.ival(end)
         warning('OpenBMI: Selected time interval is out of epoched interval')
         return
     end
-    iv = [is:ie]-dat.ival(1)*dat.fs/1000+1;
-    x = dat.x(iv,:,:);
-    t = dat.t;
-%     time = iv/dat.fs*1000; %% Revised hkkim
-    time = dat.ival(iv);
-    if a
-        y_dec = dat.y_dec;
-        y_logic = dat.y_logic;
-        y_class = dat.y_class;
+    iv = ival_start:ival_end - dat.ival(1) * dat.fs / 1000 + 1;
+    x = dat.x(iv, :, :);
+    if isfield(out, 'ival')
+        out.ival = dat.ival(iv);
     end
-elseif d == 2 && length(dat.chan)>1
-    if ival(1)<0 || ival(2)/1000>size(dat.x,1)/dat.fs
+elseif d == 2 && length(dat.chan) > 1
+    if (ival(1) < 0) || ((ival(2) / 1000) > (size(dat.x, 1) / dat.fs))
         warning('OpenBMI: Selected time interval is out of time range')
         return
     end
-    x = dat.x(is:ie,:);
-    s = find((dat.t*1000/dat.fs)>=ival(1));
-    e = find((dat.t*1000/dat.fs)<=ival(2));
+    x = dat.x(ival_start:ival_end, :);
+    s = find((dat.t * dat.fs / 1000) <= ival_start);
+    e = find((dat.t * dat.fs / 1000) <= ival_end);
+    if isempty(s) || isempty(e)
+        warning('OpenBMI: Selected time interval is out of time range')
+        return
+    end
     iv = s(1):e(end);
     t = dat.t(iv);
-    if a
-        y_dec = dat.y_dec;
-        y_logic = dat.y_logic;
-        y_class = dat.y_class;
-    end
+    out.t = t;
 end
-out = rmfield(dat,{'x','t'});
+
 out.x = x;
-out.t = t;
-if isfield(out,'ival')
-    out.ival = time;
-end
-if a
-    out.y_dec = y_dec;
-    out.y_logic = y_logic;
-    out.y_class = y_class;
+
+out = opt_history(out, 'prep_selectTime', opt);
+
 end

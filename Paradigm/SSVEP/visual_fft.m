@@ -65,8 +65,8 @@ if strcmp(opt.plot,'on')
     end
     legend(i_legend);
 end
-title(sprintf('%s / %s / %s / acc: %.2f%%',opt.subject_info.subject,opt.subject_info.session,opt.filename, Accuracy*100),'Interpreter','none');
-saveas(f,sprintf('%s\\figure\\%s_%s_%s.jpg',opt.filepath,opt.subject_info.subject,opt.subject_info.session,opt.filename));
+% title(sprintf('%s / %s / %s / acc: %.2f%%',opt.subject_info.subject,opt.subject_info.session,opt.filename, Accuracy*100),'Interpreter','none');
+% saveas(f,sprintf('%s\\figure\\%s_%s_%s.jpg',opt.filepath,opt.subject_info.subject,opt.subject_info.session,opt.filename));
 end
 
 function [X,freq]=positiveFFT(x,Fs)

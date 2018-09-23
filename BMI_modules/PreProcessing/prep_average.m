@@ -1,5 +1,6 @@
 function [out] = prep_average(dat)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREP_AVERAGE - Average epoched data with class-wise
 % prep_average (Pre-processing procedure):
 %
 % Synopsis:
@@ -53,3 +54,12 @@ se = cat(2, se{1:end});
 out = rmfield(dat,{'t','y_dec','y_logic','y_class'});
 out.x = x;
 out.se = se;
+
+if ~exist('opt','var')
+    opt = struct([]);
+end
+if ~isfield(dat,'history')
+    out.history = {'prep_average',opt};
+else
+    out.history(end+1,:) = {'prep_average',opt};
+end

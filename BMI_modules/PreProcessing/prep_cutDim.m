@@ -1,12 +1,13 @@
 function [out] = prep_cutDim(dat)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREP_CUTDIM - reduces dimensionality of the epoched data
 % prep_cutDim (Pre-processing procedure):
 %
 % Synopsis:
 %     [out] = prep_cutDim(DAT)
 %
 % Example :
-%     [out] = prep_cutDim(epoched_data)%    
+%     [out] = prep_cutDim(epoched_data)
 %
 % Arguments:
 %     dat - Structure. Segmented data structure, or the data matrix itself
@@ -18,8 +19,8 @@ function [out] = prep_cutDim(dat)
 % Description:
 %     This function reduces dimensionality of the data, reducing all
 %     dimensions except for the trial dimension.
-%     epoched data should be [time * channels * trials]
-%     reduced data form would be [1 * 2, 3] --> '2-dimension'
+%     epoched data should be [time , trials , channels]
+%     reduced data form would be [time * channels, trials] --> '2-dimension'
 %
 % See also 'https://github.com/PatternRecognition/OpenBMI'
 %
@@ -40,10 +41,10 @@ else
     return
 end
 
-s = size(x);
-if length(s) == 3
+if ndims(x) == 3
     x = permute(x,[1 3 2]);
 end
+s = size(x);
 x = reshape(x,[prod(s(1:end-1)),s(end)]);
 
 if isstruct(dat)
@@ -51,4 +52,13 @@ if isstruct(dat)
     out.x = x;
 elseif isnumeric(dat)
     out = x;
+end
+
+if ~exist('opt')
+    opt = struct([]);
+end
+if ~isfield(dat,'history')
+    out.history = {'prep_cutDim',opt};
+else
+    out.history(end+1,:) = {'prep_cutDim',opt};
 end

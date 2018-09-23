@@ -1,30 +1,44 @@
-function [ dat ] = prep_filter( dat, varargin )
+function [out] = prep_filter( dat, varargin )
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREP_FILTER - filters the data within specified frequency band
 % prep_filter (Pre-processing procedure):
+%
+% Synopsis:
+%     [out] = prep_filter(DAT,<OPT>)
+%
+% Example:
+%     out = prep_filter(dat, {'frequency', [7 13];'fs',100});
+%     out = prep_filter(dat, {'frequency', [7 13]});
+%     out = prep_filter(dat, [7 13]);
+%
+% Arguments:
+%     dat       - EEG data structure
+%     varargin - struct or property/value list of optional properties:
+%          : frequency - Frequency range that you want to filter
+%          : fs        - Sampling frequency
+% Returns:
+%     out       - Spectrally filtered data
 % 
 % Description:
 %     This function filters the data within specified frequency band
-% 
-% Example:
-%    EEG.data=prep_filter(EEG.data, {'frequency', [7 13];'fs',100});
-% 
-% Input:
-%     dat       - EEG data structure
-% Option:
-%     frequency - Frequency range that you want to filter
-%     fs        - Sampling frequency
-% Return:
-%     dat       - Spectrally filtered data
-% 
+%
+% See also 'https://github.com/PatternRecognition/OpenBMI'
 % Min-ho Lee
 % mhlee@image.korea.ac.kr
-%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if iscell(varargin{:})
-    opt=opt_cellToStruct(varargin{:});
-elseif isstruct(varargin{:}) % already structure(x-validation)
-    opt=varargin{:}
+if isempty(varargin)
+    warning('OpenBMI: Frequency band should be specified')
+    return
 end
 
+if isnumeric(varargin{1})
+    opt.frequency = varargin{1};
+elseif iscell(varargin{:})
+    opt=opt_cellToStruct(varargin{:});
+elseif isstruct(varargin{:}) % already structure(x-validation)
+    opt=varargin{:};
+end
 
 switch isstruct(dat)
     case true %struct        
@@ -83,6 +97,12 @@ switch isstruct(dat)
             dat.stack{end+1}=c{end};
         end
 end
-
-
-
+out = dat;
+if ~exist('opt','var')
+    opt = struct([]);
+end
+if ~isfield(dat,'history')
+    out.history = {'prep_filter',opt};
+else
+    out.history(end+1,:) = {'prep_filter',opt};
+end

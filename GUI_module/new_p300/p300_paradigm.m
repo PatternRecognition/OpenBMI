@@ -17,8 +17,7 @@ function varargout = p300_paradigm(varargin)
 %
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
-%
-% % See also: GUIDE, GUIDATA, GUIHANDLES
+% 
 
 % Edit the above text to modify the response to help p300_paradigm
 

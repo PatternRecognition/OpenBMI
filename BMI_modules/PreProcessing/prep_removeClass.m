@@ -1,5 +1,6 @@
 function [ out ] = prep_removeClass( dat, class )
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREP_REMOVECLASS - removes specific classes from continuous or epoched data
 % prep_removeClass (Pre-processing procedure):
 %
 % Synopsis:
@@ -21,7 +22,7 @@ function [ out ] = prep_removeClass( dat, class )
 %     This function removes specific classes
 %     from continuous or epoched data.
 %     continuous data should be [time * channels]
-%     epoched data should be [time * channels * trials]
+%     epoched data should be [time * trials * channels]
 %
 % See also 'https://github.com/PatternRecognition/OpenBMI'
 %
