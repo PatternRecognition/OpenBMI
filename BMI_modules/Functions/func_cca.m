@@ -43,7 +43,7 @@ if ~isstruct(dat)
     
     if ~isfield(opt,'harmonic')
         warning('[OpenBMI]: parameter "harmonic" is missing')
-        opt.Harmonic=2;
+        opt.harmonic=2;
     end
     [nDat nTrial nCH]=size(dat);
 else
@@ -72,11 +72,11 @@ end
 out.refFreq=refre;
 
 
-if refre(end)*opt.Harmonic > opt.fs/2
+if refre(end)*opt.harmonic > opt.fs/2
     warning('OpenBMI: harmonic frequency cannot show. Harmonic is setting as 2')
     opt.harmonic=2;
 end
-out.harmonic=opt.Harmonic;
+out.harmonic=opt.harmonic;
 
 
 %% calculate time ranges for generating harmonic reference frequencies
@@ -85,7 +85,7 @@ t=[0:nDat*opt.fs*0.0001/(nDat-1):nDat*opt.fs*0.0001];
 %% generate harmonic frequency
 for i=1:length(refre)
     Y{i}=[sin(2*pi*refre(i)*t);cos(2*pi*refre(i)*t); sin(2*pi*2*refre(i)*t);cos(2*pi*2*refre(i)*t);sin(2*pi*3*refre(i)*t); cos(2*pi*3*refre(i)*t)];
-    Y{i}=Y{i}(1:2*opt.Harmonic,:);
+    Y{i}=Y{i}(1:2*opt.harmonic,:);
 end
 
 r=zeros(nTrial,length(Y));

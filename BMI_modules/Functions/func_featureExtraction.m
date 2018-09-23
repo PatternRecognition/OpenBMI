@@ -61,14 +61,14 @@ switch lower(opt.feature)
         %         tDat= reshape(permute(dat_,[1 3 2]), [nDat*nChans nTrials]);
         
         % smkim
-        if isfield(opt,'nMeans')
-            nM=opt.nMeans;
-            tDat=prep_erpMeans(tDat,{'nMeans',nM});
-        elseif isfield(opt,'nSamples')
-            nS=opt.nSamples;
-            tDat=prep_erpMeans(tDat,{'nSamples',nS});
+        if isfield(opt,'n_means')
+            nM=opt.n_means;
+            tDat=prep_erpMeans(tDat,{'n_means',nM});
+        elseif isfield(opt,'n_samples')
+            nS=opt.n_samples;
+            tDat=prep_erpMeans(tDat,{'n_samples',nS});
         else
-            warning('OpenBMI: Options for prep_erpMeans (e.g. nMeans or nSamples) are needed'),return
+            warning('OpenBMI: Options for prep_erpMeans (e.g. n_means or n_samples) are needed'),return
         end
 end
 

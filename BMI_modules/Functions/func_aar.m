@@ -19,48 +19,48 @@ function dat=func_aar(dat,varargin)
 % Input:
 %    dat      -     input the data structure of OpenBMI segementation original data
 % Option: model selection for obtatining AAR parameter
-%    Mode  - [amode vmode] (default [1,2]) (see also aar function)
-%    amode - upadating co-varaince matrix method (ranges 1 to 12)
-%    vmode - estimating the innovation variance method (ranges 1 to 7)
+%    mode  - [amode vmode] (default [1,2]) (see also aar function)
+%       amode - upadating co-varaince matrix method (ranges 1 to 12)
+%       vmode - estimating the innovation variance method (ranges 1 to 7)
 %    order - model order [p,(q)] of AAR or AARMA  (default [10,0])
 %            AAR(p) order as [p] and AARMA(p,q) as [p,q]
-%    UC    - Update coefficeint (default 0.0085)
+%    uc    - Update coefficeint (default 0.0085)
 % Returns:
 %    dat   - data structure of otanined AAR or AARMA parameter in OpenBMI sturcture
 % 
 
 if isempty(dat)
-    warning('[OpenBMI] Warning! data is empty.');
+    warning('OpenBMI: data is empty.');
 end
 
 opt=opt_cellToStruct(varargin{:});
-epo=struct('Mode',[],'order',[],'UC',[]);
+epo=struct('mode',[],'order',[],'uc',[]);
 
 % opt=struct('Mode',[],'order',[]);
-if ~isfield(opt,'Mode')
-    warning('[OpenBMI] Warning! Mode is empty. default model is v1,a1');
-    epo.Mode=[1,2];
+if ~isfield(opt,'mode')
+    warning('OpenBMI: Mode is empty. default model is v1,a1');
+    epo.mode=[1,2];
 else
-    epo.Mode=opt.Mode;
+    epo.mode=opt.mode;
 end
 if ~isfield(opt,'order')
-    warning('[OpenBMI] Order is not exist. default order is [2,0]');
+    warning('OpenBMI: Order is not exist. default order is [2,0]');
     epo.order=[2,0];
 else
     epo.order=opt.order;
 end
-order=epo.order(1);
 
-if ~isfield(opt,'UC')
-    warning('[OpenBMI] Update coefficient is not exist. default order is 0.0085');
-    epo.UC=0.0085;
+if ~isfield(opt,'uc')
+    warning('OpenBMI: Update coefficient is not exist. default order is 0.0085');
+    epo.uc=0.0085;
 else
-    epot.AR=opt.AR;
+    epo.uc=opt.uc;
 end
 
 [T, nEvents , nChans]= size(dat.x);
-tp_ar= [];
+tp_aar= [];
 Dat=reshape(dat.x, [T, nEvents*nChans]);
+order=epo.order(1);
 
 %% optain AAR, AARMA parameter
 for i= 1:nChans*nEvents,
@@ -68,7 +68,7 @@ for i= 1:nChans*nEvents,
     tp_aar(:,i)=aar1(end,:);
 end
 %% reshaping the parameter as order*channel by trials
-Dat=permute(reshape(tp_aar, [order, nEvents,nChans]), [1 3 2])
-Dat=reshape(Dat, [order* nChans nEvents])
+Dat=permute(reshape(tp_aar, [order, nEvents,nChans]), [1 3 2]);
+Dat=reshape(Dat, [order* nChans nEvents]);
 
 dat.x= Dat;

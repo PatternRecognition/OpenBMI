@@ -1,46 +1,55 @@
-function [ out ] = func_projection( dat, w )
-%PROC_PROJECTION Summary of this function goes here
-%   Detailed explanation goes here
+function [out] = func_projection(dat, w)
+% func_projection:
+%     Computes common spatial patterns (CSP) mehtods.
+% 	  this version supports binary classes. Multi class csp version will be
+% 	  updated soon.
+%
+% Example:
+%     [out] = func_projection(SMT, {'n_patterns', [3]});
+%
+% Input:
+%     dat - Data structure of epoched
+%
+% Returns:
+%     out -  
+
+if nargin < 2
+    error('OpenBMI: Input data should be specified');
+end
 
 if iscell(w)
-    w=w{:};
+    w = w{:};
 end
 
 if isstruct(dat)
     if isfield(dat, 'x')
-        tDat=dat.x;
+        tDat = dat.x;
     else
-        error('parameter error of dat.x')
+        error('OpenBMI: Data must have fields named ''x''');
     end
 else % no structure
-    tDat=dat;
+    tDat = dat;
 end
 
-if ndims(tDat)==2,
-    in= tDat*w;
+if ismatrix(tDat)
+    in = tDat * w;
+elseif ndims(tDat) == 3
+    sz = size(tDat);
+    in = reshape(tDat, sz(1) * sz(2), sz(3));
+    in = in * w;
+    in = reshape(in, [sz(1) sz(2) size(in, 2)]);
 else
-    sz= size(tDat);
-    in= reshape(tDat, sz(1)*sz(2), sz(3));
-    in= in*w;
-    in= reshape(in, [sz(1) sz(2) size(in,2)]);
+    error('OpenBMI: Check the dimensions of data');
 end
 
 if isstruct(dat)
-    out=dat;
+    out = dat;
     if isfield(dat, 'x')
-        out.x=in;
+        out.x = in;
     end
-    % stack
-    if isfield(dat, 'stack')        
-        c = mfilename('fullpath');
-        c = strsplit(c,'\');
-        dat.stack{end+1}=c{end};
-    end
-    
+    out = opt_history(out, 'func_projection', struct([]));
 else
-    out=in;
+    out = in;
 end
 
-
 end
-
