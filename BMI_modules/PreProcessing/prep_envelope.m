@@ -8,6 +8,7 @@ function [out] = prep_envelope(dat, varargin)
 %
 % Example :
 %    [out] = prep_envelope(dat)
+%     [out] = prep_movingAverage(dat, {'time', 80})
 %    [out] = prep_envelope(dat, {'time', 100; 'method', 'casual'})
 %
 % Arguments:
@@ -27,27 +28,43 @@ function [out] = prep_envelope(dat, varargin)
 %
 % See also 'https://github.com/PatternRecognition/OpenBMI'
 %
-% Min-ho Lee, 09-2018
-% mh_lee@korea.ac.kr
+% Hong-Kyung kim, 09-2018
+% hk_kim@korea.ac.kr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if ~isfield(dat, 'x')
-    warning('OpenBMI: Data structure must have a field named ''x''')
+if ~isfield(dat, {'x', 'fs'})
+    warning('OpenBMI: Data structure must have a field named ''x'' and ''fs''');
     return
 end
 if ndims(dat.x) ~= 3
     warning('OpenBMI: Data must be segmented. Is the number of channel 1?');
 end
 
-s = size(dat.x);
-dat.x= reshape(abs(hilbert(dat.x(:, :))),s);
-out= prep_movingAverage(dat,varargin{:});
-if ~exist('opt')
-    opt = struct([]);
-end
-if ~isfield(dat, 'history')
-    out.history = {'prep_envelope', opt};
+if isempty(varargin)
+    opt = struct();
+elseif isnumeric(varargin{1})
+    opt.time = varargin{1};
+elseif isstruct(varargin{1})
+    opt = varargin{:};
 else
-    out.history(end + 1, :) = {'prep_envelope', opt};
+    opt = opt_cellToStruct(varargin{:});    
 end
+
+def_opt = struct('time', 100, 'method', 'casual');
+opt = opt_defaultParsing(def_opt, opt);
+
+t = size(dat.x);
+dat.x = reshape(abs(hilbert(dat.x(:, :))), t);
+
+n = round(opt.time*dat.fs/1000);
+switch opt.method
+    case 'casual'
+        x = movmean(dat.x, [min(n,t(1))-1 0]);
+    case 'centered'
+        x = movmean(dat.x, n);
+end
+out = rmfield(dat, 'x');
+out.x = x;
+
+out = opt_history(out, mfilename, opt);
 %%--> 2016a 이상이면 prep_movingAverage 없앨수 있음…
