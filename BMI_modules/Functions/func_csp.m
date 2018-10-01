@@ -133,6 +133,6 @@ end
 dat_csp = func_projection(dat, CSP_W);
 dat_csp.x = dat.x;
 
-dat_csp = opt_history(dat_csp, 'func_csp', opt);
+dat_csp = opt_history(dat_csp, mfilename, opt);
 
 end

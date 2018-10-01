@@ -41,15 +41,6 @@ elseif ndims(tDat) == 3
 else
     error('OpenBMI: Check the dimensions of data');
 end
-
-if isstruct(dat)
-    out = dat;
-    if isfield(dat, 'x')
-        out.x = in;
-    end
-    out = opt_history(out, 'func_projection', struct([]));
-else
-    out = in;
-end
-
+out = in;
+% out = opt_history(out, mfilename, opt);
 end
