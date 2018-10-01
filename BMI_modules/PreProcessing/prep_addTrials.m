@@ -1,4 +1,4 @@
-function [out] = prep_addTrials_(cell_dat, varargin)
+function [out] = prep_addTrials(cell_dat, varargin)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PREP_ADDTRIALS - append trials to the former data 
 % prep_addTrials (Pre-processing procedure):
@@ -93,12 +93,5 @@ else
     warning('OpenBMI: Class informations are missed');   
 end
 
-if ~exist('opt')
-    opt = struct([]);
-end
-if ~isfield(dat, 'history')
-    out.history = {'addTrials', opt};
-else
-    out.history(end + 1, :) = {'prep_addTrials', opt};
-end
+out = opt_history(out, mfilename);
 end

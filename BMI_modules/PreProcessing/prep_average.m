@@ -31,10 +31,11 @@ if ~isfield(dat,'x')
     warning('OpenBMI: Data structure must have a field named ''x''')
     return
 end
-if ~isfield(dat,'y_dec') || ~isfield(dat,'y_logic') || ~isfield(dat,'y_class')
+
+if ~all(isfield(dat,{'y_dec', 'y_logic', 'y_class'}))
     warning('OpenBMI: Class information is missing')
     return
-end
+end 
 
 if ndims(dat.x)~=3 && size(dat.chan,2)~=1
     warning('OpenBMI: Data must be segmented')
@@ -55,11 +56,5 @@ out = rmfield(dat,{'t','y_dec','y_logic','y_class'});
 out.x = x;
 out.se = se;
 
-if ~exist('opt','var')
-    opt = struct([]);
-end
-if ~isfield(dat,'history')
-    out.history = {'prep_average',opt};
-else
-    out.history(end+1,:) = {'prep_average',opt};
+out = opt_history(out, mfilename);
 end

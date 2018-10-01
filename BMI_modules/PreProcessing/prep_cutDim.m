@@ -54,11 +54,4 @@ elseif isnumeric(dat)
     out = x;
 end
 
-if ~exist('opt')
-    opt = struct([]);
-end
-if ~isfield(dat,'history')
-    out.history = {'prep_cutDim',opt};
-else
-    out.history(end+1,:) = {'prep_cutDim',opt};
-end
+out = opt_history(out, mfilename);

@@ -1,4 +1,4 @@
-function [out] = prep_addFeatures_(cell_dat, varargin)
+function [out] = prep_addFeatures(cell_dat, varargin)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PREP_ADDFEATRUES - Add features to the former data from the latter datas
 % prep_addFeatures (Pre-processing procedure):
@@ -83,13 +83,5 @@ else
     warning('OpenBMI: Class informations are missed');   
 end
 
-if ~exist('opt')
-    opt = struct([]);
-end
-if ~isfield(cell_dat, 'history')
-    out.history = {'prep_addFeatures', opt};
-else
-    out.history(end + 1, :) = {'addTrials', opt};
-end
-
+out = opt_history(out, mfilename);
 end

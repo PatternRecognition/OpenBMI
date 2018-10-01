@@ -1,4 +1,4 @@
-function [out] = prep_grandAverage_(cell_dat, varargin)
+function [out] = prep_grandAverage(cell_dat, varargin)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PREP_GRANDAVERAGE - average the data across subjects
 % prep_grandAverage (Pre-processing procedure):
@@ -50,9 +50,9 @@ cell_dat(non_average) = cellfun(@prep_average, cell_dat(non_average), 'Uni', fal
 fields_check = {'class', 'chan', 'ival'};
 check_dat = cellfun(@(x) getfield([cell_dat{:}], x),{1:3},fields_check, 'Uni', false);
 
-for i = 1:length(cell_dat)
-    check_dat(i).(fields_check{:}) = 
-end
+% for i = 1:length(cell_dat)
+%     check_dat(i).(fields_check{:}) = 
+% end
 
 for i = 1:length(cell_dat)
     dat = cell_dat{i};
@@ -92,4 +92,6 @@ end
 out = cell_dat{1};
 out.x = dat_av;
 out.se = se;
+
+out = opt_history(out, mfilename, opt);
 end

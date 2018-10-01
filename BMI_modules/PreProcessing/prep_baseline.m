@@ -44,13 +44,9 @@ if ndims(dat.x)~=3 && size(dat.chan,2)~=1
 end
 
 opt = opt_cellToStruct(varargin{:});
+def_opt = struct('time', [dat.ival(1), dat.ival(end)], 'criterion', 'trial');
+opt = opt_defaultParsing(def_opt, opt);
 
-if ~isfield(opt,'time')
-    opt.time = [dat.ival(1),dat.ival(end)];
-end
-if ~isfield(opt,'criterion')
-    opt.criterion = 'trial';
-end
 if isscalar(opt.time)
     opt.time = [dat.ival(1),dat.ival(1)+opt.time];
 elseif ~isvector(opt.time)
@@ -85,3 +81,6 @@ end
 
 out = rmfield(dat,'x');
 out.x = x;
+
+out = opt_history(out, mfilename, opt);
+end
