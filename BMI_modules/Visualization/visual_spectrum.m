@@ -49,19 +49,19 @@ sampleFrequency=dat.fs;
 %
 % modelOrder = 18+round(sampleFrequency/100);
 modelOrder = 20;
-opt.lowPassCutoff=(sampleFrequency/2);
-opt.freqBinWidth= 2;
-opt.highPassCutoff=-1;
+opt.lowpasscutoff=(sampleFrequency/2);
+opt.freqbinwidth= 2;
+opt.highpasscutoff=-1;
 opt.trend=1;
 % Setting the parameter about spectral moving (using autoregression)
-opt.spectralSize= 500;
-opt.spectralStep = 100;
-opt.spectralSize = round(opt.spectralSize/1000 * sampleFrequency);
-opt.spectralStep = round(opt.spectralStep/1000 * sampleFrequency);
-params = [modelOrder, opt.highPassCutoff+opt.freqBinWidth/2, opt.lowPassCutoff, opt.freqBinWidth,round(opt.freqBinWidth/.2), ...
+opt.spectralsize= 500;
+opt.spectralstep = 100;
+opt.spectralsize = round(opt.spectralsize/1000 * sampleFrequency);
+opt.spectralstep = round(opt.spectralstep/1000 * sampleFrequency);
+params = [modelOrder, opt.highpasscutoff+opt.freqbinwidth/2, opt.lowpasscutoff, opt.freqbinwidth,round(opt.freqbinwidth/.2), ...
     opt.trend, sampleFrequency];
-params(8) = opt.spectralStep;
-params(9) = opt.spectralSize/opt.spectralStep;
+params(8) = opt.spectralstep;
+params(9) = opt.spectralsize/opt.spectralstep;
 %%
 C1_idx=find(dat.y_dec==1);
 C2_idx = find(dat.y_dec==2);
@@ -77,7 +77,7 @@ for trial=1:size(C1.x,2)
     [trialspectrum2(:,:,:,trial), C2_freqBins] = mem( plotData2, params );
 end
 %%
-if strcmp(opt.Xaxis, 'Frequency') == 1 && strcmp(opt.Yaxis, 'Channel') == 1
+if strcmp(opt.xaxis, 'Frequency') == 1 && strcmp(opt.yaxis, 'Channel') == 1
     for tri = 1: size(C1_idx,2)
         tmp=mean(trialspectrum(:,:,:,tri),3);
         C1Data(:,:,tri)=tmp;
@@ -91,7 +91,7 @@ if strcmp(opt.Xaxis, 'Frequency') == 1 && strcmp(opt.Yaxis, 'Channel') == 1
         end
     end
     plotData = {mean(C1Data,3),mean(C2Data,3), ressq};
-    freqBins = C1_freqBins - opt.freqBinWidth/2;
+    freqBins = C1_freqBins - opt.freqbinwidth/2;
     freqBins(end+1) = freqBins(end) + diff(freqBins(end-1:end));
     for i = 1:size(plotData,2)
         plotData{i}=cat(2, plotData{i}, zeros(size(plotData{i}, 1), 1));
@@ -117,7 +117,7 @@ if strcmp(opt.Xaxis, 'Frequency') == 1 && strcmp(opt.Yaxis, 'Channel') == 1
         end
     end
 %%     
-elseif strcmp(opt.Xaxis, 'Time') == 1 && strcmp(opt.Yaxis, 'Channel') == 1
+elseif strcmp(opt.xaxis, 'Time') == 1 && strcmp(opt.yaxis, 'Channel') == 1
     fre_inx = find(C1_freqBins == opt.Band(2));
     for tri = 1: size(C1_idx,2)
         tmp = trialspectrum(fre_inx,:,:,tri);
@@ -158,8 +158,8 @@ elseif strcmp(opt.Xaxis, 'Time') == 1 && strcmp(opt.Yaxis, 'Channel') == 1
         end
     end
 %%
-elseif strcmp(opt.Xaxis, 'Time') == 1 && strcmp(opt.Yaxis, 'Frequency') == 1
-    Chanidx = find(strcmp(dat.chan, opt.Channel)== 1 );
+elseif strcmp(opt.xaxis, 'Time') == 1 && strcmp(opt.yaxis, 'Frequency') == 1
+    Chanidx = find(strcmp(dat.chan, opt.channel)== 1 );
     for tri = 1: size(C1_idx,2)
         tmp = trialspectrum(:,Chanidx,:,tri);
         tmp = squeeze(tmp);
@@ -171,7 +171,7 @@ elseif strcmp(opt.Xaxis, 'Time') == 1 && strcmp(opt.Yaxis, 'Frequency') == 1
     plotData = {mean(C1Data,3),mean(C2Data,3)};
     a = dat.ival(1)/100;b = size(tmp,2)-abs(dat.ival(1)/100)-1;
     a = a*100;b = b*100;
-    freqBins = C1_freqBins - opt.freqBinWidth/2;
+    freqBins = C1_freqBins - opt.freqbinwidth/2;
     freqBins(end+1) = freqBins(end) + diff(freqBins(end-1:end));
     for i = 1:size(plotData,2)
         plotData{i}=cat(1, plotData{i}, zeros(1, size(plotData{i}, 2)));
@@ -185,9 +185,9 @@ elseif strcmp(opt.Xaxis, 'Time') == 1 && strcmp(opt.Yaxis, 'Frequency') == 1
         xlabel('Time'); ylabel('Frequency');
         switch(i)
             case 1
-                title(['Time-frequency power spectrum in channel ', char(opt.Channel),  ' and class 1']);
+                title(['Time-frequency power spectrum in channel ', char(opt.channel),  ' and class 1']);
             case 2
-                title(['Time-frequency power spectrum in channel ', char(opt.Channel),  ' and class 2']);
+                title(['Time-frequency power spectrum in channel ', char(opt.channel),  ' and class 2']);
         end
     end
 end

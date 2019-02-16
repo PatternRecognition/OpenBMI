@@ -39,7 +39,7 @@ function [ ersp ] = visual_ERSP( data, varargin )
 %%
 dat = data;
 opt = opt_cellToStruct(varargin{:});
-chinx = find(strcmp(dat.chan,opt.Channel)==1);
+chinx = find(strcmp(dat.chan,opt.channel)==1);
 eeg = [];
 
 if ndims(dat.x) == 2

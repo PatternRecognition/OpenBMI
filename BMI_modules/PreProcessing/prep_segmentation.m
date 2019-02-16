@@ -51,11 +51,11 @@ ival = opt.interval;
 
 tmp = dat.t;
 tmp(1) = [];
-if any([ival(1) < 0, ival(2) < 0, ival(1) * dat.fs / 1000 > min(tmp - dat.t(1:end - 1)), ...
-        ival(2) * dat.fs / 1000 > min(tmp - dat.t(1:end - 1)), ival(2) < ival(1)])
-    ival = [0, min(tmp - dat.t(1:end - 1)) * 1000 / dat.fs];
-    warning('OpenBMI: Interval should be proper value, so we changed it. Please check.')
-end
+% if any([ival(1) < 0, ival(2) < 0, ival(1) * dat.fs / 1000 > min(tmp - dat.t(1:end - 1)), ...
+%         ival(2) * dat.fs / 1000 > min(tmp - dat.t(1:end - 1)), ival(2) < ival(1)])
+%     ival = [0, min(tmp - dat.t(1:end - 1)) * 1000 / dat.fs];
+%     warning('OpenBMI: Interval should be proper value, so we changed it. Please check.')
+% end
 
 idc = floor(ival(1) * dat.fs / 1000):ceil(ival(2) * dat.fs / 1000);
 n_time = length(idc);
