@@ -7,7 +7,7 @@ import os
 # Data_load setting
 ###################################################################################################
 dataset_name = 'Giga_Science'
-session = ['session1','session2']
+session = ['session1','session1']
 subject = ['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10',
            's11','s12','s13','s14','s15','s16','s17','s18','s19','s20',
            's21','s22','s23','s24','s25','s26','s27','s28','s29','s30',
@@ -46,14 +46,18 @@ name_index_motor = ['FC5', 'C5', 'CP5', 'FC3', 'C3', 'CP3', 'FC1', 'C1', 'CP1', 
                     'CPz', 'FC2', 'C2', 'CP2', 'FC4', 'C4', 'CP4', 'FC6', 'C6', 'CP6']
 
 filter_order = 2
-
-f_range = [8, 30]
 type_filter = 'butter'
+f_range = np.array([[4, 8], [8, 12], [12, 16], [16, 20], [20, 24],
+                    [24, 28], [28, 32], [32, 36], [36, 40]])
 # type_filter = 'cheby'
-# f_range = [0.1, 8, 30, 49]
+# f_range = np.array([[0.1, 4, 8, 49], [0.1, 8, 12, 49], [0.1, 12, 16, 49], [0.1, 16, 20, 49], [0.1, 20, 24, 49],
+#                     [0.1, 24, 28, 49], [0.1, 28, 32, 49], [0.1, 32, 36, 49], [0.1, 36, 40, 49]])
+# f_range = np.array([[2, 4, 8, 10], [6, 8, 12, 14], [10, 12, 16, 18], [14, 16, 20, 22], [18, 20, 24, 26],
+#                     [22, 24, 28, 30], [26, 28, 32, 34], [30, 32, 36, 38], [34, 36, 40, 42]])
+# f_range = np.array([[8,12],[12,16],[16,20],[20,24],[24,28],[28,32]])
 t_interval = [500, 3500]
 n_pattern = 3
-down_fs = 100
+downfs = 100
 
 ###################################################################################################
 #
@@ -63,7 +67,7 @@ accuracy = np.zeros((len(subject),1))
 
 for ii in range(len(subject)):
     file_dir = 'D:\data'
-    file_dir_ = os.path.join(file_dir, dataset_name, session[0], subject[ii], sess1_sub_paradigm[ii]+'.mat')
+    file_dir_ = os.path.join(file_dir, dataset_name, session[1], subject[ii], sess1_sub_paradigm[ii]+'.mat')
     mat = sio.loadmat(file_dir_)
     CNT_tr = ob.data_structure(mat['EEG_MI_train'],dataset_name)
     CNT_te = ob.data_structure(mat['EEG_MI_test'], dataset_name)
@@ -71,8 +75,9 @@ for ii in range(len(subject)):
 
     #  preprocessing
     # downsampling
-    # CNT_tr = ob.downsample(CNT_tr, down_fs)
-    # CNT_te = ob.downsample(CNT_te, down_fs)
+    # CNT_tr = ob.downsample(CNT_tr, downfs)
+    # CNT_te = ob.downsample(CNT_te, downfs)
+
     # class selection
     CNT_tr = ob.class_selection(CNT_tr, ['right', 'left'])
     CNT_te = ob.class_selection(CNT_te, ['right', 'left'])
@@ -82,36 +87,34 @@ for ii in range(len(subject)):
     CNT_te = ob.channel_selection(CNT_te, name_index_motor)
 
     # band-pass filter
-    CNT_tr = ob.bandpass_filter(CNT_tr, f_range, filter_order, type_filter)
-    CNT_te = ob.bandpass_filter(CNT_te, f_range, filter_order, type_filter)
+    CNT_tr = ob.filter_bank(CNT_tr, f_range, filter_order, type_filter)
+    CNT_te = ob.filter_bank(CNT_te, f_range, filter_order, type_filter)
 
     # segmentation
-    SMT_tr = ob.segmentation(CNT_tr, t_interval)
-    SMT_te = ob.segmentation(CNT_te, t_interval)
-
-    del CNT_te, CNT_tr
-
-    # # class selection
-    # SMT_tr = ob.class_selection(SMT_tr, ['right', 'left'])
+    SMT_tr = ob.segment_fb(CNT_tr, t_interval)
+    SMT_te = ob.segment_fb(CNT_te, t_interval)
 
     # feature extraction
-    SMT_tr, CSP_W= ob.common_spatial_pattern(SMT_tr, n_pattern)
-    SMT_te = ob.project_CSP(SMT_te, CSP_W)
+    SMT_tr, CSP_W_motor = ob.csp_fb(SMT_tr, n_pattern)
+    SMT_te= ob.project_CSP_fb(SMT_te, CSP_W_motor)
 
-    FT_tr = ob.log_variance(SMT_tr)
-    FT_te = ob.log_variance(SMT_te)
+    FT_tr= ob.log_variance(SMT_tr)
+    FT_te= ob.log_variance(SMT_te)
 
-    del SMT_te, SMT_tr
+    # mutual information based feature selection
+    mut_info_motor = ob.mutual_info(FT_tr)
+    selected_feat_motor = ob.feat_select(mut_info_motor)
+
+    FT_tr['x'] = FT_tr['x'][selected_feat_motor, :]
+    FT_te['x'] = FT_te['x'][selected_feat_motor, :]
 
     # classification
     sh_LDA_motor = ob.shrinkage_LDA(FT_tr)
     OUT_lda_motor = ob.project_shLDA(FT_te, sh_LDA_motor)
 
-    del FT_te, FT_tr
-
-    accuracy[ii,0] = OUT_lda_motor
+    accuracy[ii, 0] = OUT_lda_motor
     count = count + 1
 
     print(ii, OUT_lda_motor)
 
-sio.savemat('D:\Code\BCI_zero_tr/accuracy_csp_butter_order2', {'accuracy': accuracy})
+sio.savemat('D:\Code\BCI_zero_tr/accuracy_fbcsp_butter_order2', {'accuracy': accuracy})
