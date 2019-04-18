@@ -7,7 +7,7 @@ import os
 # Data_load setting
 ###################################################################################################
 dataset_name = 'Giga_Science'
-session = ['session1','session1']
+session = ['session1','session2']
 subject = ['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10',
            's11','s12','s13','s14','s15','s16','s17','s18','s19','s20',
            's21','s22','s23','s24','s25','s26','s27','s28','s29','s30',
@@ -67,7 +67,7 @@ accuracy = np.zeros((len(subject),1))
 
 for ii in range(len(subject)):
     file_dir = 'D:\data'
-    file_dir_ = os.path.join(file_dir, dataset_name, session[1], subject[ii], sess1_sub_paradigm[ii]+'.mat')
+    file_dir_ = os.path.join(file_dir, dataset_name, session[0], subject[ii], sess1_sub_paradigm[ii]+'.mat')
     mat = sio.loadmat(file_dir_)
     CNT_tr = ob.data_structure(mat['EEG_MI_train'],dataset_name)
     CNT_te = ob.data_structure(mat['EEG_MI_test'], dataset_name)
