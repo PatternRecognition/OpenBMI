@@ -114,4 +114,4 @@ for ii in range(len(subject)):
 
     print(ii, OUT_lda_motor)
 
-sio.savemat('D:\Code\BCI_zero_tr/accuracy_csp_butter_order2', {'accuracy': accuracy})
+sio.savemat('D:\Code\BCI_zero_tr/accuracy_csp_butter_order2', {'accuracy': accuracy}) 
