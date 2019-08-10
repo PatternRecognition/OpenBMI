@@ -35,7 +35,7 @@ If you are interested in our code and want to know simple example code, 'Example
 -OpenSSVEP  : functions related to SSVEP GUI module
 -new_p300 : functions related to P300 GUI module 
 
-4) Paradigm
+4) 'Paradigm'
     : Paradigm functions with Psychtoolbox are included:
     
 -Artifact : functions related to artifact paradigm
@@ -46,7 +46,7 @@ If you are interested in our code and want to know simple example code, 'Example
 5) 'GigaScience'
     : Our paper in GigaScience codes are included
     
-6) PR_BCI_team
+6) 'PR_BCI_team'
     : Other BCI group's codes are included
     
     
