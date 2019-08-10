@@ -5,7 +5,7 @@ BMI.EEG_DIR=['C:\Users\Administrator\Desktop\BCI_Toolbox\DemoData'];
 
 %% DATA LOAD MODULE
 file=fullfile(BMI.EEG_DIR, '\calibration_motorimageryVPkg');
-marker={'1','left';'2','right';'3','foot'};
+marker={'1','left';'2','right'};
 [EEG.data, EEG.marker, EEG.info]=Load_EEG(file,{'device','brainVision';'marker', marker;'fs', [100]});
 
 %% if you can redefine the marker information after Load_EEG function 
