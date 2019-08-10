@@ -49,6 +49,9 @@ If you are interested in our code and want to know simple example code, 'Example
 6) 'PR_BCI_team'
     : Other BCI group's codes are included
     
+7) 'VIS'
+    : OpenBMI demo
+    
     
 If you have any questions about our code, please leave any message.
 web site: http://openbmi.org
