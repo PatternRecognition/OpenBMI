@@ -55,6 +55,9 @@ If you are interested in our code and want to know simple example code, 'Example
 8) 'Test_mat'
     : Test mat file
     
+9) 'TNNLS'
+    : Our proceeding paper in TNNLS codes (paradigm and basic examples) are included
+    
 If you have any questions about our code, please leave any message.
 web site: http://openbmi.org
 
