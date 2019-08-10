@@ -1,40 +1,40 @@
-%% Anaylsis_SSVEP
-clear all; clc; close all;
-%% initialization
-DATADIR = 'WHERE\IS\DATA';
-%% ERP
-SSVEPDATA = 'EEG_SSVEP.mat';
-STRUCTINFO = {'EEG_SSVEP_train', 'EEG_SSVEP_test'};
-SESSIONS = {'session1', 'session2'};
-TOTAL_SUBJECTS = 54;
 
-%% INITIALIZATION
-FS = 100;
+%% load
+load cnt_ssvep;
+CNT = cnt_ssvep;
 
-%init
-params = {'time', 4;...
-'freq' , 60./[5, 7, 9, 11];...
-'fs' , FS;...
-'band' ,[0.5 40];...
-'channel_index', [23:32]; ...
-'time_interval' ,[0 4000]; ...
-'marker',  {'1','up';'2', 'left';'3', 'right';'4', 'down'}; ...
-};
+% cnt variables
+% cnt.t  : time information 
+% cnt.fs : sampling frequency
+% cnt.y_dec : class information (e.g., up = 1, left = 2, right = 3, down = 4)
+% cnt.y_logic : logical format of class inforamtion 
+% cnt_y_class : class name (e.g., up, left, right, and down)
+% cnt.class : number of class 
+% cnt.chan : number of electrodes
+% cnt. x : raw eeg signals
 
-%% validation
-for sessNum = 1:length(SESSIONS)
-    session = SESSIONS{sessNum};
-    fprintf('\n%s validation\n',session);
-    for subNum = 1:TOTAL_SUBJECTS
-        subject = sprintf('s%d',subNum);
-        fprintf('LOAD %s ...\n',subject);
-        
-        data = importdata(fullfile(DATADIR,session,subject,SSVEPDATA));
-        
-        CNT{1} = prep_resample(data.(STRUCTINFO{1}), FS,{'Nr', 0});
-        CNT{2} = prep_resample(data.(STRUCTINFO{2}), FS,{'Nr', 0});
-        ACC.SSVEP(subNum,sessNum) = ssvep_performance(CNT, params);
-        fprintf('%d = %f\n',subNum, ACC.SSVEP(subNum,sessNum));
-        clear CNT
+% revised 2017.11.11 - Oyeon Kwon (oy_kwon@korea.ac.kr)
+%% Initialization
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+time = 4;
+freq = [5, 7, 9, 11];
+fs = CNT.fs;
+interval = [0 4000];  %
+marker  = {'1','up';'2', 'left';'3', 'right';'4', 'down'};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CCA - Analysis
+SMT = prep_segmentation(CNT, {'interval', interval});
+
+numTrials = size(SMT.x, 2);
+count= numTrials;
+
+for i = 1: size(SMT.x, 2)
+    cca_result = ssvep_cca_analysis(squeeze(SMT.x(:,i,:)),{'marker',marker;'freq', freq;'fs', fs;'time',time});
+    [~, ind] = max(cca_result);
+    if SMT.y_dec(i) ~= ind
+        count = count -1;
     end
 end
+fprintf('Accuracy: %.2f%%\n', count/numTrials);
+Accuracy = count/numTrials;
+
