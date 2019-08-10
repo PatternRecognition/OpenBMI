@@ -22,10 +22,6 @@ time_interval =[1000 3500];
 Niteration = 10;
 SMT=[];
 
-CNT=prep_filter(CNT, {'frequency', band});
-SMT=prep_segmentation(CNT, {'interval', time_interval});
-
-
 % Pre-processing
 for idx=1:2
     CNTch = prep_selectChannels(CNT{idx}, {'Char', channel_index});
