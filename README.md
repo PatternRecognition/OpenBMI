@@ -53,7 +53,7 @@ If you are interested in our code and want to know simple example code, 'Example
     : OpenBMI demo
     
 8) 'Test_mat'
-    : The ordering information in P300 speller
+    : Test mat file
     
 If you have any questions about our code, please leave any message.
 web site: http://openbmi.org
