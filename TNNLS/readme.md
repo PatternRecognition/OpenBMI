@@ -15,6 +15,6 @@ Basic pre-processing, feature extraction, classificaton, and evaludation modules
 -run_MI : setup of our experiment and evaluation modules are included
 -mi_performance : basic feature extraction and classification modules are included
 
-If you are interested in basic code for our analysis, this part will be helpful for your understanding.
+If users are interested in basic codes for MI, this part will be helpful for your understanding.
 
 If you have any questions about our code, please leave any message. web site: http://openbmi.org
