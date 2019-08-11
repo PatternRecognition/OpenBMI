@@ -1,7 +1,8 @@
 
-Here, basic codes of our proceeding TNNLS paper are included.
+Here, we provide a general analysis codes for motor imagination. 
 
-We provide detail information about paradigm codes and examples for the anaylsis of motor imagination.
+Basic pre-processing, feature extraction, classificaton, and evaludation modules are incldued in this part. 
+(Users can see the configuration for MI analysis.)
 
 1) 'Paradigm'
 : codes for the motor imagination paradigm (with Psychtoolbox)
