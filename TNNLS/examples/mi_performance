@@ -17,7 +17,7 @@ end
 % Feature extracion and Classification
 for iter=1:Niteration
     CV.train={
-        '[SMT, CSP_W, CSP_D]=func_csp(SMT,{"nPatterns", [2]})'
+        '[SMT, CSP_W, CSP_D]=func_csp(SMT,{"nPatterns", ['all']})'
         'FT=func_featureExtraction(SMT, {"feature","logvar"})'
         '[CF_PARAM]=func_train(FT,{"classifier","LDA"})'
         };
