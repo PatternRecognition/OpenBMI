@@ -80,74 +80,8 @@ for sess in [1,2]:
         lda = LinearDiscriminantAnalysis()
         csp = CSP(n_components=6, reg=None, log=True, norm_trace=False)
         # Use scikit-learn Pipeline with cross_val_score function
-
-#####################윈도우##########################
-        sfreq = epochs.info['sfreq']
-        w_length = int(sfreq * 3)  # running classifier: window length
-        w_step = int(sfreq * 0.1)  # running classifier: window step size
-        w_start = np.arange(0, epochs_data.shape[2] - w_length, w_step)
-
-        scores_windows = []
-
-
-        # fit classifier
-        lda.fit(X_train, labels_train)
-
-        # running classifier: test classifier on sliding window
-        score_this_window = []
-        for n in w_start:
-            epochs_data_train = epochs_train.get_data()[0:100, :, n:(n + w_length)]
-            epochs_data_test = epochs_train.get_data()[100:200, :, n:(n + w_length)]
-            X_train = csp.fit_transform(epochs_data_train, labels_train)
-            X_test = csp.transform(epochs_data_test)
-            lda.fit(X_train, labels_train)
-            score_this_window.append(lda.score(X_test, labels_test))
-        scores_windows.append(score_this_window)
-
-        # Plot scores over time
-        w_times = (w_start + w_length / 2.) / sfreq + epochs.tmin
-
-        plt.figure()
-        plt.plot(w_times, np.mean(scores_windows, 0), label='Score')
-        plt.axvline(0, linestyle='--', color='k', label='Onset')
-        plt.axhline(0.5, linestyle='-', color='k', label='Chance')
-        plt.xlabel('time (s)')
-        plt.ylabel('classification accuracy')
-        plt.title('Classification score over time')
-        plt.legend(loc='lower right')
-        plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        # clf = Pipeline([('CSP', csp), ('LDA', lda)])
-        # scores = cross_val_score(clf, epochs_data_train, labels, cv=cv, n_jobs=-1, )
-
+        clf = Pipeline([('CSP', csp), ('LDA', lda)])
+        scores = cross_val_score(clf, epochs_data_train, labels, cv=cv, n_jobs=-1, )
 
         csp.fit_transform(epochs_data_test, labels_test)
 
