@@ -22,7 +22,7 @@ import pickle
 
 #giga science mi data csp-lda example
 
-with open('C:\\Users\dk\PycharmProjects\giga_cnn\convert\MI_62ch_250Hz.pkl', 'rb') as f:
+with open('\MI_62ch_250Hz.pkl', 'rb') as f:
     data = pickle.load(f)
 
 f = open("CSP_62ch_100hz" + datetime.today().strftime("%m_%d_%H_%M") + ".txt", 'w')
