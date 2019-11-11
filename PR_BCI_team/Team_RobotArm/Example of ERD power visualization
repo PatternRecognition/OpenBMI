@@ -1,0 +1,39 @@
+%% ERD power
+
+clc; close all; clear all;
+%% file
+dd='file path';
+filelist={'filename'};
+[cnt, mrk, mnt] = eegfile_loadMatlab([dd filelist{1}]);
+
+ival = [-500 3000];
+epo = cntToEpo(cnt, mrk, ival);
+
+fv = epo;
+fv = proc_laplacian(fv, 'small', 'lap');
+
+fv = proc_selectChannels(fv,5);
+
+spec = proc_spectrum(fv, [5 35]);
+
+power1=reshape(spec.x,31,300);
+power_mean1=mean(power1,2);
+frq1=5:35;
+
+figure(1);
+ylim([-15 20]);
+xlabel('Hz');
+ylabel('dB');
+
+for k=1:40
+    plot(frq1,power1(:,k),'Color',[175 175 175]/255)
+end
+plot(frq1,power_mean1,'Color',[0 0 1])
+clearvars cnt mrk mnt ival epo proc fv spec
+
+ylim([-5 20]);
+xlabel('Hz');
+ylabel('dB');
+plot(frq9,Average,'Color','Black','LineWidth',3)
+
+hold off;
