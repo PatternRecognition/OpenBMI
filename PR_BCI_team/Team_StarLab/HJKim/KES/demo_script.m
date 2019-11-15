@@ -26,21 +26,13 @@ test_task = [22, 29, 14, 17, 10, 19, 13, 1, 21, 23, ...
     31, 28, 31, 5, 9, 11, 15, 36, 5, 1];
 
 % chanSel=[1 2 4 11 12 14 16 17 26 31];
-eog_ch = [6 ,10];
-eog_th = 50;
 %% Subjects info
-sub_num = 7;
-sub_name = 'hsjeong';
-path = 'C:\Users\KHJ-work\Documents\MATLAB\Application_Demo\erp';
+sub_num = 'subject number';
+sub_name = 'subject name';
+path = 'path of data';
 files = {'train', 'test'};
 datDir=fullfile(path, sprintf('subject%d_%s',sub_num, sub_name),'session2');
 
-%% EOG Test
-eog_ch = [6 ,10];
-eog_th = 24;
-time_window = 20;
-%%
-eog_test(eog_ch, eog_th, time_window);
 %% Practice
 soundImagery(0, n_scr, port);
 %% sound generator for practice
@@ -66,7 +58,7 @@ pa_opt = {'port', port;'text', copy_task; 'nSequence',n_seq; 'screenNum',n_scr;.
     'sti_Times',stimulus_time; 'sti_Interval',interval_time;'screenSize', scr_size;...
     'resting', rs_time; 'frequency', frequency;'online', false};
 norm_train(pa_opt);
-%% ÀüÀÚÀü Train
+%% Ã€Ã¼Ã€ÃšÃ€Ã¼ Train
 txt = 'KOREA_UNIVERSITY';
 pa_opt = {'port', port;'text',txt; 'nSequence',5; 'screenNum',n_scr;...
     'sti_Times',stimulus_time; 'sti_Interval',interval_time;'screenSize', scr_size;...
@@ -87,7 +79,7 @@ clfs = make_classifiers(fullfile(datDir, 'dot_train'), chanSel);
 %% Online scripts
 on_opt = {'segTime',TimeIval;'baseTime',baselineTime; 'selTime',selectedTime;...
     'nFeature',numFeature;'channel',chanSel;'clf_param',clfs; ...
-    'selectedFreq', selectedFreq; 'eog_ch', eog_ch; 'eog_th',eog_th;'eog_window', time_window};
+    'selectedFreq', selectedFreq;};
 res =p300_online_threeclasses(on_opt);
 %%
 p300_plotting(fullfile(datDir, files{1}), {'1', 'non';'2', 'tar'});
