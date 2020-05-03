@@ -27,8 +27,8 @@ for sess in [1,2]:
         raw1.filter(l_freq=4, h_freq=50, fir_design='firwin', skip_by_annotation='edge')
         raw2.filter(l_freq=4, h_freq=50, fir_design='firwin', skip_by_annotation='edge')
 
-        epochs1 = gigadata_epochs(raw1, events1, tmin=-1., tmax=8.)
-        epochs2 = gigadata_epochs(raw2, events2, tmin=-1., tmax=8.)
+        epochs1 = gigadata_epochs(raw1, events1, tmin=-1., tmax=4.)
+        epochs2 = gigadata_epochs(raw2, events2, tmin=-1., tmax=4.)
         epochs = mne.concatenate_epochs([epochs1,epochs2])
         epochs.resample(100)
         allepo.append(epochs.copy())

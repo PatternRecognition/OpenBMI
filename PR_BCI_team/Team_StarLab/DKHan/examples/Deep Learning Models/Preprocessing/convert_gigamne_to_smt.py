@@ -23,6 +23,9 @@ import pickle
 with open('MI_62ch_100Hz_4-50.pkl', 'rb') as f:
     data = pickle.load(f)
 
+sess = 2
+sub= 43
+
 for sess in [1,2]:
     print("session:",sess)
     for sub in range(1,55):
@@ -32,7 +35,9 @@ for sess in [1,2]:
         else :
             epochs = data[sub+53]
 
+
         epochs_train = epochs.copy()
+
 
         if sess == 1 and sub ==1:
             epochs_data_train = epochs_train.get_data()
@@ -48,3 +53,4 @@ for sess in [1,2]:
 
 np.save('x_data_450',epochs_data_train)
 np.save('y_data',labels)
+
