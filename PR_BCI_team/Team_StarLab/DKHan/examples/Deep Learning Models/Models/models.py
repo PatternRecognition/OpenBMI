@@ -20,6 +20,35 @@ class log(nn.Module):
     def _log(self, x, eps=1e-6):
         return torch.log(torch.clamp(x, min=eps))
 
+class ShallowNet_dense(nn.Module):
+    def __init__(self,n_classes,input_ch,input_time):
+        super(ShallowNet_dense, self).__init__()
+        self.num_filters = 40
+        self.n_classes = n_classes
+
+        self.convnet = nn.Sequential(nn.Conv2d(1, self.num_filters, (1,25), stride=1),
+                                     nn.Conv2d(self.num_filters, self.num_filters, (input_ch, 1), stride=1,bias=False),
+                                     nn.BatchNorm2d(self.num_filters, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True),
+                                     square(),
+                                     nn.AvgPool2d(kernel_size=(1, 75), stride=(1, 1), padding=0),
+                                     log(),
+                                     nn.Dropout(p=0.5),
+                                     nn.Conv2d(self.num_filters, n_classes, kernel_size=(1, 30),  stride=(1, 1), dilation=(1, 15)),
+                                     nn.LogSoftmax(dim=1)
+                                     )
+
+        self.convnet.eval()
+        out = self.convnet(torch.zeros((1, 1, input_ch, input_time)))
+        self.out_size = out.size()[3]
+
+    def forward(self, x):
+        output = self.convnet(x)
+        output = output.view(output.size()[0], self.n_classes,self.out_size)
+
+        return output
+
+
+
 class Deep4Net_origin(nn.Module):
     def __init__(self, n_classes,input_ch,input_time,batch_norm=True,
                  batch_norm_alpha=0.1):
@@ -137,3 +166,4 @@ class FcClfNet(nn.Module):
 
 
         return output
+
