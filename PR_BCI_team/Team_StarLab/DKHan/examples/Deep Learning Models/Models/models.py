@@ -167,3 +167,18 @@ class FcClfNet(nn.Module):
 
         return output
 
+class ConvClfNet(nn.Module):
+    def __init__(self, embedding_net):
+        super(ConvClfNet, self).__init__()
+        self.embedding_net = embedding_net
+        self.num_hidden = embedding_net.num_hidden
+        self.clf = nn.Conv2d(embedding_net.n_ch4, embedding_net.n_classes, (1, embedding_net.final_conv_length), bias=True)
+
+    def forward(self, x):
+        output = self.embedding_net(x)
+        output = output.view(output.size()[0],self.embedding_net.n_ch4,-1,self.embedding_net.final_conv_length)
+        output = self.clf(output)
+        output = F.log_softmax(output,dim=1)
+
+        output = output.view(output.size()[0], -1)
+        return output
