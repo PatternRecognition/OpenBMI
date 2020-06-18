@@ -183,43 +183,41 @@ class ConvClfNet(nn.Module):
         output = output.view(output.size()[0], -1)
         return output
 
-class EEGNet_v2(nn.Module):
-    def __init__(self,n_classes, input_ch,input_time, batch_norm=True,
+class EEGNet_latest(nn.Module):
+    def __init__(self,num_classes, input_ch,input_time, batch_norm=True,
                  batch_norm_alpha=0.1):
-        super(EEGNet_v2, self).__init__()
+        super(EEGNet_latest, self).__init__()
         self.batch_norm = batch_norm
         self.batch_norm_alpha = batch_norm_alpha
-        self.n_classes = n_classes
-
+        self.n_classes = num_classes
+        freq = 250
         self.convnet = nn.Sequential(
-            nn.Conv2d(1, 8, kernel_size=(1, 64), stride=1),
+            nn.Conv2d(1, 8, kernel_size=(1, freq//2), stride=1, bias=False, padding=(0, freq//4)),
             nn.BatchNorm2d(8),
             nn.Conv2d(8, 16, kernel_size=(input_ch, 1), stride=1, groups=8),
             nn.BatchNorm2d(16),
             nn.ELU(),
+            # nn.AdaptiveAvgPool2d(output_size = (1,265)),
             nn.AvgPool2d(kernel_size=(1,4)),
             nn.Dropout(p=0.25),
-            nn.Conv2d(16, 16 , kernel_size=(1,6),groups=16),
+            nn.Conv2d(16, 16 , kernel_size=(1,freq//4),padding=(0,freq//8), groups=16),
             nn.Conv2d(16, 16, kernel_size=(1,1)),
             nn.BatchNorm2d(16),
             nn.ELU(),
             nn.AvgPool2d(kernel_size=(1, 8)),
-            nn.Dropout(p=0.25),
+            nn.Dropout(p=0.25)
             )
         self.convnet.eval()
 
-        out = self.convnet(torch.zeros(1,1,input_ch,input_time))
-        self.num_hidden = out.size()[1]*out.size()[2]*out.size()[3]
+        out = self.convnet(torch.zeros(1, 1, input_ch, input_time))
+        self.num_hidden = out.size()[1] * out.size()[2] * out.size()[3]
+
+        from pytorch_model_summary import summary
+
+        print(summary(self.convnet, torch.zeros(1, 1, input_ch, input_time), show_input=False))
 
     def forward(self, x):
         output = self.convnet(x)
         output = output.view(output.size()[0], -1)
+
         return output
-
-    def get_embedding(self, x):
-        return self.forward(x)
-
-    def l2normalize(self, feature):
-        epsilon = 1e-6
-        norm = torch.pow(torch.sum(torch.pow(feature, 2), 1) + epsilon, 0.5).unsqueeze(1).expand_as(feature)
-        return torch.div(feature, norm)
