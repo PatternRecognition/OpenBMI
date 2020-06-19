@@ -190,7 +190,7 @@ class EEGNet_latest(nn.Module):
         self.batch_norm = batch_norm
         self.batch_norm_alpha = batch_norm_alpha
         self.n_classes = num_classes
-        freq = 250
+        freq = 100
         self.convnet = nn.Sequential(
             nn.Conv2d(1, 8, kernel_size=(1, freq//2), stride=1, bias=False, padding=(0, freq//4)),
             nn.BatchNorm2d(8),
