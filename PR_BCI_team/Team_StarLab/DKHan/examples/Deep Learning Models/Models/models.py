@@ -71,7 +71,7 @@ class Deep4Net_origin(nn.Module):
                                affine=True,
                                eps=1e-5),
                 nn.ELU(),
-                nn.MaxPool2d(kernel_size=(1, 3), stride=(1, 3)),
+                nn.MaxPool2d(kernel_size=(1, 3), stride=(1, 2)),
 
                 nn.Dropout(p=0.5),
                 nn.Conv2d(n_ch1, n_ch2, kernel_size=(1, 10), stride=1, bias=not self.batch_norm),
@@ -80,7 +80,7 @@ class Deep4Net_origin(nn.Module):
                                affine=True,
                                eps=1e-5),
                 nn.ELU(),
-                nn.MaxPool2d(kernel_size=(1, 3), stride=(1, 3)),
+                nn.MaxPool2d(kernel_size=(1, 3), stride=(1, 2)),
 
                 nn.Dropout(p=0.5),
                 nn.Conv2d(n_ch2, n_ch3, kernel_size=(1, 10), stride=1, bias=not self.batch_norm),
@@ -89,7 +89,7 @@ class Deep4Net_origin(nn.Module):
                                affine=True,
                                eps=1e-5),
                 nn.ELU(),
-                nn.MaxPool2d(kernel_size=(1, 3), stride=(1, 3)),
+                nn.MaxPool2d(kernel_size=(1, 3), stride=(1, 2)),
 
                 nn.Dropout(p=0.5),
                 nn.Conv2d(n_ch3, self.n_ch4, kernel_size=(1, 10), stride=1, bias=not self.batch_norm),
