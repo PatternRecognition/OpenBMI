@@ -1,0 +1,72 @@
+{  
+    "classes" : ["left", "right", "foot"],
+    "fbclasses" : ["left", "foot"],
+    "n_elems_seq" : 6,
+    "images_set": ["glass_straw_bw.png","brush.png","sponge.png","help.png"],
+    "foo_images_set": ["foo1.png", "foo2.png","foo3.png","foo4.png","foo5.png"], 
+    "trial_timeout": 30,
+    "stop_action_text" : "Select accept to stop the action",
+    "animation_time": 0.992, 
+
+    "letterbox_color": [0.2, 0, 1],
+    "bg_color": [0, 0, 0], 
+
+    "countdown_color": [ 0.6, 0.6, 0.6], 
+
+    "feedback_attr":
+    {
+    	"color": [ 0.9, 0.9, 0.9 ], 
+    	"duration" : 1.5,
+    	"show_shape": 1,
+    	"show_shape_at_center": 1,
+    	"box_size": 200.0
+    },
+    
+   
+    "fixationpoint_color": [1, 1, 1], 
+    "fixationpoint_size": 4.0, 
+
+    "font_size_countdown": 150, 
+    "font_size_current_letter": 80, 
+
+    "color_msg" : [0.2, 0.0, 1.0],
+    
+    "font_size" :
+    {
+	    "msg" : 80,
+	    "level1": 45, 
+	    "level2": 130, 
+	    "phrase": 60
+    },
+
+    "fullscreen": 0, 
+    "interstimulus_duration": 0.09, 
+    "letter_color": [ 0.5, 0.5, 0.5 ], 
+    "letter_radius": 30,     
+    "letterbox_size": [60, 60], 
+
+    "level_2_animation": 1, 
+    "level_2_letter_colors": false, 
+    "level_2_symbols": true, 
+
+    "log_filename": "feedback.log", 
+    
+    "min_dist": 2, 
+       
+    
+    "shape_color": [0.5, 0.5, 0.5], 
+    "shape_on": 1,  
+    "speller_radius": 300, 
+
+    "stimuli_colors": [[0.22,0.745,1], [0.745,0.36,1], [0.19,0.35,1],[0,0.8,0],[1,1,0.2], [1,0.6,0.2], [1,0.13,0.11]], 
+    "stimulus_duration": 0.10, 
+    "stimulustype_color": true, 
+
+    "udp_markers_enable": false,
+    "udp_markers_host": "127.0.0.1", 
+    "udp_markers_port": 1206,
+
+    "wait_before_classify": 1,
+    "with_emergency_exit" : 0
+	
+}

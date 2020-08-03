@@ -1,0 +1,16 @@
+CSD Toolbox - Detailed Revision History
+=======================================
+
+05/22/09 Release CSD Toolbox 1.0
+05/22/09   Added: Questions (faq.html) and common mistakes (errors.html)
+           Added: progress bar to function GetGH.m
+05/19/09   Added: function ConvertLocations.m converts between *.ced/*.locs (EEGlab) and *.csd
+                  (CSD toolbox) ASCII montage file formats
+05/16/09   Fixed: memory claim for output matrices used inappropriate G and H dimensions (CSD.m)
+05/15/09   Added: function WriteMatrix2Text.m to write a data matrix to an ASCII file
+05/14/09   Added: function ExtractMontage.m extracts a CSD montage from a *.csd file
+           Added: function MapMontage.m maps the locations of a CSD montage in 2-D
+           Added: m-constant option to function GetGH.m
+           Added: Default URL "http://psychophysiology.cpmc.columbia.edu/CSDtoolbox.htm"
+05/12/09 Changed: function GetGH.m obtains G- and H-matrices required for the CSD.m routine
+05/07/09   Added: Initial concept for CSD toolbox web site

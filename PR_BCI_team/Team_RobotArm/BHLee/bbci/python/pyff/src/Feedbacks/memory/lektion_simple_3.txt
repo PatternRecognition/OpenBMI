@@ -1,0 +1,60 @@
+&#36825;	this	223	zhe4/zhei4
+&#23662; 	sprout 	45	che4 
+&#25903; 	branch 	65	zhi1 
+&#39131; 	fly 	183	fei1 
+&#20843; 	eight 	12	ba1 
+&#33292; 	tongue 	135	she2 
+&#35198; 	west 	146	ya4 
+&#38859; 	soft leather 	178	wei2 
+&#38761; 	leather 	177	ge2 
+&#38585; 	short tailed bird 	172	zhui1 
+&#24331; 	shoot 	56	yi4 
+&#39080; 	wind 	182	feng1 
+&#32593; 	net 	122	wang3 
+&#40778; 	even 	210	qi2 
+&#20022; 	dot 	3	zhu3 
+&#25142; 	door 	63	hu4 
+&#20907; 	ice 	15	bing1 
+&#39135; 	eat 	184	shi2 
+&#26469;	come	224	lai2
+&#31034; 	spirit 	113	shi4 
+&#27571; 	weapon 	79	shu1 
+&#26159;	is	216	shi4
+&#24191; 	dotted cliff 	53	yan3 
+&#33311; 	boat 	137	zhou1 
+&#20886; 	over 	14	mi4 
+&#31160; 	track 	114	rou3 
+&#20992; 	knife 	18	dao1 
+&#35925; 	pig 	152	shi3 
+&#21430; 	private 	28	si1 
+&#29916; 	melon 	97	gua1 
+&#40565; 	salt 	197	lu3 
+&#22231; 	enclosure 	31	wei2 
+&#27668; 	steam 	84	qi4 
+&#35201;	demand	234	yao1/yao4
+&#29926; 	tile 	98	wa3 
+&#29238; 	father 	88	fu4 
+&#33307; 	oppose 	136	chuan3 
+&#22794; 	go slowly 	35	sui1
+&#29226; 	claw 	87	zhao3 
+&#29992; 	employ 	101	yong4 
+&#40860; 	turtle 	213	gui1 
+&#29243; 	trigram lines	89	yao2 
+&#40763; 	nose 	209	bi2 
+&#33400; 	grass 	140	cao3 
+&#34381; 	tiger 	141	hu1 
+&#30333; 	white 	106	bai2 
+&#29247; 	split wood	90	qiang2 
+&#20250;	meet	237	hui4/kuai4
+&#20063;	also	239	ye3
+&#32650; 	sheep 	123	yang2 
+&#36208; 	run 	156	zou3 
+&#20837; 	enter 	11	ru4 
+&#34915; 	clothes 	145	yi1 
+&#29577; 	jade 	96	yu4 
+&#31435; 	stand 	117	li4 
+&#40657; 	black 	203	hei1 
+&#31992; 	silk 	120	mi4 
+&#22320;	earth	229	de/di4
+&#23665; 	mountain 	46	shan1 
+&#32895; 	brush 	129	yu4 

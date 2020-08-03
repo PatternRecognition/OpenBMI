@@ -1,0 +1,14 @@
+In diesem Durchlauf sollen Sie entsprechend visueller Vorgaben
+eine echte Bewegung der linken oder der rechten Hand ausführen.
+
+Zunächst erscheint ein Kreuz in der Mitte des Bildschirms, das
+Sie bitte im weiteren mit den Augen fixieren. Nach 2s erscheint 
+für 4s ein Pfeil auf dem Bildschirm, der nach rechts oder links 
+zeigt. Danach bleibt der Bildschirm für 4-5s leer, bis wieder
+das Kreuz die nächste Aufgabe ankündigt.
+
+Zeigt der Pfeil auf dem Monitor nach 
+\bf{rechts}\rm, öffnen und schliessen Sie die rechte Hand wiederholt.
+\bf{links}\rm, öffnen und schliessen Sie die linke Hand. Die Bewegung
+sollte sooft wiederholt werden bis der Pfeil erlischt. Die Wiederholrate
+sollte dabei ca. 2 sec betragen.

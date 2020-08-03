@@ -1,0 +1,307 @@
+2009-11-17 23:18:40,953 (3260) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 3260.
+2009-11-17 23:18:40,953 (3260) CRITICAL: Traceback (most recent call last):
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 52, in <module>
+    hs.on_play()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 65, in on_play
+    self.pre_mainloop()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 22, in pre_mainloop
+    self.init_graphics()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 34, in init_graphics
+    VisionEgg.config.VISIONEGG_MONITOR_REFRESH_HZ = self.monitor_refresh_rate
+AttributeError: 'Hex_skeleton' object has no attribute 'monitor_refresh_rate'
+
+2009-11-17 23:19:06,342 (5800) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 5800.
+2009-11-17 23:19:06,342 (5800) CRITICAL: Traceback (most recent call last):
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 53, in <module>
+    hs.on_play()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 65, in on_play
+    self.pre_mainloop()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 23, in pre_mainloop
+    self.init_graphics()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 37, in init_graphics
+    VisionEgg.config.VISIONEGG_SCREEN_W = self.screen_size[0]
+AttributeError: 'Hex_skeleton' object has no attribute 'screen_size'
+
+2009-11-17 23:19:46,312 (3564) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 3564.
+2009-11-17 23:19:46,312 (3564) CRITICAL: Traceback (most recent call last):
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 54, in <module>
+    hs.on_play()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 65, in on_play
+    self.pre_mainloop()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 24, in pre_mainloop
+    self.init_graphics()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 45, in init_graphics
+    if self.full_screen == True:
+AttributeError: 'Hex_skeleton' object has no attribute 'full_screen'
+
+2009-11-17 23:23:12,421 (5100) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 5100.
+2009-11-17 23:23:12,608 (5100) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:23:12,733 (5100) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:23:12,733 (5100) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:23:34,030 (5832) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 5832.
+2009-11-17 23:23:34,203 (5832) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:23:34,328 (5832) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:23:34,328 (5832) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:36:00,592 (2784) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 2784.
+2009-11-17 23:36:00,765 (2784) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:36:00,875 (2784) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:36:00,875 (2784) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:36:00,890 (2784) CRITICAL: Traceback (most recent call last):
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 71, in <module>
+    hs.on_play()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 65, in on_play
+    self.pre_mainloop()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 27, in pre_mainloop
+    self.init_graphics()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 55, in init_graphics
+    stimulus = SinGrating2D(spatial_freq = 10.0/ screen.size[0],
+NameError: global name 'SinGrating2D' is not defined
+
+2009-11-17 23:36:33,905 (1960) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 1960.
+2009-11-17 23:36:34,078 (1960) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:36:34,187 (1960) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:36:34,187 (1960) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:36:34,203 (1960) CRITICAL: Traceback (most recent call last):
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 72, in <module>
+    hs.on_play()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 65, in on_play
+    self.pre_mainloop()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 28, in pre_mainloop
+    self.init_graphics()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 56, in init_graphics
+    stimulus = SinGrating2D(spatial_freq = 10.0/ screen.size[0],
+NameError: global name 'screen' is not defined
+
+2009-11-17 23:36:45,608 (4760) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 4760.
+2009-11-17 23:36:45,780 (4760) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:36:45,890 (4760) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:36:45,890 (4760) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:36:45,905 (4760) CRITICAL: Traceback (most recent call last):
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 72, in <module>
+    hs.on_play()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 65, in on_play
+    self.pre_mainloop()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 28, in pre_mainloop
+    self.init_graphics()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 59, in init_graphics
+    self.viewport = Viewport(screen = screen , stimuli = [stimulus])
+NameError: global name 'screen' is not defined
+
+2009-11-17 23:36:55,578 (5064) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 5064.
+2009-11-17 23:36:55,750 (5064) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:36:55,842 (5064) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:36:55,842 (5064) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:37:22,953 (3964) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 3964.
+2009-11-17 23:37:23,108 (3964) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:37:23,233 (3964) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:37:23,233 (3964) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:39:29,780 (4348) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 4348.
+2009-11-17 23:39:29,937 (4348) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:39:30,062 (4348) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:39:30,062 (4348) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:39:30,078 (4348) CRITICAL: Traceback (most recent call last):
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 81, in <module>
+    hs.on_play()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 65, in on_play
+    self.pre_mainloop()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 28, in pre_mainloop
+    self.init_graphics()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 56, in init_graphics
+    stimulus = Figure_Many(color_on = self.color_of_figure_on,
+AttributeError: 'Hex_skeleton' object has no attribute 'color_of_figure_on'
+
+2009-11-17 23:42:14,703 (5416) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 5416.
+2009-11-17 23:42:14,875 (5416) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:42:14,983 (5416) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:42:14,983 (5416) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:42:15,000 (5416) CRITICAL: Traceback (most recent call last):
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 85, in <module>
+    hs.on_play()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 65, in on_play
+    self.pre_mainloop()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 28, in pre_mainloop
+    self.init_graphics()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 55, in init_graphics
+    figure_positions = self.calculate_center_of_each_figure(
+AttributeError: 'Hex_skeleton' object has no attribute 'calculate_center_of_each_figure'
+
+2009-11-17 23:42:37,342 (1348) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 1348.
+2009-11-17 23:42:37,500 (1348) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:42:37,608 (1348) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:42:37,625 (1348) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:42:37,625 (1348) CRITICAL: Traceback (most recent call last):
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 101, in <module>
+    hs.on_play()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 65, in on_play
+    self.pre_mainloop()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 28, in pre_mainloop
+    self.init_graphics()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 61, in init_graphics
+    stimulus.append(Figure_Many(color_on = (0.0, 0.0, 0.0),
+NameError: global name 'stimulus' is not defined
+
+2009-11-17 23:42:57,921 (4012) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 4012.
+2009-11-17 23:42:58,092 (4012) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:42:58,203 (4012) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:42:58,203 (4012) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:42:58,217 (4012) CRITICAL: Traceback (most recent call last):
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 102, in <module>
+    hs.on_play()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 65, in on_play
+    self.pre_mainloop()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 28, in pre_mainloop
+    self.init_graphics()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 66, in init_graphics
+    corners_number = self.no_of_corners_in_figure,
+AttributeError: 'Hex_skeleton' object has no attribute 'no_of_corners_in_figure'
+
+2009-11-17 23:43:08,483 (6068) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 6068.
+2009-11-17 23:43:08,640 (6068) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:43:08,765 (6068) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:43:08,765 (6068) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:43:08,780 (6068) CRITICAL: Traceback (most recent call last):
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 101, in <module>
+    hs.on_play()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 65, in on_play
+    self.pre_mainloop()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 28, in pre_mainloop
+    self.init_graphics()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 67, in init_graphics
+    frequency_used = self.flicker_rate[i],
+AttributeError: 'Hex_skeleton' object has no attribute 'flicker_rate'
+
+2009-11-17 23:44:10,750 (3364) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 3364.
+2009-11-17 23:44:10,921 (3364) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:44:11,046 (3364) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:44:11,046 (3364) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:44:11,046 (3364) CRITICAL: Traceback (most recent call last):
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 102, in <module>
+    hs.on_play()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 65, in on_play
+    self.pre_mainloop()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 29, in pre_mainloop
+    self.init_graphics()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 69, in init_graphics
+    letters_to_use = now_letters_to_use,
+NameError: global name 'now_letters_to_use' is not defined
+
+2009-11-17 23:44:38,437 (3660) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 3660.
+2009-11-17 23:44:38,608 (3660) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:44:38,733 (3660) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:44:38,733 (3660) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:44:38,765 (3660) CRITICAL: Traceback (most recent call last):
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 104, in <module>
+    hs.on_play()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 66, in on_play
+    self.__mainloop()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 94, in __mainloop
+    self.play_tick()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 37, in play_tick
+    self.viewport.draw()
+  File "C:\Program Files\python\lib\site-packages\VisionEgg\Core.py", line 1365, in draw
+    stimulus.draw()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Figure_Many.py", line 122, in draw
+    gl.glRasterPos2f(self.letters_position[i][0], self.letters_position[i][1]);
+IndexError: list index out of range
+
+2009-11-17 23:46:30,375 (5696) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 5696.
+2009-11-17 23:46:30,546 (5696) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:46:30,655 (5696) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:46:30,655 (5696) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:46:52,405 (6024) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 6024.
+2009-11-17 23:46:52,578 (6024) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:46:52,703 (6024) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:46:52,703 (6024) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:47:47,592 (5060) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 5060.
+2009-11-17 23:47:47,765 (5060) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:47:47,875 (5060) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:47:47,875 (5060) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:54:17,967 (6100) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 6100.
+2009-11-17 23:54:18,125 (6100) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:54:18,250 (6100) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:54:18,250 (6100) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-17 23:54:18,265 (6100) CRITICAL: Traceback (most recent call last):
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 104, in <module>
+    hs.on_play()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 65, in on_play
+    self.pre_mainloop()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 30, in pre_mainloop
+    self.init_graphics()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 77, in init_graphics
+    self.viewport.add_controller(stimulus[i], 'time_passed',\
+AttributeError: 'Viewport' object has no attribute 'add_controller'
+
+2009-11-17 23:55:17,858 (5600) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 5600.
+2009-11-17 23:55:18,030 (5600) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-17 23:55:18,140 (5600) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-17 23:55:18,140 (5600) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-18 15:03:36,842 (1412) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 1412.
+2009-11-18 15:03:37,125 (1412) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-18 15:03:37,796 (1412) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-18 15:03:37,796 (1412) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-18 15:03:38,078 (1412) CRITICAL: Traceback (most recent call last):
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 105, in <module>
+    hs.on_play()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 66, in on_play
+    self.__mainloop()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 94, in __mainloop
+    self.play_tick()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 41, in play_tick
+    stimulus[i].time_passed = time_passed
+NameError: global name 'stimulus' is not defined
+
+2009-11-18 15:03:46,890 (2504) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 2504.
+2009-11-18 15:03:47,046 (2504) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-18 15:03:47,171 (2504) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-18 15:03:47,171 (2504) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-18 15:05:02,233 (2240) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 2240.
+2009-11-18 15:05:02,390 (2240) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-18 15:05:02,500 (2240) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-18 15:05:02,500 (2240) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-18 15:11:06,842 (2184) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 2184.
+2009-11-18 15:11:07,000 (2184) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-18 15:11:07,108 (2184) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-18 15:11:07,108 (2184) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-18 15:11:07,125 (2184) CRITICAL: Traceback (most recent call last):
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 106, in <module>
+    hs.on_play()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 66, in on_play
+    self.__mainloop()
+  File "C:\pyff_TU\src\Feedbacks\Hex_O\FeedbackBase\MainloopFeedback.py", line 94, in __mainloop
+    self.play_tick()
+  File "C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py", line 37, in play_tick
+    time_trial = self.time_trial + 0.001
+AttributeError: 'Hex_skeleton' object has no attribute 'time_trial'
+
+2009-11-18 15:11:30,655 (2060) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 2060.
+2009-11-18 15:11:30,828 (2060) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-18 15:11:30,937 (2060) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-18 15:11:30,937 (2060) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-18 15:11:56,108 (700) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 700.
+2009-11-18 15:11:56,280 (700) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-18 15:11:56,390 (700) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-18 15:11:56,390 (700) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-18 15:20:15,875 (3320) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 3320.
+2009-11-18 15:20:16,030 (3320) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-18 15:20:16,155 (3320) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-18 15:20:16,155 (3320) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-18 15:20:50,562 (1140) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 1140.
+2009-11-18 15:20:50,733 (1140) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-18 15:20:50,858 (1140) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-18 15:20:50,858 (1140) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-18 15:21:11,280 (3812) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 3812.
+2009-11-18 15:21:11,453 (3812) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-18 15:21:11,562 (3812) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-18 15:21:11,562 (3812) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-18 15:26:02,578 (3916) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 3916.
+2009-11-18 15:26:02,750 (3916) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-18 15:26:02,875 (3916) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-18 15:26:02,875 (3916) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-18 15:27:46,375 (3904) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 3904.
+2009-11-18 15:27:46,546 (3904) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-18 15:27:46,655 (3904) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-18 15:27:46,655 (3904) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2009-11-18 15:28:41,375 (2052) INFO: Script C:\pyff_TU\src\Feedbacks\Hex_skeleton.py\Hex_skeleton.py started Vision Egg 1.1.1 with process id 2052.
+2009-11-18 15:28:41,546 (2052) INFO: Requesting window 800 x 600 32 bpp (8 8 8 0 RGBA).
+2009-11-18 15:28:41,655 (2052) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2009-11-18 15:28:41,655 (2052) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).

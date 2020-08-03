@@ -1,0 +1,39 @@
+N= 500;
+
+opt= struct('perc_dev', 20/100);
+opt.avoid_dev_repetitions= 1;
+opt.require_response= 0;
+opt.bv_host= 'localhost';
+opt.isi= 500;
+opt.fixation= 1;
+opt.filename= 'mmn_auditory';
+opt.speech_intro= '';
+opt.msg_intro= 'entspannen';
+
+semi= 2^(1/12);
+c_freq= 440*semi^3;
+dev_freq= [c_freq*(semi^2), c_freq/(semi^2), c_freq*(semi^5)];
+opt.cue_std= stimutil_generateTone(c_freq, 'harmonics',1, ...
+  'duration',250, ...
+  'pan', 0.25*[1 1], ...
+  'rampon',25, ...
+  'rampoff',25);
+opt.cue_dev= cell(1, length(dev_freq));
+for ii= 1:length(dev_freq),
+  opt.cue_dev{ii}= stimutil_generateTone(dev_freq(ii), 'harmonics',1, ...
+     'duration',250, ...
+     'pan', 0.25*[1 1], ...
+     'rampon',25, ...
+     'rampoff',25);
+end
+opt.cue_dev= cell(1, length(dev_freq));
+for ii= 1:length(dev_freq),
+  opt.cue_dev{ii}= stimutil_generateTone(dev_freq(ii), 'harmonics',1, ...
+     'duration',250, ...
+     'pan', 0.25*[1 1], ...
+     'rampon',25, ...
+     'rampoff',25);
+end
+
+%fprintf('for testing:\n  stim_oddballAuditory(N, opt, ''test'',1);\n');
+%fprintf('stim_oddballAuditory(N, opt);\n');

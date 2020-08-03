@@ -1,0 +1,14 @@
+SensorFile = loc306.txt     % NEUROMAG306,NEUROMAG122,NEUROSCAN20          
+EOGreject  = 150            % EOG threshold (peak to peak), e.g. 150 uV
+DFDTreject = 1e6            % Threshold for 'jump in field',e.g. 1e6 ft/cm/s
+Freject  = 3000             % threshold for max field',e.g. 3000 ft/cm
+applySSP  =  0              % 0/1  : apply SSP noise reduction? Only for NM306
+stimDelay = 0.0             % Delay in stimulus system between trigger and
+                            % and stimulus onset (site specific!)
+                            % Viivi system at HUT, Helsinki: 
+                            % SEF:        0.000 s
+                            % Auditory:   0.030 s
+                            % Visual:     0.034 s  
+                            % Tactile:    0.029 s
+                            % Motion_exp : 0.0673 s 
+

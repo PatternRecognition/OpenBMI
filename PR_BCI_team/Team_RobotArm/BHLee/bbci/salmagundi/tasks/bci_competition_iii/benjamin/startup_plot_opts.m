@@ -1,0 +1,16 @@
+
+grid_opt= struct('colorOrder',[1 0 0; 0 0.7 0]);
+grid_opt.scaleGroup= {scalpChannels, {'EMG*'}, {'EOGh'}, {'EOGv'}};
+grid_opt.scalePolicy= {'auto', 'auto', 'sym', 'auto'};
+grid_opt= set_defaults(grid_opt, ...
+                       'lineWidth',1, 'axisTitleFontWeight','bold', ...
+                       'axisType','cross', 'visible','on', ...
+                       'figure_color',[1 1 1]);
+scalp_opt= struct('shading','flat', 'resolution',50, ...
+                  'colAx','sym', 'colormap',jet(20), ...
+                  'contour',-5, 'contour_policy','strict');
+scalp_rsq_opt= setfield(scalp_opt, 'colAx','range');
+map1= cmap_hsv_fade(10, 1/6, [0 1], 1);
+map2= cmap_hsv_fade(11, [1/6 0], 1, 1);
+cmap_fire= [map1; map2(2:end,:)];
+scalp_rsq_opt.colormap= cmap_fire;

@@ -1,0 +1,6 @@
+&#x4e00; 	one 
+&#x4e28; 	line 
+&#x4e36; 	dot 
+&#x4e3f; 	slash 
+&#x4e59; 	second 
+&#x4e85; 	hook 

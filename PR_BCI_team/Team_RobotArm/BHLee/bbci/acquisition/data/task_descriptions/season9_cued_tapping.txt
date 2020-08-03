@@ -1,0 +1,20 @@
+In diesem Durchlauf sollen Sie entsprechend visueller Vorgaben
+eine Tastensequenz mit den Finger der linken oder der rechten
+Hand tippen.
+
+Zunächst erscheint ein Kreuz in der Mitte des Bildschirms, das
+Sie bitte im weiteren mit den Augen fixieren. Nach 2s erscheint 
+für 4s ein Pfeil auf dem Bildschirm, der nach rechts oder links 
+zeigt. Danach bleibt der Bildschirm für 4-5s leer, bis wieder
+das Kreuz die nächste Aufgabe ankündigt.
+
+Zeigt der Pfeil auf dem Monitor nach 
+\bf{rechts}\rm, drücken Sie die Tastensequenz \bf{J-L-K-Ö}\rm mit den
+{   }vier Fingern der rechten Hand.
+\bf{links}\rm, drücken Sie die Tastensequenz \bf{F-S-D-A}\rm mit den
+{   }vier Fingern der linken Hand.
+Tippen Sie die Sequenz so oft hintereinander, bis der Pfeil 
+verschwindet und so schnell wie möglich, ohne dass Sie sich
+(des öfteren) vertippen.
+
+Zunächst gibt es einen kurzen Testdurchlauf.

@@ -1,0 +1,4 @@
+NIRx Tomography application. Needed to stream data from the nirX NIRS system. A 32-bit Windows DLL (Tomography.dll) is used.
+
+Note: You need the NIRStar acquisition software installed and running.
+

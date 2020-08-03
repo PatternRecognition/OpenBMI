@@ -1,0 +1,5 @@
+<test>
+<quiz question='Who is the president of the USA?'				     answer0='Reagan' answer1='Clinton' answer2='Obama' correct='2' />
+<quiz question='Which country is bigger?'					     answer0='Germany' answer1='Yemen' answer2='China' correct='2' />
+<quiz question='Which country has the largest population?'				     answer0='Ireland' answer1='Iran' answer2='India' correct='2' />
+</test> 	   

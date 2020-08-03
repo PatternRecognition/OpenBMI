@@ -1,0 +1,16 @@
+Zunächst kommt eine Referenzmessung für Hand-, Fuß- und Augenbewegungen.
+Fünf Kreuze werden auf dem Bildschirm als Zielpunkte für die
+Augenbewegungen angezigt. 
+Es werden folgende Anweisungen akustisch angesagt:
+
+\bf{anspannen links:}\rm linke Hand mit voller Kraft zusammenballen
+\bf{anspannen rechts:}\rm rechte Hand mit voller Kraft zusammenballen
+\bf{anspannen Fuß:}\rm Zehen mit voller Kraft zusammenkrallen
+\bf{schauen - mitte - rechts - mitte - links - mitte - unten - mitte - oben - ...:}\rm 
+{   }Augenbewegungen zum jeweiligen Kreuz. Die Abfolge der Zielrichtungen ist
+{   }zufällig.
+\bf{blinzeln:}\rm ca. 1 mal pro Sekunde blinzeln, ganz normal, nicht übertrieben stark
+{   }bis \bf{stop}\rm
+\bf{vorbei:}\rm Ende dieser Messung
+
+Zunächst gibt es einen kurzen Testdurchlauf.

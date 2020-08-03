@@ -1,0 +1,9 @@
+bbci.train_file='VPzk_09_10_02/memory_test_1week'
+bbci.classDef = {171,172;'left','right'};
+bbci.player = 1;
+bbci.setup = 'cspauto';
+bbci.save_name ='VPzk_09_10_02/memory_test_1week';
+bbci.feedback = '1d';
+bbci.classes = {'correct','incorrect'};
+bbci.setup_opts.reject_artifacts=0;
+bbci.withgraphics=1;

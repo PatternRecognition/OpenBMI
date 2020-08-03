@@ -1,0 +1,793 @@
+00_09_05  Gabriel - selfpaced2s         : left [274], right [243]
+00_10_04  Gabriel - selfpacedmulti      : left [468], right [396], left + right [120]
+00_11_03  Gabriel - arte                : length: 79 seconds
+00_11_03  Gabriel - dzwei               : left [502], right [475]
+01_05_10   Stefan - arte                : length: 235 seconds
+01_05_10   Stefan - dzwei               : left [428], right [465]
+01_05_10   Stefan - selfpaced2s         : left [63], right [61]
+01_05_15 Thorsten - arte                : length: 302 seconds
+01_05_15 Thorsten - dzwei               : left [445], right [451]
+01_05_15 Thorsten - dzweitrance         : length: 1516 seconds
+01_05_15 Thorsten - selfpaced2s         : left [38], right [43]
+01_05_23   Seppel - arte                : length: 236 seconds
+01_05_23   Seppel - dzwei               : left [415], right [478]
+01_05_23   Seppel - selfpaced2s         : left [89], right [76]
+01_05_31      Ben - arte                : length: 297 seconds
+01_05_31      Ben - dzwei               : left [447], right [437]
+01_05_31      Ben - selfpaced2s         : left [435], right [489]
+01_06_07  Motoaki - arte                : length: 346 seconds
+01_06_07  Motoaki - dzwei               : left [451], right [443]
+01_06_07  Motoaki - selfpaced2s         : left [72], right [84]
+01_06_13   Steven - arte                : length: 279 seconds
+01_06_13   Steven - dzwei               : left [460], right [433]
+01_06_13   Steven - selfpaced2s         : left [67], right [63]
+01_07_19    Frank - arte                : length: 491 seconds
+01_07_19    Frank - dzwei               : left [426], right [466]
+01_07_19    Frank - selfpaced2s         : left [277], right [262]
+01_07_24  Gabriel - arte                : length: 394 seconds
+01_07_24  Gabriel - selfpaced0_3s       : left [1363], right [1319]
+01_07_24  Gabriel - selfpaced0_5s       : left [1197], right [1081]
+01_07_24  Gabriel - selfpaced1s         : left [605], right [520]
+01_07_24  Gabriel - typewriting         : length: 461 seconds
+01_10_15  Gabriel - arte                : length: 393 seconds
+01_10_15  Gabriel - imag                : left [300], right [300]
+01_10_15  Gabriel - real                : left [133], right [145]
+01_10_18   Stefan - arte                : length: 497 seconds
+01_10_18   Stefan - selfpaced0_5s       : left [1004], right [968]
+01_10_18   Stefan - selfpaced1s         : left [466], right [477]
+01_10_18   Stefan - selfpaced2s         : left [254], right [250]
+01_10_19   Seppel - arte                : length: 316 seconds
+01_10_19   Seppel - selfpaced0_5s       : left [972], right [1022]
+01_10_19   Seppel - selfpaced1s         : left [513], right [543]
+01_10_19   Seppel - selfpaced2s         : left [174], right [169]
+01_11_20   Steven - arte                : length: 352 seconds
+01_11_20   Steven - selfpaced2s         : left [236], right [228]
+01_11_20   Steven - selfpaced5s         : left [228], right [222]
+01_11_23    Pavel - arte                : length: 329 seconds
+01_11_23    Pavel - medianus_left       : Stimulus [250]
+01_11_23    Pavel - medianus_right      : Stimulus [250]
+01_11_23    Pavel - selfpaced0_5s       : left [884], right [1031]
+01_11_23    Pavel - selfpaced1s         : left [511], right [578]
+01_11_23    Pavel - selfpaced2s         : left [282], right [255]
+01_12_12  Gabriel - arte                : length: 281 seconds
+01_12_12  Gabriel - medianus_left       : Stimulus [226]
+01_12_12  Gabriel - medianus_right      : Stimulus [242]
+01_12_12  Gabriel - selfpaced0_3s       : left [1403], right [1367]
+01_12_12  Gabriel - selfpaced0_5s       : left [1135], right [1167]
+01_12_12  Gabriel - selfpaced2s         : left [266], right [260]
+01_12_13    Roman - arte                : length: 248 seconds
+01_12_13    Roman - medianus_left       : Stimulus [257]
+01_12_13    Roman - medianus_right      : Stimulus [250]
+01_12_13    Roman - selfpaced0_5s       : left [1131], right [1127]
+01_12_13    Roman - selfpaced1s         : left [538], right [509]
+01_12_13    Roman - selfpaced2s         : left [278], right [271]
+01_12_17   Soeren - arte                : length: 334 seconds
+01_12_17   Soeren - medianus_left       : Stimulus [232]
+01_12_17   Soeren - medianus_right      : Stimulus [323]
+01_12_17   Soeren - selfpaced0_5s       : left [951], right [978]
+01_12_17   Soeren - selfpaced1s         : left [527], right [527]
+01_12_17   Soeren - selfpaced2s         : left [238], right [253]
+02_01_08    Guido - arte                : length: 260 seconds
+02_01_08    Guido - medianus_left       : Stimulus [251]
+02_01_08    Guido - medianus_right      : Stimulus [258]
+02_01_08    Guido - selfpaced0_5s       : left [1155], right [1117]
+02_01_08    Guido - selfpaced1s         : left [549], right [531]
+02_01_08    Guido - selfpaced2s         : left [254], right [263]
+02_01_15 Thorsten - arte                : length: 165 seconds
+02_01_15 Thorsten - medianus_left       : leftStim [4]
+02_01_15 Thorsten - medianus_right      : Stimulus [6]
+02_01_15 Thorsten - mib                 : 
+02_01_15 Thorsten - mib                 : 
+02_01_15 Thorsten - mib                 : 
+02_01_15 Thorsten - selfpaced0_5s       : left [1121], right [1109]
+02_01_15 Thorsten - selfpaced1s         : left [556], right [573]
+02_01_15 Thorsten - selfpaced2s         : left [263], right [259]
+02_01_30 Christin - arte                : length: 238 seconds
+02_01_30 Christin - medianus_left       : Stimulus [250]
+02_01_30 Christin - medianus_right      : Stimulus [250]
+02_01_30 Christin - selfpaced0_5s       : left [1240], right [1237]
+02_01_30 Christin - selfpaced1s         : left [598], right [601]
+02_01_30 Christin - selfpaced2s         : left [294], right [305]
+02_01_30 Christin - selfpaced64_0_5s    : length: 163 seconds
+02_01_30 Christin - selfpaced64_2s      : length: 168 seconds
+02_03_05   Volker - arte                : length: 324 seconds
+02_03_05   Volker - medianus_left       : Stimulus [250]
+02_03_05   Volker - medianus_right      : Stimulus [250]
+02_03_05   Volker - selfpaced0_5s       : left [574], right [576]
+02_03_05   Volker - selfpaced1s         : left [381], right [361]
+02_03_05   Volker - selfpaced2s         : left [278], right [268]
+02_03_05   Volker - selfpaced_raw0_5s   : left [558], right [572]
+02_03_05   Volker - selfpaced_raw1s     : left [373], right [369]
+02_04_09 Thorsten - arte                : 
+02_04_09 Thorsten - medianus_left       : Stimulus [250]
+02_04_09 Thorsten - medianus_right      : Stimulus [250]
+02_04_09 Thorsten - multiTest.          : 
+02_04_09 Thorsten - multiauditory       : 
+02_04_09 Thorsten - selfpacedfeet2s     : left foot [133], right foot [133]
+02_04_09 Thorsten - selfpacedmulti2s    : left index [171], right index [225], right foot [184], left index + right index [150]
+02_04_09 Thorsten - tibialis_left       : 
+02_04_09 Thorsten - tibialis_right      : 
+02_04_09 Thorsten - tibialis_right      : 
+02_04_12    Guido - arte                : 
+02_04_12    Guido - medianus_left       : Stimulus [250]
+02_04_12    Guido - medianus_right      : Stimulus [250]
+02_04_12    Guido - selfpacedfeet2s     : left foot [74], right foot [98], both feet [99]
+02_04_12    Guido - selfpacedfeet2s     : left foot [74], right foot [98], both feet [99]
+02_04_12    Guido - selfpacedmulti2s    : left index [145], right index [219], right foot [193], left index + right index [163]
+02_04_12    Guido - tibialis_right      : 
+02_04_16  Gabriel - auditoryPacemaker0_27s : stimulus [400]
+02_04_16  Gabriel - auditoryPacemaker0_5s : stimulus [100]
+02_04_16  Gabriel - auditoryPacemaker1s : stimulus [100]
+02_04_16  Gabriel - paced0_27s          : left [578], right [589]
+02_04_16  Gabriel - paced0_5s           : left [647], right [608]
+02_04_16  Gabriel - paced1s             : left [706], right [699]
+02_04_16  Gabriel - paced1s             : left [706], right [699]
+02_04_16  Gabriel - selfpacedfeet0_5s   : left foot [326], right foot [364]
+02_04_24     Maik - arte                : 
+02_04_24     Maik - selfpacedmulti2s    : left index [247], right index [352], right foot [241], left index + right index [59]
+02_04_26   Julian - arte                : length: 131 seconds
+02_04_26   Julian - medianus_left       : Stimulus [250]
+02_04_26   Julian - medianus_right      : Stimulus [250]
+02_04_26   Julian - selfpaced1s         : left [298], right [323]
+02_04_26   Julian - selfpaced2s         : left [270], right [271]
+02_05_14   Volker - arte                : 
+02_05_14   Volker - medianus_left       : Stimulus [250]
+02_05_14   Volker - medianus_right      : Stimulus [250]
+02_05_14   Volker - peroneus_right      : 
+02_05_14   Volker - selfpaced1_5s       : length: 414 seconds
+02_05_14   Volker - selfpaced_feedback  : 
+02_05_14   Volker - selfpacedmulti2s    : left index [161], right index [185], right foot [183], left index + right index [157]
+02_05_23  Andreas - alpha               : 
+02_05_23  Andreas - arte                : 
+02_05_23  Andreas - kipp2               : 
+02_05_23  Andreas - kipp3               : 
+02_05_23  Andreas - kipp                : 
+02_05_23  Andreas - selfpacedmulti2s    : left index [189], right index [434], right foot [147], left index + right index [116]
+02_07_23      Ben - arte                : length: 180 seconds
+02_07_23      Ben - imag                : left [300], right [300]
+02_07_23      Ben - imagmultimodal      : leg [200], visual [200], auditory [200]
+02_07_23      Ben - imagstimulionly     : leg [50], visual [50], auditory [0]
+02_07_31 Thorsten - arte                : length: 187 seconds
+02_07_31 Thorsten - imag                : left [300], right [300]
+02_07_31 Thorsten - imagmultimodal      : leg [200], visual [200], auditory [200]
+02_07_31 Thorsten - stimulionly         : length: 294 seconds
+02_08_12  Hendrik - arte                : length: 196 seconds
+02_08_12  Hendrik - imagmulti           : left [200], right [200], foot [200], auditory [200], visual [200], tactile [200]
+02_08_12  Hendrik - stimulionly         : length: 385 seconds
+02_08_12   Steven - arte                : length: 172 seconds
+02_08_12   Steven - imagmulti           : left [200], right [200], foot [200], auditory [200], visual [200], tactile [200]
+02_08_12   Steven - stimulionly         : length: 224 seconds
+02_08_13   Soeren - arte                : length: 235 seconds
+02_08_13   Soeren - imagmulti           : left [200], right [200], foot [200], auditory [200], visual [200], tactile [200]
+02_08_13   Soeren - stimulionly         : length: 322 seconds
+02_09_13    Kolja - arte                : length: 251 seconds
+02_09_13    Kolja - imagmulti           : left [150], right [150], foot [150], auditory [150], visual [150], tactile [150]
+02_09_13    Kolja - medianus_left       : Stimulus [75]
+02_09_13    Kolja - stimulionly         : length: 772 seconds
+02_09_19  Gabriel - arte                : length: 178 seconds
+02_09_19  Gabriel - externalpaced_fb    : left [101], right [100]
+02_09_19  Gabriel - selfpaced1_5s       : left [333], right [344]
+02_09_19  Gabriel - selfpaced_fb1       : length: 559 seconds
+02_09_19  Gabriel - selfpaced_fb2       : length: 193 seconds
+02_09_19  Gabriel - selfpaced_fb3       : length: 492 seconds
+02_09_19  Gabriel - selfpaced_fb4       : length: 105 seconds
+02_09_19  Gabriel - selfpaced_fb5       : left [161], right [157]
+02_10_01  Gabriel - arte                : length: 176 seconds
+02_10_01  Gabriel - externalpaced_fb    : left [100], right [101]
+02_10_01  Gabriel - selfpaced1_5s       : left [443], right [436]
+02_10_24  Gabriel - arte                : length: 132 seconds
+02_10_24  Gabriel - externalpaced_fb    : left [111], right [109]
+02_10_24  Gabriel - selfpaced1_5s       : left [337], right [335]
+02_10_24  Gabriel - selfpaced_fb1       : left [99], right [113]
+02_10_24  Gabriel - selfpaced_fb2       : left [121], right [118]
+02_10_24  Gabriel - selfpaced_fb3       : left [120], right [104]
+02_10_24  Gabriel - selfpaced_fb4       : 
+02_10_29  Gabriel - arte                : length: 153 seconds
+02_10_29  Gabriel - auditorypacemaker1s : stimulus [200]
+02_10_29  Gabriel - medianus_right      : Stimulus [300]
+02_10_29  Gabriel - paced1s             : left [538], right [521]
+02_10_29  Gabriel - paced1s             : left [538], right [521]
+02_10_29  Gabriel - paced1s_fb1         : left [180], right [159]
+02_10_29  Gabriel - paced1s_fb2         : left [184], right [166]
+02_10_29  Gabriel - paced_imagleft1s    : left imag [185], right real [173]
+02_10_29  Gabriel - paced_imagright1s   : left real [178], right imag [177]
+02_10_29  Gabriel - pacedtypewriting    : left [191], right [163]
+02_11_20  Gabriel - arte                : length: 314 seconds
+02_11_20  Gabriel - paced1s             : left [534], right [530]
+02_11_20  Gabriel - paced1s_fb1         : left [190], right [169]
+02_11_20  Gabriel - paced_imagleft1s    : left imag [376], right real [334]
+02_11_20  Gabriel - paced_imagright1s   : left real [336], right imag [371]
+02_11_20  Gabriel - tagged1             : length: 260 seconds
+02_11_20  Gabriel - tagged2             : length: 261 seconds
+02_11_20  Gabriel - tagged3             : length: 266 seconds
+02_11_20  Gabriel - without_gel.        : 
+02_12_03   Gilles - arte                : length: 247 seconds
+02_12_03   Gilles - paced1s             : left [529], right [527]
+02_12_03   Gilles - paced1s_fb1         : left [185], right [170]
+02_12_03   Gilles - paced1s_fb2         : left [188], right [167]
+02_12_03   Gilles - paced_imagleft1s    : left imag [387], right real [323]
+02_12_03   Gilles - paced_imagright1s   : left real [321], right imag [387]
+02_12_05   Stefan - paced1s             : left [531], right [547]
+02_12_05   Stefan - paced1s_fb1         : left [162], right [198]
+02_12_05   Stefan - paced_imagleft1s    : left imag [399], right real [311]
+02_12_05   Stefan - paced_imagright1s   : left real [368], right imag [342]
+02_12_19    Pavel - arte                : length: 247 seconds
+02_12_19    Pavel - paced1s             : left [517], right [538]
+02_12_19    Pavel - paced1s_fb1         : left [187], right [167]
+02_12_19    Pavel - paced1s_fb2         : left [186], right [168]
+02_12_19    Pavel - paced_imagleft1s    : left imag [391], right real [319]
+02_12_19    Pavel - paced_imagright1s   : left real [323], right imag [388]
+03_01_15  Gabriel - arte                : length: 151 seconds
+03_01_15  Gabriel - gamesteering        : left [181], right [159], accel [51]
+03_01_15  Gabriel - medianus_right2_5s  : 
+03_01_15  Gabriel - selfpacedsteering2s : left [84], right [88], accel [84]
+03_01_15  Gabriel - sleep_medianus_right2_5s : 
+03_01_15  Gabriel - triggered2s         : left [165], right [158]
+03_01_15  Gabriel - triggeredimag2s     : left [345], right [350]
+03_01_15  Gabriel - triggeredimag2s     : left [345], right [350]
+03_01_15  Gabriel - triggeredsteering2s : left [87], right [87]
+03_01_16   Steven - arte                : length: 227 seconds
+03_01_16   Steven - medianus_right2_5s  : 
+03_01_16   Steven - medianus_right2_5s  : 
+03_01_16   Steven - paced1s             : left [536], right [504]
+03_01_16   Steven - paced1s_fb1         : left [170], right [184]
+03_01_16   Steven - paced1s_fb2         : left [175], right [177]
+03_01_16   Steven - paced_imagleft1s    : left imag [367], right real [343]
+03_01_16   Steven - paced_imagright1s   : left real [344], right imag [366]
+03_01_22  Gabriel - arte                : length: 189 seconds
+03_01_22  Gabriel - selfpaced1_5s       : left [481], right [483]
+03_01_22  Gabriel - selfpaced1_5s_fb1   : left [92], right [90]
+03_01_22  Gabriel - selfpaced1_5s_fb2   : left [218], right [160]
+03_01_22  Gabriel - selfpaced1_5s_pfb1  : left [48], right [33]
+03_01_22  Gabriel - selfpaced1_5s_pfb2  : left [35], right [79]
+03_01_22  Gabriel - selfpaced1_5s_pfb3  : left [54], right [51]
+03_01_22  Gabriel - selfpaced1_5s_pfb4  : left [28], right [26]
+03_01_22  Gabriel - selfpaced1_5s_pfb5  : left [424], right [552]
+03_01_22  Gabriel - zunge               : length: 115 seconds
+03_01_29  Gabriel - dig2_right2_5s      : length: 680 seconds
+03_01_29  Gabriel - dig2_right7Hz       : DIG2 [2000]
+03_01_29  Gabriel - dig2_right7Hz_subliminal_ : DIG2 [4000]
+03_01_29  Gabriel - medianus_right2_5s  : 
+03_01_29  Gabriel - medianus_right2_5s  : 
+03_01_29  Gabriel - medianus_right2_5s  : 
+03_01_29  Gabriel - medianus_right2_5s  : 
+03_01_29  Gabriel - medianus_right2_5s  : 
+03_01_31   Steven - sep_artifact_finger_gnd. : 
+03_01_31   Steven - sep_artifact_finger_no_gnd. : 
+03_01_31   Steven - sep_artifact_no_gnd_steven. : 
+03_01_31   Steven - sep_artifact_steven. : 
+03_01_31   Steven - sep_artii_finger_gnd_ring. : 
+03_02_16  Gabriel - aep1s               : length: 122 seconds
+03_02_16  Gabriel - arte                : length: 139 seconds
+03_02_16  Gabriel - bf_                 : neg|left [64], neg|right [64], pos|left [64], pos|right [64]
+03_02_16  Gabriel - bt_                 : neg [140], pos [140]
+03_02_16  Gabriel - tap1s               : left [369], right [370]
+03_02_16  Gabriel - tap_01              : 
+03_02_17     Vp01 - arte                : length: 202 seconds
+03_02_17     Vp01 - bf_                 : neg|left [85], neg|right [85], pos|left [86], pos|right [86]
+03_02_17     Vp01 - bt_                 : neg [175], pos [175]
+03_02_17     Vp01 - tap1s               : left [336], right [340]
+03_02_17     Vp02 - arte                : length: 193 seconds
+03_02_17     Vp02 - bf_                 : neg|left [96], neg|right [96], pos|left [96], pos|right [96]
+03_02_17     Vp02 - bfi_                : neg|left [48], neg|right [48], pos|left [48], pos|right [48]
+03_02_17     Vp02 - bt_                 : neg [175], pos [175]
+03_02_17     Vp02 - tap1s               : left [354], right [353]
+03_02_18     Vp03 - aep1s               : length: 134 seconds
+03_02_18     Vp03 - arte                : length: 203 seconds
+03_02_18     Vp03 - bf_                 : neg|left [80], neg|right [80], pos|left [80], pos|right [80]
+03_02_18     Vp03 - bt_                 : neg [175], pos [175]
+03_02_18     Vp03 - tap1s               : left [348], right [350]
+03_02_18     Vp04 - aep1s               : length: 128 seconds
+03_02_18     Vp04 - arte                : length: 128 seconds
+03_02_18     Vp04 - bf_                 : neg|left [80], neg|right [80], pos|left [80], pos|right [80]
+03_02_18     Vp04 - bt_                 : neg [175], pos [175]
+03_02_18     Vp04 - tap1s               : left [383], right [386]
+03_02_19     Vp05 - aep1s               : length: 161 seconds
+03_02_19     Vp05 - arte                : length: 562 seconds
+03_02_19     Vp05 - arte                : length: 562 seconds
+03_02_19     Vp05 - bf_                 : neg|left [96], neg|right [96], pos|left [96], pos|right [96]
+03_02_19     Vp05 - bt_                 : neg [210], pos [210]
+03_02_19     Vp05 - respiration_        : 
+03_02_19     Vp05 - tap1s               : left [418], right [421]
+03_02_19     Vp06 - aep1s               : length: 143 seconds
+03_02_19     Vp06 - arte                : length: 303 seconds
+03_02_19     Vp06 - bf_                 : neg|left [80], neg|right [80], pos|left [80], pos|right [80]
+03_02_19     Vp06 - bt_                 : neg [175], pos [175]
+03_02_19     Vp06 - respiration_        : 
+03_02_19     Vp06 - tap1s               : left [262], right [261]
+03_02_20     Vp07 - aep1s               : length: 152 seconds
+03_02_20     Vp07 - aep1s_02_           : 
+03_02_20     Vp07 - arte                : length: 254 seconds
+03_02_20     Vp07 - bf_                 : neg|left [80], neg|right [80], pos|left [80], pos|right [80]
+03_02_20     Vp07 - bt_                 : neg [210], pos [210]
+03_02_20     Vp07 - tap1s               : left [425], right [423]
+03_02_20     Vp08 - aep1s               : length: 148 seconds
+03_02_20     Vp08 - arte                : length: 200 seconds
+03_02_20     Vp08 - bf_                 : neg|left [96], neg|right [96], pos|left [96], pos|right [96]
+03_02_20     Vp08 - bt_                 : neg [210], pos [210]
+03_02_20     Vp08 - tap1s               : left [405], right [414]
+03_04_01  Gabriel - arte                : length: 326 seconds
+03_04_01  Gabriel - imag                : left [160], right [160], foot [160]
+03_04_01  Gabriel - imag_fb1            : left [80], right [77]
+03_04_01  Gabriel - imag_fb2            : left [83], right [84]
+03_04_01  Gabriel - imag_fb3            : length: 121 seconds
+03_04_01  Gabriel - zunge               : length: 116 seconds
+03_04_03 Thorsten - arte                : length: 356 seconds
+03_04_03 Thorsten - paced1s             : left [523], right [542]
+03_04_03 Thorsten - paced1s_fb1         : length: 263 seconds
+03_04_03 Thorsten - paced_imagleft1s    : left imag [538], right real [527]
+03_04_03 Thorsten - paced_imagright1s   : left real [547], right imag [518]
+03_04_03 Thorsten - react1_5s           : left [450], right [450]
+03_05_13   Steven - arte                : length: 264 seconds
+03_05_13   Steven - imag                : left [160], right [160], foot [160]
+03_05_14  Gabriel - arte                : length: 313 seconds
+03_05_14  Gabriel - elbow               : elbow [300]
+03_05_14  Gabriel - finger              : finger [301]
+03_05_14  Gabriel - finger_shoulder2s   : left [309], right [310], shoulder [321]
+03_05_14  Gabriel - shoulder            : shoulder [296]
+03_05_14  Gabriel - wrist               : wrist [298]
+03_05_16  Hendrik - arte                : length: 312 seconds
+03_05_16  Hendrik - imag                : left [160], right [160], foot [160]
+03_05_16  Hendrik - imag_fb1            : left [26], right [40], rest [39]
+03_05_16  Hendrik - imag_fb2            : left [13], right [15], rest [14]
+03_05_16  Hendrik - imag_fb3            : length: 180 seconds
+03_05_16  Hendrik - imag_fb4            : left [21], right [28], rest [28]
+03_05_16  Hendrik - imag_fb5            : left [61], right [82], rest [84]
+03_05_16  Hendrik - imag_fb6            : left [17], right [17]
+03_05_16  Hendrik - imag_fb7            : left [41], right [45]
+03_05_16  Hendrik - imag_fb8            : left [184], right [184]
+03_05_16  Hendrik - imag_fb9            : left [132], right [141]
+03_05_21  Gabriel - arte                : length: 262 seconds
+03_05_21  Gabriel - selfpaced2s         : left [275], right [283]
+03_05_21  Gabriel - selfpaced2s_fb10    : left [74], right [48]
+03_05_21  Gabriel - selfpaced2s_fb1     : left [17], right [19]
+03_05_21  Gabriel - selfpaced2s_fb2     : left [155], right [139]
+03_05_21  Gabriel - selfpaced2s_fb3     : left [50], right [45]
+03_05_21  Gabriel - selfpaced2s_fb6     : left [153], right [158]
+03_05_21  Gabriel - selfpaced2s_fb7     : left [119], right [109]
+03_05_21  Gabriel - selfpaced2s_fb8     : left [50], right [75]
+03_07_11   Steven - arte                : length: 260 seconds
+03_07_11   Steven - dzwei               : left [427], right [361]
+03_07_11   Steven - end_impedances.     : 
+03_07_11   Steven - react1_5s           : left [301], right [297]
+03_07_11   Steven - selfpaced1_5s       : left [222], right [215]
+03_07_16  Gabriel - arte                : length: 181 seconds
+03_07_16  Gabriel - selfpaced3s_fs      : finger [337], shoulder [258]
+03_07_16  Gabriel - selfpaced3s_fs      : finger [337], shoulder [258]
+03_08_19  Philipp - arte                : 
+03_08_19  Philipp - paced_cncr1s        : right click [368], left no-click [351], rest [360]
+03_08_19  Philipp - triggered_cncr1_5s  : right click [291], left no-click [295], rest [297]
+03_08_22     Falk - arte                : length: 172 seconds
+03_08_22     Falk - auditpace1s         : relax [480]
+03_08_22     Falk - paced_alt1s         : left no-click [257], right click [260], rest [516]
+03_08_22     Falk - paced_altdouble1s   : left no-click [204], right click [236], rest [440]
+03_08_22     Falk - paced_cncr1s        : right click [436], left no-click [482], rest [480]
+03_08_22     Falk - selfpaced_var       : right [75], left [61], inbetween [101]
+03_08_23  Gabriel - selfpaced2_5s       : left [571], right [606]
+03_08_24   Steven - selfpaced2_5s       : left [444], right [469]
+03_08_29 Matthias - arte                : length: 202 seconds
+03_08_29 Matthias - auditpace1s         : relax [960]
+03_08_29 Matthias - paced_alt0_75s      : left no-click [177], right click [168], rest [344]
+03_08_29 Matthias - paced_cncr1s        : right click [481], left no-click [479], rest [480]
+03_08_29 Matthias - paced_cncr1s_tc2s   : length: 438 seconds
+03_08_29 Matthias - selfpaced_var       : right [235], left [289], inbetween [295]
+03_09_01   Caspar - arte                : length: 228 seconds
+03_09_01   Caspar - auditpace1s         : relax [960]
+03_09_01   Caspar - paced_alt0_75s      : left no-click [258], right click [282], rest [539]
+03_09_01   Caspar - paced_cncr1s        : right click [488], left no-click [471], rest [480]
+03_09_01   Caspar - selfpaced_var       : right [566], left [545], inbetween [308]
+03_09_04    Guido - arte                : length: 219 seconds
+03_09_04    Guido - auditpace1s         : relax [960]
+03_09_04    Guido - paced_cncr1s        : left click [398], right no-click [556], rest [480]
+03_09_04    Guido - paced_sbcncr1s      : left click [289], right no-click [349], rest [320]
+03_09_04    Guido - selfpaced_var       : left [394], right [520], inbetween [203]
+03_10_22 Matthias - arte                : length: 205 seconds
+03_10_22 Matthias - imag                : left [160], right [160], foot [160]
+03_10_22 Matthias - imag_fb1            : left [51], right [62]
+03_10_22 Matthias - imag_fb2            : left [61], right [54]
+03_10_22 Matthias - imag_fb3            : left [0], right [0], foot [0]
+03_10_22 Matthias - tmp.                : 
+03_10_24     Falk - arte                : length: 263 seconds
+03_10_24     Falk - imag                : left [150], right [150], foot [150], rest [70]
+03_10_24     Falk - imag_fb2            : left [36], foot [39]
+03_10_24     Falk - imag_fb3            : left [56], foot [54]
+03_10_24     Falk - imag_fb4            : left [0], foot [0]
+03_10_24     Falk - imag_fb5            : length: 63 seconds
+03_10_24     Falk - imag_fb6            : left [47], foot [50]
+03_10_29    Klaus - arte                : length: 261 seconds
+03_10_29    Klaus - imag                : left [140], right [140], foot [140], rest [80]
+03_10_29    Klaus - imag_fb1            : left [46], right [55]
+03_10_29    Klaus - imag_fb2            : left [33], right [48], rest [47]
+03_10_29    Klaus - imag_fb3            : left [69], right [74], middle [17]
+03_10_29    Klaus - imag_fb4            : left [96], right [96], middle [10]
+03_10_29    Klaus - imag_fb5            : left [90], right [98], middle [12]
+03_10_29    Klaus - imag_fb6            : left [66], right [88], rest [93]
+03_10_31    Frank - arte                : length: 254 seconds
+03_10_31    Frank - imag                : left [140], right [140], foot [140], rest [80]
+03_11_04    Klaus - imag                : left [150], right [150]
+03_11_04    Klaus - imag_fb1            : length: 310 seconds
+03_11_05   Volker - arte                : length: 158 seconds
+03_11_05   Volker - imag                : left [120], right [120], foot [120], rest [80]
+03_11_05   Volker - relax               : length: 61 seconds
+03_11_10   Sascha - arte                : length: 153 seconds
+03_11_10   Sascha - imag                : left [140], right [140], foot [140]
+03_11_10   Sascha - imag_fb1            : length: 62 seconds
+03_11_10   Sascha - imag_fb2            : right [52], foot [57]
+03_11_10   Sascha - imag_fb3            : right [23], foot [26], middle [2]
+03_11_10   Sascha - imag_fb4            : right [61], foot [55]
+03_11_10   Sascha - imag_fb5            : right [39], foot [45], rest [46]
+03_11_10   Sascha - imag_fb6            : right [43], foot [40], middle [2]
+03_11_10   Sascha - imag_fb7            : right [18], foot [38]
+03_11_12  Gabriel - arte                : length: 222 seconds
+03_11_12  Gabriel - mentype_ac          : left [321], right [279]
+03_11_12  Gabriel - mentype_ac_fb1      : length: 429 seconds
+03_11_12  Gabriel - mentype_ac_fb2      : length: 226 seconds
+03_11_12  Gabriel - mentype_ac_fb3      : length: 398 seconds
+03_11_12  Gabriel - mentype_ac_fb4      : length: 391 seconds
+03_11_12  Gabriel - mentype_dc          : left [258], right [192]
+03_11_19    Roman - arte                : 
+03_11_19    Roman - paced_alt1s         : left no-click [123], right click [109], rest [231]
+03_11_19    Roman - paced_alt1s         : left no-click [123], right click [109], rest [231]
+03_11_19    Roman - va_fb_2klassen_     : right click [108], left no-click [132]
+03_11_19    Roman - va_fb_3klassen_     : right click [45], left no-click [75], rest [119]
+03_11_24     VPba - arte                : length: 223 seconds
+03_11_24     VPba - paced_alt1s         : left click [240], right no-click [240], rest [476]
+03_11_24     VPba - paced_alt1s_0       : length: 1097 seconds
+03_11_24     VPba - paced_alt_stump     : left click [0], right no-click [0], rest [0]
+03_11_27     VPbb - arte                : length: 201 seconds
+03_11_27     VPbb - paced_alt1s         : left no-click [311], right click [337], rest [652]
+03_11_27     VPbb - paced_alt_stump     : left no-click [166], right click [148], rest [311]
+03_12_03 Matthias - arte                : length: 149 seconds
+03_12_03 Matthias - imag                : left [100], right [100], foot [100], rotation [100]
+03_12_03 Matthias - imag_scalpsfb1      : length: 596 seconds
+03_12_03 Matthias - imag_scalpsfb2      : length: 614 seconds
+03_12_03 Matthias - mathmusic           : math [30], music [30], rest [60]
+04_01_30    Klaus - arte                : length: 140 seconds
+04_01_30    Klaus - imag                : left [125], right [125], foot [125], stomach [125], lip [125]
+04_01_30    Klaus - imag_1dfb1          : left [154], right [134], correct left [126], correct right [114], wrong left [19], wrong right [25]
+04_01_30    Klaus - imag_1dfb2          : left [27], right [34], correct left [25], correct right [28], wrong left [5], wrong right [2]
+04_01_30    Klaus - imag_2dfb1          : aim WSW [11], aim WNW [9], aim NNW [7], aim NNE [6], aim ENE [10], aim ESE [3], aim SSE [4], aim SSW [8], correct WSW [11], correct WNW [4], correct NNW [3], correct NNE [3], correct ENE [8], correct ESE [3], correct SSE [2], correct SSW [6], wrong WSW [87], wrong WNW [47], wrong NNW [16], wrong NNE [8], wrong ENE [30], wrong ESE [51], wrong SSE [55], wrong SSW [37], timeout WSW [0], timeout WNW [4], timeout NNW [4], timeout NNE [3], timeout ENE [2], timeout ESE [0], timeout SSE [2], timeout SSW [2]
+04_01_30    Klaus - imag_2dfb2          : aim WSW [2], aim WNW [2], aim NNW [3], aim NNE [4], aim ENE [2], aim ESE [2], aim SSE [2], aim SSW [0], correct WSW [2], correct WNW [2], correct NNW [2], correct NNE [2], correct ENE [2], correct ESE [0], correct SSE [1], correct SSW [0], wrong WSW [6], wrong WNW [4], wrong NNW [12], wrong NNE [7], wrong ENE [6], wrong ESE [6], wrong SSE [2], wrong SSW [8], timeout WSW [0], timeout WNW [0], timeout NNW [1], timeout NNE [2], timeout ENE [0], timeout ESE [1], timeout SSE [1], timeout SSW [0]
+04_01_30    Klaus - imag_2dfb3          : aim WSW [5], aim WNW [11], aim NNW [6], aim NNE [7], aim ENE [6], aim ESE [9], aim SSE [12], aim SSW [4], correct WSW [5], correct WNW [10], correct NNW [5], correct NNE [6], correct ENE [6], correct ESE [6], correct SSE [8], correct SSW [2], wrong WSW [26], wrong WNW [53], wrong NNW [64], wrong NNE [35], wrong ENE [24], wrong ESE [14], wrong SSE [11], wrong SSW [20], timeout WSW [0], timeout WNW [1], timeout NNW [1], timeout NNE [1], timeout ENE [0], timeout ESE [3], timeout SSE [3], timeout SSW [2]
+04_01_30    Klaus - imag_2dfb4          : aim WSW [6], aim WNW [8], aim NNW [6], aim NNE [8], aim ENE [13], aim ESE [6], aim SSE [7], aim SSW [7], correct WSW [4], correct WNW [8], correct NNW [6], correct NNE [6], correct ENE [12], correct ESE [4], correct SSE [7], correct SSW [6], wrong WSW [39], wrong WNW [61], wrong NNW [51], wrong NNE [28], wrong ENE [5], wrong ESE [12], wrong SSE [27], wrong SSW [18], timeout WSW [2], timeout WNW [0], timeout NNW [0], timeout NNE [1], timeout ENE [1], timeout ESE [2], timeout SSE [0], timeout SSW [1]
+04_02_05 Matthias - arte                : length: 174 seconds
+04_02_05 Matthias - imag                : left [125], right [125], foot [125], lip [125], rest [125]
+04_02_05 Matthias - imag_1dfb1          : left [64], right [56], correct left [54], correct right [47], wrong left [9], wrong right [10]
+04_02_05 Matthias - imag_1dfb2          : right [55], foot [65], correct right [52], correct foot [58], wrong right [7], wrong foot [3]
+04_02_05 Matthias - imag_1dfb3          : right [26], foot [34], correct right [8], correct foot [34], wrong right [0], wrong foot [18]
+04_02_05 Matthias - imag_1dfb4          : lip [29], left [31], correct lip [29], correct left [22], wrong lip [9], wrong left [0]
+04_02_05 Matthias - imag_1dfb5          : right [60], foot [60], correct right [36], correct foot [56], wrong right [4], wrong foot [24]
+04_02_05 Matthias - imag_1dfb6          : right [50], foot [70], correct right [48], correct foot [64], wrong right [6], wrong foot [2]
+04_02_05 Matthias - imag_2dfb1          : aim left [15], aim right [13], aim down [17], aim up [15], correct left [7], correct right [2], correct down [17], correct up [7], wrong left [6], wrong right [2], wrong down [19], wrong up [0]
+04_02_06     Paul - arte                : length: 145 seconds
+04_02_06     Paul - imag                : left [125], right [125], foot [125], lip [125]
+04_02_06     Paul - imag_1dfb1          : foot [20], lip [20], correct foot [8], correct lip [12], wrong foot [8], wrong lip [12]
+04_02_06     Paul - imag_1dfb2          : foot [20], lip [20], correct foot [13], correct lip [6], wrong foot [14], wrong lip [7]
+04_02_16     VPbc - arte                : length: 236 seconds
+04_02_16     VPbc - paced_alt1s         : left no-click [249], right click [230], rest [476]
+04_02_16     VPbc - paced_alt1s_stump   : left no-click [240], right click [240], rest [477]
+04_02_19     VPbd - arte                : length: 252 seconds
+04_02_19     VPbd - paced_alt1s         : left click [305], right no-click [397], rest [681]
+04_02_19     VPbd - paced_alt1s_stump   : left click [207], right no-click [269], rest [472]
+04_02_26  Hendrik - arte                : length: 200 seconds
+04_02_26  Hendrik - imag                : left [120], right [120], foot [120], lip [120]
+04_02_26  Hendrik - imag_1dfb1          : left [26], right [34], correct left [21], correct right [34], wrong left [2], wrong right [3]
+04_02_26  Hendrik - imag_1dfb2          : left [33], right [27], correct left [29], correct right [25], wrong left [2], wrong right [4]
+04_02_26  Hendrik - imag_1dfb3          : left [24], right [36], correct left [20], correct right [24], wrong left [12], wrong right [4]
+04_02_26  Hendrik - imag_1dfb4          : left [25], right [35], correct left [21], correct right [29], wrong left [6], wrong right [4]
+04_02_26  Hendrik - imag_1dfb5          : left [60], right [60], correct left [48], correct right [46], wrong left [14], wrong right [12]
+04_02_26  Hendrik - imag_1dfb6          : left [21], right [29], correct left [16], correct right [23], wrong left [6], wrong right [5]
+04_02_26  Hendrik - imag_1dfb7          : left [24], right [26], correct left [21], correct right [23], wrong left [3], wrong right [3]
+04_03_03 Matthias - arte                : length: 201 seconds
+04_03_03 Matthias - imag                : left [60], right [60], foot [60], music [60]
+04_03_03 Matthias - imag_2dfb1          : left [17], right [12], foot [7], music [14], hit left [6], hit right [4], hit foot [5], hit music [10], miss left [0], miss right [4], miss foot [13], miss music [8]
+04_03_03 Matthias - imag_basketfb1      : top [30], middle top [27], middle bottom [24], bottom [19], hit [46], miss [0]
+04_03_03 Matthias - imag_ft1            : left [60], right [60], foot [60], music [60]
+04_03_03 Matthias - imag_ft2            : left [60], right [60], foot [60], music [60]
+04_03_04     VPca - Impedances_after_0_100. : 
+04_03_04     VPca - Impedances_after_0_20. : 
+04_03_04     VPca - Impedances_before_0_100. : 
+04_03_04     VPca - Impedances_before_0_20. : 
+04_03_04     VPca - arte                : length: 209 seconds
+04_03_04     VPca - selfpaced3s_        : left [307], right [300]
+04_03_08     VPbe - arte                : length: 239 seconds
+04_03_08     VPbe - paced_alt1s         : left click [224], right no-click [372], rest [582]
+04_03_08     VPbe - paced_alt1s_stump   : left click [217], right no-click [256], rest [467]
+04_03_11    Klaus - arte                : length: 213 seconds
+04_03_11    Klaus - imag                : left [60], right [60], foot [60], music [60]
+04_03_11    Klaus - imag_1dfb1          : left [23], right [17], hit left [18], hit right [16], miss left [1], miss right [5]
+04_03_11    Klaus - imag_basketfb1      : left [7], middle left [8], left middle [10], right middle [4], middle right [11], right [9], hit [17], miss [31]
+04_03_11    Klaus - imag_basketfb2      : left [6], middle left [14], left middle [6], right middle [10], middle right [11], right [11], hit [21], miss [36]
+04_03_11    Klaus - imag_basketfb3      : left [13], left middle [16], right middle [14], right [17], hit [22], miss [38]
+04_03_11    Klaus - imag_pongfb1        : length: 61 seconds
+04_03_11    Klaus - imag_pongfb2        : length: 54 seconds
+04_03_11    Klaus - imag_pongfb3        : length: 53 seconds
+04_03_11    Klaus - imag_tfb            : left [60], right [60], foot [60], music [60]
+04_03_12     VPbf - arte                : length: 237 seconds
+04_03_12     VPbf - paced_alt1_75s      : left click [185], right no-click [281], rest [479]
+04_03_12     VPbf - paced_alt1_75s_stump : left click [144], right no-click [205], rest [360]
+04_03_16     VPbg - arte                : length: 208 seconds
+04_03_16     VPbg - paced_alt1_4s       : left no-click [270], right click [195], rest [477]
+04_03_16     VPbg - paced_alt1s_stump   : left no-click [188], right click [171], rest [358]
+04_03_16     VPcb - imag                : left [99], right [99], foot [99]
+04_03_18    Guido - arte                : length: 187 seconds
+04_03_18    Guido - imag_1dfb1          : left [92], foot [118], hit left [92], hit foot [104], miss left [14], miss foot [0]
+04_03_18    Guido - imag_1dfb2          : left [69], foot [81], hit left [63], hit foot [80], miss left [1], miss foot [6]
+04_03_18    Guido - imag_1dfb3          : left [104], foot [106], hit left [89], hit foot [93], miss left [13], miss foot [15]
+04_03_18    Guido - imag_baskaputtfb1   : length: 30 seconds
+04_03_18    Guido - imag_bpfb1          : left [96], right [0]
+04_03_18    Guido - imag_curs           : left [80], right [80], foot [80]
+04_03_18    Guido - imag_lett           : left [80], right [80], foot [80]
+04_03_18    Guido - imag_move           : left [80], right [80], foot [80]
+04_03_18    Guido - imag_tfb1           : left [50], foot [50]
+04_03_24 Matthias - arte                : length: 179 seconds
+04_03_24 Matthias - imag_1dfb           : right [107], foot [118], hit right [82], hit foot [106], miss right [12], miss foot [24]
+04_03_24 Matthias - imag_1drfb          : right [115], foot [129], hit right [77], hit foot [113], miss right [16], miss foot [37]
+04_03_24 Matthias - imag_basketfb       : target1 [33], target2 [31], target3 [36], hit [46], miss [54]
+04_03_24 Matthias - imag_curs           : left [35], right [35], foot [35]
+04_03_24 Matthias - imag_lett           : left [70], right [70], foot [70]
+04_03_24 Matthias - imag_move           : left [70], right [70], foot [70]
+04_03_24 Matthias - imag_tfb            : right [50], foot [50]
+04_03_24 Matthias - selfpaced           : length: 695 seconds
+04_03_25  Philipp - arte                : length: 206 seconds
+04_03_25  Philipp - imag_lett           : left [70], right [70], foot [70]
+04_03_25  Philipp - imag_move           : left [70], right [70], foot [70]
+04_03_25  Philipp - real_lett           : left [35], right [35], foot [35]
+04_03_25  Philipp - real_move           : left [35], right [35], foot [35]
+04_03_25  Philipp - selfpaced           : length: 918 seconds
+04_03_29    Guido - arte                : length: 160 seconds
+04_03_29    Guido - imag_1dEMGfb        : left [17], foot [23], hit left [14], hit foot [13], miss left [1], miss foot [0]
+04_03_29    Guido - imag_1derfb         : left [13], foot [15], hit left [13], hit foot [14], miss left [1], miss foot [0]
+04_03_29    Guido - imag_1dfb           : left [110], foot [114], hit left [109], hit foot [105], miss left [9], miss foot [1]
+04_03_29    Guido - imag_1drfb          : left [119], foot [121], hit left [113], hit foot [115], miss left [5], miss foot [6]
+04_03_29    Guido - imag_basketfb       : target1 [34], target2 [41], target3 [51], hit [39], miss [86]
+04_03_29    Guido - imag_curs           : left [35], right [35], foot [35]
+04_03_29    Guido - imag_lett           : left [70], right [70], foot [70]
+04_03_29    Guido - imag_move           : left [70], right [70], foot [70]
+04_03_29    Guido - imag_tfb            : left [50], foot [50]
+04_03_29    Guido - selfpaced           : length: 1020 seconds
+04_03_30  Gabriel - arte                : length: 216 seconds
+04_03_30  Gabriel - imag_1dfb           : left [108], right [116], hit left [89], hit right [99], miss left [17], miss right [19]
+04_03_30  Gabriel - imag_1drfb2         : left [31], right [35], hit left [16], hit right [23], miss left [11], miss right [15]
+04_03_30  Gabriel - imag_1drfb          : left [106], right [118], hit left [91], hit right [110], miss left [8], miss right [15]
+04_03_30  Gabriel - imag_basketfb       : target1 [66], target2 [72], target3 [62], hit [83], miss [117]
+04_03_30  Gabriel - imag_lett           : left [35], right [35], foot [35]
+04_03_30  Gabriel - imag_move           : left [105], right [105], foot [105]
+04_03_31     Falk - arte                : length: 212 seconds
+04_03_31     Falk - imag_1dfb           : left [84], foot [98], hit left [71], hit foot [79], miss left [7], miss foot [11]
+04_03_31     Falk - imag_1drfb          : left [103], foot [121], hit left [94], hit foot [110], miss left [11], miss foot [9]
+04_03_31     Falk - imag_basketfb       : target1 [40], target2 [34], target3 [51], hit [48], miss [77]
+04_03_31     Falk - imag_curs           : left [30], right [30], foot [30]
+04_03_31     Falk - imag_lett           : left [35], right [35], foot [35]
+04_03_31     Falk - imag_move           : left [105], right [105], foot [105]
+04_04_08    Klaus - arte                : length: 197 seconds
+04_04_08    Klaus - imag_1derfb         : left [14], right [14], hit left [13], hit right [13], miss left [1], miss right [1]
+04_04_08    Klaus - imag_1dfb           : left [106], right [118], hit left [91], hit right [110], miss left [8], miss right [15]
+04_04_08    Klaus - imag_1drfb          : left [118], right [134], hit left [109], hit right [131], miss left [3], miss right [9]
+04_04_08    Klaus - imag_basketfb       : target1 [83], target2 [83], target3 [86], hit [48], miss [204]
+04_04_08    Klaus - imag_curs           : left [35], right [35], foot [35]
+04_04_08    Klaus - imag_lett           : left [70], right [70], foot [70]
+04_04_08    Klaus - imag_move           : left [70], right [70], foot [70]
+04_04_08    Klaus - real_curs           : left [35], right [35], foot [35]
+04_06_09     VPbh - arte                : length: 210 seconds
+04_06_09     VPbh - paced_alt1_3s       : left no-click [255], right click [180], rest [478]
+04_06_09     VPbh - paced_alt1_3s_stump : left no-click [67], right click [36], rest [120]
+04_06_15    Anton - arte                : length: 374 seconds
+04_06_15    Anton - imag_curs           : left [45], right [45]
+04_06_15    Anton - imag_lett           : left [72], right [72], foot [72]
+04_06_15    Anton - imag_move           : left [70], right [70], foot [70]
+04_06_15    Anton - react               : left [116], right [120]
+04_06_18     VPcc - arte                : length: 164 seconds
+04_06_18     VPcc - imag_lett           : left [50], right [50], foot [50]
+04_06_18     VPcc - imag_move           : left [50], right [50], foot [50]
+04_07_15    Guido - arte                : length: 167 seconds
+04_07_15    Guido - imag_basketfb       : target1 [43], target2 [43], target3 [46], hit [44], miss [82]
+04_07_15    Guido - imag_curs           : left [35], right [35], foot [35]
+04_07_15    Guido - imag_lett           : left [70], right [70], foot [70]
+04_07_15    Guido - imag_move           : left [70], right [70], foot [70]
+04_07_15 Matthias - arte                : length: 167 seconds
+04_07_15 Matthias - imag_basketfb       : target1 [39], target2 [44], target3 [43], hit [46], miss [80]
+04_07_15 Matthias - imag_curs           : left [35], right [35], foot [35]
+04_07_15 Matthias - imag_lett           : left [70], right [70], foot [70]
+04_07_15 Matthias - imag_move           : left [70], right [70], foot [70]
+04_07_29 Matthias - arte                : 
+04_07_29 Matthias - imag_drive          : left [69], right [69], foot [70]
+04_07_29 Matthias - imag_lett           : left [70], right [69], foot [69]
+04_08_26   Steven - arte                : length: 223 seconds
+04_08_26   Steven - imag_lett           : left [70], right [70], foot [70]
+04_08_26   Steven - imag_move           : left [70], right [70], foot [70]
+04_08_26   Steven - react               : left [111], right [107], foot [93]
+04_08_26 Thorsten - arte                : length: 223 seconds
+04_08_26 Thorsten - imag_lett           : left [70], right [70], foot [70]
+04_08_26 Thorsten - imag_move           : left [70], right [70], foot [70]
+04_08_26 Thorsten - react               : left [108], right [110], foot [96]
+04_09_09    Klaus - arte                : length: 207 seconds
+04_09_09    Klaus - imag_lett           : left [105], right [105], foot [105]
+04_09_09 Matthias - arte                : length: 207 seconds
+04_09_09 Matthias - imag_lett           : left [105], right [105], foot [105]
+04_09_22    Guido - arte                : 
+04_09_22    Guido - imag_fb             : left [25], middle [23], foot [20]
+04_09_22    Guido - imag_lett           : left [70], right [69], foot [69]
+04_09_22 Matthias - arte                : 
+04_09_22 Matthias - imag_fb             : left [38], middle [37], foot [37]
+04_09_22 Matthias - imag_lett           : left [105], right [104], foot [99]
+04_09_23    Klaus - arte                : 
+04_09_23    Klaus - imag_fb             : left [15], middle [13], right [16]
+04_09_23    Klaus - imag_lett           : left [99], right [99]
+04_09_24    Guido - arte                : 
+04_09_24    Guido - imag_drive          : left [100], foot [99]
+04_09_24    Guido - imag_fb             : left [11], middle [9], foot [10]
+04_09_24    Klaus - arte                : 
+04_09_24    Klaus - imag_fb             : left [21], middle [15], right [10]
+04_09_24    Klaus - imag_lett           : left [50], right [50]
+04_09_24    Klaus - imag_lett           : left [50], right [50]
+04_09_29  Gabriel - arte                : length: 208 seconds
+04_09_29  Gabriel - react               : left [139], right [147]
+04_09_29  Gabriel - selfpaced2s         : finger [307], shoulder [248]
+04_09_29  Gabriel - virtualarm          : 
+04_10_08     VPcd - arte_               : length: 258 seconds
+04_10_08     VPcd - imag_fb1d_abs       : left [26], foot [27], hit left [17], hit foot [20], miss left [7], miss foot [9], free [53]
+04_10_08     VPcd - imag_fb1d_rel       : left [65], foot [75], hit left [45], hit foot [72], miss left [3], miss foot [20], free [140]
+04_10_08     VPcd - imag_lett2          : left [35], right [35], foot [35]
+04_10_08     VPcd - imag_lett           : left [105], right [105], foot [105]
+04_10_08     VPcd - react               : left [70], right [69], foot [71]
+04_10_19  Masashi - arte                : length: 244 seconds
+04_10_19  Masashi - imag_1dfb           : left [15], foot [14], hit left [15], hit foot [14], miss left [0], miss foot [0], free [28]
+04_10_19  Masashi - imag_1drfb          : left [68], foot [72], hit left [66], hit foot [71], miss left [1], miss foot [2], free [140]
+04_10_19  Masashi - imag_basketfb       : target1 [19], target2 [22], target3 [22], hit [23], miss [40]
+04_10_19  Masashi - imag_curs           : left [30], right [30], foot [30]
+04_10_19  Masashi - imag_lett           : left [70], right [70], foot [70]
+04_10_19  Masashi - imag_move           : left [70], right [70], foot [70]
+04_10_19  Masashi - react               : left [72], right [70], foot [67]
+04_10_27 Matthias - arte                : length: 150 seconds
+04_10_27 Matthias - imag_lett           : left [70], right [70], foot [70]
+04_10_27 Matthias - imag_move           : left [35], right [35], foot [35]
+04_10_27     VPce - arte                : length: 150 seconds
+04_10_27     VPce - imag_lett           : left [70], right [70], foot [70]
+04_10_27     VPce - imag_move           : left [35], right [35], foot [35]
+04_11_01    Guido - arte                : length: 229 seconds
+04_11_01    Guido - imag_1dfb128        : left [68], right [72], hit left [65], hit right [71], miss left [1], miss right [3]
+04_11_01    Guido - imag_1dfb128to64    : left [64], right [76], hit left [63], hit right [73], miss left [3], miss right [1]
+04_11_01    Guido - imag_1dfb64         : left [68], right [72], hit left [64], hit right [62], miss left [10], miss right [4]
+04_11_01    Guido - imag_1dfb64p1       : left [66], right [74], hit left [66], hit right [72], miss left [2], miss right [0]
+04_11_01    Guido - imag_1dfb64p2       : left [66], right [74], hit left [66], hit right [71], miss left [3], miss right [0]
+04_11_01    Guido - imag_auditory       : left [35], foot [35], relax [35]
+04_11_01    Guido - imag_lett           : left [105], foot [105], tongue [105]
+04_11_01    Guido - imag_lettfast       : left [140], foot [140], relax [140]
+04_11_10  Gabriel - helmet_artefact     : Augen links [5], Augen rechts [5], Augen oben [4], Augen unten [4], blinzeln [1], Augen zu & entspannen [8], beissen [2], Augen offen [7]
+04_11_10  Gabriel - helmet_artefact_0_1muV : Augen links [6], Augen rechts [5], Augen oben [4], Augen unten [4], blinzeln [1], Augen zu & entspannen [5], beissen [2], Augen offen [4]
+04_11_10  Gabriel - helmet_selfpaced    : left [175], right [188]
+04_11_17     Jens - arte                : length: 233 seconds
+04_11_17     Jens - dzwei               : left [105], right [105]
+04_11_17     Jens - imag_lett           : left [70], right [70], foot [70]
+04_11_17     Jens - imag_move           : left [70], right [70], foot [70]
+04_11_17     Jens - react               : left [109], right [112], foot [92]
+04_11_17     Jens - selfpaced2s         : left [205], right [218]
+04_11_17    Mikio - arte                : length: 233 seconds
+04_11_17    Mikio - dzwei               : left [105], right [105]
+04_11_17    Mikio - imag_1drfb          : left [24], foot [26], hit left [15], hit foot [17], miss left [9], miss foot [9]
+04_11_17    Mikio - imag_lett           : left [70], right [70], foot [70]
+04_11_17    Mikio - imag_move           : left [70], right [70], foot [70]
+04_11_17    Mikio - react               : left [108], right [105], foot [104]
+04_11_17    Mikio - selfpaced2s         : left [207], right [207]
+04_11_30   Janine - arte                : length: 232 seconds
+04_11_30   Janine - imag_1drfb          : left [24], right [26], hit left [19], hit right [26], miss left [0], miss right [5]
+04_11_30   Janine - imag_brainpongfb    : length: 891 seconds
+04_11_30   Janine - imag_lett           : left [105], right [105], foot [105]
+04_11_30   Janine - imag_move           : left [35], right [35], foot [35]
+04_11_30   Mirjam - arte                : length: 232 seconds
+04_11_30   Mirjam - imag_1drfb          : left [24], right [26], hit left [23], hit right [26], miss left [0], miss right [1]
+04_11_30   Mirjam - imag_brainpongfb    : length: 891 seconds
+04_11_30   Mirjam - imag_lett           : left [105], right [105], foot [105]
+04_11_30   Mirjam - imag_move           : left [35], right [35], foot [35]
+04_12_01  Gabriel - arte                : Augen zu & entspannen [6], Augen offen & entspannen [5], Augen offen [5]
+04_12_01  Gabriel - selfpaced2s         : left [109], right [110]
+05_01_26   Florin - arte                : length: 254 seconds
+05_01_26   Florin - arteHmd             : length: 234 seconds
+05_01_26   Florin - imag_1drfb          : left [24], right [26], hit left [18], hit right [23], miss left [3], miss right [6]
+05_01_26   Florin - imag_lett           : left [105], right [105], foot [105], tongue [105]
+05_02_01     VPcg - arte                : length: 235 seconds
+05_02_01     VPcg - imag_1drfb          : length: 201 seconds
+05_02_01     VPcg - imag_lett           : left [90], right [90], foot [90]
+05_02_01     VPch - arte                : length: 235 seconds
+05_02_01     VPch - imag_1drfb          : length: 201 seconds
+05_02_01     VPch - imag_lett           : left [90], right [90], foot [90]
+05_03_15    Guido - arte                : length: 238 seconds
+05_03_15    Guido - imag_lett           : left [70], right [70], foot [70]
+05_03_15    Guido - imag_move           : left [70], right [70], foot [70]
+05_03_15     VPci - arte                : length: 238 seconds
+05_03_15     VPci - imag_lett           : left [70], right [70], foot [70]
+05_03_15     VPci - imag_move           : left [70], right [70], foot [70]
+05_04_01    Guido - arte                : length: 230 seconds
+05_04_01    Guido - imag_brainpongfb1   : length: 395 seconds
+05_04_01    Guido - imag_brainpongfb2   : length: 79 seconds
+05_04_01    Guido - imag_brainpongfb3   : length: 251 seconds
+05_04_01    Guido - imag_lett           : left [100], foot [100]
+05_04_01    Guido - imag_spellerfb1     : left [74], foot [59]
+05_04_01    Guido - imag_spellerfb2     : left [96], foot [84]
+05_04_01    Guido - imag_spellerfb      : left [0], foot [1]
+05_04_01 Matthias - arte                : length: 230 seconds
+05_04_01 Matthias - imag_brainpongfb1   : length: 395 seconds
+05_04_01 Matthias - imag_brainpongfb2   : length: 79 seconds
+05_04_01 Matthias - imag_brainpongfb3   : length: 251 seconds
+05_04_01 Matthias - imag_lett           : length: 1370 seconds
+05_04_01 Matthias - imag_spellerfb1     : length: 343 seconds
+05_04_01 Matthias - imag_spellerfb2     : length: 462 seconds
+05_04_01 Matthias - imag_spellerfb      : length: 18 seconds
+05_04_05    Guido - imag_lett           : length: 1342 seconds
+05_04_05    Guido - impedance_before.   : 
+05_04_05 Matthias - imag_lett           : length: 1342 seconds
+05_04_05 Matthias - impedance_before.   : 
+05_06_06    Guido - imag_1drfb1         : foot [0], hit left [0]
+05_06_06    Guido - imag_1drfb2         : foot [0], hit tongue [0]
+05_06_06    Guido - imag_1drfb3         : foot [0], hit left [0]
+05_06_06    Guido - imag_1drfb          : left [0], foot [0]
+05_06_06    Guido - imag_lett           : left [70], tongue [70], foot [70]
+05_06_06    Guido - imag_move           : left [70], tongue [70], foot [70]
+05_06_06    Guido - speller1            : left [30], right [31]
+05_06_06    Guido - speller2            : left [47], right [42]
+05_06_06    Guido - speller             : left [603], right [481]
+05_06_06     VPcj - imag_lett           : length: 1408 seconds
+05_06_06     VPcj - imag_move           : length: 1415 seconds
+05_07_06     VPck - arte                : length: 231 seconds
+05_07_06     VPck - imag_lett           : left [70], right [70], foot [70]
+05_07_06     VPck - imag_move           : left [70], right [70], foot [70]
+05_07_06     VPcl - arte                : length: 231 seconds
+05_07_06     VPcl - imag_1drfb          : right [0], hit left [0]
+05_07_06     VPcl - imag_lett           : left [70], right [70], foot [70]
+05_07_06     VPcl - imag_move           : left [70], right [70], foot [70]
+05_07_15     Amin - arte                : stopp [25], Augen links [5], Augen rechts [5], Augen oben [5], Augen unten [7], blinzeln [2], Augen offen & entspannen [1], Augen zu & entspannen [1], beiﬂen [1], Kopf bewegen [1]
+05_07_15     Amin - imag_lett           : left [35], right [35], foot [35]
+05_07_15     Amin - mouse               : hit [273], miss [85]
+05_07_15     Amin - mouse_game          : appear [400]
+05_07_15     Amin - react               : left [194], right [198]
+05_07_15     Amin - react_distract      : left [211], right [190]
+05_07_15     Amin - react_game          : left [193], right [217]
+05_07_15     Amin - react_gamebug       : left [80], right [121]
+05_07_15     Amin - react_stress        : left [98], right [102]
+05_07_15     Amin - typewriter          : ignored [389], pressed [2571]
+05_07_15    Timon - arte                : stopp [25], Augen links [5], Augen rechts [5], Augen oben [5], Augen unten [7], blinzeln [2], Augen offen & entspannen [1], Augen zu & entspannen [1], beiﬂen [1], Kopf bewegen [1]
+05_07_15    Timon - imag_lett           : left [35], right [35], foot [35]
+05_07_15    Timon - mouse               : hit [255], miss [78]
+05_07_15    Timon - mouse_game          : appear [400]
+05_07_15    Timon - react               : left [200], right [202]
+05_07_15    Timon - react_distract      : left [197], right [201]
+05_07_15    Timon - react_game          : left [206], right [211]
+05_07_15    Timon - react_gamebug       : left [110], right [91]
+05_07_15    Timon - react_stress        : left [98], right [102]
+05_07_15    Timon - typewriter          : ignored [380], pressed [2310]
+05_07_19     Maki - arte                : stopp [28], Augen links [5], Augen rechts [5], Augen oben [5], Augen unten [5], blinzeln [1], Augen offen & entspannen [1], Augen zu & entspannen [1], beiﬂen [1], Kopf bewegen [1], EMG links [1], EMG rechts [1]
+05_07_19     Maki - imag_lett           : left [35], right [35], foot [35]
+05_07_19     Maki - mouse               : hit [233], miss [103]
+05_07_19     Maki - mouse_game          : timeout [0], hit [158], miss [74], other_hit [116], other_miss [49], ambiguous [3]
+05_07_19     Maki - react               : left [204], right [197]
+05_07_19     Maki - react_distract      : left [198], right [190]
+05_07_19     Maki - react_game          : left [225], right [180]
+05_07_19     Maki - react_stress        : left [106], right [84]
+05_07_19     Maki - typewriter          : ignored [0], pressed [2358]
+05_07_19    Yakob - arte                : stopp [28], Augen links [5], Augen rechts [5], Augen oben [5], Augen unten [5], blinzeln [1], Augen offen & entspannen [1], Augen zu & entspannen [1], beiﬂen [1], Kopf bewegen [1], EMG links [1], EMG rechts [1]
+05_07_19    Yakob - imag_lett           : left [35], right [35], foot [35]
+05_07_19    Yakob - mouse               : hit [198], miss [167]
+05_07_19    Yakob - mouse_game          : timeout [0], hit [117], miss [52], other_hit [155], other_miss [73], ambiguous [3]
+05_07_19    Yakob - react               : left [195], right [207]
+05_07_19    Yakob - react_distract      : left [198], right [197]
+05_07_19    Yakob - react_game          : left [192], right [235]
+05_07_19    Yakob - react_stress        : left [87], right [118]
+05_07_19    Yakob - typewriter          : ignored [0], pressed [1851]
+05_08_23    Vadim - arte                : length: 245 seconds
+05_08_23    Vadim - imag_lett           : length: 1669 seconds
+05_08_23    Vadim - medianus            : length: 1209 seconds
+05_08_23    Vadim - medianus_fast       : length: 993 seconds
+05_08_23    Vadim - selfpaced3s         : length: 1575 seconds
+05_08_25     Maki - arte                : length: 247 seconds
+05_08_25     Maki - imag_1dfb           : length: 489 seconds
+05_08_25     Maki - imag_1drfb          : length: 356 seconds
+05_08_25     Maki - imag_basket         : length: 400 seconds
+05_08_25     Maki - imag_lett           : length: 834 seconds
+05_08_25     Maki - imag_move           : length: 2117 seconds
+05_08_25    Ryota - arte                : length: 247 seconds
+05_08_25    Ryota - imag_1dfb           : length: 489 seconds
+05_08_25    Ryota - imag_1drfb          : length: 356 seconds
+05_08_25    Ryota - imag_basket         : length: 400 seconds
+05_08_25    Ryota - imag_lett           : length: 834 seconds
+05_08_25    Ryota - imag_move           : length: 2117 seconds

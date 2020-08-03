@@ -1,0 +1,71 @@
+Start BV Recorder
+
+Start Matlab R2007b
+Find out subject code, e.g., 'ja'.
+
+VP_CODE= 'VPik';
+cd([BCI_DIR 'acquisition\setups\special_purpose']);
+setup_bci_competition_iv
+
+classes= {'left','right'};
+
+setup_bci_competition_iv_artifacts
+stim_artifactMeasurement(seq, wav, opt);
+
+%% Testing:
+setup_bci_competition_iv_calib
+stim_visualCues(stim, opt, 'test',1);
+
+%% 2 runs of recording:
+setup_bci_competition_iv_calib
+stim_visualCues(stim, opt);
+
+%% Testing:
+setup_bci_competition_iv_eval
+stim_auditoryCues(stim, opt, 'test',1);
+
+%% 1st run of recording:
+setup_bci_competition_iv_eval
+stim_auditoryCues(stim, opt);
+
+with 'disturbances':
+with 'disturbances':
+ [00:30 Auditory cues start
+  02:30 Start Video ('Frozen_nosound.avi': at Desktop of TUBBCI2)
+        Press '1' in BrainVision Recorder (must have focus)
+  04:45 Video ends
+        Press '0' in BrainVision Recorder (must have focus)
+  07:30 Say "Close your eyes"
+        Press '3' in BrainVision Recorder (must have focus)
+  09:30 Say "Open your eyes"
+        Press '0' in BrainVision Recorder (must have focus)
+]
+
+
+%% 2nd run of recording:
+setup_bci_competition_iv_eval
+stim_auditoryCues(stim, opt);
+
+with 'disturbances':
+ [00:30 Auditory cues start
+  02:30 Start Video ('Frozen_nosound.avi': at Desktop of TUBBCI2)
+        Press '1' in BrainVision Recorder (must have focus)
+  04:45 Video ends
+        Press '0' in BrainVision Recorder (must have focus)
+  07:30 Start Audio ('?': at Desktop of BBCILAPTOP)
+        Press '2' in BrainVision Recorder (must have focus)
+  09:30 Stop Audio
+        Press '0' in BrainVision Recorder (must have focus)
+]
+
+%% 3rd run of recording:
+setup_bci_competition_iv_eval
+stim_auditoryCues(stim, opt);
+
+with 'disturbances' as in the 1st
+
+%% 4th run of recording:
+setup_bci_competition_iv_eval
+stim_auditoryCues(stim, opt);
+
+with 'disturbances' as in the 2nd

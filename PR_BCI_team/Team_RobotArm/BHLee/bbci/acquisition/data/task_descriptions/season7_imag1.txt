@@ -1,0 +1,19 @@
+In diesem Experimentteil sollen Bewegungen mit den Daumen
+ausgeführt, bzw. vorgestellt werden. Dabei liegt die Hand
+flach mit der Innenseite nach oben.
+
+\bf{R:}\rm Der Daumen wird aus der ausgestreckten Position ungefähr
+parallel zur Handfläche in Richtung des kleinen Fingers
+bewegt und wieder zurück. Diese Bewegung soll kontinuierlich
+während der Buchstabe auf dem Bildschirm zu sehen ist
+wiederholt werden. Geschindigkeit ca. 2 mal pro Sekunde.
+
+\bf{L:}\rm Dasselbe mit der linken Hand.
+
+\bf{X:}\rm Nichts tun und entspannt bleiben.
+
+\bf{(R):}\rm Wie bei R, aber Bewegung nur vorstellen.
+
+\bf{(L):}\rm Wie bei L, aber Bewegung nur vorstellen.
+
+Bitte drücken Sie 'j', um das Experiment zu starten.

@@ -1,0 +1,189 @@
+{
+    "animation_time": 0.69199999999999995, 
+    "bg_color": [
+        0.0, 
+        0.0, 
+        0.0
+    ], 
+    "circle_radius": 100, 
+    "copy_spelling": false, 
+    "countdown_color": [
+        0.20000000000000001, 
+        0.0, 
+        1.0
+    ], 
+    "current_letter_color": [
+        1.0, 
+        0.0, 
+        0.0
+    ], 
+    "debug": 0, 
+    "desired_phrase": "BRAIN_COMPUTER_INTERFACE", 
+    "edge_color": [
+        1.0, 
+        1.0, 
+        1.0
+    ], 
+    "edge_size": 2, 
+    "et_currentxy": [
+        0, 
+        0
+    ], 
+    "et_duration": 100, 
+    "et_range": 200, 
+    "et_range_time": 200, 
+    "feedback_ErrP_duration": 1.0, 
+    "feedback_color": [
+        0.69999999999999996, 
+        0.69999999999999996, 
+        0.69999999999999996
+    ], 
+    "feedback_duration": 0.29999999999999999, 
+    "feedbackbox_size": 200.0, 
+    "fixationpoint_color": [
+        1.0, 
+        1.0, 
+        1.0
+    ], 
+    "fixationpoint_size": 4.0, 
+    "flash_size_factor": 1.2, 
+    "font_size_countdown": 150, 
+    "font_size_current_letter": 80, 
+    "font_size_level1": 70, 
+    "font_size_level2": 130, 
+    "font_size_phrase": 60, 
+    "fullscreen": 1, 
+    "interstimulus_duration": 0.091999999999999998, 
+    "letter_color": [
+        0.80000000000000004, 
+        0.80000000000000004, 
+        0.80000000000000004
+    ], 
+    "letter_set": [
+        [
+            "A", 
+            "B", 
+            "C", 
+            "D", 
+            "E"
+        ], 
+        [
+            "F", 
+            "G", 
+            "H", 
+            "I", 
+            "J"
+        ], 
+        [
+            "K", 
+            "L", 
+            "M", 
+            "N", 
+            "O"
+        ], 
+        [
+            "P", 
+            "Q", 
+            "R", 
+            "S", 
+            "T"
+        ], 
+        [
+            "U", 
+            "V", 
+            "W", 
+            "X", 
+            "Y"
+        ], 
+        [
+            "Z", 
+            "_", 
+            ".", 
+            ",", 
+            "<"
+        ]
+    ], 
+    "letter_stimulus_color": [
+        0.0, 
+        0.0, 
+        0.0
+    ], 
+    "letterbox_size": [
+        60, 
+        60
+    ], 
+    "log_filename": "VisualSpellerVE.log", 
+    "min_dist": 2, 
+    "nCountdown": 2.0, 
+    "nr_sequences": 5, 
+    "offline": 1, 
+    "osc_color": [
+        1, 
+        1, 
+        1
+    ], 
+    "osc_size": 40, 
+    "phrase_color": [
+        0.20000000000000001, 
+        0.0, 
+        1.0
+    ], 
+    "randomize_sequence": true, 
+    "screenHeight": 1200, 
+    "screenPos": [
+        0, 
+        0, 
+        1280, 
+        1024
+    ], 
+    "screenWidth": 1900, 
+    "shape_color": [
+        0.0, 
+        0.0, 
+        0.0
+    ], 
+    "speller_radius": 260, 
+    "stimuli_colors": [
+        [
+            1.0, 
+            0.0, 
+            0.0
+        ], 
+        [
+            0.0, 
+            0.80000000000000004, 
+            0.0
+        ], 
+        [
+            0.0, 
+            0.0, 
+            1.0
+        ], 
+        [
+            1.0, 
+            1.0, 
+            0.0
+        ], 
+        [
+            1.0, 
+            0.0, 
+            0.69999999999999996
+        ], 
+        [
+            0.90000000000000002, 
+            0.90000000000000002, 
+            0.90000000000000002
+        ]
+    ], 
+    "stimulus_duration": 0.091999999999999998, 
+    "stimulustype_color": true, 
+    "stimulustype_flash": true, 
+    "udp_markers_enable": false, 
+    "udp_markers_host": "127.0.0.1", 
+    "udp_markers_port": 1206, 
+    "use_ErrP_detection": true, 
+    "use_eyetracker": 0, 
+    "use_oscillator": 1, 
+    "wait_before_classify": 1.0, 
+    "wordboxWidth": 800
+}

@@ -1,0 +1,44 @@
+---------------------------------------------------------------------------------
+bug # 1
+
+Salut les tftoolboxers,
+encore un p'tit bug detecte sur TFRBERT
+(le sort s'acharne sur tes fonctions, desole
+Paulo !). Je crois qu'il est facile a reparer.
+
+7- TFRBERT,
+probleme de normalisation ; 
+sig=altes(64,0.1,0.45);
+s=hilbert([zeros(32,1);sig;zeros(32,1)]);
+[tfr t f]=tfrbert(s);    (Nf=128, 256, 512)
+norm(s)^2
+ans =
+    2.0000
+Nf=128 : integ2d(tfr,t,f)
+ans =
+    2.0000
+Nf=256 : integ2d(tfr,t,f)
+ans =
+    1.0000
+Nf=512 : integ2d(tfr,t,f)
+ans =
+    0.5000
+ecm, Mon Jul 14 18:50:23 MET DST 1997
+
+La fonction marche a condition qu'il ait autant de point
+en temps qu'en frequence.
+Je pense avoir reperer l'erreur.
+c'est la normalisation :
+
+tfr=tfr*(SP1ana'*SP2ana)/integ2d(tfr,t,f)/N;
+C'est pas N, mais tcol qu'il faut mettre dans la formule.
+
+8- TFRBERT, programme test
+test de l'unitarite de la distribution ?
+(ce serait pas mal dans l'avenir de verifier
+l'unitarite a posteriori des distributions unitaires, non ?)
+ecm, Mon Jul 14 18:50:23 MET DST 1997
+
+Eric.
+
+-------------------------------------------------------------------------------

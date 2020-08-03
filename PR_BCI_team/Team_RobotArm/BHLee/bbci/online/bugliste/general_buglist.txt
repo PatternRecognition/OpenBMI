@@ -1,0 +1,79 @@
+kraulem und dornhege has submitted a bug on 19-Aug-2005 16:21:39:
+
+acquire_bv Probleme beim Erhalt von Markern, falls an chan_sel, clab und scale manipuliert wurde
+
+
+
+
+
+Knirpsie und Dudo has submitted a bug on 31-Aug-2005 15:15:36:
+
+bbci_bet_bugs und matlab_control_gui laufen nicht unabhängig, figure handles prüfen, vor allem bei add setup_list
+
+
+
+
+
+
+Knirpsie und Dudo has submitted a bug on 31-Aug-2005 15:53:27:
+
+get_udp: ohne Rueckmeldung versteht man mehr.
+
+
+
+
+
+
+michael has submitted a bug on 08-Nov-2005 10:18:28:
+
+Ausgabe der Confusion Matrix im Training
+
+
+
+
+michael has submitted a bug on 08-Nov-2005 10:18:54:
+
+In Feedback Pseudozufallszahlen, damit nicht zu viele gleiche Targets hintereinander erscheinen
+
+
+
+
+michael has submitted a bug on 08-Nov-2005 10:19:26:
+
+Schriftgroessen in gui anpassen
+
+
+
+
+guido has submitted a bug on 08-Nov-2005 10:19:48:
+
+feedback_2d aufräumen (Veränderungen von gestern)
+
+
+
+
+guido has submitted a bug on 08-Nov-2005 10:20:04:
+
+error potential in speller und basket einbauen
+
+
+
+
+dornhege has submitted a bug on 16-Nov-2005 18:05:47:
+
+in der training gui sollte ein Feld .save_name erzeugt werden
+
+
+
+
+michael has submitted a bug on 04-Jan-2006 14:36:56:
+
+DIe Infos machine und feedback_port sollten als unveränderbares Feld auch im control_player erscheinen
+
+
+
+
+dornhege has submitted a bug on 16-Feb-2006 10:56:58:
+
+there is some bug in line....
+

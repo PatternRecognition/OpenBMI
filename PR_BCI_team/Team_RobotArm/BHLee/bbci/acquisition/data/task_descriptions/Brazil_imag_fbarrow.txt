@@ -1,0 +1,3 @@
+After a countdown there will be a black cross. Afterwards, an arrow will be displayed showing either to left or right. 
+
+If the arrow directs to the \bf{right}\rm, please imagine a movement with the right hand. For example to lift a big weight. Do the same for the left hand, respectively.

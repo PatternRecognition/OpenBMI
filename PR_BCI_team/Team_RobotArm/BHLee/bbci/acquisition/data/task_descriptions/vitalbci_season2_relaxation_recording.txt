@@ -1,0 +1,13 @@
+Nun wird eine EEG-Messung im Ruhezustand durchgeführt. Dabei ist es wichtig,
+dass Ihre Arme, Hände, Beine und Füße \bf{ganz entspannt}\rm sind.
+Bitte nehmen Sie eine bequeme Sitzstellung ein.
+
+Es werden folgende Anweisungen akustisch angesagt:
+
+\bf{Augen zu:}\rm Augen schließen und entspannen bis \bf{stopp}\rm
+\bf{Augen auf:}\rm Augen normal geöffnet lassen und möglichst selten blinzeln.
+{   }Bitte beobachten Sie die kleine Animation auf dem Bildschirm.
+
+{   }Das ganze (Augen zu - Augen auf) wird 10 mal wiederholt. Starkes
+{   }Blinzeln bitte, soweit möglich, nur direkt nach '\bf{stopp}\rm' ausführen.
+\bf{Vorbei:}\rm Ende dieser Messung

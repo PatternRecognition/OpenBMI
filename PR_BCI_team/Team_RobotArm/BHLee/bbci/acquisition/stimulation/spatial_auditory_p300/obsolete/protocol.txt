@@ -1,0 +1,69 @@
+% Start BrainVision recorder
+
+% Set subject ID in setup_spatialbci_common file.
+VP_CODE = [SAS 'subjectCode'];
+
+% Calibrate speakers
+% Press numbers <1:8> to select channel. 
+% Press <up,down> (detail steps) and <pgup,pgdown> (normal steps) to adjust gain per channel.
+% Press <[,]> for gain for all channels.
+% Press <r> to reset the volumes to the calibrated decibel position.
+% Press <ESC> when done. A calibration file is written.
+setup_spatialbci_common;
+speaker_calibration(opt);
+
+repeat X times:
+	% Run single stimulus recording trials with feedback
+	SESSION_TYPE = 'OddballKeyResp';
+	setup_spatialbci_common;
+	opt.req_response = true; % response given by A on parallel port
+	[seq, corr, butt, rt] = stim_oddballAuditorySpatial(32, 8, opt); 
+	save('d:\sequence_01.dat', 'seq', '-ascii');
+	save('d:\buttons_01.dat', 'butt', '-ascii');
+	save('d:\correct_01.dat', 'corr', '-ascii');
+	save('d:\rt_01.dat', 'rt', '-ascii');
+
+
+	% Run single stimulus recording trials without feedback
+	SESSION_TYPE = 'OddballCounting';
+	setup_spatialbci_common;
+	stim_oddballAuditorySpatial(80, 8, opt);
+end repeat
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Run artifacts
+%SESSION_TYPE = 'Artifacts';
+%setup_spatialbci_common;
+% some artifact session
+
+% Run practice trials (maybe not, to get TRUE first time data)
+setup_spatialbci_common;
+opt.test = True;
+stim_oddballAuditorySpatial(N, trials, opt);
+
+% Run dual stimulus recording trials
+setup_spatialbci_common;
+opt.dualStim = true;
+stim_oddballAuditorySpatial(80, 8, opt);

@@ -1,0 +1,15 @@
+%bbci.train_file='VPeae_10_03_05/imag_fbarrow_pmeanVPeae'
+bbci.train_file='VPeae_10_03_05/imag_fbarrow_pcovmeanVPeae'
+%bbci.train_file='VPeae_10_03_05/real_movementVPeae'
+bbci.classDef = {1,2;'left','right'};
+bbci.player = 1;
+bbci.setup = 'cspauto';
+%bbci.save_name = 'VPeae_10_03_05/imag_fbarrow_pmeanVPeae';
+bbci.save_name = 'VPeae_10_03_05/imag_fbarrow_pcovmeanVPeae';
+%bbci.save_name = 'VPeae_10_03_05/real_movementVPeae';
+bbci.feedback = '1d';
+bbci.classes = {'left','right'};
+bbci.setup_opts.reject_artifacts=1;
+bbci.setup_opts.nPat=2;
+bbci.adaptation.running=0;
+bbci.withgraphics=1;

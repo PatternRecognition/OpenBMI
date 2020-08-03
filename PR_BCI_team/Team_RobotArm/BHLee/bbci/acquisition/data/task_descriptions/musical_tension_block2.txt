@@ -1,0 +1,18 @@
+Nun hören Sie nochmals den Block mit den eben gehörten Musikstücken.
+Wir bitten Sie, während des Hörens kontinuierlich mit dem joystick anzuzeigen,
+wie Sie den Spannungsverlauf in der Musik erleben.
+Ein Countdown auf dem Bildschirm zeigt Ihnen an,
+wann das Stück beginnt. Bitte beginnen Sie jedes Stück
+mit dem joystick in der Nullposition.
+Wenn sie einen zunehmenden Spannungsverlauf erleben,
+dann lenken Sie den joystick aus, bei abnehmender
+Spannung/Entspannung lassen sie ihn entsprechend in die Richtung der Nullposition zurück.
+  
+Bei der Spannungsbewertung
+geht es ausschließlich um ihr persönliches Erleben,
+also gibt es weder „richtig“ noch „falsch“.
+
+Wenn Sie bereit sind, probieren wir dies jetzt an drei kurzen Ausschnitte aus Musikstücken aus.
+Nachdem Sie die Spannungsbewertung an allen drei Musikstücke ausprobiert haben,
+können Sie Fragen stellen.
+Wenn Sie möchten, können die Ausschnitte auch nochmal abgespielt werden. 

@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment-project>
+  <configuration target="target.library.cpp" target-name="C++ Shared Library" name="bbci_dll" location="D:\development\bbci\deploy" file="D:\development\bbci\deploy\bbci_dll.prj" build-checksum="566338192">
+    <param.project.name>D:\development\bbci\deploy\bbci_dll.prj</param.project.name>
+    <param.target.type>C++ Shared Library</param.target.type>
+    <param.appname>bbci_dll</param.appname>
+    <param.intermediate>${PROJECT_ROOT}\bbci_dll\src</param.intermediate>
+    <param.output>D:\development\mundus\runtime</param.output>
+    <param.embed.ctf>true</param.embed.ctf>
+    <param.tbx_on_path>
+      <item>signal</item>
+      <item>stats</item>
+    </param.tbx_on_path>
+    <param.warnings>
+      <warning.fullpath>on</warning.fullpath>
+      <warning.duplicate>on</warning.duplicate>
+      <warning.option.ignored>on</warning.option.ignored>
+      <warning.libname>on</warning.libname>
+      <warning.demo>on</warning.demo>
+    </param.warnings>
+    <param.version>1.0</param.version>
+    <param.user.only.registration>false</param.user.only.registration>
+    <param.c.cpp.options.file />
+    <param.include.dirs />
+    <param.lib.dirs />
+    <param.lib.files />
+    <param.defines />
+    <param.undefines />
+    <param.debug>false</param.debug>
+    <param.share.mcr>false</param.share.mcr>
+    <param.disable.jvm>false</param.disable.jvm>
+    <param.disable.display>false</param.disable.display>
+    <param.create.log>false</param.create.log>
+    <param.log.file />
+    <param.user.defined.mcr.options />
+    <unset>
+      <param.project.name />
+      <param.target.type />
+      <param.appname />
+      <param.intermediate />
+      <param.embed.ctf />
+      <param.warnings />
+      <param.version />
+      <param.user.only.registration />
+      <param.c.cpp.options.file />
+      <param.include.dirs />
+      <param.lib.dirs />
+      <param.lib.files />
+      <param.defines />
+      <param.undefines />
+      <param.debug />
+      <param.share.mcr />
+      <param.disable.jvm />
+      <param.disable.display />
+      <param.create.log />
+      <param.log.file />
+      <param.user.defined.mcr.options />
+    </unset>
+    <fileset.exports>
+      <file>${PROJECT_ROOT}\bbci_calibrate_ERP.m</file>
+      <file>${PROJECT_ROOT}\bbci_calibrate_MI.m</file>
+      <file>${PROJECT_ROOT}\bbci_online_multi.m</file>
+      <file>${PROJECT_ROOT}\bbci_startup_communications.m</file>
+      <file>${PROJECT_ROOT}\bvr_checkparport.m</file>
+      <file>${PROJECT_ROOT}\bvr_init_conn.m</file>
+      <file>D:\development\bbci\online_new\bbci_save.m</file>
+    </fileset.exports>
+    <fileset.resources>
+      <file>${PROJECT_ROOT}\send_xmlcmd_udp.m</file>
+      <file>D:\development\bbci\import\tcp_udp_ip\pnet.m</file>
+      <file>D:\development\bbci\online_new\acquisition\bbci_acquire_bv.m</file>
+      <file>D:\development\bbci\online_new\apply_functions\bbci_apply_sendControl.m</file>
+      <file>D:\development\bbci\online_new\apply_functions\bbci_apply_setDefaults.m</file>
+      <file>D:\development\bbci\online_new\bbci_apply.m</file>
+      <file>D:\development\bbci\online_new\bbci_calibrate.m</file>
+      <file>D:\development\bbci\online_new\bbci_save.m</file>
+      <file>D:\development\bbci\online_new\calibrate_functions\bbci_calibrate_setDefaults.m</file>
+      <file>D:\development\bbci\online_new\calibration\bbci_calibrate_csp.m</file>
+      <file>D:\development\bbci\online_new\calibration\bbci_calibrate_ERP_Speller.m</file>
+      <file>D:\development\bbci\online_new\control\bbci_control_BGUI_ERP.m</file>
+      <file>D:\development\bbci\online_new\logging\bbci_log_open.m</file>
+      <file>D:\development\bbci\online_new\utils\bbci_prettyPrint.m</file>
+      <file>D:\development\bbci\toolbox\classifiers\apply_separatingHyperplane.m</file>
+      <file>D:\development\bbci\toolbox\classifiers\train_RLDAshrink.m</file>
+      <file>D:\development\bbci\toolbox\classifiers\utils\clsutil_shrinkage.m</file>
+      <file>D:\development\bbci\toolbox\data\config\grid_128.mnt</file>
+      <file>D:\development\bbci\toolbox\fileio\eegfile_readBV.m</file>
+      <file>D:\development\bbci\toolbox\markers\mrk_addIndexedField.m</file>
+      <file>D:\development\bbci\toolbox\misc\chanind.m</file>
+      <file>D:\development\bbci\toolbox\processing\proc_channelwise.m</file>
+      <file>D:\development\bbci\toolbox\processing\utils\unique_unsort.m</file>
+      <file>D:\development\bbci\toolbox\stats\percentiles.m</file>
+      <file>D:\development\bbci\toolbox\utils\communication\send_udp_xml.m</file>
+      <file>D:\development\bbci\toolbox\utils\parallelPort\ppTrigger.m</file>
+      <file>D:\development\bbci\toolbox\utils\parallelPort\ppWrite.m</file>
+      <file>D:\development\bbci\toolbox\utils\propertylist2struct.m</file>
+      <file>D:\development\bbci\toolbox\validation\loss_0_1.m</file>
+      <file>D:\development\bbci\toolbox\validation\loss_rocArea.m</file>
+      <file>D:\development\bbci\toolbox\validation\sample_chronKfold.m</file>
+      <file>D:\development\bbci\toolbox\validation\sample_divisions.m</file>
+      <file>D:\development\bbci\toolbox\validation\sampleDivisions.m</file>
+      <file>D:\development\bbci\toolbox\validation\trainClassifier.m</file>
+      <file>D:\development\bbci\toolbox\visualization\getElectrodePositions.m</file>
+      <file>D:\development\bbci\toolbox\visualization\utils\defopt_scalp_erp2.m</file>
+    </fileset.resources>
+    <fileset.package />
+    <build-deliverables>
+      <file name="readme.txt" location="D:\development\mundus\runtime" optional="true">D:\development\mundus\runtime\readme.txt</file>
+      <file name="bbci_dll.dll" location="D:\development\mundus\runtime" optional="false">D:\development\mundus\runtime\bbci_dll.dll</file>
+      <file name="bbci_dll.h" location="D:\development\mundus\runtime" optional="false">D:\development\mundus\runtime\bbci_dll.h</file>
+      <file name="bbci_dll.lib" location="D:\development\mundus\runtime" optional="false">D:\development\mundus\runtime\bbci_dll.lib</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>D:\Program Files\MATLAB\R2011b</root>
+      <path>
+        <directory>D:\development\bbci\online_new</directory>
+        <directory>D:\development\bbci\online_new\.svn</directory>
+        <directory>D:\development\bbci\online_new\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\acquisition</directory>
+        <directory>D:\development\bbci\online_new\acquisition\.svn</directory>
+        <directory>D:\development\bbci\online_new\acquisition\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\acquisition\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\acquisition\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\acquisition\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\acquisition\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\acquisition\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\acquisition\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\acquisition\lib</directory>
+        <directory>D:\development\bbci\online_new\acquisition\lib\.svn</directory>
+        <directory>D:\development\bbci\online_new\acquisition\lib\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\acquisition\lib\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\acquisition\lib\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\acquisition\lib\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\acquisition\lib\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\acquisition\lib\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\acquisition\lib\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\adaptation</directory>
+        <directory>D:\development\bbci\online_new\adaptation\.svn</directory>
+        <directory>D:\development\bbci\online_new\adaptation\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\adaptation\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\adaptation\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\adaptation\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\adaptation\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\adaptation\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\adaptation\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\apply_functions</directory>
+        <directory>D:\development\bbci\online_new\apply_functions\.svn</directory>
+        <directory>D:\development\bbci\online_new\apply_functions\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\apply_functions\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\apply_functions\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\apply_functions\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\apply_functions\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\apply_functions\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\apply_functions\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\calibrate_functions</directory>
+        <directory>D:\development\bbci\online_new\calibrate_functions\.svn</directory>
+        <directory>D:\development\bbci\online_new\calibrate_functions\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\calibrate_functions\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\calibrate_functions\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\calibrate_functions\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\calibrate_functions\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\calibrate_functions\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\calibrate_functions\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\calibration</directory>
+        <directory>D:\development\bbci\online_new\calibration\.svn</directory>
+        <directory>D:\development\bbci\online_new\calibration\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\calibration\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\calibration\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\calibration\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\calibration\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\calibration\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\calibration\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\calibration\educational</directory>
+        <directory>D:\development\bbci\online_new\calibration\educational\.svn</directory>
+        <directory>D:\development\bbci\online_new\calibration\educational\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\calibration\educational\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\calibration\educational\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\calibration\educational\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\calibration\educational\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\calibration\educational\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\calibration\educational\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\compatibility</directory>
+        <directory>D:\development\bbci\online_new\compatibility\.svn</directory>
+        <directory>D:\development\bbci\online_new\compatibility\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\compatibility\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\compatibility\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\compatibility\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\compatibility\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\compatibility\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\compatibility\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\control</directory>
+        <directory>D:\development\bbci\online_new\control\.svn</directory>
+        <directory>D:\development\bbci\online_new\control\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\control\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\control\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\control\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\control\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\control\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\control\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\demos</directory>
+        <directory>D:\development\bbci\online_new\demos\.svn</directory>
+        <directory>D:\development\bbci\online_new\demos\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\demos\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\demos\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\demos\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\demos\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\demos\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\demos\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\demos\advanced_examples</directory>
+        <directory>D:\development\bbci\online_new\demos\advanced_examples\.svn</directory>
+        <directory>D:\development\bbci\online_new\demos\advanced_examples\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\demos\advanced_examples\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\demos\advanced_examples\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\demos\advanced_examples\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\demos\advanced_examples\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\demos\advanced_examples\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\demos\advanced_examples\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\demos\obsolete</directory>
+        <directory>D:\development\bbci\online_new\demos\obsolete\.svn</directory>
+        <directory>D:\development\bbci\online_new\demos\obsolete\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\demos\obsolete\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\demos\obsolete\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\demos\obsolete\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\demos\obsolete\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\demos\obsolete\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\demos\obsolete\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\feedback</directory>
+        <directory>D:\development\bbci\online_new\feedback\.svn</directory>
+        <directory>D:\development\bbci\online_new\feedback\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\feedback\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\feedback\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\feedback\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\feedback\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\feedback\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\feedback\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\logging</directory>
+        <directory>D:\development\bbci\online_new\logging\.svn</directory>
+        <directory>D:\development\bbci\online_new\logging\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\logging\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\logging\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\logging\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\logging\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\logging\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\logging\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\testing</directory>
+        <directory>D:\development\bbci\online_new\testing\.svn</directory>
+        <directory>D:\development\bbci\online_new\testing\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\testing\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\testing\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\testing\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\testing\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\testing\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\testing\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\tmp_testing</directory>
+        <directory>D:\development\bbci\online_new\tmp_testing\.svn</directory>
+        <directory>D:\development\bbci\online_new\tmp_testing\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\tmp_testing\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\tmp_testing\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\tmp_testing\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\tmp_testing\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\tmp_testing\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\tmp_testing\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\transitional</directory>
+        <directory>D:\development\bbci\online_new\transitional\.svn</directory>
+        <directory>D:\development\bbci\online_new\transitional\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\transitional\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\transitional\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\transitional\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\transitional\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\transitional\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\transitional\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online_new\utils</directory>
+        <directory>D:\development\bbci\online_new\utils\.svn</directory>
+        <directory>D:\development\bbci\online_new\utils\.svn\prop-base</directory>
+        <directory>D:\development\bbci\online_new\utils\.svn\props</directory>
+        <directory>D:\development\bbci\online_new\utils\.svn\text-base</directory>
+        <directory>D:\development\bbci\online_new\utils\.svn\tmp</directory>
+        <directory>D:\development\bbci\online_new\utils\.svn\tmp\prop-base</directory>
+        <directory>D:\development\bbci\online_new\utils\.svn\tmp\props</directory>
+        <directory>D:\development\bbci\online_new\utils\.svn\tmp\text-base</directory>
+        <directory>D:\development\bbci\online\communication\signalserver</directory>
+        <directory>D:\development\bbci\online\communication</directory>
+        <directory>D:\development\bbci\investigation\personal\jpascual\lib</directory>
+        <directory>D:\development\bbci\investigation\personal\jpascual\support_calibration\bias</directory>
+        <directory>D:\Documents and Settings\jpascual\My Documents\MATLAB</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\demos</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\graph2d</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\graph3d</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\graphics</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\plottools</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\scribe</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\specgraph</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\uitools</directory>
+        <directory>${MATLAB_ROOT}\toolbox\local</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\general</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\ops</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\lang</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\elmat</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\randfun</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\elfun</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\specfun</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\matfun</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\datafun</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\polyfun</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\funfun</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\sparfun</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\strfun</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\iofun</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\timefun</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\datatypes</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\verctrl</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\codetools</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\helptools</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\winfun</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\winfun\NET</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\hds</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\guide</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\datamanager</directory>
+        <directory>${MATLAB_ROOT}\toolbox\shared\simulink</directory>
+        <directory>${MATLAB_ROOT}\toolbox\shared\instrument</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\audiovideo</directory>
+        <directory>${MATLAB_ROOT}\toolbox\bioinfo\bioinfo</directory>
+        <directory>${MATLAB_ROOT}\toolbox\bioinfo\biolearning</directory>
+        <directory>${MATLAB_ROOT}\toolbox\bioinfo\microarray</directory>
+        <directory>${MATLAB_ROOT}\toolbox\bioinfo\mass_spec</directory>
+        <directory>${MATLAB_ROOT}\toolbox\bioinfo\proteins</directory>
+        <directory>${MATLAB_ROOT}\toolbox\bioinfo\biomatrices</directory>
+        <directory>${MATLAB_ROOT}\toolbox\bioinfo\graphtheory</directory>
+        <directory>${MATLAB_ROOT}\toolbox\bioinfo\biodemos</directory>
+        <directory>${MATLAB_ROOT}\toolbox\shared\comparisons</directory>
+        <directory>${MATLAB_ROOT}\toolbox\compiler</directory>
+        <directory>${MATLAB_ROOT}\toolbox\compiler\compilerdemos</directory>
+        <directory>${MATLAB_ROOT}\toolbox\curvefit\curvefit</directory>
+        <directory>${MATLAB_ROOT}\toolbox\curvefit\splines</directory>
+        <directory>${MATLAB_ROOT}\toolbox\curvefit\cftoolgui</directory>
+        <directory>${MATLAB_ROOT}\toolbox\curvefit\sftoolgui</directory>
+        <directory>${MATLAB_ROOT}\toolbox\curvefit\curvefitdemos</directory>
+        <directory>${MATLAB_ROOT}\toolbox\images\colorspaces</directory>
+        <directory>${MATLAB_ROOT}\toolbox\images\images</directory>
+        <directory>${MATLAB_ROOT}\toolbox\images\imuitools</directory>
+        <directory>${MATLAB_ROOT}\toolbox\images\iptformats</directory>
+        <directory>${MATLAB_ROOT}\toolbox\images\iptutils</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\imagesci</directory>
+        <directory>${MATLAB_ROOT}\toolbox\images\imdemos</directory>
+        <directory>${MATLAB_ROOT}\toolbox\sam\m3i</directory>
+        <directory>${MATLAB_ROOT}\toolbox\optim\optim</directory>
+        <directory>${MATLAB_ROOT}\toolbox\optim\optimdemos</directory>
+        <directory>${MATLAB_ROOT}\toolbox\shared\asynciolib</directory>
+        <directory>${MATLAB_ROOT}\toolbox\shared\controllib\general</directory>
+        <directory>${MATLAB_ROOT}\toolbox\shared\controllib\graphics</directory>
+        <directory>${MATLAB_ROOT}\toolbox\shared\dastudio</directory>
+        <directory>${MATLAB_ROOT}\toolbox\shared\eml\eml</directory>
+        <directory>${MATLAB_ROOT}\toolbox\shared\filterdesignlib</directory>
+        <directory>${MATLAB_ROOT}\toolbox\shared\imageslib</directory>
+        <directory>${MATLAB_ROOT}\toolbox\shared\optimlib</directory>
+        <directory>${MATLAB_ROOT}\toolbox\shared\rptgen</directory>
+        <directory>${MATLAB_ROOT}\toolbox\shared\siglib</directory>
+        <directory>${MATLAB_ROOT}\toolbox\shared\spcuilib</directory>
+        <directory>${MATLAB_ROOT}\toolbox\shared\statslib</directory>
+        <directory>${MATLAB_ROOT}\toolbox\shared\testmeaslib\general</directory>
+        <directory>${MATLAB_ROOT}\toolbox\shared\testmeaslib\graphics</directory>
+        <directory>${MATLAB_ROOT}\toolbox\signal\signal</directory>
+        <directory>${MATLAB_ROOT}\toolbox\signal\sigtools</directory>
+        <directory>${MATLAB_ROOT}\toolbox\signal\sptoolgui</directory>
+        <directory>${MATLAB_ROOT}\toolbox\signal\sigdemos</directory>
+        <directory>${MATLAB_ROOT}\toolbox\stats\stats</directory>
+        <directory>${MATLAB_ROOT}\toolbox\stats\classreg</directory>
+        <directory>${MATLAB_ROOT}\toolbox\stats\statsdemos</directory>
+        <directory>${MATLAB_ROOT}\toolbox\symbolic\symbolic</directory>
+        <directory>${MATLAB_ROOT}\toolbox\symbolic\symbolicdemos</directory>
+        <directory>${MATLAB_ROOT}\toolbox\matlab\timeseries</directory>
+        <directory>D:\development\bbci\toolbox</directory>
+        <directory>D:\development\bbci\toolbox\classifiers</directory>
+        <directory>D:\development\bbci\toolbox\classifiers\utils</directory>
+        <directory>D:\development\bbci\toolbox\data</directory>
+        <directory>D:\development\bbci\toolbox\data\config</directory>
+        <directory>D:\development\bbci\toolbox\demos</directory>
+        <directory>D:\development\bbci\toolbox\demos\demos</directory>
+        <directory>D:\development\bbci\toolbox\demos\obsolete</directory>
+        <directory>D:\development\bbci\toolbox\fileio</directory>
+        <directory>D:\development\bbci\toolbox\fileio\load_data_functions</directory>
+        <directory>D:\development\bbci\toolbox\fileio\load_data_functions\session_lists</directory>
+        <directory>D:\development\bbci\toolbox\markers</directory>
+        <directory>D:\development\bbci\toolbox\markers\marker_definitions</directory>
+        <directory>D:\development\bbci\toolbox\misc</directory>
+        <directory>D:\development\bbci\toolbox\nirs</directory>
+        <directory>D:\development\bbci\toolbox\processing</directory>
+        <directory>D:\development\bbci\toolbox\processing\qa</directory>
+        <directory>D:\development\bbci\toolbox\processing\utils</directory>
+        <directory>D:\development\bbci\toolbox\startup</directory>
+        <directory>D:\development\bbci\toolbox\stats</directory>
+        <directory>D:\development\bbci\toolbox\utils</directory>
+        <directory>D:\development\bbci\toolbox\utils\communication</directory>
+        <directory>D:\development\bbci\toolbox\utils\parallelPort</directory>
+        <directory>D:\development\bbci\toolbox\validation</directory>
+        <directory>D:\development\bbci\toolbox\visualization</directory>
+        <directory>D:\development\bbci\toolbox\visualization\montages</directory>
+        <directory>D:\development\bbci\toolbox\visualization\obsolete</directory>
+        <directory>D:\development\bbci\toolbox\visualization\utils</directory>
+      </path>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>true</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>5.1</osver>
+      <os32>true</os32>
+      <os64>false</os64>
+      <arch>win32</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
+

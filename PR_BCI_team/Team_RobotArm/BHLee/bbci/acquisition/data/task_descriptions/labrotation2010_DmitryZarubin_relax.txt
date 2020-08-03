@@ -1,0 +1,27 @@
+Es folgt eine Referenzmessung mit Ruhe EEG. Dabei ist es wichtig,
+dass Ihre Arme, Hände, Beine und Füße \bf{ganz entspannt}\rm sind.
+Bitte nehmen Sie eine bequeme Sitzstellung ein.
+
+Es werden folgende Anweisungen akustisch angesagt:
+
+<<<<<<< .mine
+\bf{Augen auf:}\rm Augen geöffnet lassen und möglichst selten blinzeln.
+\bf{Pause:}\rm 5 Sekunden Pause Zeit wo man sich entspannen darf.  
+=======
+\bf{Augen auf:}\rm Augen normal geöffnet lassen und möglichst selten blinzeln.
+>>>>>>> .r11478
+{   }Bitte beobachten Sie die kleine Animation auf dem Bildschirm.
+
+<<<<<<< .mine
+{   }Das ganze (Augen auf - Stopp) wird 10 mal wiederholt. Starkes
+{   }Blinzeln bitte, wenn möglich, nur direkt nach '\bf{stopp}' ausführen.
+=======
+\bf{Stopp:}\rm Es erscheint ein Countdown bis zum Start des nächsten
+{   }Messabschnitts. Während dieser Zeit können Sie sich bewegen.
+
+{   }Das ganze (Augen zu - Stopp) wird 10 mal wiederholt. Starkes
+{   }Blinzeln bitte, wenn möglich, nur nach 'stopp' während des
+{   }Countdown ausführen.
+
+>>>>>>> .r11478
+\bf{Vorbei:}\rm Ende dieser Messung

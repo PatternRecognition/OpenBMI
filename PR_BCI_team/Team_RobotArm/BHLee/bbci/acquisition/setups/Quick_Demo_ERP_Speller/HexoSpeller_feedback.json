@@ -1,0 +1,250 @@
+{
+    "abort_trial": false, 
+    "animation_time": 0.98399999999999999, 
+    "bg_color": [
+        0.0, 
+        0.0, 
+        0.0
+    ], 
+    "circle_radius": 100.0, 
+    "copy_spelling": 1, 
+    "countdown_blinking_nr": 5, 
+    "countdown_color": [
+        0.4, 
+        0.4, 
+        0.4
+    ], 
+    "countdown_level1": true, 
+    "countdown_level2": true, 
+    "countdown_shape_color": [
+        0.8, 
+        0.8, 
+        0.8
+    ], 
+    "countdown_shape_on": true, 
+    "countdown_shape_select": "circle", 
+    "current_letter_color": [
+        1.0, 
+        0.0, 
+        0.0
+    ], 
+    "debug": 0, 
+    "desired_phrase": "", 
+    "do_animation": false, 
+    "edge_color": [
+        1.0, 
+        1.0, 
+        1.0
+    ], 
+    "edge_size": 2.0, 
+    "feedback_color": [
+        0.80000000000000004, 
+        0.80000000000000004, 
+        0.80000000000000004
+    ], 
+    "feedback_duration": 1.0, 
+    "feedbackbox_size": 200.0, 
+    "fixationpoint_color": [
+        0.0, 
+        0.0, 
+        0.0
+    ], 
+    "fixationpoint_size": 4.0, 
+    "flash_size_factor": 1.2, 
+    "font_size_countdown": 150, 
+    "font_size_current_letter": 80, 
+    "font_size_level1": 70, 
+    "font_size_level2": 130, 
+    "font_size_phrase": 60, 
+    "fullscreen": 0,
+    "geometry": [
+        0, 
+        0, 
+        1280, 
+        800
+    ], 
+    "interstimulus_duration": 0.091999999999999998, 
+    "letter_color": [
+        1.0, 
+        1.0, 
+        1.0
+    ], 
+    "letter_set": [
+        [
+            "A", 
+            "B", 
+            "C", 
+            "D", 
+            "E"
+        ], 
+        [
+            "F", 
+            "G", 
+            "H", 
+            "I", 
+            "J"
+        ], 
+        [
+            "K", 
+            "L", 
+            "M", 
+            "N", 
+            "O"
+        ], 
+        [
+            "P", 
+            "Q", 
+            "R", 
+            "S", 
+            "T"
+        ], 
+        [
+            "U", 
+            "V", 
+            "W", 
+            "X", 
+            "Y"
+        ], 
+        [
+            "Z", 
+            "_", 
+            ".", 
+            ",", 
+            "<"
+        ]
+    ], 
+    "letter_stimulus_color": [
+        0.0, 
+        0.0, 
+        0.0
+    ], 
+    "letterbox_size": [
+        60.0, 
+        60.0
+    ], 
+    "log_filename": "HexoSpellerVE.log", 
+    "min_dist": 2, 
+    "nCountdown": 5, 
+    "nr_sequences": 6, 
+    "offline": 1, 
+    "osc_color": [
+        1.0, 
+        1.0, 
+        1.0
+    ], 
+    "osc_size": 40, 
+    "output_per_stimulus": true, 
+    "phrase_color": [
+        0.20000000000000001, 
+        0.0, 
+        1.0
+    ], 
+    "randomize_sequence": true, 
+    "screenPos": [
+        1366, 
+        0, 
+        1920, 
+        1200
+    ], 
+    "shape_color": [
+        0.0, 
+        0.0, 
+        0.0
+    ], 
+    "speller_radius": 250, 
+    "stimuli_colors": [
+        [
+            [
+                1.0
+            ], 
+            [
+                0.0
+            ], 
+            [
+                0.0
+            ], 
+            1.0, 
+            0.0, 
+            0.0
+        ], 
+        [
+            [
+                0.0
+            ], 
+            [
+                0.80000000000000004
+            ], 
+            [
+                0.0
+            ], 
+            0.0, 
+            0.80000000000000004, 
+            0.0
+        ], 
+        [
+            [
+                0.0
+            ], 
+            [
+                0.0
+            ], 
+            [
+                1.0
+            ], 
+            0.0, 
+            0.0, 
+            1.0
+        ], 
+        [
+            [
+                1.0
+            ], 
+            [
+                1.0
+            ], 
+            [
+                0.0
+            ], 
+            1.0, 
+            1.0, 
+            0.0
+        ], 
+        [
+            [
+                1.0
+            ], 
+            [
+                0.0
+            ], 
+            [
+                0.69999999999999996
+            ], 
+            1.0, 
+            0.0, 
+            0.69999999999999996
+        ], 
+        [
+            [
+                0.90000000000000002
+            ], 
+            [
+                0.90000000000000002
+            ], 
+            [
+                0.90000000000000002
+            ], 
+            0.90000000000000002, 
+            0.90000000000000002, 
+            0.90000000000000002
+        ]
+    ], 
+    "stimulus_duration": 0.091999999999999998, 
+    "stimulustype_color": 1, 
+    "stimulustype_flash": 1, 
+    "synchronized_countdown": true, 
+    "use_ErrP_detection": 0, 
+    "use_eyetracker": 0, 
+    "use_oscillator": 0, 
+    "wait_after_early_stopping": 3, 
+    "wait_before_classify": 1.0
+}

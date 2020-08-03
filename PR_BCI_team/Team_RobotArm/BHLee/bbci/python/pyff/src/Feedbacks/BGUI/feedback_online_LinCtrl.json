@@ -1,0 +1,14 @@
+{
+    "confirmation_text": "Action selected:",
+    "stimuli_colors": [[0.8,0,0], [0.6,1,0], [1,0.8,0],[0.2,0.2,1]], 
+    "offline": 0, 
+    "nCountdown": [1,0.5],
+    "desired_actions": [0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3],
+    "actions_available":[0,1,2,3],
+    "free": 0,
+    "debug": 1,
+    "with_confirmation" : 0,
+    "with_emergencyexit": 0,
+    "selection_mode" : "LinCtrl"
+    
+}

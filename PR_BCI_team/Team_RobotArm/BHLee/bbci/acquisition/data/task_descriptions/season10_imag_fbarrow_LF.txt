@@ -1,0 +1,15 @@
+Es folgt eine weitere Messung mit Bewegungsvorstellungen. Auf Grund
+des ersten Messdurchgangs wurde entschieden, dass in den folgenden
+Durchläufen nur noch die beiden Richtungen \bf{links}\rm (linke Hand)
+und \bf{unten}\rm (Füße) benutzt werden. Ansonsten ist der Ablauf 
+ähnlich zu der ersten Messung.
+
+Ein Durchlauf beinhaltet 100 Trials. Nach jeweils 20 Trials gibt es eine
+Pause von 15s, in der die Punktzahl angezeigt wird und die Sie z.B. zum
+Ausschütteln der Arm nutzen können. Vor dem Start jedes Blocks gibt es
+einen Countdown.
+
+Falls die Steuerung weiterhin noch nicht funktioniert, lassen Sie sich bitte
+nicht irritieren. Führen Sie die Bewegungsvorstellungen weiter entsprechend
+der Pfeilvorgaben aus. Nur dann kann das System in den weiteren Durchläufen
+lernen, Ihre spezifische Hirnaktivität richtig zu interpretieren.

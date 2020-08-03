@@ -1,0 +1,12 @@
+#!/bin/bash
+# Bash script for renaming BV EEG files. Changes file names and file name strings 
+# within .vmrk and .vhdr' eegfile_renameBV.txt
+
+echo $1
+
+for file in VP*.v??? ; do
+#  sed 's/VPifDur/VPfaj/' "$file" > tmpfile
+#  mv tmpfile "$file"
+#  rm tmpfile
+  echo -
+done

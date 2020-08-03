@@ -1,0 +1,21 @@
+In diesem Experimentteil sollen Bewegungen mit den Armen
+ausgeführt, bzw. vorgestellt werden. Für den ersten Teil
+lassen Sie die Arm an den Seiten des Stuhls herunterhängen
+und greifen XXX. Für den 
+zweiten Teil legen Sie Ihre Arme entspannt auf den
+Armlehnen ab.
+
+\bf{R:}\rm Das Gewicht werden mit dem rechten Arm hochgezogen
+und wieder heruntergelassen. Diese Bewegung soll 
+kontinuierlich während der Buchstabe auf dem Bildschirm zu sehen 
+ist wiederholt werden. Geschindigkeit ca. 1 mal pro Sekunde.
+
+\bf{L:}\rm Dasselbe mit der linken Hand.
+
+\bf{X:}\rm Nichts tun und entspannt bleiben.
+
+\bf{(R):}\rm Wie bei R, aber Bewegung nur vorstellen.
+
+\bf{(L):}\rm Wie bei L, aber Bewegung nur vorstellen.
+
+Bitte drücken Sie 'j', um das Experiment zu starten.

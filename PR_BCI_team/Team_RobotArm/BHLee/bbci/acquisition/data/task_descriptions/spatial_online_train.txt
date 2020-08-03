@@ -1,0 +1,21 @@
+TEIL 1: Kalibrierung des Computers
+
+Damit der Computer ihre EEG-Signale für das Schreiben von Text dekodieren kann,
+muss er zuvor lernen, wie Ihre Daten aussehen. Dies geschieht im Folgenden.
+
+Dazu wird Ihnen zuerst durch drei deutliche Töne eine der 6 Richtungen als
+Zielrichtung vorgegeben. Dann folgt über die Dauer von ca. 1 Minute eine Sequenz
+von Tönen, die aus allen 6 Richtungen kommen. Dies wird mehrfach wiederholt.
+
+Bitte konzentrieren Sie sich beim Hören der folgenden Tonsequenz auf die Töne
+der Zielrichtung. Zählen Sie im Geiste mit, wie häufig der Ton aus der Zielrichtung
+erklingt, ohne die Hände zu benutzen oder die Zunge zu bewegen.
+Der Computer wird Ihre Signale um so zuverlässiger erlernen können, je größer
+Ihre Konzentration auf die Zielrichtung ist, und je besser Sie es schaffen, die
+Töne der anderen Richtungen auszublenden.
+
+Sie bekommen einen Hinweis darüber, wann eine Messung startet und endet.
+Bitte verzichten Sie während einer Messung so gut wie möglich auf Augenblinzeln,
+Schlucken, Augenbewegungen. Lassen Sie bitte auch den Unterkiefer locker hängen
+und entspannen Sie ihre Gesichtsmuskulatur. Zwischen den Auswahlvorgängen haben
+Sie etwas Zeit für diese Bewegungen.

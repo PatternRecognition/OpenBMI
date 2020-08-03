@@ -1,0 +1,15 @@
+Zun‰chst sehen Sie ein schwarzes Kreuz, das Sie bitte fixieren und mit
+Ihren Augen verfolgen. Danach erscheint ein Pfeil auf dem Bildschirm,
+der entweder nach rechts, links oder unten (es wird immer nur zwei
+Alternativen geben) zeigt.
+
+Zeigt der Pfeil nach rechts, stellen Sie sich bitte Ihre zuvor bereits
+ausgew‰hlte Bewegung mit der rechten Hand vor, zeigt der Pfeil nach
+links entsprechend die Bewegung mit der linken Hand. Zeigt der Pfeil
+nach unten, stellen Sie sich bitte die Bewegung mit dem Fuﬂ vor.
+
+Ihre Aufgabe ist es, mit Hilfe Ihrer Bewegungsvorstellung das violette
+Kreuz in die durch den Pfeil vorgegebene Richtung zu steuern! Das
+Kreuz bewegt sich entsprechend ihrer Bewegungsvorstellung und der
+Erkennungsleistung ihres mit der Bewegungsvorstellung verbundenen EEGs
+durch unsere Software.

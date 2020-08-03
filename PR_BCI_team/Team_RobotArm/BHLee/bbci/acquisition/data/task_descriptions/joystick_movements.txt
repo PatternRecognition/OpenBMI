@@ -1,0 +1,9 @@
+Die folgende Messung benötigen wir,
+um den Einfluss der joystick-Bewegungen abschätzen zu können.
+Im nun folgenden Block wird keine Musik abgespielt.
+Wir bitten Sie, den joystick kontinuierlich langsam auszulenken
+und wieder an den Nullpunkt zurückzulassen.
+Führen Sie die Bewegung so aus, dass sie für jeden Weg
+vom Nullpunkt zum höchsten Punkt etwa eine Sekunde brauchen.  
+Bitte versuchen Sie,
+die Bewegung genau wie bei der Spannungsbewertung auszuführen.   

@@ -1,0 +1,13 @@
+#!/bin/bash
+if [ ! -f $1.avi ];
+then
+  avimerge -o $1.avi -i $1_*.avi
+fi
+
+mencoder $1.avi -audiofile $1.wav -o $1_mp.avi -ovc lavc -lavcopts vcodec=mpeg4:autoaspect:vhq:vbitrate=1000 -oac copy
+
+#mencoder $1.avi -audiofile $1.wav -o $1_mp.avi -ovc lavc -lavcopts vcodec=mpeg4:autoaspect:vhq:vbitrate=1000 -oac mp3lame -lameopts mode=3:preset=100
+
+#lameopts:
+# mode=3 : mono
+# preset=100 : average bit rate [kbps]

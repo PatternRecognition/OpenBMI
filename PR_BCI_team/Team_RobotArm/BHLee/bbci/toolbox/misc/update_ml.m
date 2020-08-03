@@ -1,0 +1,9 @@
+filelist= [BCI_DIR 'toolbox/misc/include_transfer_mlcvs.txt'];
+exclude= [BCI_DIR 'toolbox/misc/exclude_transfer_mlcvs.txt'];
+cvs_root= '~/neuro_toolbox/matlab';
+svn_root= '~/svn/ida/public/ml';
+
+transfer_cvs_to_svn('filelist', filelist, ...
+                    'exclude', exclude, ...
+                    'cvs_root', cvs_root, ...
+                    'svn_root', svn_root);

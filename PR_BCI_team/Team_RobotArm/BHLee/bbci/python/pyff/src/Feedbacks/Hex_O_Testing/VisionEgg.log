@@ -1,0 +1,664 @@
+2010-01-19 00:18:27,905 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.64 msec (37.53 fps), longest IFI was 32.09 msec.
+histogram:
+    32                                                                  * 
+    28                                                                  * 
+    25                                                                  * 
+    21                                                                  * 
+    18                                                                  * 
+    14                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                        *    *    * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    1    1    35 
+
+2010-01-19 00:18:29,092 (5132) WARNING: Calculated frames per second was 38.279, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:29,092 (5132) INFO: 40 frames were drawn.
+Mean IFI was 26.12 msec (38.28 fps), longest IFI was 28.51 msec.
+histogram:
+    34                                                                  * 
+    30                                                                  * 
+    27                                                                  * 
+    23                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     8                                                                  * 
+     4                                                                  * 
+     0                     *                                            * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    1    0    0    0    0    0    0    0    0    38 
+
+2010-01-19 00:18:30,108 (5132) WARNING: Calculated frames per second was 37.547, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:30,108 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.63 msec (37.55 fps), longest IFI was 29.27 msec.
+histogram:
+    32                                                                  * 
+    29                                                                  * 
+    25                                                                  * 
+    22                                                                  * 
+    18                                                                  * 
+    14                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                             *    * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    0    1    36 
+
+2010-01-19 00:18:31,250 (5132) WARNING: Calculated frames per second was 38.029, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:31,250 (5132) WARNING: One or more frames took 42.0 msec, which is signficantly longer than the expected inter frame interval of 16.7 msec for your frame rate (60.0 Hz).
+2010-01-19 00:18:31,250 (5132) INFO: 39 frames were drawn.
+Mean IFI was 26.30 msec (38.03 fps), longest IFI was 42.03 msec.
+histogram:
+    32                                                                  * 
+    29                                                                  * 
+    25                                                                  * 
+    22                                                                  * 
+    18                                                                  * 
+    14                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                               *    *                             * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    1    1    0    0    0    0    0    36 
+
+2010-01-19 00:18:32,265 (5132) WARNING: Calculated frames per second was 37.551, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:32,265 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.63 msec (37.55 fps), longest IFI was 28.76 msec.
+histogram:
+    33                                                                  * 
+    30                                                                  * 
+    26                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                                  * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    0    0    37 
+
+2010-01-19 00:18:33,437 (5132) WARNING: Calculated frames per second was 38.320, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:33,437 (5132) INFO: 40 frames were drawn.
+Mean IFI was 26.10 msec (38.32 fps), longest IFI was 28.46 msec.
+histogram:
+    34                                                                  * 
+    30                                                                  * 
+    27                                                                  * 
+    23                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     8                                                                  * 
+     4                                                                  * 
+     0                *                                                 * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    1    0    0    0    0    0    0    0    0    0    38 
+
+2010-01-19 00:18:34,453 (5132) WARNING: Calculated frames per second was 37.556, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:34,453 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.63 msec (37.56 fps), longest IFI was 28.54 msec.
+histogram:
+    33                                                                  * 
+    30                                                                  * 
+    26                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                                  * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    0    0    37 
+
+2010-01-19 00:18:35,625 (5132) WARNING: Calculated frames per second was 38.241, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:35,625 (5132) INFO: 40 frames were drawn.
+Mean IFI was 26.15 msec (38.24 fps), longest IFI was 29.96 msec.
+histogram:
+    33                                                                  * 
+    30                                                                  * 
+    26                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                     *                                       *    * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    1    0    0    0    0    0    0    0    1    37 
+
+2010-01-19 00:18:36,640 (5132) WARNING: Calculated frames per second was 37.549, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:36,640 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.63 msec (37.55 fps), longest IFI was 28.33 msec.
+histogram:
+    33                                                                  * 
+    30                                                                  * 
+    26                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                                  * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    0    0    37 
+
+2010-01-19 00:18:37,780 (5132) WARNING: Calculated frames per second was 37.944, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:37,780 (5132) INFO: 39 frames were drawn.
+Mean IFI was 26.35 msec (37.94 fps), longest IFI was 30.32 msec.
+histogram:
+    32                                                                  * 
+    29                                                                  * 
+    25                                                                  * 
+    22                                                                  * 
+    18                                                                  * 
+    14                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                              *              *    * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    1    0    0    1    36 
+
+2010-01-19 00:18:38,796 (5132) WARNING: Calculated frames per second was 37.539, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:38,796 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.64 msec (37.54 fps), longest IFI was 28.94 msec.
+histogram:
+    33                                                                  * 
+    30                                                                  * 
+    26                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                                  * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    0    0    37 
+
+2010-01-19 00:18:39,937 (5132) WARNING: Calculated frames per second was 38.052, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:39,937 (5132) INFO: 39 frames were drawn.
+Mean IFI was 26.28 msec (38.05 fps), longest IFI was 28.46 msec.
+histogram:
+    32                                                                  * 
+    29                                                                  * 
+    25                                                                  * 
+    22                                                                  * 
+    18                                                                  * 
+    14                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                    *                        *    * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    1    0    0    0    0    1    36 
+
+2010-01-19 00:18:40,953 (5132) WARNING: Calculated frames per second was 37.549, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:40,953 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.63 msec (37.55 fps), longest IFI was 28.84 msec.
+histogram:
+    32                                                                  * 
+    29                                                                  * 
+    25                                                                  * 
+    22                                                                  * 
+    18                                                                  * 
+    14                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                             *    * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    0    1    36 
+
+2010-01-19 00:18:42,125 (5132) WARNING: Calculated frames per second was 38.349, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:42,125 (5132) INFO: 40 frames were drawn.
+Mean IFI was 26.08 msec (38.35 fps), longest IFI was 28.42 msec.
+histogram:
+    34                                                                  * 
+    30                                                                  * 
+    27                                                                  * 
+    23                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     8                                                                  * 
+     4                                                                  * 
+     0           *                                                      * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    1    0    0    0    0    0    0    0    0    0    0    38 
+
+2010-01-19 00:18:43,125 (5132) WARNING: Calculated frames per second was 37.532, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:43,140 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.64 msec (37.53 fps), longest IFI was 28.06 msec.
+histogram:
+    33                                                                  * 
+    30                                                                  * 
+    26                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                                  * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    0    0    37 
+
+2010-01-19 00:18:44,296 (5132) WARNING: Calculated frames per second was 38.110, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:44,312 (5132) INFO: 40 frames were drawn.
+Mean IFI was 26.24 msec (38.11 fps), longest IFI was 28.82 msec.
+histogram:
+    34                                                                  * 
+    30                                                                  * 
+    27                                                                  * 
+    23                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     8                                                                  * 
+     4                                                                  * 
+     0                          *                                       * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    1    0    0    0    0    0    0    0    38 
+
+2010-01-19 00:18:45,312 (5132) WARNING: Calculated frames per second was 37.536, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:45,312 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.64 msec (37.54 fps), longest IFI was 31.00 msec.
+histogram:
+    32                                                                  * 
+    29                                                                  * 
+    25                                                                  * 
+    22                                                                  * 
+    18                                                                  * 
+    14                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                             *    * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    0    1    36 
+
+2010-01-19 00:18:46,483 (5132) WARNING: Calculated frames per second was 38.126, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:46,483 (5132) INFO: 40 frames were drawn.
+Mean IFI was 26.23 msec (38.13 fps), longest IFI was 27.94 msec.
+histogram:
+    34                                                                  * 
+    30                                                                  * 
+    27                                                                  * 
+    23                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     8                                                                  * 
+     4                                                                  * 
+     0                               *                                  * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    1    0    0    0    0    0    0    38 
+
+2010-01-19 00:18:47,500 (5132) WARNING: Calculated frames per second was 37.551, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:47,500 (5132) WARNING: One or more frames took 36.6 msec, which is signficantly longer than the expected inter frame interval of 16.7 msec for your frame rate (60.0 Hz).
+2010-01-19 00:18:47,500 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.63 msec (37.55 fps), longest IFI was 36.64 msec.
+histogram:
+    32                                                                  * 
+    29                                                                  * 
+    25                                                                  * 
+    22                                                                  * 
+    18                                                                  * 
+    14                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                              *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    1    0    0    0    36 
+
+2010-01-19 00:18:48,671 (5132) WARNING: Calculated frames per second was 38.351, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:48,671 (5132) INFO: 40 frames were drawn.
+Mean IFI was 26.08 msec (38.35 fps), longest IFI was 28.66 msec.
+histogram:
+    34                                                                  * 
+    30                                                                  * 
+    27                                                                  * 
+    23                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     8                                                                  * 
+     4                                                                  * 
+     0           *                                                      * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    1    0    0    0    0    0    0    0    0    0    0    38 
+
+2010-01-19 00:18:49,687 (5132) WARNING: Calculated frames per second was 37.542, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:49,687 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.64 msec (37.54 fps), longest IFI was 29.86 msec.
+histogram:
+    32                                                                  * 
+    29                                                                  * 
+    25                                                                  * 
+    22                                                                  * 
+    18                                                                  * 
+    14                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                             *    * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    0    1    36 
+
+2010-01-19 00:18:50,858 (5132) WARNING: Calculated frames per second was 38.246, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:50,858 (5132) INFO: 40 frames were drawn.
+Mean IFI was 26.15 msec (38.25 fps), longest IFI was 28.21 msec.
+histogram:
+    34                                                                  * 
+    30                                                                  * 
+    27                                                                  * 
+    23                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     8                                                                  * 
+     4                                                                  * 
+     0                     *                                            * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    1    0    0    0    0    0    0    0    0    38 
+
+2010-01-19 00:18:51,858 (5132) WARNING: Calculated frames per second was 37.556, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:51,875 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.63 msec (37.56 fps), longest IFI was 29.33 msec.
+histogram:
+    33                                                                  * 
+    30                                                                  * 
+    26                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                                  * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    0    0    37 
+
+2010-01-19 00:18:53,046 (5132) WARNING: Calculated frames per second was 38.152, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:53,046 (5132) INFO: 40 frames were drawn.
+Mean IFI was 26.21 msec (38.15 fps), longest IFI was 28.65 msec.
+histogram:
+    34                                                                  * 
+    30                                                                  * 
+    27                                                                  * 
+    23                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     8                                                                  * 
+     4                                                                  * 
+     0                          *                                       * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    1    0    0    0    0    0    0    0    38 
+
+2010-01-19 00:18:54,046 (5132) WARNING: Calculated frames per second was 37.534, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:54,046 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.64 msec (37.53 fps), longest IFI was 28.64 msec.
+histogram:
+    33                                                                  * 
+    30                                                                  * 
+    26                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                                  * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    0    0    37 
+
+2010-01-19 00:18:55,203 (5132) WARNING: Calculated frames per second was 38.129, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:55,203 (5132) INFO: 39 frames were drawn.
+Mean IFI was 26.23 msec (38.13 fps), longest IFI was 28.23 msec.
+histogram:
+    33                                                                  * 
+    30                                                                  * 
+    26                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                               *                                  * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    1    0    0    0    0    0    0    37 
+
+2010-01-19 00:18:56,203 (5132) WARNING: Calculated frames per second was 37.555, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:56,203 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.63 msec (37.56 fps), longest IFI was 29.34 msec.
+histogram:
+    33                                                                  * 
+    30                                                                  * 
+    26                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                                  * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    0    0    37 
+
+2010-01-19 00:18:57,375 (5132) WARNING: Calculated frames per second was 38.106, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:57,375 (5132) INFO: 40 frames were drawn.
+Mean IFI was 26.24 msec (38.11 fps), longest IFI was 29.22 msec.
+histogram:
+    34                                                                  * 
+    30                                                                  * 
+    27                                                                  * 
+    23                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     8                                                                  * 
+     4                                                                  * 
+     0                                    *                             * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    1    0    0    0    0    0    38 
+
+2010-01-19 00:18:58,390 (5132) WARNING: Calculated frames per second was 37.500, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:58,390 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.67 msec (37.50 fps), longest IFI was 32.67 msec.
+histogram:
+    32                                                                  * 
+    29                                                                  * 
+    25                                                                  * 
+    22                                                                  * 
+    18                                                                  * 
+    14                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                        *         * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    1    0    36 
+
+2010-01-19 00:18:59,562 (5132) WARNING: Calculated frames per second was 38.106, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:18:59,578 (5132) INFO: 40 frames were drawn.
+Mean IFI was 26.24 msec (38.11 fps), longest IFI was 29.00 msec.
+histogram:
+    34                                                                  * 
+    30                                                                  * 
+    27                                                                  * 
+    23                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     8                                                                  * 
+     4                                                                  * 
+     0                          *                                       * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    1    0    0    0    0    0    0    0    38 
+
+2010-01-19 00:19:00,578 (5132) WARNING: Calculated frames per second was 37.568, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:19:00,578 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.62 msec (37.57 fps), longest IFI was 28.21 msec.
+histogram:
+    33                                                                  * 
+    30                                                                  * 
+    26                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                                  * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    0    0    37 
+
+2010-01-19 00:19:01,750 (5132) WARNING: Calculated frames per second was 38.259, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:19:01,750 (5132) INFO: 40 frames were drawn.
+Mean IFI was 26.14 msec (38.26 fps), longest IFI was 28.84 msec.
+histogram:
+    34                                                                  * 
+    30                                                                  * 
+    27                                                                  * 
+    23                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     8                                                                  * 
+     4                                                                  * 
+     0                     *                                            * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    1    0    0    0    0    0    0    0    0    38 
+
+2010-01-19 00:19:02,765 (5132) WARNING: Calculated frames per second was 37.525, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:19:02,765 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.65 msec (37.52 fps), longest IFI was 27.97 msec.
+histogram:
+    33                                                                  * 
+    30                                                                  * 
+    26                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                                  * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    0    0    37 
+
+2010-01-19 00:19:03,905 (5132) WARNING: Calculated frames per second was 37.841, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:19:03,905 (5132) INFO: 39 frames were drawn.
+Mean IFI was 26.43 msec (37.84 fps), longest IFI was 27.74 msec.
+histogram:
+    33                                                                  * 
+    30                                                                  * 
+    26                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                   *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    1    0    0    37 
+
+2010-01-19 00:19:04,921 (5132) WARNING: Calculated frames per second was 37.478, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:19:04,921 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.68 msec (37.48 fps), longest IFI was 29.30 msec.
+histogram:
+    33                                                                  * 
+    30                                                                  * 
+    26                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                                  * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    0    0    37 
+
+2010-01-19 00:19:06,062 (5132) WARNING: Calculated frames per second was 37.826, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:19:06,062 (5132) INFO: 39 frames were drawn.
+Mean IFI was 26.44 msec (37.83 fps), longest IFI was 29.68 msec.
+histogram:
+    33                                                                  * 
+    30                                                                  * 
+    26                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                   *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    1    0    0    37 
+
+2010-01-19 00:19:07,078 (5132) WARNING: Calculated frames per second was 37.544, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:19:07,078 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.64 msec (37.54 fps), longest IFI was 28.92 msec.
+histogram:
+    33                                                                  * 
+    30                                                                  * 
+    26                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                                  * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    0    0    37 
+
+2010-01-19 00:19:08,217 (5132) WARNING: Calculated frames per second was 37.878, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:19:08,217 (5132) INFO: 39 frames were drawn.
+Mean IFI was 26.40 msec (37.88 fps), longest IFI was 29.60 msec.
+histogram:
+    32                                                                  * 
+    29                                                                  * 
+    25                                                                  * 
+    22                                                                  * 
+    18                                                                  * 
+    14                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                              *              *    * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    1    0    0    1    36 
+
+2010-01-19 00:19:09,233 (5132) WARNING: Calculated frames per second was 37.573, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 60.
+2010-01-19 00:19:09,233 (5132) INFO: 38 frames were drawn.
+Mean IFI was 26.61 msec (37.57 fps), longest IFI was 29.37 msec.
+histogram:
+    33                                                                  * 
+    30                                                                  * 
+    26                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    15                                                                  * 
+    11                                                                  * 
+     7                                                                  * 
+     4                                                                  * 
+     0                                                                  * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    0    0    0    0    37 
+

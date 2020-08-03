@@ -1,0 +1,15 @@
+Zunächst kommt eine Referenzmessung für Augenbewegungen.
+Fünf Kreuze werden auf dem Bildschirm als Zielpunkte für die
+Augenbewegungen angezeigt. 
+Es werden folgende Anweisungen akustisch angesagt:
+
+\bf{schauen - mitte - rechts - mitte - links - mitte - unten - mitte - oben - ...:}\rm 
+{   }Augenbewegungen zum jeweiligen Kreuz. Die Abfolge der Zielrichtungen ist
+{   }zufällig.
+
+\bf{blinzeln:}\rm ca. 1 mal pro Sekunde blinzeln, ganz normal, nicht übertrieben stark
+{   }bis \bf{stopp}\rm angesagt wird
+
+\bf{vorbei:}\rm Ende dieser Messung
+
+Zunächst gibt es einen kurzen Testdurchlauf.

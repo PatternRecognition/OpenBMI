@@ -1,0 +1,32 @@
+{
+    "screen_pos": [
+        0, 
+        0, 
+        640,
+	    480
+    ],
+    "DIR_DEV": "", 
+    "DIR_STD": "", 
+    "countdown_from": 5, 
+    "dd_dist": 3, 
+    "dev_perc": 0.1667, 
+    "fullscreen": false, 
+    "give_feedback": false, 
+    "group_stim_markers": false, 
+    "nStim": 300, 
+    "nStim_per_block": 150, 
+    "eob_response": true,
+    "response": "none", 
+    "show_standards": true, 
+    "stimuliShown": 0,
+    "logfilename": "",
+    "feedback_duration": 500,
+    "stim_duration": 1000,
+    "beforestim_ival": [
+        100, 
+        200
+    ],
+    "responsetime_duration": 100
+}
+
+

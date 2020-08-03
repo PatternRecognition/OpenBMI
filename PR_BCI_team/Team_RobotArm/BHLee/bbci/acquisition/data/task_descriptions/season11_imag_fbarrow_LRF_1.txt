@@ -1,0 +1,26 @@
+Liebe Frau Janssen,
+
+Nach Ablauf eines Countdowns sehen Sie ein Kreuz. Danach erscheint 
+3 Sekunden lang ein Pfeil auf dem Bildschirm, der entweder nach links, 
+nach rechts, oder unten zeigt.
+
+Während der Pfeil nach \bf{links}\rm sichtbar ist, versuchen Sie bitte, 
+Ihre linke Hand (wie abgesprochen) zu bewegen. 
+Während der Pfeil nach \bf{rechts}\rm sichtbar ist, versuchen Sie bitte, 
+Ihre rechte Hand zu bewegen. 
+Während der Pfeil nach \bf{unten}\rm sichtbar ist, versuchen Sie bitte, 
+Ihre Füße zu bewegen. 
+
+Steuerung des Kreuzes:
+
+Der Computer probiert, aus Ihren EEG Signalen zu erraten, welche 
+Bewegung Sie versuchen, und setzt das Kreuz in Bewegung. Da die Signale 
+jeder Person sehr unterschiedlich sind, muss er anhand vieler Beispiel-
+signale erst lernen, wie Ihre individuellen Signale zu interpretieren sind. 
+Dies kann 15 Minuten oder länger dauern. Deshalb werden die Bewegungen 
+des Kreuzes anfänglich sehr zufällig erscheinen, und sich erst im Laufe 
+der Zeit schrittweise verbessern.
+Bitte lassen Sie sich dadurch nicht irritieren, sondern führen die 
+Bewegungsversuche sehr gleichmäßig aus.
+
+<WEITER?>

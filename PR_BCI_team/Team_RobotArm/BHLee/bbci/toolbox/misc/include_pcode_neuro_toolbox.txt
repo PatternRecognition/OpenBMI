@@ -1,0 +1,13 @@
+root= /home/blanker/neuro_toolbox/matlab/
+
+classifiers/train_LSR.m
+classifiers/train_LDA.m
+classifiers/train_RLDA.m
+classifiers/apply_separatingHyperplane.m
+processing/*
+processing_utils/*
+stats/*
+utils/*
+validation/*
+condor/mkdir_rec.m
+startup_idabox.m

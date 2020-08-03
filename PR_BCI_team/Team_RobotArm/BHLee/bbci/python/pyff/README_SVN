@@ -1,0 +1,15 @@
+This our (BBCI) private version of pyff's repository.
+
+The public one is hosted at 
+
+  pyff.googlecode.com
+
+This one should only contain stuff which we don't want or cannot publish at 
+googlecode.
+
+Some stuff will always stay here, while other stuff will start here and move
+over to googlecode once the papers are written.
+
+
+2008-11-15 -- Bastian Venthur <venthur at cs.tu-berlin de>
+

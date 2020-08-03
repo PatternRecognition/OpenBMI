@@ -1,0 +1,108 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1031{\fonttbl{\f0\fswiss\fcharset0 Arial;}{\f1\fmodern\fprq1\fcharset0 Courier New;}{\f2\fnil\fcharset0 Courier New;}}
+{\*\generator Msftedit 5.41.15.1515;}\viewkind4\uc1\pard\f0\fs20 0) for every experiment: a new page in the labbook! (subjects' name, birthdate, left-handed?, things that go wrong, etc.)\par
+\par
+1) turn on the labcomputer\par
+\tab\par
+2) turn on brainamps 1 and 2\par
+\par
+3) on labcomputer choose user bbci\par
+\tab i) check for CRT-monitor -> the CRT needs to be \par
+\tab\tab a) swiitched on\par
+\tab\tab b) set into the lower corner (right click on desktop-> eigenschaften -> eistellungen -> drag monitor to bottom left & change resolution to 800x600) if it's right ti should say position is: (-800 1000) \par
+\tab\tab c) have a refresh rate of 120 Hz (erweitert-> monitor -> 120Hz -> uebernehmen -> ok -> ok) \par
+\tab\par
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\par
+don't need that\par
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\par
+4) open vision recorder on desktop\par
+\tab a) file-> open workspace -> 'project09_ssvep'\par
+\tab    (it should say 'project09_ssvep' at the bottom right of the recorder)\par
+\tab b) test if triggers arrive: \par
+\tab\tab i)   click on the eye (in recorder)\par
+\tab\tab ii)  open matlab\par
+\tab\tab iii) execute 'ppTrigger(13)'\par
+\tab at the bottom of the recorder you should see that S13 arrived,\par
+\tab if not, check parrallel port/usb cables\par
+\line %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\par
+\par
+5) change view of recorder to impedances (next button to the right of the eye)\par
+\par
+6) time to setup the EEG/EOG/EMG:\par
+\tab a) measure the head / put on the cap: \par
+\tab\tab i)   circumference to choose appropriate cap (there should be 52 54 56 and 58cm caps\par
+\tab\tab ii)  measure inion (the spot coming out at the back of the head) to start of nose\par
+\tab\tab      when putting the cap on, the central channel (Cz) should be exactly half way between these two points\par
+\tab\tab iii) also take care that the central channels are central by looking at the person\par
+\tab\tab      into the face\par
+\tab b) start gelling:\par
+\tab\tab i) start with reference and ground (needed to get a proper estimate of the other channels): use the abrasive (grey with sand) gel to rub off dead tissue from the nose and put the reference on the bone of the nose.\par
+\tab\tab ii) now gel each electrode until impedances are <20 kOhm\par
+\tab\tab iii) find the right points of the EMG (2 elctrodes per arm)\par
+\tab\tab iv) do the one EOG electrode\par
+\tab c) show the subject the signals and make them clench their teeth, blink and show them how it looks if they do it..\par
+\par
+8) in matlab: \par
+\tab i) ask the subject if he has already participated in an experiment (here). if yes, find out his subject code (e.g. zk) and enter: \par
+\tab    \f1 >> VP_CODE= 'VPzk';\par
+\f0\tab    if not code will be generated automatically\par
+\tab ii) execute 'setup_project09_ssvep', take the new subject-code and enter it into the labbook\par
+\tab iii) execute 'run_project09_ssvep'\par
+\par
+9) after the experiment the data is stored in D:\\data\\bbciRaw\\<VPsomecode_somedate> there will be three files, per condition: somefile.eeg, somefile.vmrk and somefile.vhdr\par
+\par
+10) in D:\\svn\\bbci\\investigation\\projects\\project09_ssvep\\  there is a file called 'convert.m'. Running it should convert the files in  D:\\data\\bbciRaw\\<VPsomecode_somedate>\\* to smaller versions in D:\\data\\bbciRaw\\<VPsomecode_somedate>\\* \par
+\par
+\par
+\par
+\par
+\f2\par
+Channels\par
+--------\par
+#     Name      Phys. Chn.    Resolution / Unit   Low Cutoff [s]   High Cutoff [Hz]   Notch [Hz] \par
+ground - AFz\par
+reference - nose\par
+1     F5          1                0.1 \'c2\'b5V             10              250              Off\par
+2     F3          2                0.1 \'c2\'b5V             10              250              Off\par
+3     F1          3                0.1 \'c2\'b5V             10              250              Off\par
+4     Fz          4                0.1 \'c2\'b5V             10              250              Off\par
+5     F2          5                0.1 \'c2\'b5V             10              250              Off\par
+6     F4          6                0.1 \'c2\'b5V             10              250              Off\par
+7     F6          7                0.1 \'c2\'b5V             10              250              Off\par
+8     FC5         8                0.1 \'c2\'b5V             10              250              Off\par
+9     FC3         9                0.1 \'c2\'b5V             10              250              Off\par
+10    FC1         10               0.1 \'c2\'b5V             10              250              Off\par
+11    FCz         11               0.1 \'c2\'b5V             10              250              Off\par
+12    FC2         12               0.1 \'c2\'b5V             10              250              Off\par
+13    FC4         13               0.1 \'c2\'b5V             10              250              Off\par
+14    FC6         14               0.1 \'c2\'b5V             10              250              Off\par
+15    C5          15               0.1 \'c2\'b5V             10              250              Off\par
+16    C3          16               0.1 \'c2\'b5V             10              250              Off\par
+17    C1          17               0.1 \'c2\'b5V             10              250              Off\par
+18    Cz          18               0.1 \'c2\'b5V             10              250              Off\par
+19    C2          19               0.1 \'c2\'b5V             10              250              Off\par
+20    C4          20               0.1 \'c2\'b5V             10              250              Off\par
+21    C6          21               0.1 \'c2\'b5V             10              250              Off\par
+22    CP5         22               0.1 \'c2\'b5V             10              250              Off\par
+23    CP3         23               0.1 \'c2\'b5V             10              250              Off\par
+24    CP1         24               0.1 \'c2\'b5V             10              250              Off\par
+25    CPz         25               0.1 \'c2\'b5V             10              250              Off\par
+26    CP2         26               0.1 \'c2\'b5V             10              250              Off\par
+27    CP4         27               0.1 \'c2\'b5V             10              250              Off\par
+28    CP6         28               0.1 \'c2\'b5V             10              250              Off\par
+29    P5          29               0.1 \'c2\'b5V             10              250              Off\par
+30    P3          30               0.1 \'c2\'b5V             10              250              Off\par
+31    P1          31               0.1 \'c2\'b5V             10              250              Off\par
+32    Pz          32               0.1 \'c2\'b5V             10              250              Off\par
+33    P2          33               0.1 \'c2\'b5V             10              250              Off\par
+34    P4          34               0.1 \'c2\'b5V             10              250              Off\par
+35    P6          35               0.1 \'c2\'b5V             10              250              Off\par
+36    PO3         36               0.1 \'c2\'b5V             10              250              Off\par
+37    POz         37               0.1 \'c2\'b5V             10              250              Off\par
+38    PO4         38               0.1 \'c2\'b5V             10              250              Off\par
+39    O1          39               0.1 \'c2\'b5V             10              250              Off\par
+40    Oz          40               0.1 \'c2\'b5V             10              250              Off\par
+41    O2          41               0.1 \'c2\'b5V             10              250              Off\par
+\par
+\f0\par
+}
+ 

@@ -1,0 +1,14 @@
+Die folgende Aufgabe ist ganz ähnlich wie die Aufgabe zuvor. Allerdings vergleichen
+Sie nun nicht zwei aufeinanderfolgende Buchstaben. Sie vergleichen stattdessen den
+aktuellen Buchstaben mit dem \bf{dritten}\rm Buchstaben zuvor.
+
+Ein Beispiel:
+Sie sehen die Buchstabensequenz A -> B -> C -> A -> C -> C
+Nach dem 1., 2. und 3. Buchstaben drücken Sie \bf{keinen}\rm Knopf, da es ja noch keinen 
+dritten Buchstaben zuvor gab. Wenn nun, wie in der Sequenz angegeben, das A als vierter 
+Buchstabe erscheint, drücken Sie mit dem Zeigefinger die "1", denn A ist
+gleich mit dem 1. Buchstaben. Wenn nun der 5. Buchstabe (C) erscheint, drücken Sie
+die "2", denn er ist nicht gleich mit dem 2. Buchstaben (B), usw.
+
+Wir beginnen wieder mit einer kurzen Übungsphase. In dieser Phase ertönt ein
+Warngeräusch, wenn Sie eine falsche Eingabe machen.

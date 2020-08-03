@@ -1,0 +1,10 @@
+try
+  acquire_bv('close'); 
+  acquire_bv_braunschweig('close'); 
+end
+try
+  get_data_udp;
+end
+try
+  send_data_udp;
+end

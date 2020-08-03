@@ -1,0 +1,9 @@
+try
+  acquire_func('close'); 
+end
+try
+  get_data_udp;
+end
+try
+  send_data_udp;
+end

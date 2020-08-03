@@ -1,0 +1,13 @@
+{
+    "confirmation_text": "Are you sure?",
+    "offline": 0, 
+    "nCountdown": [0.5,0.5],
+    "desired_actions": [0,1,2,3,4,5],
+    "actions_available": [0,1,2,3,4,5],
+    "nr_sequences": 1, 
+    "free": 0,
+    "debug": 1,
+    "with_confirmation" : 1,
+    "selection_mode" : "P300",
+    "confirmation_mode" : "MI"
+}

@@ -1,0 +1,7 @@
+Vivaldi_Summer_mono.wav
+Rachmaninov_mono.wav
+Bach_Badinerie_mono.wav
+Chopin_mono.wav
+Vivaldi_Spring_mono.wav
+Williams_mono.wav
+Bach_Brandenburg_mono_long.wav

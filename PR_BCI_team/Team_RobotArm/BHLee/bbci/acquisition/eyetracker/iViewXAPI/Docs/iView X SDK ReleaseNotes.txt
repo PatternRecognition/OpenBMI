@@ -1,0 +1,136 @@
+-------------------------------------------------------------------------------
+iView X SDK - Release Notes
+
+Copyright © 2011 SensoMotoricInstuments GmbH All rights reserved.
+-------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------
+Version 3.0 Build 6				       Released: June 30, 2011
+-------------------------------------------------------------------------------
+
+Enhancements:
+	- added iV_ShowSceneVideoMonitor
+	- added iV_AcceptPoint
+	- added iV_AbortCalibration
+	- added iV_setCalibrationPoint
+	- added iV_ResetCalibrationPoints
+	- Enable / Disable raw data filter
+	- update manual 
+	- update installer 
+
+Fixes:
+	- Matlab Examples update
+	- C# Example Update
+
+
+-------------------------------------------------------------------------------
+Version 3.0 Build 5				       Released: June 10, 2011
+-------------------------------------------------------------------------------
+
+Enhancements:
+	- update manual 
+	- update installer 
+
+Fixes:
+	- Python Examples update
+
+
+-------------------------------------------------------------------------------
+Version 3.0 Build 4				       Released: Mai 23, 2011
+-------------------------------------------------------------------------------
+
+Enhancements:
+	- added 'start online fixation' as event 
+	- update manual 
+	- update installer 
+
+
+-------------------------------------------------------------------------------
+Version 3.0 Build 3				       Released: Mai 6, 2011
+-------------------------------------------------------------------------------
+
+Enhancements:
+	- added iV_SetupREDOperationMode 
+	- added iV_Start 
+	- added iV_Quit 
+	- added iV_GetActualTimestamp 
+	- update manual 
+	- update installer 
+
+
+-------------------------------------------------------------------------------
+Version 3.0 Build 2				       Released: April 28, 2011
+-------------------------------------------------------------------------------
+
+Enhancements:
+	- added iV_LoadCalibration 
+	- added iV_SaveCalibration 
+	- update start- / stop- / pause- / continue- data recording function 
+	- update save data function 
+	- added EPrime Standard-Version Slideshow Example 
+	- added EPrime Standard-Version Gaze contingent Example 
+	- ET_QRS request added 
+	- update manual 
+	- update installer 
+
+
+-------------------------------------------------------------------------------
+Version 3.0 Build 1				    Released: February 24, 2011
+-------------------------------------------------------------------------------
+
+Enhancements: 
+	- added iV_SetupCalibration 
+	- added iV_ShowEyeMonitor 
+	- added Python Example 
+	- added C# WPF Example 
+	- added Win 64 bit installer
+	- update manual 
+	- update installer 
+
+Fixes: 
+	- update Matlab Example 
+
+
+-------------------------------------------------------------------------------
+Version 3.0 Build 0				    Released: December 18, 2010
+-------------------------------------------------------------------------------
+
+Enhancements: 
+	- initial creation iV_Calibrate 
+	- initial creation iV_ClearRecordingBuffer 
+	- initial creation iV_Connect 
+	- initial creation iV_Disconnect 
+	- initial creation iV_GetAccuracy
+	- initial creation iV_GetCurrentCalibrationPoint 
+	- initial creation iV_GetEvent 
+	- initial creation iV_GetEvent32 
+	- initial creation iV_GetSample 
+	- initial creation iV_GetSample32 
+	- initial creation iV_GetSystemInfo 
+	- initial creation iV_IsConnected 
+	- initial creation iV_Log 
+	- initial creation iV_SaveData 
+	- initial creation iV_SendCommand 
+	- initial creation iV_SendImageMessage 
+	- initial creation iV_SetCalibrationCallback 
+	- initial creation iV_SetEventCallback 
+	- initial creation iV_SetSampleCallback
+	- initial creation iV_SetLogger 
+	- initial creation iV_SetTrackingParameter 
+	- initial creation iV_ShowTrackingMonitor 
+	- initial creation iV_StartRecording  
+	- initial creation iV_StopRecording 
+	- initial creation iV_Validate  
+	- initial creation EPrime Professional-Version Slideshow Example 
+	- initial creation EPrime Professional-Version Gaze Contingent Example 
+	- initial creation Matlab Slideshow Example 
+	- initial creation Matlab Gaze contingent Example 
+	- initial creation c++ Example 
+	- initial creation C# Example 
+	- initial creation manual 
+	- initial creation installer 
+
+
+
+

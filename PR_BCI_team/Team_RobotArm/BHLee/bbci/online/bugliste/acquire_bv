@@ -1,0 +1,32 @@
+Noch offen:
+
+acquire_bv('close') läuft fehlerhaft, falls nichts zu schliessen ist (e.g. Connection to server fails)
+
+thread soll stoppen, falls er überläuft
+
+Wie wird die Markernummer (3.Arg)  gezählt? Ab 0 ??? passt dies zur bbci_bet_apply
+
+Die Funktion crashed, falls die Verbindung zum Server unterbrochen wird (Recorder Ende)
+
+Behandelt:
+
+* Dokumentation (mit kompilier-infos)
+
+* mexglx und dll einchecken
+
+* kann man die verbosity über die Anzahl der Daten ausschalten???
+
+* falls man schon connected und es erneut probiert -> Fehlermeldung
+
+* Daten abholen hängt, falls keine Verbindung existiert -> Fehlermeldung
+
+* Die erste übertragene Blocknummer ist Schrott
+
+* Als 5. Argument sollte immer ein Cell kommen (auch wenn leer)
+
+Nicht lösbar:
+
+* Falls Rechner zwar namentlich existiert, aber nicht pingbar (z.B. aus) hängt die Routine
+
+Aber vielleicht ist der Rechner gerade auch nur wirklich sehr, sehr langsam :(
+Könnte man lösen, wäre aber relativ anstrengend.

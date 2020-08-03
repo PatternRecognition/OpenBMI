@@ -1,0 +1,4 @@
+compile under gcc and msvc - set msvc compiler to gcc
+migrate testing to boost
+get gtec working
+gdf file format

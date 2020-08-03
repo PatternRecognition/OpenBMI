@@ -1,0 +1,48 @@
+Seite im Laborbuch anlegen (immer auf neuer Seite beginnen).
+EEG-Verstärker einschalten.
+Lautsprecher und externes Display einschalten. Laptop einschalten.?
+
+Anschlüsse am Laptop (ThinkPad X200 - bbcilaptop04): nein
+  In-Ear Kopfhörer (ggf über Verlängerungskabel)
+  Externes Display über VGA
+    (Dies Display soll Auflösung 1280x1024 haben und links vom Laptop Display mit bottom alignment positioniert sein.)
+  USB2LPT Adapter (-> Trigger Box,ExG AUX?)
+  USB-Dongle (blau) für BrainVision Recorder
+  USB-Adapter von BrainVision
+Anschlüsse am USB-Adapter von BrainVision:
+  Laptop über USB
+  Trigger Box
+  2 BrainAmp Verstärker über Glasfaser
+Anschlüsse an der Trigger Box
+  In 'S'-Buchse: Laptop über USB2LPT Kabel ?
+  In 'R'-Buchse: Parallelport Tastatur mit Aufkleber '1' bis '7' ?
+Anschlüsse am BrainAmp:
+  Stromversorgung, z.B. durch PowerPack Accu
+  Electrode Input Box
+
+Kopfumfang an dickster Stelle messen?  po4 gibt es nicht?
+von Nasenmuckel bis kopfmuckel? hp: 40 ohr zu ohr: 31 
+Anschlüsse an Electrode Input Box
+  128 Ag/AgCl Kappe Fast'n'Easy alt (passende Größe nehmen) 
+
+hp: ExG AUX? wo mit der Klinke hin?
+
+wo ist der Mikrophonstaender?
+
+
+referenzelektrode
+A1 A2: hinter die Ohren kleben
+EOGVR, EOGVU rot: unters Auge? mit spiritus abreiben, anderes substrat welches? 
+warum unterm Auge mit der anderen Elektrolythpaste als auf der Kopfhaut?
+REF: Nase mit papier und spiritus abreiben?
+
+MATLAB starten
+Falls VP schon Code hat:
+>> VP_CODE= 'VPig';
+sonst direkt:
+>> setup_sound_discretization;
+und neuen VP-Code der Terminal Ausgabe entnehmen und ins Codes-Book eintragen.
+
+>> run_sound_discretization;
+
+EEG-Verstärker ausschalten.

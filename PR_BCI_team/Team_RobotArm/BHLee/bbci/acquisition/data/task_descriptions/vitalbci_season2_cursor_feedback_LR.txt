@@ -1,0 +1,15 @@
+Durch eine Analyse der bisher aufgenommenen Daten, wurde entschieden,
+dass im weiteren Verlauf nur noch beiden Bewegungsvorstellungen der
+\bf{linken}\rm und der \bf{rechten}\rm Hand verwendet werden. 
+
+Ansonsten ist der Ablauf der folgenden Messung ähnlich der 
+Cursorsteuerung. Nun kann es allerdings passieren, dass sich das
+Kreuz in die falsche Richtung bewegt. Falls dies passiert, lassen
+Sie sich davon nicht entmutigen. Das System muss sich noch weiter auf
+Ihre Hirnsignale einstellen. Dies ist allerdings nur möglich, wenn
+Sie die Bewegungsvorstellungen weiter entsprechend der Pfeilvorgaben
+ausführen.
+
+Es ist wichtig, dass Sie während eines Durchgangs so still wie möglich
+sitzen. Zwischendurch gibt es immer wieder kleine Pausen, in denen Sie
+sich bewegen dürfen.

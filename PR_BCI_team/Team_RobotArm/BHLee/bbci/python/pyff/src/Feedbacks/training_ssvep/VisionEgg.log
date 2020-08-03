@@ -1,0 +1,1046 @@
+2010-06-24 13:49:27,717 (1612) INFO: 34 frames were drawn.
+Mean IFI was 30.36 msec (32.94 fps), longest IFI was 48.41 msec.
+histogram:
+    24                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    16                                                                  * 
+    14                                                                  * 
+    11                                                                  * 
+     8                                                                  * 
+     5                                                                  * 
+     3                                              *                   * 
+     0      *                                       *    *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      1    0    0    0    0    0    0    0    4    1    0    0    27 
+
+2010-06-24 13:49:30,780 (1612) WARNING: Calculated frames per second was 30.108, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:49:30,780 (1612) WARNING: One or more frames took 69.0 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:49:30,780 (1612) INFO: 91 frames were drawn.
+Mean IFI was 33.21 msec (30.11 fps), longest IFI was 68.98 msec.
+histogram:
+    75                                                                  * 
+    66                                                                  * 
+    58                                                                  * 
+    50                                                                  * 
+    42                                                                  * 
+    33                                                                  * 
+    25                                                                  * 
+    17                                                                  * 
+     8                                                                  * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    2    5    0    0    0    83 
+
+2010-06-24 13:49:31,796 (1612) WARNING: Calculated frames per second was 29.952, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:49:31,796 (1612) WARNING: One or more frames took 66.5 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:49:31,796 (1612) INFO: 31 frames were drawn.
+Mean IFI was 33.39 msec (29.95 fps), longest IFI was 66.54 msec.
+histogram:
+    23                                                                  * 
+    21                                                                  * 
+    18                                                                  * 
+    16                                                                  * 
+    13                                                                  * 
+    10                                                                  * 
+     8                                                                  * 
+     5                                                                  * 
+     3                                              *                   * 
+     0                                              *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    4    0    0    0    26 
+
+2010-06-24 13:49:34,812 (1612) WARNING: Calculated frames per second was 31.122, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:49:34,812 (1612) WARNING: One or more frames took 50.9 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:49:34,812 (1612) INFO: 94 frames were drawn.
+Mean IFI was 32.13 msec (31.12 fps), longest IFI was 50.89 msec.
+histogram:
+    70                                                                  * 
+    62                                                                  * 
+    55                                                                  * 
+    47                                                                  * 
+    39                                                                  * 
+    31                                                                  * 
+    23                                                                  * 
+    16                                                                  * 
+     8                                              *                   * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    2    13   0    0    0    78 
+
+2010-06-24 13:49:35,842 (1612) WARNING: Calculated frames per second was 30.907, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:49:35,858 (1612) WARNING: One or more frames took 66.2 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:49:35,858 (1612) INFO: 32 frames were drawn.
+Mean IFI was 32.36 msec (30.91 fps), longest IFI was 66.17 msec.
+histogram:
+    23                                                                  * 
+    20                                                                  * 
+    18                                                                  * 
+    15                                                                  * 
+    13                                                                  * 
+    10                                                                  * 
+     8                                                                  * 
+     5                                                                  * 
+     3                                              *                   * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    5    0    0    0    25 
+
+2010-06-24 13:49:38,890 (1612) WARNING: Calculated frames per second was 29.951, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:49:38,890 (1612) WARNING: One or more frames took 66.4 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:49:38,890 (1612) INFO: 91 frames were drawn.
+Mean IFI was 33.39 msec (29.95 fps), longest IFI was 66.38 msec.
+histogram:
+    72                                                                  * 
+    64                                                                  * 
+    56                                                                  * 
+    48                                                                  * 
+    40                                                                  * 
+    32                                                                  * 
+    24                                                                  * 
+    16                                                                  * 
+     8                                                                  * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    4    6    0    0    0    80 
+
+2010-06-24 13:49:39,921 (1612) WARNING: Calculated frames per second was 29.920, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:49:39,921 (1612) WARNING: One or more frames took 49.9 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:49:39,921 (1612) INFO: 31 frames were drawn.
+Mean IFI was 33.42 msec (29.92 fps), longest IFI was 49.88 msec.
+histogram:
+    25                                                                  * 
+    22                                                                  * 
+    20                                                                  * 
+    17                                                                  * 
+    14                                                                  * 
+    11                                                                  * 
+     8                                                                  * 
+     6                                                                  * 
+     3                                                                  * 
+     0                                              *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    2    0    0    0    28 
+
+2010-06-24 13:49:42,953 (1612) WARNING: Calculated frames per second was 29.450, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:49:42,953 (1612) WARNING: One or more frames took 85.0 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:49:42,953 (1612) INFO: 89 frames were drawn.
+Mean IFI was 33.96 msec (29.45 fps), longest IFI was 85.01 msec.
+histogram:
+    76                                                                  * 
+    67                                                                  * 
+    59                                                                  * 
+    50                                                                  * 
+    42                                                                  * 
+    34                                                                  * 
+    25                                                                  * 
+    17                                                                  * 
+     8                                                                  * 
+     0                                    *    *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    1    1    2    0    0    0    84 
+
+2010-06-24 13:49:43,967 (1612) WARNING: Calculated frames per second was 30.448, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:49:43,967 (1612) WARNING: One or more frames took 66.0 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:49:43,967 (1612) INFO: 31 frames were drawn.
+Mean IFI was 32.84 msec (30.45 fps), longest IFI was 66.04 msec.
+histogram:
+    21                                                                  * 
+    18                                                                  * 
+    16                                                                  * 
+    14                                                                  * 
+    12                                                                  * 
+     9                                                                  * 
+     7                                                                  * 
+     5                                              *                   * 
+     2                                              *                   * 
+     0                                         *    *    *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    5    1    0    0    23 
+
+2010-06-24 13:49:46,967 (1612) WARNING: Calculated frames per second was 30.286, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:49:46,967 (1612) WARNING: One or more frames took 50.7 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:49:46,967 (1612) INFO: 91 frames were drawn.
+Mean IFI was 33.02 msec (30.29 fps), longest IFI was 50.73 msec.
+histogram:
+    76                                                                  * 
+    67                                                                  * 
+    59                                                                  * 
+    50                                                                  * 
+    42                                                                  * 
+    34                                                                  * 
+    25                                                                  * 
+    17                                                                  * 
+     8                                                                  * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    5    0    0    0    84 
+
+2010-06-24 13:49:47,983 (1612) WARNING: Calculated frames per second was 31.002, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:49:47,983 (1612) WARNING: One or more frames took 50.7 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:49:47,983 (1612) INFO: 31 frames were drawn.
+Mean IFI was 32.26 msec (31.00 fps), longest IFI was 50.68 msec.
+histogram:
+    23                                                                  * 
+    20                                                                  * 
+    18                                                                  * 
+    15                                                                  * 
+    13                                                                  * 
+    10                                                                  * 
+     8                                                                  * 
+     5                                                                  * 
+     3                                         *                        * 
+     0                                         *    *    *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    3    1    1    0    0    25 
+
+2010-06-24 13:49:51,000 (1612) WARNING: Calculated frames per second was 30.944, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:49:51,000 (1612) WARNING: One or more frames took 51.5 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:49:51,000 (1612) INFO: 93 frames were drawn.
+Mean IFI was 32.32 msec (30.94 fps), longest IFI was 51.48 msec.
+histogram:
+    73                                                                  * 
+    65                                                                  * 
+    57                                                                  * 
+    49                                                                  * 
+    41                                                                  * 
+    32                                                                  * 
+    24                                                                  * 
+    16                                                                  * 
+     8                                              *                   * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    2    9    0    0    0    81 
+
+2010-06-24 13:49:52,030 (1612) WARNING: Calculated frames per second was 31.955, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:49:52,030 (1612) WARNING: One or more frames took 50.8 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:49:52,030 (1612) INFO: 33 frames were drawn.
+Mean IFI was 31.29 msec (31.95 fps), longest IFI was 50.77 msec.
+histogram:
+    22                                                                  * 
+    19                                                                  * 
+    17                                                                  * 
+    14                                                                  * 
+    12                                                                  * 
+    10                                                                  * 
+     7                                                                  * 
+     5                                              *                   * 
+     2                                              *                   * 
+     0                                         *    *    *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    6    1    0    0    24 
+
+2010-06-24 13:50:39,062 (432) INFO: Script C:\pyff_TU\src\Feedbacks\Ssvep_dots_train\Ssvep_dots_train.py started Vision Egg 1.1.1 with process id 432.
+2010-06-24 13:50:39,342 (432) INFO: Requesting window 1280 x 800 32 bpp (8 8 8 0 RGBA).
+2010-06-24 13:50:40,858 (432) INFO: OpenGL 2.0.6012 WinXP Release, ATI Mobility Radeon X1700 x86/SSE2, ATI Technologies Inc. (PyOpenGL 2.0.2.01)
+2010-06-24 13:50:40,858 (432) INFO: Video system reports 32 bpp (8 8 8 8 RGBA).
+2010-06-24 13:50:42,062 (432) WARNING: Calculated frames per second was 23.929, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:50:42,078 (432) WARNING: One or more frames took 83.1 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:50:42,078 (432) INFO: 25 frames were drawn.
+Mean IFI was 41.79 msec (23.93 fps), longest IFI was 83.06 msec.
+histogram:
+    21                                                                  * 
+    18                                                                  * 
+    16                                                                  * 
+    14                                                                  * 
+    12                                                                  * 
+     9                                                                  * 
+     7                                                                  * 
+     5                                                                  * 
+     2                                                                  * 
+     0                                              *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    1    0    0    0    23 
+
+2010-06-24 13:50:45,092 (432) WARNING: Calculated frames per second was 30.461, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:50:45,092 (432) WARNING: One or more frames took 68.4 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:50:45,092 (432) INFO: 92 frames were drawn.
+Mean IFI was 32.83 msec (30.46 fps), longest IFI was 68.42 msec.
+histogram:
+    64                                                                  * 
+    57                                                                  * 
+    50                                                                  * 
+    43                                                                  * 
+    36                                                                  * 
+    28                                                                  * 
+    21                                                                  * 
+    14                                                                  * 
+     7                                              *                   * 
+     0      *                                  *    *    *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      3    0    0    0    0    0    0    5    11   1    0    0    71 
+
+2010-06-24 13:50:46,125 (432) WARNING: Calculated frames per second was 29.954, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:50:46,125 (432) WARNING: One or more frames took 50.9 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:50:46,125 (432) INFO: 31 frames were drawn.
+Mean IFI was 33.38 msec (29.95 fps), longest IFI was 50.94 msec.
+histogram:
+    23                                                                  * 
+    21                                                                  * 
+    18                                                                  * 
+    16                                                                  * 
+    13                                                                  * 
+    10                                                                  * 
+     8                                                                  * 
+     5                                                                  * 
+     3                                                                  * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    2    2    0    0    0    26 
+
+2010-06-24 13:50:49,140 (432) WARNING: Calculated frames per second was 30.481, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:50:49,140 (432) WARNING: One or more frames took 66.0 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:50:49,140 (432) INFO: 92 frames were drawn.
+Mean IFI was 32.81 msec (30.48 fps), longest IFI was 66.03 msec.
+histogram:
+    71                                                                  * 
+    63                                                                  * 
+    55                                                                  * 
+    47                                                                  * 
+    40                                                                  * 
+    32                                                                  * 
+    24                                                                  * 
+    16                                                                  * 
+     8                                                                  * 
+     0                                    *    *    *    *    *         * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    1    1    6    3    1    0    79 
+
+2010-06-24 13:50:50,155 (432) WARNING: Calculated frames per second was 29.912, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:50:50,155 (432) WARNING: One or more frames took 65.9 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:50:50,155 (432) INFO: 30 frames were drawn.
+Mean IFI was 33.43 msec (29.91 fps), longest IFI was 65.88 msec.
+histogram:
+    21                                                                  * 
+    18                                                                  * 
+    16                                                                  * 
+    14                                                                  * 
+    12                                                                  * 
+     9                                                                  * 
+     7                                                                  * 
+     5                                                                  * 
+     2                                              *                   * 
+     0                                         *    *    *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    4    1    0    0    23 
+
+2010-06-24 13:50:53,187 (432) WARNING: Calculated frames per second was 30.782, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:50:53,187 (432) WARNING: One or more frames took 51.4 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:50:53,187 (432) INFO: 93 frames were drawn.
+Mean IFI was 32.49 msec (30.78 fps), longest IFI was 51.36 msec.
+histogram:
+    73                                                                  * 
+    65                                                                  * 
+    57                                                                  * 
+    49                                                                  * 
+    41                                                                  * 
+    32                                                                  * 
+    24                                                                  * 
+    16                                                                  * 
+     8                                              *                   * 
+     0                                              *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    11   0    0    0    81 
+
+2010-06-24 13:50:54,217 (432) WARNING: Calculated frames per second was 28.944, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:50:54,217 (432) WARNING: One or more frames took 83.2 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:50:54,217 (432) INFO: 30 frames were drawn.
+Mean IFI was 34.55 msec (28.94 fps), longest IFI was 83.17 msec.
+histogram:
+    22                                                                  * 
+    19                                                                  * 
+    17                                                                  * 
+    14                                                                  * 
+    12                                                                  * 
+    10                                                                  * 
+     7                                                                  * 
+     5                                                                  * 
+     2                                              *                   * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    4    0    0    0    24 
+
+2010-06-24 13:50:57,233 (432) WARNING: Calculated frames per second was 30.283, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:50:57,233 (432) WARNING: One or more frames took 70.0 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:50:57,233 (432) INFO: 91 frames were drawn.
+Mean IFI was 33.02 msec (30.28 fps), longest IFI was 70.01 msec.
+histogram:
+    70                                                                  * 
+    62                                                                  * 
+    55                                                                  * 
+    47                                                                  * 
+    39                                                                  * 
+    31                                                                  * 
+    23                                                                  * 
+    16                                                                  * 
+     8                                              *                   * 
+     0                               *         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    1    0    1    10   0    0    0    78 
+
+2010-06-24 13:50:58,280 (432) WARNING: Calculated frames per second was 30.956, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:50:58,280 (432) WARNING: One or more frames took 51.6 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:50:58,280 (432) INFO: 32 frames were drawn.
+Mean IFI was 32.30 msec (30.96 fps), longest IFI was 51.56 msec.
+histogram:
+    23                                                                  * 
+    20                                                                  * 
+    18                                                                  * 
+    15                                                                  * 
+    13                                                                  * 
+    10                                                                  * 
+     8                                                                  * 
+     5                                                                  * 
+     3                                              *                   * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    5    0    0    0    25 
+
+2010-06-24 13:51:01,296 (432) WARNING: Calculated frames per second was 29.775, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:01,296 (432) WARNING: One or more frames took 66.8 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:01,312 (432) INFO: 90 frames were drawn.
+Mean IFI was 33.59 msec (29.77 fps), longest IFI was 66.76 msec.
+histogram:
+    74                                                                  * 
+    66                                                                  * 
+    57                                                                  * 
+    49                                                                  * 
+    41                                                                  * 
+    33                                                                  * 
+    25                                                                  * 
+    16                                                                  * 
+     8                                                                  * 
+     0                                         *    *         *         * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    5    0    1    0    82 
+
+2010-06-24 13:51:02,342 (432) WARNING: Calculated frames per second was 28.897, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:02,342 (432) WARNING: One or more frames took 54.6 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:02,342 (432) INFO: 30 frames were drawn.
+Mean IFI was 34.61 msec (28.90 fps), longest IFI was 54.64 msec.
+histogram:
+    24                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    16                                                                  * 
+    14                                                                  * 
+    11                                                                  * 
+     8                                                                  * 
+     5                                                                  * 
+     3                                                                  * 
+     0                                              *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    2    0    0    0    27 
+
+2010-06-24 13:51:05,375 (432) WARNING: Calculated frames per second was 29.610, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:05,375 (432) WARNING: One or more frames took 66.6 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:05,375 (432) INFO: 90 frames were drawn.
+Mean IFI was 33.77 msec (29.61 fps), longest IFI was 66.60 msec.
+histogram:
+    74                                                                  * 
+    66                                                                  * 
+    57                                                                  * 
+    49                                                                  * 
+    41                                                                  * 
+    33                                                                  * 
+    25                                                                  * 
+    16                                                                  * 
+     8                                                                  * 
+     0                                              *    *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    6    1    0    0    82 
+
+2010-06-24 13:51:06,405 (432) WARNING: Calculated frames per second was 29.945, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:06,405 (432) WARNING: One or more frames took 82.6 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:06,405 (432) INFO: 31 frames were drawn.
+Mean IFI was 33.39 msec (29.94 fps), longest IFI was 82.63 msec.
+histogram:
+    22                                                                  * 
+    19                                                                  * 
+    17                                                                  * 
+    14                                                                  * 
+    12                                                                  * 
+    10                                                                  * 
+     7                                                                  * 
+     5                                              *                   * 
+     2                                              *                   * 
+     0                                              *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    6    0    0    0    24 
+
+2010-06-24 13:51:09,421 (432) WARNING: Calculated frames per second was 30.960, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:09,421 (432) WARNING: One or more frames took 52.0 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:09,421 (432) INFO: 93 frames were drawn.
+Mean IFI was 32.30 msec (30.96 fps), longest IFI was 52.02 msec.
+histogram:
+    73                                                                  * 
+    65                                                                  * 
+    57                                                                  * 
+    49                                                                  * 
+    41                                                                  * 
+    32                                                                  * 
+    24                                                                  * 
+    16                                                                  * 
+     8                                                                  * 
+     0                                         *    *    *    *         * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    2    6    2    1    0    81 
+
+2010-06-24 13:51:10,437 (432) WARNING: Calculated frames per second was 33.479, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:10,437 (432) WARNING: One or more frames took 50.9 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:10,437 (432) INFO: 34 frames were drawn.
+Mean IFI was 29.87 msec (33.48 fps), longest IFI was 50.94 msec.
+histogram:
+    23                                                                  * 
+    20                                                                  * 
+    18                                                                  * 
+    15                                                                  * 
+    13                                                                  * 
+    10                                                                  * 
+     8                                                                  * 
+     5                                              *                   * 
+     3                                              *                   * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    7    0    0    0    25 
+
+2010-06-24 13:51:13,437 (432) WARNING: Calculated frames per second was 30.623, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:13,437 (432) WARNING: One or more frames took 51.0 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:13,437 (432) INFO: 92 frames were drawn.
+Mean IFI was 32.66 msec (30.62 fps), longest IFI was 51.00 msec.
+histogram:
+    72                                                                  * 
+    64                                                                  * 
+    56                                                                  * 
+    48                                                                  * 
+    40                                                                  * 
+    32                                                                  * 
+    24                                                                  * 
+    16                                                                  * 
+     8                                              *                   * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    2    9    0    0    0    80 
+
+2010-06-24 13:51:14,453 (432) WARNING: Calculated frames per second was 30.475, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:14,453 (432) WARNING: One or more frames took 54.2 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:14,453 (432) INFO: 31 frames were drawn.
+Mean IFI was 32.81 msec (30.47 fps), longest IFI was 54.18 msec.
+histogram:
+    23                                                                  * 
+    21                                                                  * 
+    18                                                                  * 
+    16                                                                  * 
+    13                                                                  * 
+    10                                                                  * 
+     8                                                                  * 
+     5                                                                  * 
+     3                                              *                   * 
+     0                                              *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    4    0    0    0    26 
+
+2010-06-24 13:51:17,467 (432) WARNING: Calculated frames per second was 30.960, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:17,467 (432) WARNING: One or more frames took 51.7 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:17,467 (432) INFO: 93 frames were drawn.
+Mean IFI was 32.30 msec (30.96 fps), longest IFI was 51.67 msec.
+histogram:
+    73                                                                  * 
+    65                                                                  * 
+    57                                                                  * 
+    49                                                                  * 
+    41                                                                  * 
+    32                                                                  * 
+    24                                                                  * 
+    16                                                                  * 
+     8                                              *                   * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    2    9    0    0    0    81 
+
+2010-06-24 13:51:18,500 (432) WARNING: Calculated frames per second was 31.473, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:18,500 (432) WARNING: One or more frames took 67.5 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:18,500 (432) INFO: 32 frames were drawn.
+Mean IFI was 31.77 msec (31.47 fps), longest IFI was 67.51 msec.
+histogram:
+    23                                                                  * 
+    20                                                                  * 
+    18                                                                  * 
+    15                                                                  * 
+    13                                                                  * 
+    10                                                                  * 
+     8                                                                  * 
+     5                                                                  * 
+     3                                              *                   * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    5    0    0    0    25 
+
+2010-06-24 13:51:21,500 (432) WARNING: Calculated frames per second was 29.620, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:21,500 (432) WARNING: One or more frames took 69.5 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:21,500 (432) INFO: 89 frames were drawn.
+Mean IFI was 33.76 msec (29.62 fps), longest IFI was 69.46 msec.
+histogram:
+    73                                                                  * 
+    65                                                                  * 
+    57                                                                  * 
+    49                                                                  * 
+    41                                                                  * 
+    32                                                                  * 
+    24                                                                  * 
+    16                                                                  * 
+     8                                                                  * 
+     0                                    *    *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    1    1    5    0    0    0    81 
+
+2010-06-24 13:51:22,562 (432) WARNING: Calculated frames per second was 29.484, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:22,562 (432) WARNING: One or more frames took 67.5 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:22,562 (432) INFO: 31 frames were drawn.
+Mean IFI was 33.92 msec (29.48 fps), longest IFI was 67.47 msec.
+histogram:
+    23                                                                  * 
+    20                                                                  * 
+    18                                                                  * 
+    15                                                                  * 
+    13                                                                  * 
+    10                                                                  * 
+     8                                                                  * 
+     5                                                                  * 
+     3                                              *                   * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    2    3    0    0    0    25 
+
+2010-06-24 13:51:25,578 (432) WARNING: Calculated frames per second was 30.284, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:25,578 (432) WARNING: One or more frames took 66.7 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:25,578 (432) INFO: 92 frames were drawn.
+Mean IFI was 33.02 msec (30.28 fps), longest IFI was 66.69 msec.
+histogram:
+    77                                                                  * 
+    69                                                                  * 
+    60                                                                  * 
+    52                                                                  * 
+    43                                                                  * 
+    34                                                                  * 
+    26                                                                  * 
+    17                                                                  * 
+     9                                                                  * 
+     0                                              *    *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    4    1    0    0    86 
+
+2010-06-24 13:51:26,592 (432) WARNING: Calculated frames per second was 32.501, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:26,592 (432) WARNING: One or more frames took 54.5 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:26,592 (432) INFO: 33 frames were drawn.
+Mean IFI was 30.77 msec (32.50 fps), longest IFI was 54.51 msec.
+histogram:
+    21                                                                  * 
+    18                                                                  * 
+    16                                                                  * 
+    14                                                                  * 
+    12                                                                  * 
+     9                                                                  * 
+     7                                                                  * 
+     5                                              *                   * 
+     2                                         *    *                   * 
+     0                                         *    *    *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    3    5    1    0    0    23 
+
+2010-06-24 13:51:29,625 (432) WARNING: Calculated frames per second was 30.776, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:29,625 (432) WARNING: One or more frames took 51.0 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:29,625 (432) INFO: 93 frames were drawn.
+Mean IFI was 32.49 msec (30.78 fps), longest IFI was 50.98 msec.
+histogram:
+    73                                                                  * 
+    65                                                                  * 
+    57                                                                  * 
+    49                                                                  * 
+    41                                                                  * 
+    32                                                                  * 
+    24                                                                  * 
+    16                                                                  * 
+     8                                              *                   * 
+     0                                              *    *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    10   1    0    0    81 
+
+2010-06-24 13:51:30,640 (432) WARNING: Calculated frames per second was 32.472, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:30,640 (432) WARNING: One or more frames took 35.9 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:30,640 (432) INFO: 33 frames were drawn.
+Mean IFI was 30.80 msec (32.47 fps), longest IFI was 35.89 msec.
+histogram:
+    24                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    16                                                                  * 
+    14                                                                  * 
+    11                                                                  * 
+     8                                                                  * 
+     5                                                                  * 
+     3                                         *                        * 
+     0                                         *    *    *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    3    1    1    0    0    27 
+
+2010-06-24 13:51:33,655 (432) WARNING: Calculated frames per second was 29.448, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:33,655 (432) WARNING: One or more frames took 66.7 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:33,655 (432) INFO: 89 frames were drawn.
+Mean IFI was 33.96 msec (29.45 fps), longest IFI was 66.72 msec.
+histogram:
+    77                                                                  * 
+    68                                                                  * 
+    60                                                                  * 
+    51                                                                  * 
+    43                                                                  * 
+    34                                                                  * 
+    26                                                                  * 
+    17                                                                  * 
+     9                                                                  * 
+     0                                              *    *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    2    1    0    0    85 
+
+2010-06-24 13:51:34,671 (432) WARNING: Calculated frames per second was 29.428, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:34,671 (432) WARNING: One or more frames took 68.0 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:34,687 (432) INFO: 30 frames were drawn.
+Mean IFI was 33.98 msec (29.43 fps), longest IFI was 68.00 msec.
+histogram:
+    23                                                                  * 
+    20                                                                  * 
+    18                                                                  * 
+    15                                                                  * 
+    13                                                                  * 
+    10                                                                  * 
+     8                                                                  * 
+     5                                                                  * 
+     3                                                                  * 
+     0                                         *    *    *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    2    1    0    0    25 
+
+2010-06-24 13:51:37,703 (432) WARNING: Calculated frames per second was 31.762, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:37,703 (432) WARNING: One or more frames took 66.4 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:37,703 (432) INFO: 96 frames were drawn.
+Mean IFI was 31.48 msec (31.76 fps), longest IFI was 66.42 msec.
+histogram:
+    70                                                                  * 
+    62                                                                  * 
+    55                                                                  * 
+    47                                                                  * 
+    39                                                                  * 
+    31                                                                  * 
+    23                                                                  * 
+    16                                                                  * 
+     8                                              *                   * 
+     0                                         *    *    *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    3    13   1    0    0    78 
+
+2010-06-24 13:51:38,717 (432) WARNING: Calculated frames per second was 29.938, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:38,717 (432) WARNING: One or more frames took 83.8 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:38,717 (432) INFO: 30 frames were drawn.
+Mean IFI was 33.40 msec (29.94 fps), longest IFI was 83.83 msec.
+histogram:
+    22                                                                  * 
+    19                                                                  * 
+    17                                                                  * 
+    14                                                                  * 
+    12                                                                  * 
+    10                                                                  * 
+     7                                                                  * 
+     5                                                                  * 
+     2                                              *                   * 
+     0                                    *    *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    1    1    3    0    0    0    24 
+
+2010-06-24 13:51:41,733 (432) WARNING: Calculated frames per second was 29.448, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:41,733 (432) WARNING: One or more frames took 66.0 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:41,750 (432) INFO: 89 frames were drawn.
+Mean IFI was 33.96 msec (29.45 fps), longest IFI was 65.99 msec.
+histogram:
+    72                                                                  * 
+    64                                                                  * 
+    56                                                                  * 
+    48                                                                  * 
+    40                                                                  * 
+    32                                                                  * 
+    24                                                                  * 
+    16                                                                  * 
+     8                                                                  * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    7    0    0    0    80 
+
+2010-06-24 13:51:42,765 (432) WARNING: Calculated frames per second was 33.499, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:42,765 (432) WARNING: One or more frames took 51.2 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:42,765 (432) INFO: 34 frames were drawn.
+Mean IFI was 29.85 msec (33.50 fps), longest IFI was 51.24 msec.
+histogram:
+    23                                                                  * 
+    20                                                                  * 
+    18                                                                  * 
+    15                                                                  * 
+    13                                                                  * 
+    10                                                                  * 
+     8                                                                  * 
+     5                                              *                   * 
+     3                                              *                   * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    7    0    0    0    25 
+
+2010-06-24 13:51:45,780 (432) WARNING: Calculated frames per second was 30.778, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:45,780 (432) WARNING: One or more frames took 83.7 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:45,780 (432) INFO: 93 frames were drawn.
+Mean IFI was 32.49 msec (30.78 fps), longest IFI was 83.71 msec.
+histogram:
+    72                                                                  * 
+    64                                                                  * 
+    56                                                                  * 
+    48                                                                  * 
+    40                                                                  * 
+    32                                                                  * 
+    24                                                                  * 
+    16                                                                  * 
+     8                                              *                   * 
+     0                                         *    *    *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    10   1    0    0    80 
+
+2010-06-24 13:51:46,796 (432) WARNING: Calculated frames per second was 31.465, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:46,796 (432) WARNING: One or more frames took 51.1 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:46,796 (432) INFO: 32 frames were drawn.
+Mean IFI was 31.78 msec (31.47 fps), longest IFI was 51.08 msec.
+histogram:
+    23                                                                  * 
+    20                                                                  * 
+    18                                                                  * 
+    15                                                                  * 
+    13                                                                  * 
+    10                                                                  * 
+     8                                                                  * 
+     5                                              *                   * 
+     3                                              *                   * 
+     0                                              *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    6    0    0    0    25 
+
+2010-06-24 13:51:49,812 (432) WARNING: Calculated frames per second was 30.620, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:49,812 (432) WARNING: One or more frames took 65.9 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:49,812 (432) INFO: 92 frames were drawn.
+Mean IFI was 32.66 msec (30.62 fps), longest IFI was 65.87 msec.
+histogram:
+    73                                                                  * 
+    65                                                                  * 
+    57                                                                  * 
+    49                                                                  * 
+    41                                                                  * 
+    32                                                                  * 
+    24                                                                  * 
+    16                                                                  * 
+     8                                                                  * 
+     0                                    *    *    *    *    *         * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    1    1    6    1    1    0    81 
+
+2010-06-24 13:51:50,842 (432) WARNING: Calculated frames per second was 31.979, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:50,842 (432) WARNING: One or more frames took 44.8 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:50,842 (432) INFO: 33 frames were drawn.
+Mean IFI was 31.27 msec (31.98 fps), longest IFI was 44.78 msec.
+histogram:
+    24                                                                  * 
+    22                                                                  * 
+    19                                                                  * 
+    16                                                                  * 
+    14                                                                  * 
+    11                                                                  * 
+     8                                                                  * 
+     5                                                                  * 
+     3                                                                  * 
+     0                                         *    *    *    *         * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    2    1    1    0    27 
+
+2010-06-24 13:51:53,842 (432) WARNING: Calculated frames per second was 30.612, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:53,842 (432) WARNING: One or more frames took 64.6 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:53,842 (432) INFO: 92 frames were drawn.
+Mean IFI was 32.67 msec (30.61 fps), longest IFI was 64.62 msec.
+histogram:
+    74                                                                  * 
+    66                                                                  * 
+    57                                                                  * 
+    49                                                                  * 
+    41                                                                  * 
+    33                                                                  * 
+    25                                                                  * 
+    16                                                                  * 
+     8                                              *                   * 
+     0                                              *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    9    0    0    0    82 
+
+2010-06-24 13:51:54,875 (432) WARNING: Calculated frames per second was 30.952, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:54,875 (432) WARNING: One or more frames took 68.1 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:54,890 (432) INFO: 32 frames were drawn.
+Mean IFI was 32.31 msec (30.95 fps), longest IFI was 68.13 msec.
+histogram:
+    22                                                                  * 
+    19                                                                  * 
+    17                                                                  * 
+    14                                                                  * 
+    12                                                                  * 
+    10                                                                  * 
+     7                                                                  * 
+     5                                              *                   * 
+     2                                              *                   * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    6    0    0    0    24 
+
+2010-06-24 13:51:57,890 (432) WARNING: Calculated frames per second was 30.627, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:57,890 (432) WARNING: One or more frames took 67.0 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:57,890 (432) INFO: 92 frames were drawn.
+Mean IFI was 32.65 msec (30.63 fps), longest IFI was 67.04 msec.
+histogram:
+    70                                                                  * 
+    62                                                                  * 
+    55                                                                  * 
+    47                                                                  * 
+    39                                                                  * 
+    31                                                                  * 
+    23                                                                  * 
+    16                                                                  * 
+     8                                              *                   * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    12   0    0    0    78 
+
+2010-06-24 13:51:58,921 (432) WARNING: Calculated frames per second was 30.942, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:51:58,921 (432) WARNING: One or more frames took 65.6 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:51:58,921 (432) INFO: 32 frames were drawn.
+Mean IFI was 32.32 msec (30.94 fps), longest IFI was 65.62 msec.
+histogram:
+    23                                                                  * 
+    21                                                                  * 
+    18                                                                  * 
+    16                                                                  * 
+    13                                                                  * 
+    10                                                                  * 
+     8                                                                  * 
+     5                                                                  * 
+     3                                              *                   * 
+     0                                         *    *    *              * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    3    1    0    0    26 
+
+2010-06-24 13:52:01,921 (432) WARNING: Calculated frames per second was 29.930, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:52:01,921 (432) WARNING: One or more frames took 100.2 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:52:01,937 (432) INFO: 90 frames were drawn.
+Mean IFI was 33.41 msec (29.93 fps), longest IFI was 100.23 msec.
+histogram:
+    61                                                                  * 
+    54                                                                  * 
+    48                                                                  * 
+    41                                                                  * 
+    34                                                                  * 
+    27                                                                  * 
+    20                                                                  * 
+    14                                                                  * 
+     7                                              *                   * 
+     0      *                        *    *    *    *    *         *    * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      1    0    0    0    0    1    1    3    12   2    0    1    68 
+
+2010-06-24 13:52:02,953 (432) WARNING: Calculated frames per second was 31.465, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:52:02,953 (432) WARNING: One or more frames took 52.2 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:52:02,953 (432) INFO: 32 frames were drawn.
+Mean IFI was 31.78 msec (31.46 fps), longest IFI was 52.20 msec.
+histogram:
+    23                                                                  * 
+    20                                                                  * 
+    18                                                                  * 
+    15                                                                  * 
+    13                                                                  * 
+    10                                                                  * 
+     8                                                                  * 
+     5                                                                  * 
+     3                                              *                   * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    2    4    0    0    0    25 
+
+2010-06-24 13:52:05,953 (432) WARNING: Calculated frames per second was 29.940, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:52:05,953 (432) WARNING: One or more frames took 51.0 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:52:05,953 (432) INFO: 90 frames were drawn.
+Mean IFI was 33.40 msec (29.94 fps), longest IFI was 50.96 msec.
+histogram:
+    75                                                                  * 
+    66                                                                  * 
+    58                                                                  * 
+    50                                                                  * 
+    42                                                                  * 
+    33                                                                  * 
+    25                                                                  * 
+    17                                                                  * 
+     8                                                                  * 
+     0                                         *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    1    5    0    0    0    83 
+
+2010-06-24 13:52:06,983 (432) WARNING: Calculated frames per second was 29.940, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:52:06,983 (432) WARNING: One or more frames took 82.5 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:52:06,983 (432) INFO: 31 frames were drawn.
+Mean IFI was 33.40 msec (29.94 fps), longest IFI was 82.47 msec.
+histogram:
+    22                                                                  * 
+    19                                                                  * 
+    17                                                                  * 
+    14                                                                  * 
+    12                                                                  * 
+    10                                                                  * 
+     7                                                                  * 
+     5                                                                  * 
+     2                                              *                   * 
+     0      *                                  *    *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      1    0    0    0    0    0    0    2    3    0    0    0    24 
+
+2010-06-24 13:52:10,015 (432) WARNING: Calculated frames per second was 31.460, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:52:10,015 (432) WARNING: One or more frames took 51.2 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:52:10,015 (432) INFO: 95 frames were drawn.
+Mean IFI was 31.79 msec (31.46 fps), longest IFI was 51.16 msec.
+histogram:
+    72                                                                  * 
+    64                                                                  * 
+    56                                                                  * 
+    48                                                                  * 
+    40                                                                  * 
+    32                                                                  * 
+    24                                                                  * 
+    16                                                                  * 
+     8                                                                  * 
+     0                                         *    *    *    *         * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    4    8    1    1    0    80 
+
+2010-06-24 13:52:11,030 (432) WARNING: Calculated frames per second was 29.454, while the VISIONEGG_MONITOR_REFRESH_HZ variable is 120.
+2010-06-24 13:52:11,030 (432) WARNING: One or more frames took 50.5 msec, which is signficantly longer than the expected inter frame interval of 8.3 msec for your frame rate (120.0 Hz).
+2010-06-24 13:52:11,030 (432) INFO: 30 frames were drawn.
+Mean IFI was 33.95 msec (29.45 fps), longest IFI was 50.54 msec.
+histogram:
+    23                                                                  * 
+    20                                                                  * 
+    18                                                                  * 
+    15                                                                  * 
+    13                                                                  * 
+    10                                                                  * 
+     8                                                                  * 
+     5                                                                  * 
+     3                                              *                   * 
+     0                                              *                   * 
+ Time:    0    2    4    6    8   10   12   14   16   18   20   22   24 +(msec)
+Total:      0    0    0    0    0    0    0    0    4    0    0    0    25 
+

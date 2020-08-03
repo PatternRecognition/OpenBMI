@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="main" >
+    <file>icons/active_messages.png</file>
+    <file>icons/checkmark.png</file>
+    <file>icons/ida_logo.png</file>
+    <file>icons/longterm_archive.png</file>
+    <file>icons/shortterm_archive.png</file>
+  </qresource>
+</RCC>

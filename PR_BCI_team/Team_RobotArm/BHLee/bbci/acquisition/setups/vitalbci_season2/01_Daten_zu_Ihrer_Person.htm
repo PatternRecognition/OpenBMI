@@ -1,0 +1,56 @@
+<HTML>
+<HEAD><TITLE>Daten zu Ihrer Person</TITLE>
+
+</HEAD>
+
+<BODY>
+<p><form action="DatenZuIhrerPerson.txt">
+
+
+<h1>Daten zu Ihrer Person</h1>
+<P>Geburtsdatum: <input type="text" size="25" name="Geburtsdatum"/> (TT.MM.JJJJ)</P>
+
+<p>Geschlecht: <input type="radio" name="Geschlecht" value="mannlich">m&#228;nnlich
+   <input type="radio" name="Geschlecht" value="weiblich"> weiblich
+
+
+<p>H&#228;ndigkeit:
+<input type="radio" name="Haendigkeit" value="rechts">rechts
+<input type="radio" name="Haendigkeit" value="links">links
+<input type="radio" name="Haendigkeit"  value="beide">beide
+
+
+
+<P>Schulabschluss:<input type="text" size="25" name="Schulabschluss"/></P>
+<P>Beruf:<input type="text" size="50" name="Beruf"/></P>
+<P >Falls Student, bitte Studienfach angeben: <input type="text"size="50" name="Studienfach"/></P>
+<P>Muttersprache:<input type="text" size="50" name="Muttersprache"/></P>
+<hr>
+<P>1. Haben Sie schon einmal unter neurologischen oder psychischen St&#246;rungen gelitten? (z.B<FONT class="ft7">. <FONT class="ft8">Schlaganfall, Depression, alkoholbedingte Probleme)</P>
+<p><input type="radio" name="Stoerungen" value="Nein"> Nein
+<input type="radio" name="Stoerungen" value="JA"> Ja
+<P>Wenn ja, welcher Art?<br>
+<textarea name="StoerungenWelche" cols="50" rows="4"></textarea>
+<P>2. Hatten Sie schon einmal einen epileptischen Anfall?</P>
+<p><input type="radio" name="EpileptischeAnfaelle" value="Nein"> Nein
+<input type="radio" name="EpileptischeAnfaelle" value="JA"> Ja
+
+
+
+<P >3. Leiden Sie unter einer anderen chronischen Erkrankung? (z.B. Diabetes, Allergien)</P>
+<p><input type="radio" name="Erkrankungen" value="Nein"> Nein
+<input type="radio" name="Erkrankungen" value="JA"> Ja
+<P>Wenn ja, welcher Art?<br>
+<textarea name="ErkrankungenWelche" cols="50" rows="4"></textarea>
+
+<P>4. Nehmen Sie regelm&#228;&#223;ig Medikamente ein?</P>
+<p><input type="radio" name="Medikamente" value="Nein"> Nein
+<input type="radio" name="Medikamente" value="JA"> Ja
+<P>Wenn ja, welche?<br><textarea name="MedikamenteWelche" cols="50" rows="4"></textarea>
+
+
+<p><input type="submit" value="Submit" /><br>
+
+</form>
+
+</html>

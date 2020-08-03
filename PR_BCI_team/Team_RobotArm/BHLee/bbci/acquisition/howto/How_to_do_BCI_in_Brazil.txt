@@ -1,0 +1,52 @@
+How to do BCI?
+
+- all EEG data will be saved in D:\data\bbciRaw; all setup files etc. are in directory D:\svn\ and its subfolders. DO NOT commit or update the SVN (if you do not know what is it, do not care...) or delete or install new propgrams (it took around three weeks to set up this computer!!).
+
+1) Connect EEG system (2 Amplifiers for 64 channels), e.g. batteries -> amplifiers, 
+amplifiers -> USB-adapter and -> cap, USB Adapter ->USB port (top, frontal USB port) and Parallel port.Do you have two monitors? One for you on the left and the other for the subjt on the right. The resolution of the subject's screen should be 1024x768.
+
+2) Insert blue USB stick (the keylock for the Vision Recorder) into lower frontal USB port.
+
+3) Turn the amplifiers on.
+
+3) Start Matlab 2007 (the symbol on the Desktop). Matlab will already set a number of variables as described in startup.m, startup_bbciBrazil.m.
+
+4) Set the subjects name (all data will be saved using this) by typing VP_CODE='HereTypeTheName' and <RETURN>. Do not use any special letters or spaces. If you do not type this, the script will find a subjects name.
+
+5) Type setup_Brazil and <RETURN>. This script defines more variables and tests the connection to the EEG system. It will start the Vision Recorder and if you connect everything the right way you should see some markers in the Vision Recorder. If it doesn't work, please check all connections of the EEG system.
+
+6) Prepare the subject's EEG cap. CHANGE REFERENCE AND Pz IN THE CAP. We need FCz and not Pz! The correct workspace for the EEG Recorder should already be loaded. Nethertheless, it is called 'EEG4BCI_Braz'
+
+7) A script called run_BCI_Brazil.m will appeared in the Matlab editor. It is devided into blocks. Please run the blocks individually by marking them and pressing 'F9'. 
+
+8) Mark the first block and hit 'F9'. A description of the experiment will appear. Somebody should translate it into Portuguese for the patients. It is saved in 'D:\svn\bbci\acquisition\data\task_descriptions\Brazil_imag_fbarrow'
+
+9) Hit <RETURN>. A second Matlab will open, test the EEG triggers and build up a GUI (it needs some time...).
+
+10) Be carefull, that all windows are on your desktop (except of experiments description).
+
+11) Go to the CONTROL GUI of the second Matlab. The tab should be 'GENERAL', save should be named imag_fbarrow_pcovmean and there must be a subject independent classifier ('Lap_C3z4_bp_LR_v6.mat'). The frist MATALB should get the directories information.
+
+12) Be in the tab 'GENERAL', hit Send+Init. The GUI will set the stimulus design as well as save the impedances of the EEG. The first Matlab. Now we are ready to start the first run.
+
+13) Hit 'start' in the control GUI. The experiment should start with a countdown.
+
+14) When the first run is finished. Hit 'Exit' in teh GUI and close the second Matlab.
+
+15) Now we can train a classifier on the subject's first run: run the second block in the run_BCI_Brazil script. 4 figures will appear. one showing some single trial results, a second the frequnecy spectrum for both classes (left and right). Here there should be a difference between the classes around 10 Hz (mu-rhythm) or 20 Hz (beta-rhythm). The classifier now chooses the frequency band with highest difference between classes. A third figure shows the time course of the chosen frequency band. Here should be differnces between the classes as well. The fourth figure shows some classifier weights.
+
+16) Type 'dbcont' to save the classifier. it will be saved in the subjecfts EEG directory and named 'bbci_classifier_cspauto_24chans'
+
+17) Second run: start the third block in the run_BCI_Brazil script. Again a second Matlap will open. A GUI will ask you which classifier to load. Take teh one we've just trained, e.g. ..cspauto_24chans.
+
+18) Send+Init, Start, afterwards: Exit and close the second Matlab (as described before). The classification should be at least as good as in the frist run.
+
+19) run the next block to train a classifier depending on the two first runs. Hit 'dbcont' to save it. It will be saved as ..._cspauto_48chans.
+
+20) run the third run and choose the _48chan classifier. (Sedn+Inti etc.)
+
+21) That's it.
+
+for further questions write to: jan.mehnert@charite.de
+
+#Jan Mehnert, June 2011

@@ -1,0 +1,12 @@
+TEIL 3: Text kopieren
+
+Ihre Aufgabe in diesem Teil des Experiments ist es wieder, einen gegebenen
+kurzen Text zu kopieren. Allerdings werden Ihnen die Buchstaben, die sich hinter
+jeder Richtung verbergen, nicht mehr vorgelesen, sondern auf dem Bildschirm vor
+Ihnen angezeigt. (Diese Visualisierung ist eine Hilfestellung für Sie, da Sie
+vermutlich die Richtungen und Buchstaben noch nicht auswändig kennen.)
+
+Sie werden feststellen, dass manchmal weniger Töne kommen, bevor eine Auswahl
+getroffen wird. In diesem Fall konnte der Computer die Zielrichtung schon früher
+aus Ihren EEG-Signalen dekodieren, was Ihre Schreibfähigkeit deutlich
+verschnellern wird.

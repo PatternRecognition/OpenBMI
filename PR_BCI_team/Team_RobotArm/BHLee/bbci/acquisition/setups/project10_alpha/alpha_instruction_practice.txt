@@ -1,0 +1,12 @@
+Ihre Aufgabe ist es, den zentralen Fixationspunkt mit den Augen zu fixieren.
+Irgendwann erscheinen in der Mitte vier Pfeile, wobei Sie auf den Pfeil achten 
+müssen, der \bf{blau}\rm ist. Der blaue Pfeil gibt die Richtung an, auf die Sie 
+ihren Aufmerksamkeit richten müssen, ohne aber ihre Augen zu bewegen. 
+
+
+Auf dem Kreis in der entsprechenden Richtung erscheinen in zufälligen 
+Abständen \bf{Kreuze}\rm ('x') und \bf{Plusse}\rm ('+'). Ihre Aufgabe ist es, 
+zu zählen, wie oft das \bf{'x'}\rm erscheint. \bf{Tippen}\rm Sie die Anzahl am Ende 
+jedes trials ein und bestätigen Sie mit <ENTER>.
+
+Zunächst gibt es einen kurzen Testdurchlauf.
