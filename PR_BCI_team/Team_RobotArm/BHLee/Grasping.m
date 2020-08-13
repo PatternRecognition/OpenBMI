@@ -71,7 +71,7 @@ dd = 'MotorImagery Converted Data\';
 filelist= {'20191113_demo_bhkwon'};
 
 %%
-Bandpass_Filter = [8 24]; % 어디가 제일 높은 정확도인지 정해야함.
+Bandpass_Filter = [8 40];
 
 % ----------------------------------------------------------------------
 % Offline Classifier Training
