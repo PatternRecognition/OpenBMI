@@ -106,9 +106,7 @@ epo.fs = state.fs;
 epo.title = filelist{1};
 Ans = zeros(1,3);
 %%
-% ----------------------------------------------------------------------
 % Get EEG data
-global jaw
 py.SharedDemo_6_Vision_LBH.getPerspectiveMine();
 
 coord=py.SharedDemo_6_Vision_LBH.mainRunning(1);
