@@ -1,0 +1,32 @@
+import scipy.io as sio
+import numpy as np
+import os
+
+import matplotlib.pyplot as plt
+
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.model_selection import ShuffleSplit, cross_val_score
+
+from datetime import datetime
+
+from sklearn.preprocessing import StandardScaler, Normalizer
+from sklearn.preprocessing import scale, robust_scale, minmax_scale, maxabs_scale
+
+import pickle
+
+x_data = np.load('x_data_440.npy')
+
+sc = StandardScaler()
+transformer = Normalizer()
+i=0
+
+raw_data_train = np.zeros([x_data.shape[0],62,500])
+raw_data_train = np.zeros_like(x_data)
+
+for i in range(x_data.shape[0]):
+
+    raw_fit = transformer.transform(x_data[i, :, :])
+    raw_data_train[i,:,:] = raw_fit[:,:]
+    print(i)
+
+np.save('x_data_440_base_norm',raw_data_train)
