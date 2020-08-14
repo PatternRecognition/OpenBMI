@@ -92,3 +92,40 @@ proc = {'wr_multiClass','policy','one-vs-all','coding','hamming'}; % one-vs-all 
 
 Out.C = trainClassifier(fv, proc);
 Out.out_eeg = applyClassifier(fv, 'wr_multiClass', Out.C);
+
+%%
+% ----------------------------------------------------------------------
+% Onling Initialization
+params = struct;
+state = bbci_acquire_bv('init', params);
+EEG_data = [];
+mnt = getElectrodePositions(state.clab);
+
+epo.clab = state.clab;
+epo.fs = state.fs;
+epo.title = filelist{1};
+Ans = zeros(1,3);
+%%
+% ----------------------------------------------------------------------
+% Get EEG data
+global jaw
+py.SharedDemo_6_Vision_LBH.getPerspectiveMine();
+
+coord=py.SharedDemo_6_Vision_LBH.mainRunning(1);
+coord=double(py.array.array('d',py.numpy.nditer(coord)));
+coord=uint8(coord/5);
+pause(1);
+
+home_pos=jc.EndEffectorPose;
+current_pos=jc.EndEffectorPose;
+prev_pos=current_pos;
+
+targetX = coord(1);
+targetY = coord(2);
+targetX = double(targetX);
+targetY = double(targetY);
+x_origin = (102 - targetX)/100
+y_origin = (5+targetY)/100
+
+desired_pos=[x_origin; -y_origin; 0.1; home_pos(4); home_pos(5); home_pos(6)];
+moveToCP(jc,desired_pos);
