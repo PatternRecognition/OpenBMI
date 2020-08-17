@@ -127,3 +127,34 @@ y_origin = (5+targetY)/100
 
 desired_pos=[x_origin; -y_origin; 0.1; home_pos(4); home_pos(5); home_pos(6)];
 moveToCP(jc,desired_pos);
+
+while 1
+    %% cue
+    [A,AFs] = audioread('grasp.mp3');
+    sound(A,AFs);
+    pause(2);
+    
+    eog_ch = [1 ,31];
+    eog_th = 18;
+    time_window = 20;
+    
+    eog_test(eog_ch, eog_th, time_window);
+    disp('Receiving brain signal')
+    
+    pause(2);
+    
+%% Stop EEG recording
+    bbci_acquire_bv('close');
+    EEG_MAT_DIR = '';
+    params=struct;
+    state=bbci_acquire_bv('init',params);
+    EEGData=[];
+    mnt=getElectrodePositions(state.clab);
+    epo.clab = state.clab;
+    epo.fs = state.fs;
+    epo.title = filelist{1};
+    pause('on')
+
+    [B,BFs] = audioread('censor-beep-4.wav');
+    sound(B,BFs);
+    pause(4);
