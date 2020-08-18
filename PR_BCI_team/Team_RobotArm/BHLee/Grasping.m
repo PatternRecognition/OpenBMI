@@ -196,4 +196,4 @@ while 1
         moveToCP(jc,desired_pos);
 
         pause(1);
-    end
+  %% Rest class 코딩 필요
