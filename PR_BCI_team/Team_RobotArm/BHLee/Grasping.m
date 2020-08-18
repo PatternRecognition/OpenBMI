@@ -143,7 +143,7 @@ while 1
     
     pause(2);
     
-%% Stop EEG recording
+%% Initializing EEG recording
     bbci_acquire_bv('close');
     EEG_MAT_DIR = '';
     params=struct;
@@ -158,3 +158,42 @@ while 1
     [B,BFs] = audioread('censor-beep-4.wav');
     sound(B,BFs);
     pause(4);
+            
+    data = bbci_acquire_bv(state);
+    EEG_data = [EEG_data; data];
+
+    % Sampling Rate: 250Hz, get data every 3 sec
+    if size(EEG_data,1) >= 750
+        epo.x = EEG_data;
+
+        % EEG filtering
+        Wps= [42 49]/epo.fs*2;
+        [n, Ws]= cheb2ord(Wps(1), Wps(2),3, 40);
+        [filt.b, filt.a]= cheby2(n, 50, Ws);
+        epo = proc_filt(epo, filt.b, filt.a);
+
+        % Feature Extraction and Classification
+        Classification_Result = MotorImagery_Online_Fn(epo, Bandpass_Filter, Out);
+
+        disp('Signal processing');
+        pause(2);
+        disp('Decoding signal');
+        pause(2);
+
+
+        disp('Grasp');
+
+        disp('robotic arm activation');
+        pause(2)
+
+        setPositionControlMode(jc);
+        fCmd = 4000*ones(3,1);
+        sendFingerPositionCommand(jc,fCmd);
+
+        pause(1);
+
+        desired_pos=[0.6; -0.2; 0.15; home_pos(4); home_pos(5); home_pos(6)];
+        moveToCP(jc,desired_pos);
+
+        pause(1);
+    end
