@@ -229,3 +229,25 @@ while 1
     
     data = bbci_acquire_bv(state);
     EEG_data = [EEG_data; data];
+    
+    if size(EEG_data,1) >= 750
+        epo.x = EEG_data;
+        
+        % EEG filtering
+        Wps= [42 49]/epo.fs*2;
+        [n, Ws]= cheb2ord(Wps(1), Wps(2),3, 40);
+        [filt.b, filt.a]= cheby2(n, 50, Ws);
+        epo = proc_filt(epo, filt.b, filt.a);
+        
+        % Feature Extraction and Classification
+        Classification_Result = MotorImagery_Online_Fn(epo, Bandpass_Filter, Out);
+        
+        disp('Signal processing');
+        pause(2);
+        disp('Decoding signal');
+        pause(2);
+        
+        desired_pos=[0.6; 0.15; 0.15; home_pos(4); home_pos(5); home_pos(6)];
+        moveToCP(jc,desired_pos);
+        
+    %% 로봇팔 움직임 수정필요
