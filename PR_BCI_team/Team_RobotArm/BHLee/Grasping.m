@@ -283,4 +283,5 @@ while 1
         break;
     end
     
+ %% other case 코딩 필요
   
