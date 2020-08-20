@@ -250,4 +250,37 @@ while 1
         desired_pos=[0.6; 0.15; 0.15; home_pos(4); home_pos(5); home_pos(6)];
         moveToCP(jc,desired_pos);
         
-    %% ·Îº¿ÆÈ ¿òÁ÷ÀÓ ¼öÁ¤ÇÊ¿ä
+        jntVelCmd = [0;0;0;0;0;0;0.2]; %7DOF
+        for i=1:300
+            sendJointVelocityCommand(jc,jntVelCmd);
+        end
+        
+        pause(5);
+        
+        jntVelCmd = [0;0;0;0;0;0;-0.2]; %7DOF
+        for i=1:260
+            sendJointVelocityCommand(jc,jntVelCmd);
+        end
+        
+        pause(1);
+        
+        desired_pos=[x_origin; -y_origin; 0.08; home_pos(4); home_pos(5); home_pos(6)];
+        moveToCP(jc,desired_pos);
+        
+        pause(1);
+        
+        setPositionControlMode(jc);
+        fCmd = 0*ones(3,1);
+        sendFingerPositionCommand(jc,fCmd);
+        
+        desired_pos=[x_origin; -y_origin; 0.2; home_pos(4); home_pos(5); home_pos(6)];
+        moveToCP(jc,desired_pos);
+        
+        pause(1);
+        
+        goToHomePosition(jc);
+        
+        break;
+    end
+    
+  
