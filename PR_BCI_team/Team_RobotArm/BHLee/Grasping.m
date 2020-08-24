@@ -308,6 +308,6 @@ while 1
         pause(1);
         
         break
-        %% 실패한 경우
+ 
 end
 
