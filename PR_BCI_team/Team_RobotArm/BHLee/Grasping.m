@@ -283,5 +283,31 @@ while 1
         break;
     end
     
- %% other case 코딩 필요
-  
+    else
+        disp('Decoding Error!');
+        disp('Receiving brain signal again....');
+        
+        pause(2);
+        
+        desired_pos=[x_origin; -y_origin; 0.07; home_pos(4); home_pos(5); home_pos(6)];
+        moveToCP(jc,desired_pos);
+        
+        pause(1);
+        
+        setPositionControlMode(jc);
+        fCmd = 0*ones(3,1);
+        sendFingerPositionCommand(jc,fCmd);
+        
+        pause(1);
+        
+        desired_pos=[x_origin; -y_origin; 0.2; home_pos(4); home_pos(5); home_pos(6)];
+        moveToCP(jc,desired_pos);
+        
+        goToHomePosition(jc);
+        
+        pause(1);
+        
+        break
+        %% 실패한 경우
+end
+
