@@ -308,6 +308,8 @@ while 1
         pause(1);
         
         break
- 
-end
+        
+        bbci_acquire_bv('close'); 
+
+
 
