@@ -310,6 +310,9 @@ while 1
         break
         
         bbci_acquire_bv('close'); 
+end
+end
+
 
 
 
