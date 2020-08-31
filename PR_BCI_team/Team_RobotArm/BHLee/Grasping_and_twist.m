@@ -1,12 +1,12 @@
 function Grasping_and_twist
 
-%% Grasping and twisting
-
+%% Grasping and twisting Function with EEG recording
 clear; close; clc;
-%% initiate
+%% Initializing EEG recording device
 bbci_acquire_bv('close');
 startup_bbci;
 
+%% RoboticArm communication channel opened
 jc = JacoComm;
 connect(jc);
 calibrateFingers(jc);
@@ -41,13 +41,9 @@ jc.DOF
 jc.TrajectoryInfo
 
 %% Methods to query joint and finger values all at once
-%% 팔 관절 각도 값과 손가락 관절 각도 값을 리턴
 pos = getJointAndFingerPos(jc);
-%%
-%% 팔 관절 속도 값과 손가락 관절 속도 값을 리턴
 vel = getJointAndFingerVel(jc);
-%%
-%% 팔 관절 토크 값과 손가락 관절 토크 값을 리턴
+
 torque = getJointAndFingerTorque(jc);
 temp = getJointAndFingerTemp(jc);
 
@@ -63,7 +59,7 @@ setPositionControlMode(jc);
 fCmd = 0*ones(3,1);
 sendFingerPositionCommand(jc,fCmd);
 
-%% EEG_Mat file 받을 준비
+%% Offline model training
 global EEG_MAT_DIR
 EEG_MAT_DIR = '';
 
