@@ -1,4 +1,4 @@
-function Grasping_and_Twist
+function Grasping_and_twist
 
 %% Grasping and twisting
 
