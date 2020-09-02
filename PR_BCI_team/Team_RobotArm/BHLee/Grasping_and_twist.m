@@ -120,7 +120,7 @@ desired_pos=[x_origin; -y_origin; 0.1; home_pos(4); home_pos(5); home_pos(6)];
 moveToCP(jc,desired_pos);
 % YOLO to RoboticArm coordinate axis
 while 1
-    %% cue
+    %% Sound cue
     [A,AFs] = audioread('grasp.mp3');
     sound(A,AFs);
     pause(2);
@@ -135,6 +135,7 @@ while 1
     pause(2);
     
     %% Initializing EEG recording
+    % Initialization communication channel
     bbci_acquire_bv('close');
     EEG_MAT_DIR = '';
     params=struct;
@@ -274,33 +275,32 @@ while 1
         break;
     end
     
-    else
-        disp('Decoding Error!');
-        disp('Receiving brain signal again....');
-        
-        pause(2);
-        
-        desired_pos=[x_origin; -y_origin; 0.07; home_pos(4); home_pos(5); home_pos(6)];
-        moveToCP(jc,desired_pos);
-        
-        pause(1);
-        
-        setPositionControlMode(jc);
-        fCmd = 0*ones(3,1);
-        sendFingerPositionCommand(jc,fCmd);
-        
-        pause(1);
-        
-        desired_pos=[x_origin; -y_origin; 0.2; home_pos(4); home_pos(5); home_pos(6)];
-        moveToCP(jc,desired_pos);
-        
-        goToHomePosition(jc);
-        
-        pause(1);
-        
-        break
-        
-        bbci_acquire_bv('close'); 
+    disp('Decoding Error!');
+    disp('Receiving brain signal again....');
+    
+    pause(2);
+    
+    desired_pos=[x_origin; -y_origin; 0.07; home_pos(4); home_pos(5); home_pos(6)];
+    moveToCP(jc,desired_pos);
+    
+    pause(1);
+    
+    setPositionControlMode(jc);
+    fCmd = 0*ones(3,1);
+    sendFingerPositionCommand(jc,fCmd);
+    
+    pause(1);
+    
+    desired_pos=[x_origin; -y_origin; 0.2; home_pos(4); home_pos(5); home_pos(6)];
+    moveToCP(jc,desired_pos);
+    
+    goToHomePosition(jc);
+    
+    pause(1);
+    
+    break
+    
+    bbci_acquire_bv('close');
 end
 end
 
