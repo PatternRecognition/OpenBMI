@@ -54,7 +54,6 @@ current_pos=jc.EndEffectorPose;
 home_pos=jc.EndEffectorPose;
 previous_pos=current_pos;
 
-
 setPositionControlMode(jc);
 fCmd = 0*ones(3,1);
 sendFingerPositionCommand(jc,fCmd);
