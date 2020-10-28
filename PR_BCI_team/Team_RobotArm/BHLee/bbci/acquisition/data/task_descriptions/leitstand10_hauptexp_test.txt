@@ -1,8 +1,0 @@
-Wir kommen nun zum \bf{Hauptexperiment}\rm, 
-
-Sie arbeiten an einem Leitstand in einer Fabrik.
-Auf dem Bildschirm zentral vor Ihnen gehen \bf{Meldungen}\rm ein, die blau, gelb 
-oder rot kodiert sind. Alle Meldungen beinhalten einen Text. \bf{Blaue Meldungen}\rm sind Betriebsmeldungen, auf die Sie nicht weiter reagieren müssen. \bf{Gelbe Meldungen}\rm sind Warnmeldungen: Beantworten Sie bitte \bf{so schnell wie möglich}\rm mit der Tastur die Frage des Textes. \bf{Rote Meldungen}\rm sind Störmeldungen: Beantworten Sie bitte auch hier so schnell wie möglich mit der Tastatur die Frage des Textes.
-Drehen Sie sich dann zum rechten Monitor und drücken Sie auf die ENTER Taste des Zahlenblocks. Daraufhin erscheint eine Aufgabe für deren Beantwortung Sie 10 Sekunden Zeit haben. In dieser Aufgabe erscheinen d und p mit unterschiedlichen Strichen oberhalb und unterhalb des Buchstabens. Drücken Sie nun für jedes \bf{d mit insgesamt 2 Strichen}\rm mit dem rechten Zeigefinger auf dem Zahlenblock die linke Taste für richtig und bei allen anderen Symbolen mit dem rechten Mittelfinger die rechte Taste für falsch. Lösen Sie diese Aufgabe \bf{so richtig aber auch so schnell wie möglich}\rm. Nach der Bearbeitung dieser Aufgabe drehen Sie sich bitte wieder zurück zum linken Bildschirm und drücken eine der beiden Tasten auf der Tastatur.
-Wir beginnen zunächst mit einer kurzen Testphase, in der Sie die Aufgabe
-erproben können. Wenn Sie bereit sind, geben Sie dem Versuchsleiter Bescheid!

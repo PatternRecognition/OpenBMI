@@ -1,3 +1,0 @@
-# temporary files
-*~
-*.asv

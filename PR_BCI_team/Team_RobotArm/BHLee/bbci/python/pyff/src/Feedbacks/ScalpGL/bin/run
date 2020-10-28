@@ -1,7 +1,0 @@
-#!/bin/bash
-cd ../..
-./FeedbackController.py --loglevel debug &
-sleep 3
-./GUI.py
-sleep 1
-kill %1

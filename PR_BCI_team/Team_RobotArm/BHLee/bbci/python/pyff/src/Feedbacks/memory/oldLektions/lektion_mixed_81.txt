@@ -1,8 +1,0 @@
-&#x56d7  	enclosure  	3
-&#x9e7f  	deer  	11
-&#x9adf  	hair  	10
-&#x603b	always	8
-&#x58eb  	scholar  	3
-&#x9f8d  	dragon  	16
-&#x9efd  	frog  	13
-&#x97f3  	sound  	9

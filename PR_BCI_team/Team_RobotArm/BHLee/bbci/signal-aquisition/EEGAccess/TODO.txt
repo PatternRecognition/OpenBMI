@@ -1,2 +1,0 @@
-debug DTEC get data
-TRY the GTEC amps with more than 1 amp attached

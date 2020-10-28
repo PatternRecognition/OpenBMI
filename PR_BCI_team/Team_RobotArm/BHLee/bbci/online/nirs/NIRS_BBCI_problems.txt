@@ -1,3 +1,0 @@
-Problemas con integracion NIRS-BBCI:
-
-- Los datos de NIRS no tienen ni siquiera labels.

@@ -1,6 +1,0 @@
-Gleich werden Sie einen farbigen Balken sehen, der entweder blau, gelb oder
-rot ist. Nach einiger Zeit ändert der Balken seine Farbe. Zählen Sie bitte, wie oft
-der Balken \bf{rot}\rm ist. Manchmal ist der Balken mehrmals hintereinander rot
-(das sieht man daran, dass er kurz aufblinkt); zählen Sie in diesem Fall jedes 
-Mal gesondert. Die entsprechende Anzahl können Sie am Ende des Blocks
-per Tastatur eintippen und mit ENTER bestätigen.

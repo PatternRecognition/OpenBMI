@@ -1,4 +1,0 @@
-Nach Ablauf eines Countdowns sehen Sie auf der Mitte des Bildschirms ein Kreuz.
-Sie hoeren eine Stimme, welche Sie bittet Ihre Augen geöffnet zu lassen, das Kreuz
-anzusehen und zu entspannen. Dieser Task wird 10 Minuten dauern. Nach 10 Minuten macht 
-die Stimme Sie darauf aufmerksam, dass der Task beendet ist.

@@ -1,5 +1,0 @@
-0) run startup functions (startup_nirs) so that global variables are initilized
-1) in bbci/online/subjects/ execute subject file - bbci struct
-2) bbci_bet_prepare - load raw data into Cnt, mrk, mnt, also add to bbci
-3) bbci_bet_analyze - artifacts, selection of temporal filter, time interval, spatial filter, xvalidation of features
-4) bbci_bet_finish - calculates the classifier

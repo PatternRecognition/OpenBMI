@@ -1,8 +1,0 @@
-Gleich bekommen Sie ein \bf{Schachbrettmuster}\rm zu sehen, in dessen Mitte
-sich ein \bf{roter Punkt}\rm befindet. Bitte fixieren Sie diesen Punkt mit Ihren 
-Augen. Die einzelnen Quadrate des Schachbretts wechseln in gewissen
-Zeitabständen ihre Farbe von schwarz nach weiß bzw. weiß nach schwarz.
-
-Bitte \bf{zählen}\rm Sie die Anzahl der Farbwechsel. Es gibt mehrere Blöcke mit
-kurzen Pausen. Zählen Sie nach jeder Pause einfach weiter und teilen Sie am Ende
-die Gesamtzahl dem Versuchsleiter mit.

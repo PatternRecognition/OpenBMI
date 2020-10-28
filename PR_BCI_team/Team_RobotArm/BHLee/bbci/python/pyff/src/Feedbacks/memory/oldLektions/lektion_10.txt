@@ -1,8 +1,0 @@
-&#x99ac; 	horse 
-&#x9aa8; 	bone 
-&#x9ad8; 	tall 
-&#x9adf; 	hair 
-&#x9b25; 	fight 
-&#x9b2f; 	sacrificialwine 
-&#x9b32; 	cauldron 
-&#x9b3c; 	ghost 

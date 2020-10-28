@@ -1,8 +1,0 @@
-&#x91d1; 	gold 
-&#x9580; 	gate 
-&#x961c; 	mound 
-&#x96b6; 	slave 
-&#x96b9; 	short-tailedbird 
-&#x96e8; 	rain 
-&#x9752; 	green 
-&#x975e; 	wrong 

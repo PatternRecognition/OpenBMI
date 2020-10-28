@@ -1,3 +1,0 @@
-Durch eine Analyse der bisher aufgenommenen Daten, wurde entschieden,
-dass im weiteren Verlauf nur noch beiden Bewegungsvorstellungen der
-\bf{linken}\rm und der \bf{rechten}\rm Hand verwendet werden. 

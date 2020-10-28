@@ -1,6 +1,0 @@
-# temporary files
-*~
-*.asv
-
-# unnecessary files
-*demos/svmdemo
