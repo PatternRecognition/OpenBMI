@@ -1,1 +1,1 @@
-BCI with the Deeplearning on the Python
+BCI with the Deeplearning on the Matlab
