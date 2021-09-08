@@ -102,23 +102,5 @@ aud_ERP_paradigm_ambulatory(trig_erp, nTrial)
 write(tcp_ear, stimulusEND);
 ppWrite(IO_ADD,403);
 %% %%%%%%%%%%%%%%%%%%%%%%   SSVEP   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% setting
-% 12, 8.57, 5.45, 3.53 Hz 
-trig_ssvep = [1 2 3 4]; % standing condition
-% 20 or 50
-nTrial = 20; % 4 class * 50 = 200 trials
-
-% example_SSVEP(20);
-%% SSVEP 0 km/h
-stimulusSTART=[padding; uint64(501); timestamp];    % start trigger
-stimulusEND=[padding; uint64(601); timestamp];    % end trigger
-
-write(tcp_ear, stimulusSTART);
-ppWrite(IO_ADD,501); 
-% 
-SSVEP_paradigm_ambulatory(trig_ssvep,nTrial)
-%
-write(tcp_ear, stimulusEND);
-ppWrite(IO_ADD,601);
 
 
