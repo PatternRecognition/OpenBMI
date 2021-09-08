@@ -102,7 +102,7 @@ waitKey=KbName('s');
 p_close=0;
 
 %% Eyes open/closed
-eyesOpenClosed2 % script
+run(fullfile(pathstr,"..", '\Artifact\eyesOpenClosed')) % script
 
 %% fixation cross
 [X,Y] = RectCenter(wRect);
