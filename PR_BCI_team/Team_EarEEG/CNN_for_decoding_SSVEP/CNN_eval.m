@@ -1,5 +1,5 @@
 %%
-% raw ë¡? ?• ê±°ë©´ 
+% raw 
 input_train  = epo_train;
 input_test = epo_test;
 
