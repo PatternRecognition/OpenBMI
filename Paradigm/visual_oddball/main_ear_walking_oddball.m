@@ -78,29 +78,3 @@ aud_ERP_paradigm_ambulatory(trig_erp, nTrial)
 write(tcp_ear, stimulusEND);
 ppWrite(IO_ADD,401);
 
-%% aud ERP 3 km/s
-stimulusSTART=[padding; uint64(302); timestamp];    % start trigger
-stimulusEND=[padding; uint64(402) ; timestamp];    % end trigger
-      
-write(tcp_ear, stimulusSTART);
-ppWrite(IO_ADD,302);  
-% 
-aud_ERP_paradigm_ambulatory(trig_erp, nTrial)
-%   
-write(tcp_ear, stimulusEND);
-ppWrite(IO_ADD,402);
-
-%% aud ERP 6 km/h   
-stimulusSTART=[padding; uint64(303); timestamp];    % start trigger
-stimulusEND=[padding; uint64(403); timestamp];    % end trigger
-
-write(tcp_ear, stimulusSTART);  
-ppWrite(IO_ADD,303);
-%    
-aud_ERP_paradigm_ambulatory(trig_erp, nTrial)
-%
-write(tcp_ear, stimulusEND);
-ppWrite(IO_ADD,403);
-%% %%%%%%%%%%%%%%%%%%%%%%   SSVEP   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
