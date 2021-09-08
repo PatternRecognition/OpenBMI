@@ -8,7 +8,7 @@ nTrial = 20; % 3 class * 15 = 45 trials
 % SSVEP TR TE
  
 % trigger, num of tr, comm, screen num (3), session num (shuffle)
-SSVEP_paradigm_ambulatory(trig_ssvep,nTrial,[0 0 0],0, 1);
+SSVEP_paradigm(trig_ssvep,nTrial,[0 0 0],0, 1);
 
 
 
