@@ -54,9 +54,11 @@ jitter = a + (b-a).*rand(num_trial*num_class,1);
 jitter=jitter*0.5;
 
 %% image load
-img_right=imread('\Stimulus\right.jpg');
-img_left=imread('\Stimulus\\left.jpg');
-img_down=imread('\Stimulus\down.jpg');
+currentFile = mfilename( 'fullpath' );
+[pathstr,~,~] = fileparts( currentFile );
+img_right=imread(fullfile(pathstr, "..", '\Stimulus\right.jpg'));
+img_left=imread(fullfile(pathstr, "..",'\Stimulus\\left.jpg'));
+img_down=imread(fullfile(pathstr, "..",'\Stimulus\down.jpg'));
 % img_cross=imread('\Stimulus\cross.jpg');
 
 %% beep sound
