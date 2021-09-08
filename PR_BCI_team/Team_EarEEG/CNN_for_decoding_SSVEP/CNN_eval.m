@@ -3,7 +3,7 @@
 input_train  = epo_train;
 input_test = epo_test;
 
-% feature vecture ë¡? ?• ê±°ë©´
+% feature vecture 
 % input_train  = fv_Tr;
 % input_test = fv_Te;
 %%
