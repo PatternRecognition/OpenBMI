@@ -6,4 +6,3 @@ end
 
 mean_AUC = mean(AUC);
 disp(mean_AUC)
-
