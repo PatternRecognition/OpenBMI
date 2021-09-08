@@ -31,27 +31,4 @@ vis_ERP_paradigm_ambulatory(trig_vis_erp, nSequence)
 write(tcp_ear, stimulusEND);
 ppWrite(IO_ADD,201);
 
-%% vis ERP 3 km/s
-stimulusSTART=[padding; uint64(102); timestamp];    % start trigger
-stimulusEND=[padding; uint64(202); timestamp];    % end trigger
-
-write(tcp_ear, stimulusSTART);
-ppWrite(IO_ADD,102); 
-% 
-vis_ERP_paradigm_ambulatory(trig_vis_erp, nSequence)
-%   
-write(tcp_ear, stimulusEND);
-ppWrite(IO_ADD,202);
-
-%% vis ERP 6 km/h
-stimulusSTART=[padding; uint64(103); timestamp];    % start trigger
-stimulusEND=[padding; uint64(203); timestamp];    % end trigger
-
-write(tcp_ear, stimulusSTART);  
-ppWrite(IO_ADD,103);
-%    
-vis_ERP_paradigm_ambulatory(trig_vis_erp, nSequence)
-%
-write(tcp_ear, stimulusEND);
-ppWrite(IO_ADD,203);
 
