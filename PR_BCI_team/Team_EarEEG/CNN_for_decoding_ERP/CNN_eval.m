@@ -1,5 +1,5 @@
 %%
-% raw 
+% raw data
 input_train  = epo_train;
 input_test = epo_test;
 
