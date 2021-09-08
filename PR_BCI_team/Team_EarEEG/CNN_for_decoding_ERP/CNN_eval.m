@@ -7,8 +7,8 @@ input_test = epo_test;
 % input_train  = fv_Tr;
 % input_test = fv_Te;
 %%
-for j=1:15
-    ans_auc(:,j) = input_test{j}.y(1,:)';
+for j=1:15 % subjects
+ans_auc(:,j) = input_test{j}.y(1,:)';
 xTrain = permute(input_train{j}.x,[1,2,4,3]);
 yTrain = categorical(input_train{j}.event.desc);
 xTest = permute(input_test{j}.x,[1,2,4,3]);
