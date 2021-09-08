@@ -14,9 +14,7 @@ timestamp=uint64(0);
 %% setting
 % trigger num
 trig_vis_erp = [1 2]; % standing condition
-
 nSequence = 6;
-
 
 % example_vis_ERP(6);
 %% vis ERP 0 km/s
