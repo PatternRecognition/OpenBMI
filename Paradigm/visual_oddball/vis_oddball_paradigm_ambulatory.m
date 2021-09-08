@@ -307,7 +307,3 @@ ShowCursor;
 fclose('all');
 Priority(0);
 
-
-
-
-
