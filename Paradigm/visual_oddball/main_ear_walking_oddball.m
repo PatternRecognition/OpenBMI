@@ -120,28 +120,5 @@ SSVEP_paradigm_ambulatory(trig_ssvep,nTrial)
 %
 write(tcp_ear, stimulusEND);
 ppWrite(IO_ADD,601);
-%% SSVEP 3 km/h
-stimulusSTART=[padding; uint64(502); timestamp];    % start trigger
-stimulusEND=[padding; uint64(602); timestamp];    % end trigger
-
-write(tcp_ear, stimulusSTART);
-ppWrite(IO_ADD,502);
-% 
-SSVEP_paradigm_ambulatory(trig_ssvep,nTrial)
-%
-write(tcp_ear, stimulusEND);
-ppWrite(IO_ADD,602);
-
-%% SSVEP 6 km/h
-stimulusSTART=[padding; uint64(503); timestamp];    % start trigger
-stimulusEND=[padding; uint64(603); timestamp];    % end trigger
-
-write(tcp_ear, stimulusSTART);
-ppWrite(IO_ADD,503);
-% 
-SSVEP_paradigm_ambulatory(trig_ssvep,nTrial)
-%
-write(tcp_ear, stimulusEND);
-ppWrite(IO_ADD,603);
 
 
