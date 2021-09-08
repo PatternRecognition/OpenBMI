@@ -1,3 +1,6 @@
+% evaluation ERP using CNN
+% email: ye_lee@korea.ac.kr
+%% Training
 for j=1:10
 xTrain = permute(fv_Tr{j,1}.x,[1,2,4,3]);
 yTrain = categorical(fv_Tr{j,1}.event.desc);
