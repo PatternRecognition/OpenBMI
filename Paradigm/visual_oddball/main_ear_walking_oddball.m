@@ -54,27 +54,4 @@ vis_ERP_paradigm_ambulatory(trig_vis_erp, nSequence)
 %
 write(tcp_ear, stimulusEND);
 ppWrite(IO_ADD,203);
-%% %%%%%%%%%%%%%%%%%%%%  Auditory ERP   %%%%%%%%%%%%%%%%%%%%%%%%%%
-%% setting
-% class = {'stand','1.6', '2.0'}; % 0 3 6 km/h 
-% trigger num
-trig_erp = [1 2]; % standing condition
-% trig_walk_08 = [21 22]; % walking condition 0.8 m/s
-% trig_walk_16 = [31 32]; % walking condition 1.6 m/s
-
-% 300
-nTrial = 300;
-
-%  example_aud_ERP(300)   
-%% aud ERP 0 km/s
-stimulusSTART=[padding; uint64(301); timestamp];    % start trigger
-stimulusEND=[padding; uint64(401); timestamp];     % end trigger
-        
-write(tcp_ear, stimulusSTART);
-ppWrite(IO_ADD,301); 
-%
-aud_ERP_paradigm_ambulatory(trig_erp, nTrial)
-%  
-write(tcp_ear, stimulusEND);
-ppWrite(IO_ADD,401);
 
