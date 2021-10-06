@@ -169,7 +169,7 @@ N = round(window_len*srate);
 
 % get the threshold matrix T
 fprintf('Determining per-component thresholds...');
-[V,D] = eig(M); %#ok<NASGU>
+[V,D] = eig(M);
 X = abs(X*V);
 for c = C:-1:1
     % compute RMS amplitude for each window...
