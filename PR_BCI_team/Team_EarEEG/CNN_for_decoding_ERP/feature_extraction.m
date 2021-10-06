@@ -61,8 +61,8 @@ epo = proc_selectChannels(epo, chan);
 fv_Te{subNum}= proc_baseline(epo, ref_ival);
 fv_Te{subNum}= proc_jumpingMeans(fv_Te{subNum}, ival_cfy);
 
-xTesz= size(fv_Te{subNum}.x);
 % test loss
+xTesz= size(fv_Te{subNum}.x);
 outTe= apply_separatingHyperplane(C, reshape(fv_Te{subNum}.x, [prod(xTesz(1:end-1)) xTesz(end)]));
 lossTe = mean(loss_0_1(fv_Te{subNum}.y, outTe));
 
