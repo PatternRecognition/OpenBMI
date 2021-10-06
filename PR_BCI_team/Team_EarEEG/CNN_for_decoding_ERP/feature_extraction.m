@@ -11,13 +11,11 @@ for subNum=1:15
 %% select channels
 % erp_chan=15:28;
 chan = {'C3','C1','C2','C4','CP1','CP2','P3','Pz','P4','PO7','PO3','POz','PO4','PO8','O1','Oz','O2'};
-% eval(sprintf('chan = %s_inter_chan{j};',modal));
 
 %% ival setting
 
 ref_ival= [-200 0] ;
 r_ival = [100 600];
-% psn_ival = [-150 -50] ;
 psn_ival = [-200 0] ;
 p300_ival = [280 380];
 
