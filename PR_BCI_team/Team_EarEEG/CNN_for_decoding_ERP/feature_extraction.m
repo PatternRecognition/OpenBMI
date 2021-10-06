@@ -76,7 +76,6 @@ epo.y_dec = epo.y(1,:);
 
 excel_AUC(subNum) = ERP_per.auc;
 
-
 end
 %%
 disp('Mean AUC')
