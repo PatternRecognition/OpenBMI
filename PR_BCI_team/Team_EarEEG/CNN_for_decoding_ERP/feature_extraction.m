@@ -68,8 +68,7 @@ lossTe = mean(loss_0_1(fv_Te{subNum}.y, outTe));
 
 % training loss
 outTr= apply_separatingHyperplane(C, reshape(fv_Tr{subNum}.x, fvsz));
-[loss_all] = loss_0_1(fv_Tr{subNum}.y, outTr);
-lossTr = mean(loss_all);
+lossTr = mean(loss_0_1(fv_Tr{subNum}.y, outTr));
 
 pred_prop(:,subNum) = outTe;
 epo.y_dec = epo.y(1,:);
