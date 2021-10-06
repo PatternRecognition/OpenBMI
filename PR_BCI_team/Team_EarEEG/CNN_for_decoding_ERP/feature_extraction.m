@@ -56,7 +56,6 @@ C = train_RLDAshrink(reshape(fv_Tr{subNum}.x,fvsz), fv_Tr{subNum}.y);
 
 %% test
 epo = epo_test{subNum};
-
 epo = proc_selectChannels(epo, chan);
 
 fv_Te{subNum}= proc_baseline(epo, ref_ival);
