@@ -1,5 +1,5 @@
 % ERP Features Extraction
-%%
+%% Initialization
 ival_cfy_fixing = 1; % 1:ture // fixing
 
 excel_AUC = [];
