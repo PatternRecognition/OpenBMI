@@ -1,5 +1,4 @@
 function [gradients, loss] = modelGradients(dlnet, dlX, Y)
-
     % Forward data through the dlnetwork object.
     dlY = forward(dlnet,dlX);
 
@@ -9,5 +8,4 @@ function [gradients, loss] = modelGradients(dlnet, dlX, Y)
     
     % Compute gradients.
     gradients = dlgradient(loss,dlnet.Learnables);
-
 end
