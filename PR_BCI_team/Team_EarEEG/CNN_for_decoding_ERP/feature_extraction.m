@@ -44,6 +44,7 @@ end
 
 slt_ival{subNum} = ival_cfy;
 
+% feature vecture
 fv_Tr{subNum} = proc_baseline(epo, ref_ival);
 fv_Tr{subNum} = proc_jumpingMeans(fv_Tr{subNum}, ival_cfy);
 
