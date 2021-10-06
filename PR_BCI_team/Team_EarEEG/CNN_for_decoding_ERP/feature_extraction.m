@@ -82,4 +82,3 @@ disp('Mean AUC')
 mean_AUC = sum(excel_AUC)/nnz(excel_AUC);
 
 disp(mean_AUC)
-
