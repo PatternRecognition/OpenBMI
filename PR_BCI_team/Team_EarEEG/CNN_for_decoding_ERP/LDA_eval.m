@@ -71,11 +71,9 @@ epo.y_dec = epo.y(1,:);
 
 excel_AUC(subNum) = ERP_per.auc;
 
-
 end
 %%
 disp('Mean AUC')
 mean_AUC = sum(excel_AUC)/nnz(excel_AUC);
 
 disp(mean_AUC)
-
