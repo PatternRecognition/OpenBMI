@@ -51,7 +51,7 @@ acc(j) = sum(double(y_pred == yTest)/numel(yTest));
 % disp(sprintf('Test accuracy: %d %%',floor(acc*100)));
 end
 mean_acc = mean(acc);
-disp(mean_acc)
+fprintf(mean_acc)
 
 mean_AUC = mean(AUC);
-disp(mean_AUC)
+fprintf(mean_AUC)
