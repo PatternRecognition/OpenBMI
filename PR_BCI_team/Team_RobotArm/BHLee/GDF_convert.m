@@ -1,11 +1,8 @@
-clear; clc;
+clear; 
+clc;
 
 
 %% sload
-% biosig에 해당하는 폴더에서 biosig_installer.m을 실행시킨다.
-% 아래 cd (.gdf 파일 경로)와 savepath를 실행시켜 경로를 저장해준다.
-% filelist = {'motorexecution_subject11_run1.gdf', 'motorexecution_subject11_run2.gdf', 'motorexecution_subject11_run3.gdf', 'motorexecution_subject11_run4.gdf', 'motorexecution_subject11_run5.gdf', 'motorexecution_subject11_run6.gdf', 'motorexecution_subject11_run7.gdf', 'motorexecution_subject11_run8.gdf', 'motorexecution_subject11_run9.gdf', 'motorexecution_subject11_run10.gdf'};
-
 cd 'directory path'
 savepath
 
