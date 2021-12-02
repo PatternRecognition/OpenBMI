@@ -2,11 +2,11 @@ clear; clc;
 
 
 %% sload
-% biosig¿¡ ÇØ´çÇÏ´Â Æú´õ¿¡¼­ biosig_installer.mÀ» ½ÇÇà½ÃÅ²´Ù.
-% ¾Æ·¡ cd (.gdf ÆÄÀÏ °æ·Î)¿Í savepath¸¦ ½ÇÇà½ÃÄÑ °æ·Î¸¦ ÀúÀåÇØÁØ´Ù.
+% biosigì— í•´ë‹¹í•˜ëŠ” í´ë”ì—ì„œ biosig_installer.mì„ ì‹¤í–‰ì‹œí‚¨ë‹¤.
+% ì•„ë˜ cd (.gdf íŒŒì¼ ê²½ë¡œ)ì™€ savepathë¥¼ ì‹¤í–‰ì‹œì¼œ ê²½ë¡œë¥¼ ì €ì¥í•´ì¤€ë‹¤.
 % filelist = {'motorexecution_subject11_run1.gdf', 'motorexecution_subject11_run2.gdf', 'motorexecution_subject11_run3.gdf', 'motorexecution_subject11_run4.gdf', 'motorexecution_subject11_run5.gdf', 'motorexecution_subject11_run6.gdf', 'motorexecution_subject11_run7.gdf', 'motorexecution_subject11_run8.gdf', 'motorexecution_subject11_run9.gdf', 'motorexecution_subject11_run10.gdf'};
 
-cd D:\robotarm\ydData\horizon_data\subject1\MI/
+cd 'directory path'
 savepath
 
 datedir = dir('*.gdf');
@@ -31,8 +31,8 @@ cnt.x = signal;
 % 1540 = 'hand open'
 % 1541 = 'hand close'
 % 1542 = 'rest'
-% mrk.classNameÀº elbow flexion/extension, forearm supination/pronation,
-% hand open/close (right upper limb)·Î ¼³Á¤ÇÏ¿´À½.
+% mrk.classNameì€ elbow flexion/extension, forearm supination/pronation,
+% hand open/close (right upper limb)ë¡œ ì„¤ì •í•˜ì˜€ìŒ.
 
 classNum.elbow_flexion = 1536;
 classNum.elbow_extension = 1537;
