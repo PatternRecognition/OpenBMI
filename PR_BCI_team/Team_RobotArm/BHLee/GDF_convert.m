@@ -67,6 +67,8 @@ mrk.toe = L;
 mrk.fs = cnt.fs;
 H.Classlabel = {'elbow_flexion', 'elbow_extension', 'forearm_supination', 'forearm_pronation', 'hand_open', 'hand_close', 'rest'};
 mrk.className = H.Classlabel;
+
+% Add class labels
 classNum = [1536; 1537; 1538; 1539; 1540; 1541; 1542];
 
 mrk.y = zeros(7,size(mrk.toe,2))
