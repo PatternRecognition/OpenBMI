@@ -17,6 +17,7 @@ clear cnt_p300_off cnt_p300_on
 % cnt. x : raw eeg signals 
  	 
 % revised 2017.11.11 - Oyeon Kwon (oy_kwon@korea.ac.kr)
+
 %% Initialization
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % for offline
@@ -37,6 +38,7 @@ fs = CNT_on.fs;
 count_char=1;
 spellerText_on='PATTERN_RECOGNITION_MACHINE_LEARNING';
 load('random_cell_order.mat');
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Make the classifier
 cnt=prep_filter(CNT_off, {'frequency', [0.5 40]});
