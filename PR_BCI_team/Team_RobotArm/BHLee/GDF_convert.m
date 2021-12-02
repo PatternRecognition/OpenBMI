@@ -24,6 +24,7 @@ cnt.x = signal;
 %% mrk
 
 % Class name
+%% example
 % 1536 = 'elbow flexion'
 % 1537 = 'elbsion'
 % 1538 = 'supination'
@@ -42,6 +43,7 @@ classNum.hand_open = 1540;
 classNum.hand_close = 1541;
 classNum.rest = 1542;
 
+%% 
 mrk.pos = transpose(H.TRIG);
 % 
 L = H.EVENT.TYP;
