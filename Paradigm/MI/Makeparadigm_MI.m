@@ -102,7 +102,11 @@ waitKey=KbName('s');
 p_close=0;
 
 %% Eyes open/closed
+<<<<<<< Updated upstream
 run(fullfile(pathstr,"..", '\Artifact\eyesOpenClosed')) % script
+=======
+run('Paradigm\Artifact\eyesOpenClosed') % script
+>>>>>>> Stashed changes
 
 %% fixation cross
 [X,Y] = RectCenter(wRect);
