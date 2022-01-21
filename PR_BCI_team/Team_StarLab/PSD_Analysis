@@ -7,9 +7,10 @@ for nclass=1:length(sti_freq)
     end
 end
 mod_power_dB= mean(mod_power_dB,2);
-[a b] = max(mod_power_dB);
+[a, b] = max(mod_power_dB);
 
 freq_index=b;
 answer = sti_freq(b);
+
 
 

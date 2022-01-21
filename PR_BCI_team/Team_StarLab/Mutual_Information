@@ -8,6 +8,8 @@ function mi = cal_mutual_information( f1, f2, kernelWidth )
 
 % avoidUnderflow = 1e-100;
 % Entropy of data A: H(A)
+
+%%
 [estimatedDensity cov_inf]= proc_ParzenKDE( [f1'; f2'], [f1'; f2'], kernelWidth );
 if cov_inf
     entropy = -sum(log(estimatedDensity)) / length(estimatedDensity);
