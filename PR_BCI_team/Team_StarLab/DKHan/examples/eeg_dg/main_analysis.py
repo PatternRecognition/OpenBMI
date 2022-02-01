@@ -17,7 +17,6 @@ def exp(args,fold_idx, train_set,valid_set, test_set):
     model = models.get_model(args)
     print(model)
 
-
     cuda = torch.cuda.is_available()
     # check if GPU is available, if True chooses to use it
     device = 'cuda' if cuda else 'cpu'
@@ -32,7 +31,6 @@ def exp(args,fold_idx, train_set,valid_set, test_set):
         model.cuda(device=device)
 
     all_test_score = []
-
 
     for subj in range(1):
         print(subj)
@@ -56,7 +54,6 @@ def exp(args,fold_idx, train_set,valid_set, test_set):
                 out, y, ids = get_feature(model, device, test_loader)
 
                 feature_tr, y_tr, id = get_feature(model, device, train_loader)
-                # feature_tr_gap = feature_tr.reshape(feature_tr.shape[0],200,6).mean(axis=2)
                 from sklearn.manifold import TSNE
                 tsne = TSNE(n_components=2, perplexity=30)
                 selected_subj = np.r_[0:4]
