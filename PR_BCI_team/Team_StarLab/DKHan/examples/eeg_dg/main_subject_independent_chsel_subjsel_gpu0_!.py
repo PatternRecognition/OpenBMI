@@ -50,8 +50,6 @@ def exp(args,fold_idx, train_set,valid_set, test_set):
 
 
     model = models.get_model(args)
-    # model = FcClfNet(embedding_net)
-    # model  = torch.nn.DataParallel(model)
 
     mb_params= utils.param_size(model)
     print(f"Model size = {mb_params:.4f} MB")
@@ -118,7 +116,6 @@ def exp(args,fold_idx, train_set,valid_set, test_set):
         print(f'current best(loss) acc : {best_acc_loss:.4f} at epoch {best_loss_epoch}')
         print(f'current max acc : {max_acc:.4f} at epoch {max_epoch}')
 
-
     best_model = models.get_model(args)
     best_model.load_state_dict(torch.load(os.path.join(
         path, 'models',
@@ -135,7 +132,6 @@ def exp(args,fold_idx, train_set,valid_set, test_set):
 
 
 if __name__ == '__main__':
-
 
     parser = argparse.ArgumentParser(description='openbmi_gigadb')
     parser.add_argument('--data-root',
