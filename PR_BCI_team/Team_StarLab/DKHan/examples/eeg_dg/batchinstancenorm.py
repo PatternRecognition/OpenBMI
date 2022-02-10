@@ -9,6 +9,7 @@ class _BatchInstanceNorm(_BatchNorm):
         super(_BatchInstanceNorm, self).__init__(num_features, eps, momentum, affine)
         self.gate = Parameter(torch.Tensor(num_features))
         self.gate.data.fill_(1)
+
         setattr(self.gate, 'bin_gate', True)
 
     def forward(self, input):
@@ -19,6 +20,7 @@ class _BatchInstanceNorm(_BatchNorm):
             bn_w = self.weight * self.gate
         else:
             bn_w = self.gate
+
         out_bn = F.batch_norm(
             input, self.running_mean, self.running_var, bn_w, self.bias,
             self.training, self.momentum, self.eps)
@@ -29,6 +31,7 @@ class _BatchInstanceNorm(_BatchNorm):
             in_w = self.weight * (1 - self.gate)
         else:
             in_w = 1 - self.gate
+
         input = input.view(1, b * c, *input.size()[2:])
         out_in = F.batch_norm(
             input, None, None, None, None,
@@ -39,6 +42,7 @@ class _BatchInstanceNorm(_BatchNorm):
         return out_bn + out_in
 
 
+# BATCH
 class BatchInstanceNorm1d(_BatchInstanceNorm):
     def _check_input_dim(self, input):
         if input.dim() != 2 and input.dim() != 3:
