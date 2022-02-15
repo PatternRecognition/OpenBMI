@@ -12,7 +12,7 @@ import pickle
 from cbam import *
 
 def one_hot_embedding(labels, num_classes):
-    """Embedding labels to one-hot form.
+    """Embedding labels to one-hot form. 
 
     Args:
       labels: (LongTensor) class labels, sized [N,].
@@ -31,12 +31,10 @@ class Net1(nn.Module):
         #self.conv1_2 = nn.Conv2d(20, 20, (1, 5), 1)
         self.conv2 = nn.Conv2d(25, 25, (62,1), 1)
         self.conv3 = nn.Conv2d(25, 50, (1,10), 1)
-
         self.conv4 = nn.Conv2d(50, 100, (1,10), 1)
-
         self.conv5 = nn.Conv2d(100, 200, (1,9), 1)
 
-
+        # FC layers
         self.fc1 = nn.Linear(200 * 1 * 2, 100)
         self.fc2 = nn.Linear(100, 10)
         self.fc3 = nn.Linear(10, 100)
