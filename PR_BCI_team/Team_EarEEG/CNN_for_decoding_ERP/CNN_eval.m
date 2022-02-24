@@ -46,7 +46,7 @@ net = trainNetwork(xTrain,yTrain,layers,options);
 
 
 %% Test
-% test w
+% test
 [y_pred, scores] = classify(net,xTest);
 prop(:,j) = scores(:,2);
 [~,~,~,AUC(j)] = perfcurve(ans_auc(:,j),prop(:,j),0);
