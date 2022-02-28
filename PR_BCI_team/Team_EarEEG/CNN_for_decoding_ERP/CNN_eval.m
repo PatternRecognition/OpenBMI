@@ -58,5 +58,6 @@ end
 mean_acc = mean(acc);
 fprintf('Accuracy: %.4f\n',mean_acc)
 
+% get AUC
 mean_AUC = mean(AUC);
 fprintf('AUC: %.4f\n',mean_AUC)
