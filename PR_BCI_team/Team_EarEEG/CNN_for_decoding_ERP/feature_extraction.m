@@ -13,7 +13,6 @@ for subNum=1:15
 chan = {'C3','C1','C2','C4','CP1','CP2','P3','Pz','P4','PO7','PO3','POz','PO4','PO8','O1','Oz','O2'};
 
 %% ival setting
-
 ref_ival= [-200 0] ;
 r_ival = [100 600];
 psn_ival = [-200 0] ;
@@ -29,12 +28,11 @@ ival_cfy = [100 110; 110 120; 120 130; 130 140; 140 150; ...
     400 410; 410 420; 420 430; 430 440; 440 450;...
     450 460; 460 470; 470 480; 480 490; 490 500];
 
-
 %% training
 epo = epo_train{subNum};
 epo = proc_selectChannels(epo, chan);
 
-% select ival
+%% select ival
 if ival_cfy_fixing == false
 epo_r= proc_selectIval(epo, r_ival, 'IvalPolicy','minimal');
 epo_r= proc_rSquareSigned(epo_r);
