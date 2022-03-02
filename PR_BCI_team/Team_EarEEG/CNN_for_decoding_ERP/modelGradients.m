@@ -3,7 +3,6 @@ function [gradients, loss] = modelGradients(dlnet, dlX, Y)
     dlY = forward(dlnet,dlX);
 
     % Compute loss.
-%     loss = crossentropy(dlX,Y);
     loss = crossentropy(dlY,Y);
     
     % Compute gradients.
