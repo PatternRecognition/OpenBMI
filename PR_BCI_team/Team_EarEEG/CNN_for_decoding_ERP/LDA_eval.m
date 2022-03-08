@@ -59,7 +59,7 @@ xTesz= size(fv_Te.x);
 outTe= apply_separatingHyperplane(C, reshape(fv_Te.x, [prod(xTesz(1:end-1)) xTesz(end)]));
 lossTe = mean(loss_0_1(fv_Te.y, outTe));
 
-% training loss
+%% training loss
 outTr= apply_separatingHyperplane(C, reshape(fv_Tr.x, fvsz));
 lossTr = mean(loss_0_1(fv_Tr.y, outTr));
 
@@ -70,6 +70,7 @@ epo.y_dec = epo.y(1,:);
 excel_AUC(subNum) = ERP_per.auc;
 
 end
+
 %%
 disp('Mean AUC')
 mean_AUC = sum(excel_AUC)/nnz(excel_AUC);
