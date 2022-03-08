@@ -1,4 +1,4 @@
-% calculate AUC
+%% calculate AUC
 
 for j=1:15
 [~,~,~,AUC(j)] = perfcurve(ans_auc(:,j),prop(:,j),0);
