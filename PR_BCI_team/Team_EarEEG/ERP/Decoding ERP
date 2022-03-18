@@ -3,6 +3,7 @@ cd C:\Users\yelee\Desktop\test_tc2_4
 cd new_BBCI_toolbox 
 startup_bbci_toolbox
 cd ..
+
 %% Data Load
 dire = 'data';
 
@@ -13,7 +14,6 @@ for sub=1:8
 end
 
 %% ival setting
-
 ref_ival= [-200 0] ;
 r_ival = [100 600];
 % psn_ival = [-150 -50] ;
@@ -55,7 +55,8 @@ fv_Te= proc_baseline(epo, ref_ival);
 fv_Te= proc_jumpingMeans(fv_Te, ival_cfy);
 
 xTesz= size(fv_Te.x);
-% test loss
+
+%% test loss
 outTe= apply_separatingHyperplane(C, reshape(fv_Te.x, [prod(xTesz(1:end-1)) xTesz(end)]));
 lossTe = mean(loss_0_1(fv_Te.y, outTe));
 
