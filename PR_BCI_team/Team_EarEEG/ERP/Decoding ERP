@@ -46,7 +46,7 @@ C = train_RLDAshrink(reshape(fv_Tr.x,fvsz), fv_Tr.y);
 
 
 %% test
-epo = EPO{j,speedIdx};
+epo = EPO{j,speedIdx}; % pick epoch
 
 epo = proc_selectChannels(epo, chan);
 % epo = proc_selectChannels(epo, erp_chan);
