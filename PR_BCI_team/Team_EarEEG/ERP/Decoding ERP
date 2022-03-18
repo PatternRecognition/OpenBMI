@@ -6,7 +6,7 @@ cd ..
 %% Data Load
 dire = 'data';
 
-for sub=1:10
+for sub=1:8
     filename = sprintf('s%d',sub);
     epo_train{sub} = load(fullfile(dire,'train',filename)).epo;
     epo_test{sub} = load(fullfile(dire,'test',filename)).epo;
