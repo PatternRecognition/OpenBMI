@@ -5,9 +5,9 @@
 %     k= (i-3)*300 + 1 : (i-3)*300 + 300;
 %     disp(k(end))
 %     rec{i,1} = X(200 + k,:,:);
-% 
+
 % end
-% 
+
 % %%
 % cap_epo_rec{2,4} = cap_epo{2,4};
 % cap_epo_rec{2,4}.x = permute(X(1:200,:,:),[3,2,1]);
@@ -58,14 +58,14 @@ epo_tar = proc_selectClasses(epo,'target');
 
 epo_ntar = proc_selectClasses(epo,'non-target');
 
-% baseline ÇÑ°Å
+% baseline ï¿½Ñ°ï¿½
 epo_b_tar = proc_selectClasses(epo_b,'target');
 epo_b_tar= proc_baseline(epo_b_tar, ref_ival);
 
 epo_b_ntar = proc_selectClasses(epo_b,'non-target');
 epo_b_ntar= proc_baseline(epo_b_ntar, ref_ival);
 
-% baseline ¾ÈÇÑ°Å
+% baseline ï¿½ï¿½ï¿½Ñ°ï¿½
 h1 = figure(1);
 epo_plot = epo_tar;
 plot(epo_plot.t,squeeze(mean(mean(epo.x,3),2)),...
@@ -82,7 +82,7 @@ grid on
 % plot(epo_plot.t,squeeze(mean(mean(epo_ga_ntar.x,3),2)),...
 %     'LineWidth',1,'Color', color_m{im}, 'LineStyle','--')
 
-% baseline ÇÑ°Å
+% baseline ï¿½Ñ°ï¿½
 figure(2)
 epo_plot = epo_b_tar;
 % target
