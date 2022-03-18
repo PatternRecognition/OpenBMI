@@ -51,10 +51,12 @@ epo = EPO{j,speedIdx}; % pick epoch
 epo = proc_selectChannels(epo, chan);
 % epo = proc_selectChannels(epo, erp_chan);
 
+
 fv_Te= proc_baseline(epo, ref_ival);
 fv_Te= proc_jumpingMeans(fv_Te, ival_cfy);
 
 xTesz= size(fv_Te.x);
+
 
 %% test loss
 outTe= apply_separatingHyperplane(C, reshape(fv_Te.x, [prod(xTesz(1:end-1)) xTesz(end)]));
@@ -67,5 +69,5 @@ lossTr = mean(loss_all);
 
 [ERP_per.roc, ERP_per.auc]= roc_curve(epo.y, outTe,'plot',0);
 
-excel_AUC(speedIdx-1, j) = ERP_per.auc;
+%excel_AUC(speedIdx-1, j) = ERP_per.auc;
 
