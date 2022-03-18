@@ -7,11 +7,12 @@ clc; clear all; close all;
 %% data load
 field={'x','t','fs','y_dec','y_logic','y_class','class', 'chan'};
 marker={'1','1';'2','2';'3','3'};
-% marker={'1','up';'2','left'; '3', 'right'; '4', 'down'};
-% marker={'1','right';'2','left';'3','rest';'11','pause';'22','resume';'111','start';'222','end'};
 fs=500;   %chan_resampling
+
 %% data path
 filepath='C:\Users\cvpr\Documents\data';
+
+
 %% eeg - ear
 % ear EEG - eeg file
 filename='record-[2018.01.18-15.46.53]';
