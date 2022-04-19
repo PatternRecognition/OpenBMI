@@ -14,7 +14,7 @@ inputSize = [size(xTrain,1), size(xTrain,2),size(xTrain,3)];
 classes = unique(yTrain);
 numClasses = length(classes);
 
-% build model
+% build model%%
 layers = build_model(inputSize, numClasses);
 
 %% Training
