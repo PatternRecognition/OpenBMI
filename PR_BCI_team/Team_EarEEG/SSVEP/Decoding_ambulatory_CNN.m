@@ -3,7 +3,8 @@ total_conf=zeros(3);
 fileID = fopen('log_tc2.txt','w');
 
 for sub=1:10
-% data setting 
+
+%% data setting 
 xTrain = fv_tr{sub}.x;
 yTrain = categorical(fv_tr{sub}.y);
 xTest = fv_te{sub}.x;
