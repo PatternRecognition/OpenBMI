@@ -42,7 +42,7 @@ end
 
 fclose(fileID);
 
-%% Functions
+%% build model
 function layers = build_model(inputSize, outputSize)
 layers = [
     imageInputLayer(inputSize)
@@ -65,3 +65,4 @@ layers = [
     softmaxLayer
     classificationLayer];
 end
+
