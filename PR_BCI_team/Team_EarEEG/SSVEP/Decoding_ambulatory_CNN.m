@@ -31,11 +31,7 @@ net = trainNetwork(xTrain,yTrain,layers,options);
 y_pred = classify(net,xTest);
 acc(sub) = sum(double(y_pred' == yTest)/numel(yTest));
 fprintf('Test accuracy s%d: %d %% \n',sub,floor(acc(sub)*100));
-%% log save
-t = datetime;
-DateString = datestr(t);
-fprintf(fileID,'%s Test accuracy s%d: %d %% \n',DateString,sub,floor(acc(sub)*100));
-%%
+
 conf{sub} = confusionmat(yTest,y_pred');
 total_conf = total_conf+conf{sub};
 end
