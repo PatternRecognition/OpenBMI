@@ -9,11 +9,12 @@ STRUCTINFO = 'EEG_ERP_train';
 SESSION = 'session1';
 SUBJECT = 's1';
 
-%% INITIALIZATION
+%% Initialization
 FS = 100;
 FREQBAND = [.5 40];
 SEGTIME = [-200 800];
 BASELINE = [-200 0];
+
 
 params = {
     'Interval', [-100, 0; 150 200; 240, 270;320 350]; 
