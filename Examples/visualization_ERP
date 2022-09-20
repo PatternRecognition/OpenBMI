@@ -35,6 +35,7 @@ fprintf('Visualization tutorial\n')
 data = importdata(fullfile(DATADIR,SESSION,SUBJECT,ERPDATA));
 CNT = data.(STRUCTINFO);
 CNT = rmfield(CNT, 'smt');
+
 CNT = prep_resample(CNT, FS, {'Nr', 0});
 CNT = prep_filter(CNT, {'frequency', FREQBAND});
 SMT = prep_segmentation(CNT, {'interval', SEGTIME});
