@@ -163,9 +163,12 @@ for k=1:blocksize
     U = U + reshape(bsxfun(@times,reshape(X(range,:),[],1,C),reshape(X(range,:),[],C,1)),size(U));
 end
 
+
+
 % get the mixing matrix M
 M = sqrtm(real(reshape(geometric_median(U/blocksize),C,C)));
 
+% window
 % window length for calculating thresholds
 N = round(window_len*srate);
 
