@@ -207,7 +207,7 @@ function y = block_geometric_median(X,blocksize,varargin)
 % than the regular geom_median function).
 %
 % This statistic is not robust to artifacts that persist over a duration that
-% is significantly shorter than the blocksize.
+% is significantly shorter than the blocksize. 
 %
 % In:
 %   X : the data (#observations x #variables)
@@ -217,7 +217,7 @@ function y = block_geometric_median(X,blocksize,varargin)
 %   y : initial value (default: median(X))
 %   max_iter : max number of iterations (default: 500)
 %
-% Out:
+% Out:  
 %   g : geometric median over X
 %
 % Notes:
