@@ -149,11 +149,13 @@ if nargin < 11 || isempty(min_clean_fraction)
 
 X(~isfinite(X(:))) = 0;
 
+
 % apply the signal shaping filter and initialize the IIR filter state
 [X,iirstate] = filter(B,A,double(X),[],2); X = X';
 if any(~isfinite(X(:)))
     error('The IIR filter diverged on your data. Please try using either a more conservative filter or removing some bad sections/channels from the calibration data.'); end
 
+% calaulate
 % calculate the sample covariance matrices U (averaged in blocks of blocksize successive samples)
 U = zeros(length(1:blocksize:S),C*C);
 for k=1:blocksize
