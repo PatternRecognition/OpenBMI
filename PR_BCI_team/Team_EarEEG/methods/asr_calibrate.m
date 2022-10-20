@@ -239,6 +239,7 @@ if blocksize > 1
     end
 end
 
+% try
 try
     y = gather(geometric_median(gpuArray(X),varargin{:}))/blocksize;
 catch
