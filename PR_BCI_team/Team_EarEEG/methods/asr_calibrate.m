@@ -247,7 +247,7 @@ catch
 end
 
 
-
+% geometric_median
 function y = geometric_median(X,tol,y,max_iter)
 % Calculate the geometric median for a set of observations (mean under a Laplacian noise distribution)
 % This is using Weiszfeld's algorithm.
