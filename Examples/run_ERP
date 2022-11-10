@@ -19,7 +19,6 @@ clear cnt_p300_off cnt_p300_on
 % revised 2017.11.11 - Oyeon Kwon (oy_kwon@korea.ac.kr)
 
 %% Initialization
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % for offline
 ival = [-200 800];
 baseTime =[-200 0];
