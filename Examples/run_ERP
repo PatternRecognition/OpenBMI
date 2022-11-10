@@ -127,4 +127,5 @@ end
 no_=sum(acc2)/length(spellerText_on);
 Accuracy=no_;
 
+%% clear variables
 clear acc2 fs nchar no_ seq spellerText_on CNT_off CNT_on
