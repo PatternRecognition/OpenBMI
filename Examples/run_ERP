@@ -86,7 +86,7 @@ for char = 1:length(spellerText_on)
     [nDat, nTrials, nCh]= size(ft_dat.x);
     ft_dat.x = reshape(permute(ft_dat.x,[1 3 2]), [nDat*nCh nTrials]); % data reshape (features * ch, trials)-- 2017.07.31 (oyeon)
     
-    % predict character
+    % predict the character
     for i=1:60
         for i2=1:6
             DAT{rc_order{nSeq}(in_nc,i2)}(end+1,:) = ft_dat.x(:,nc);
