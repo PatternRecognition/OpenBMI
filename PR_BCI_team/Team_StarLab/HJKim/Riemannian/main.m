@@ -17,7 +17,7 @@ for i = 1:size.subject
     eval(i).h.Classlabel = load(char("C:\Users\KHJ-work\Documents\MATLAB\BCICIV_2a_gdf\A0" + int2str(i) + "E.mat"));
 end
 
-%% Segment
+%% Make Segment
 for i = 1:size.subject
     for j = 1:size.trial
         train(i).samp_seg(:, 1:size.chan, j) = train(i).s(train(i).h.TRIG(j) + 626:train(i).h.TRIG(j) + 1125, 1:size.chan);
