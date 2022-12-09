@@ -64,7 +64,7 @@ for i = 1:size.subject
     end
 end
 
-%% Bandpass filter
+%% Bandpass filtering
 for i = 1:size.subject
     train(i).samp_segF = reshape(bandpass(reshape(train(i).samp_seg, [500 * size.trial size.chan]), [8 30], size.sr), [500, size.chan, size.trial]);
     eval(i).samp_segF = reshape(bandpass(reshape(eval(i).samp_seg, [500 * size.trial size.chan]), [8 30], size.sr), [500, size.chan, size.trial]);
