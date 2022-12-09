@@ -1,6 +1,6 @@
 function out = tangentspace(A, B)
 
-% tangentspace between A and B
+% Get tangent space between A and B
 
 
 for i = 1:size(A, 3)
