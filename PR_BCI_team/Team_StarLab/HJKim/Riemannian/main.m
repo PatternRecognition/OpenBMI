@@ -1,4 +1,4 @@
-%% Clear
+%% Clear, close
 clear; close; clc;
 
 %% Data load
