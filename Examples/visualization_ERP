@@ -25,6 +25,8 @@ params = {
     'Quality', 'high'; 
     'baseline', BASELINE;
     };
+
+    
 %%
 fprintf('Visualization tutorial\n')
 data = importdata(fullfile(DATADIR,SESSION,SUBJECT,ERPDATA));
