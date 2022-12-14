@@ -2,11 +2,13 @@ clear all; close all; clc;
 
 DATADIR = 'WHERE\IS\DATA';
 SAVEDIR = 'WHERE\TO\SAVE';
+
 %% SSVEP
 ERPDATA = 'EEG_ERP.mat';
 STRUCTINFO = 'EEG_ERP_train';
 SESSION = 'session1';
 SUBJECT = 's1';
+
 %% INITIALIZATION
 FS = 100;
 FREQBAND = [.5 40];
