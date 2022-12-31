@@ -151,8 +151,6 @@ for i = 1:size.subject
     def_acc(i) = (acc1(i) + acc2(i)) / 2;
 end
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 %% Covariance matrix using affine transform
 for i = 1:size.subject
     for j = 1:size.trial
@@ -249,7 +247,4 @@ for i = 1:size.subject
     
     tmp_res = Rmdm(eval(i).aff_cov(:, :, find(eval(i).samp_remain)), train(i).mine_class_Rmean);
     acc1(i) = length(find(tmp_res == eval(i).h.Classlabel.classlabel(find(eval(i).samp_remain))')) / length(eval(i).samp_remain);
-    %tmp_res = Rmdm(train(i).aff_cov(:, :, find(train(i).samp_remain)), eval(i).aff_class_Rmean);
-    %acc2(i) = length(find(tmp_res == train(i).h.Classlabel.classlabel(find(train(i).samp_remain))')) / length(train(i).samp_remain);
-    %aff_acc(i) = (acc1(i) + acc2(i)) / 2;
 end
