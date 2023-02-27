@@ -1,4 +1,4 @@
-# OpenBMI ver 2.0 is released.
+# OpenBMI ver 3.0 is released.
 An open software package dedicated for the development of Brain-Computer Interfaces with various advanced pattern recognition algorithms
 
 We provide detail information in each folder and every function.
