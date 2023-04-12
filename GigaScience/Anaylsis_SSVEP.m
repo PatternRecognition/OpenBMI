@@ -2,7 +2,7 @@
 clear all; clc; close all;
 %% initialization
 DATADIR = 'WHERE\IS\DATA';
-%% ERP
+%% SSVEP
 SSVEPDATA = 'EEG_SSVEP.mat';
 STRUCTINFO = {'EEG_SSVEP_train', 'EEG_SSVEP_test'};
 SESSIONS = {'session1', 'session2'};
@@ -33,7 +33,7 @@ for sessNum = 1:length(SESSIONS)
         
         CNT{1} = prep_resample(data.(STRUCTINFO{1}), FS,{'Nr', 0});
         CNT{2} = prep_resample(data.(STRUCTINFO{2}), FS,{'Nr', 0});
-        ACC.SSVEP(subNum,sessNum) = ssvep_performance(CNT, params);
+        ACC.SSVEP(subNum,sessNum) = SSVEP_performance(CNT, params);
         fprintf('%d = %f\n',subNum, ACC.SSVEP(subNum,sessNum));
         clear CNT
     end
